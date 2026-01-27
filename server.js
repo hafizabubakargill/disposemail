@@ -46,7 +46,10 @@ app.prepare().then(() => {
             // We'll trust the parsed 'To' for now.
 
             const toAddressObj = Array.isArray(parsed.to) ? parsed.to[0] : parsed.to;
-            const toAddress = toAddressObj?.text || '';
+            // mailparser 'to' object has { value, text, html }. value is array of { address, name }
+            // If parsed.to is directly the object:
+            const rawAddress = toAddressObj?.address || toAddressObj?.text || '';
+            const toAddress = rawAddress.toLowerCase().trim();
 
             if (!toAddress) {
                 return res.status(400).send('No recipient found');
@@ -57,7 +60,7 @@ app.prepare().then(() => {
                 address: toAddress,
                 from_address: parsed.from?.text || 'unknown',
                 subject: parsed.subject || '(No Subject)',
-                text: parsed.text || '',
+                text: parsed.text || '', // Fallback to text if html is missing
                 html: parsed.html || '',
                 received_at: Date.now()
             };
