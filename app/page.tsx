@@ -63,9 +63,9 @@ export default function Home() {
                     <span className="font-bold text-xl tracking-tight">DisposeMail</span>
                 </div>
                 <div className="flex gap-6 text-sm text-gray-400 font-medium">
-                    <a href="#" className="hover:text-white transition-colors">API</a>
-                    <a href="#" className="hover:text-white transition-colors">FAQ</a>
-                    <a href="#" className="hover:text-white transition-colors">About</a>
+                    <a href="/api-docs" className="hover:text-white transition-colors">API</a>
+                    <a href="/faq" className="hover:text-white transition-colors">FAQ</a>
+                    <a href="/about" className="hover:text-white transition-colors">About</a>
                 </div>
             </nav>
 
@@ -128,7 +128,7 @@ export default function Home() {
                 </div>
 
                 <p className="text-gray-500 text-sm mb-16">
-                    Emails auto-delete after 1 hour. <span className="text-blue-500/60 cursor-pointer hover:text-blue-400">Learn more</span>
+                    Emails auto-delete after 1 hour. <a href="/faq" className="text-blue-500/60 cursor-pointer hover:text-blue-400">Learn more</a>
                 </p>
             </div>
 
