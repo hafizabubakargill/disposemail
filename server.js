@@ -18,7 +18,12 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
-    const io = new SocketIOServer(httpServer);
+    const io = new SocketIOServer(httpServer, {
+        cors: {
+            origin: "*",
+            methods: ["GET", "POST"]
+        }
+    });
 
     // Increase body limit for large emails if using body-parser, 
     // but we will stream directly to mailparser where possible.
