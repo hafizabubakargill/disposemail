@@ -5,27 +5,38 @@ import io, { Socket } from 'socket.io-client';
 
 interface Email {
     id: string;
-    address: string;
     from_address: string;
     subject: string;
     text: string;
-    html: string;
+    html?: string;
     received_at: number;
+    is_read?: boolean;
 }
 
-interface InboxProps {
-    emailAddress: string;
-}
-
-let socket: Socket;
-
-export default function Inbox({ emailAddress }: InboxProps) {
+export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [emails, setEmails] = useState<Email[]>([]);
-    const [isConnected, setIsConnected] = useState(false);
     const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
+    const [isConnected, setIsConnected] = useState(false);
+    let socket: any;
+
+    const handleSelectEmail = (email: Email) => {
+        setSelectedEmail(email);
+
+        // Mark as read immediately in UI
+        if (!email.is_read) {
+            setEmails(prev => prev.map(e => e.id === email.id ? { ...e, is_read: true } : e));
+
+            // Call API to persist
+            fetch('/api/emails/read', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: email.id })
+            }).catch(console.error);
+        }
+    };
 
     useEffect(() => {
-        // connect to socket
+        // Initial Fetch
         fetch('/api/emails?address=' + emailAddress)
             .then(res => res.json())
             .then(data => setEmails(data));
@@ -42,20 +53,21 @@ export default function Inbox({ emailAddress }: InboxProps) {
             socket.emit('join-room', emailAddress);
         });
 
-        socket.on('connect_error', (err) => {
-            // Sockets are optional now (progressive enhancement). 
+        socket.on('connect_error', (err: Error) => {
+            // Sockets are optional now (progressive enhancement).
             // We have polling as backup.
             console.debug('Socket connection failed, using polling:', err.message);
         });
 
-        socket.on('disconnect', (reason) => {
+        socket.on('disconnect', (reason: string) => {
             console.warn('Socket Disconnected:', reason);
             setIsConnected(false);
         });
 
         socket.on('new-email', (email: Email) => {
-            // Add new email to top
-            setEmails(prev => [email, ...prev]);
+            // New emails are unread by default
+            const newEmail = { ...email, is_read: false };
+            setEmails(prev => [newEmail, ...prev]);
 
             // Optional: Browser notification
             if (Notification.permission === 'granted') {
@@ -85,24 +97,21 @@ export default function Inbox({ emailAddress }: InboxProps) {
                     throw new Error('Fetch failed');
                 })
                 .then((data: Email[]) => {
-                    // We only want to add NEW emails that we don't already have.
-                    // Or simpler: just replace the list if it's different.
-                    // For simplicity in this demo, replacing the list is safer to avoid dupes,
-                    // but we should try to preserve the user's selection/scroll if possible.
-                    // A simple JSON comparison or ID check is good.
-
                     setEmails(current => {
-                        // If counts differ, or latest ID differs, update.
+                        // Simple check: if we have more emails, or the top one changed ID
+                        // We merge carefull to not overwrite local is_read state if we can help it,
+                        // but usually the server is source of truth.
+                        // For simplicity, we trust server, but if we just marked it read locally
+                        // and server hasn't updated yet, it might flicker.
+                        // Ideally, server returns correct is_read.
                         if (data.length !== current.length || (data.length > 0 && data[0].id !== current[0]?.id)) {
-                            // Notify if new email found via polling (and we didn't get it via socket yet)
                             if (data.length > current.length && Notification.permission === 'granted') {
-                                // Simple check: assuming new ones are at top
                                 const newCount = data.length - current.length;
                                 if (newCount > 0) new Notification('New Email Received');
                             }
                             return data;
                         }
-                        return current;
+                        return current; // No change
                     });
                 })
                 .catch(err => console.debug('Polling skipped:', err));
@@ -125,9 +134,9 @@ export default function Inbox({ emailAddress }: InboxProps) {
                         CONNECTED
                     </div>
                 ) : (
-                    <div className="flex items-center text-red-500">
-                        <span className="w-2 h-2 rounded-full mr-2 bg-red-500"></span>
-                        DISCONNECTED (Polling Enabled)
+                    <div className="flex items-center text-amber-600 dark:text-amber-500">
+                        <span className="w-2 h-2 rounded-full mr-2 bg-amber-500 animate-pulse"></span>
+                        ⚡ AUTO-REFRESH ACTIVE
                     </div>
                 )}
             </div>
@@ -141,23 +150,26 @@ export default function Inbox({ emailAddress }: InboxProps) {
                     <div className="flex-1 overflow-y-auto">
                         {emails.length === 0 ? (
                             <div className="flex flex-col items-center justify-center h-full text-gray-500 p-6 text-center">
-                                <div className="w-10 h-10 mb-3 rounded-full border border-dashed border-gray-400 dark:border-gray-600 flex items-center justify-center">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <div className="w-10 h-10 mb-3 rounded-full border border-dashed border-gray-400 dark:border-gray-600 flex items-center justify-center animate-spin-slow">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                                 </div>
-                                <p className="text-sm">Waiting for emails...</p>
+                                <p className="text-sm animate-pulse">Waiting for emails...</p>
                             </div>
                         ) : (
                             emails.map(email => (
                                 <div
                                     key={email.id}
-                                    onClick={() => setSelectedEmail(email)}
+                                    onClick={() => handleSelectEmail(email)}
                                     className={`p-4 border-b border-gray-100 dark:border-[#222] cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-[#1a1a1a] ${selectedEmail?.id === email.id ? 'bg-blue-50 dark:bg-[#1a1a1a] border-l-4 border-l-blue-500' : ''}`}
                                 >
                                     <div className="flex justify-between items-start mb-1">
-                                        <span className="font-semibold text-sm text-gray-900 dark:text-white truncate w-32">{email.from_address}</span>
-                                        <span className="text-xs text-gray-500">{formatDate(email.received_at)}</span>
+                                        <div className="flex items-center overflow-hidden">
+                                            {!email.is_read && <span className="w-2 h-2 rounded-full bg-blue-500 mr-2 flex-shrink-0"></span>}
+                                            <span className={`text-sm truncate w-28 ${!email.is_read ? 'font-bold text-gray-900 dark:text-white' : 'font-medium text-gray-700 dark:text-gray-300'}`}>{email.from_address}</span>
+                                        </div>
+                                        <span className="text-xs text-gray-500 flex-shrink-0 ml-1">{formatDate(email.received_at)}</span>
                                     </div>
-                                    <div className="text-sm text-gray-600 dark:text-gray-300 font-medium truncate mb-1">{email.subject}</div>
+                                    <div className={`text-sm truncate mb-1 ${!email.is_read ? 'font-bold text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-400'}`}>{email.subject}</div>
                                     <div className="text-xs text-gray-500 truncate">{email.text.substring(0, 50)}</div>
                                 </div>
                             ))

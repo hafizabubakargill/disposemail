@@ -3,6 +3,7 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
   "/api-docs/page": "app/api-docs/page.js",
+  "/api/emails/read/route": "app/api/emails/read/route.js",
   "/api/emails/route": "app/api/emails/route.js",
   "/api/webhook/email/route": "app/api/webhook/email/route.js",
   "/faq/page": "app/faq/page.js",
