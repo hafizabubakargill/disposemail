@@ -1,5 +1,11 @@
 {
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/api-docs/page": "/api-docs",
+  "/api/emails/route": "/api/emails",
+  "/api/webhook/email/route": "/api/webhook/email",
+  "/faq/page": "/faq",
+  "/icon.svg/route": "/icon.svg",
   "/page": "/"
 }

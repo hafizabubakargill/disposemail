@@ -73,6 +73,42 @@ export default function Inbox({ emailAddress }: InboxProps) {
         }
     }, []);
 
+    // POLLING FALLBACK: Fetch emails every 5 seconds to ensure data freshness
+    // even if sockets are disconnected or failing.
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetch('/api/emails?address=' + emailAddress)
+                .then(res => {
+                    if (res.ok) return res.json();
+                    throw new Error('Fetch failed');
+                })
+                .then((data: Email[]) => {
+                    // We only want to add NEW emails that we don't already have.
+                    // Or simpler: just replace the list if it's different.
+                    // For simplicity in this demo, replacing the list is safer to avoid dupes,
+                    // but we should try to preserve the user's selection/scroll if possible.
+                    // A simple JSON comparison or ID check is good.
+
+                    setEmails(current => {
+                        // If counts differ, or latest ID differs, update.
+                        if (data.length !== current.length || (data.length > 0 && data[0].id !== current[0]?.id)) {
+                            // Notify if new email found via polling (and we didn't get it via socket yet)
+                            if (data.length > current.length && Notification.permission === 'granted') {
+                                // Simple check: assuming new ones are at top
+                                const newCount = data.length - current.length;
+                                if (newCount > 0) new Notification('New Email Received');
+                            }
+                            return data;
+                        }
+                        return current;
+                    });
+                })
+                .catch(err => console.debug('Polling skipped:', err));
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [emailAddress]);
+
     const formatDate = (ts: number) => {
         return new Date(ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }

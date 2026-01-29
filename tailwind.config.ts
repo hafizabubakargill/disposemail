@@ -1,4 +1,3 @@
-```typescript
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -10,7 +9,7 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                background: "rgb(var(--background))", // Fix: use rgb values from globals
+                background: "rgb(var(--background))",
                 foreground: "rgb(var(--foreground))",
             },
         },
@@ -18,5 +17,3 @@ const config: Config = {
     plugins: [],
 };
 export default config;
-
-```
