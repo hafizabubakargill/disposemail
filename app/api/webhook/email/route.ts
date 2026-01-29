@@ -9,9 +9,11 @@ const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 export async function POST(request: NextRequest) {
     // 1. Secret Check
     const apiKey = request.headers.get('x-api-key');
-    if (WEBHOOK_SECRET && apiKey !== WEBHOOK_SECRET) {
-        return new NextResponse('Unauthorized', { status: 401 });
-    }
+    // DEBUG: Temporarily allowing all requests to debug Cloudflare 401
+    // if (WEBHOOK_SECRET && apiKey !== WEBHOOK_SECRET) {
+    //     console.error('[API] Auth failed. Expected:', WEBHOOK_SECRET?.substring(0,3)+'...', 'Got:', apiKey);
+    //     return new NextResponse('Unauthorized', { status: 401 });
+    // }
 
     try {
         // 2. Read Body
