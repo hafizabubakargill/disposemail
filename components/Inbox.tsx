@@ -118,17 +118,17 @@ export default function Inbox({ emailAddress }: InboxProps) {
     return (
         <div className="w-full max-w-4xl mx-auto mt-8">
             {/* Connection Status Indicator */}
-            <div className="flex items-center justify-end mb-4 text-xs font-mono text-gray-500">
+            <div className="flex items-center justify-end mb-4 text-xs font-mono">
                 {isConnected ? (
-                    <>
+                    <div className="flex items-center text-green-600 dark:text-green-400">
                         <span className="w-2 h-2 rounded-full mr-2 bg-green-500 animate-pulse"></span>
-                        LIVE UPDATES
-                    </>
+                        CONNECTED
+                    </div>
                 ) : (
-                    <>
-                        <span className="w-2 h-2 rounded-full mr-2 bg-gray-400"></span>
-                        AUTO-REFRESH ACTIVE
-                    </>
+                    <div className="flex items-center text-red-500">
+                        <span className="w-2 h-2 rounded-full mr-2 bg-red-500"></span>
+                        DISCONNECTED (Polling Enabled)
+                    </div>
                 )}
             </div>
 
