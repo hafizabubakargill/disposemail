@@ -43,7 +43,9 @@ export default function Inbox({ emailAddress }: InboxProps) {
         });
 
         socket.on('connect_error', (err) => {
-            console.error('Socket Connection Error:', err);
+            // Sockets are optional now (progressive enhancement). 
+            // We have polling as backup.
+            console.debug('Socket connection failed, using polling:', err.message);
         });
 
         socket.on('disconnect', (reason) => {
@@ -117,8 +119,17 @@ export default function Inbox({ emailAddress }: InboxProps) {
         <div className="w-full max-w-4xl mx-auto mt-8">
             {/* Connection Status Indicator */}
             <div className="flex items-center justify-end mb-4 text-xs font-mono text-gray-500">
-                <span className={`w-2 h-2 rounded-full mr-2 ${isConnected ? 'bg-green-500' : 'bg-red-500'} animate-pulse`}></span>
-                {isConnected ? 'LIVE SOCKET' : 'DISCONNECTED'}
+                {isConnected ? (
+                    <>
+                        <span className="w-2 h-2 rounded-full mr-2 bg-green-500 animate-pulse"></span>
+                        LIVE UPDATES
+                    </>
+                ) : (
+                    <>
+                        <span className="w-2 h-2 rounded-full mr-2 bg-gray-400"></span>
+                        AUTO-REFRESH ACTIVE
+                    </>
+                )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
