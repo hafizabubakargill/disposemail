@@ -7,8 +7,10 @@ import { DOMAINS, DEFAULT_DOMAIN } from "@/lib/domains";
 
 export default function Home() {
     const [email, setEmail] = useState<string | null>(null);
-    const [selectedDomain, setSelectedDomain] = useState<string>(DEFAULT_DOMAIN);
     const [copied, setCopied] = useState(false);
+
+    // Get random domain helper
+    const getRandomDomain = () => DOMAINS[Math.floor(Math.random() * DOMAINS.length)];
 
     useEffect(() => {
         // Generate or retrieve existing email session
@@ -23,19 +25,13 @@ export default function Home() {
 
         if (!stored) {
             const userPart = Math.random().toString(36).substring(2, 10);
-            stored = `${userPart}@${DEFAULT_DOMAIN}`;
+            stored = `${userPart}@${getRandomDomain()}`;
             localStorage.setItem('disposemail_address', stored);
             localStorage.setItem('disposemail_created', now.toString());
         }
 
         // Set state
         setEmail(stored);
-
-        // Extract domain from stored email to set dropdown correctly
-        const domainPart = stored.split('@')[1];
-        if (DOMAINS.includes(domainPart)) {
-            setSelectedDomain(domainPart);
-        }
     }, []);
 
     const handleCopy = () => {
@@ -48,28 +44,11 @@ export default function Home() {
 
     const handleRefresh = () => {
         const userPart = Math.random().toString(36).substring(2, 10);
-        const newEmail = `${userPart}@${selectedDomain}`; // Use currently selected domain
+        const newEmail = `${userPart}@${getRandomDomain()}`;
         localStorage.setItem('disposemail_address', newEmail);
         localStorage.setItem('disposemail_created', Date.now().toString());
         setEmail(newEmail);
-        // We force reload to ensure socket/inbox state is clean, though strictly not necessary if Inbox handles prop change well.
-        // For smoother UX, we could try avoiding reload, but reload ensures clean state.
         window.location.reload();
-    };
-
-    const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newDomain = e.target.value;
-        setSelectedDomain(newDomain);
-
-        // When domain changes, we should probably generate a new email immediately 
-        // OR wait for user to hit refresh? 
-        // Better UX: Update the current user part with new domain immediately.
-        if (email) {
-            const userPart = email.split('@')[0];
-            const newEmail = `${userPart}@${newDomain}`;
-            setEmail(newEmail);
-            localStorage.setItem('disposemail_address', newEmail);
-        }
     };
 
     if (!email) return null; // or loading spinner
@@ -123,26 +102,13 @@ export default function Home() {
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </span>
 
-                        {/* Domain Selector Logic */}
-                        <div className="flex-1 flex items-center overflow-hidden">
-                            <span className="text-gray-900 dark:text-gray-200 font-mono text-lg truncate text-right">
-                                {email.split('@')[0]}
-                            </span>
-                            <span className="text-gray-500 font-mono text-lg mx-1">@</span>
-                            <select
-                                value={selectedDomain}
-                                onChange={handleDomainChange}
-                                className="bg-transparent border-none outline-none text-gray-900 dark:text-gray-200 font-mono text-lg cursor-pointer hover:text-blue-500 transition-colors appearance-none pr-4"
-                                style={{ backgroundImage: 'none' }}
-                            >
-                                {DOMAINS.map(domain => (
-                                    <option key={domain} value={domain} className="bg-white dark:bg-[#222] text-black dark:text-white">
-                                        {domain}
-                                    </option>
-                                ))}
-                            </select>
-                            {/* Custom arrow minimal */}
-                            <svg className="w-4 h-4 text-gray-400 pointer-events-none -ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <div className="flex-1 overflow-hidden">
+                            <input
+                                type="text"
+                                readOnly
+                                value={email}
+                                className="bg-transparent border-none outline-none text-gray-900 dark:text-gray-200 font-mono text-lg w-full placeholder-gray-400 dark:placeholder-gray-600 pl-2"
+                            />
                         </div>
 
                     </div>

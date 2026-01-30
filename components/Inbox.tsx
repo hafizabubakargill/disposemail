@@ -19,6 +19,16 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [isConnected, setIsConnected] = useState(false);
     let socket: any;
 
+    const playNotificationSound = () => {
+        try {
+            const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+            audio.volume = 0.5;
+            audio.play().catch(e => console.log('Audio blocked (needs interaction):', e));
+        } catch (e) {
+            console.error('Audio error:', e);
+        }
+    };
+
     const handleSelectEmail = (email: Email) => {
         setSelectedEmail(email);
 
@@ -69,6 +79,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             const newEmail = { ...email, is_read: false };
             setEmails(prev => [newEmail, ...prev]);
 
+            playNotificationSound();
+
             // Optional: Browser notification
             if (Notification.permission === 'granted') {
                 new Notification('New Email', { body: email.subject });
@@ -98,17 +110,18 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                 })
                 .then((data: Email[]) => {
                     setEmails(current => {
-                        // Simple check: if we have more emails, or the top one changed ID
-                        // We merge carefull to not overwrite local is_read state if we can help it,
-                        // but usually the server is source of truth.
-                        // For simplicity, we trust server, but if we just marked it read locally
-                        // and server hasn't updated yet, it might flicker.
-                        // Ideally, server returns correct is_read.
-                        if (data.length !== current.length || (data.length > 0 && data[0].id !== current[0]?.id)) {
-                            if (data.length > current.length && Notification.permission === 'granted') {
+                        // Simple check: if we have more emails
+                        if (data.length > current.length) {
+                            playNotificationSound();
+                            if (Notification.permission === 'granted') {
                                 const newCount = data.length - current.length;
                                 if (newCount > 0) new Notification('New Email Received');
                             }
+                            return data;
+                        }
+
+                        // If IDs differ but count is same (unlikely unless replacement), or just re-syncing
+                        if (data.length !== current.length || (data.length > 0 && data[0].id !== current[0]?.id)) {
                             return data;
                         }
                         return current; // No change
