@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import io, { Socket } from 'socket.io-client';
 
 interface Email {
@@ -17,7 +17,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [emails, setEmails] = useState<Email[]>([]);
     const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
     const [isConnected, setIsConnected] = useState(false);
-    let socket: any;
+    const socketRef = useRef<any>(null);
 
     const playNotificationSound = () => {
         try {
@@ -51,11 +51,15 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             .then(res => res.json())
             .then(data => setEmails(data));
 
-        // Initialize socket with explicit config
-        socket = io({
-            transports: ['websocket', 'polling'], // Try websocket first, then polling
-            reconnectionAttempts: 5,
+        // Initialize socket with strategy: Start with polling, then upgrade to WebSocket.
+        // This stops "WebSocket closed before establishment" warnings.
+        socketRef.current = io({
+            transports: ['polling', 'websocket'],
+            reconnectionAttempts: 10,
+            reconnectionDelay: 1000,
         });
+
+        const socket = socketRef.current;
 
         socket.on('connect', () => {
             console.log('Socket Connected:', socket.id);
@@ -64,9 +68,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         });
 
         socket.on('connect_error', (err: Error) => {
-            // Sockets are optional now (progressive enhancement).
-            // We have polling as backup.
-            console.debug('Socket connection failed, using polling:', err.message);
+            // Polling handles this fallback naturally
+            console.debug('Socket connection message:', err.message);
         });
 
         socket.on('disconnect', (reason: string) => {
@@ -75,20 +78,19 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         });
 
         socket.on('new-email', (email: Email) => {
-            // New emails are unread by default
             const newEmail = { ...email, is_read: false };
             setEmails(prev => [newEmail, ...prev]);
-
             playNotificationSound();
 
-            // Optional: Browser notification
             if (Notification.permission === 'granted') {
                 new Notification('New Email', { body: email.subject });
             }
         });
 
         return () => {
-            socket.disconnect();
+            if (socketRef.current) {
+                socketRef.current.disconnect();
+            }
         };
     }, [emailAddress]);
 
@@ -145,15 +147,15 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                     <div className="p-4 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616] flex justify-between items-center">
                         <h3 className="font-medium text-gray-900 dark:text-gray-200">Inbox ({emails.length})</h3>
 
-                        {/* Status Indicator moved here */}
-                        <div className="text-[10px] font-mono">
+                        {/* Enhanced Status Indicator */}
+                        <div className="flex items-center">
                             {isConnected ? (
-                                <div className="flex items-center text-green-600 dark:text-green-400" title="Values updated via WebSocket">
+                                <div className="flex items-center px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-[10px] font-bold shadow-[0_0_8px_rgba(34,197,94,0.2)]" title="Real-time Connection Active">
                                     <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-green-500 animate-pulse"></span>
                                     CONNECTED
                                 </div>
                             ) : (
-                                <div className="flex items-center text-amber-600 dark:text-amber-500" title="Values updated via Polling">
+                                <div className="flex items-center px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-500 text-[10px] font-bold" title="Using Smart Auto-Refresh">
                                     <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-amber-500 animate-pulse"></span>
                                     AUTO-REFRESH
                                 </div>
