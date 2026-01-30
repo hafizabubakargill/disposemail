@@ -126,26 +126,26 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
     return (
         <div className="w-full max-w-4xl mx-auto mt-8">
-            {/* Connection Status Indicator */}
-            <div className="flex items-center justify-end mb-4 text-xs font-mono">
-                {isConnected ? (
-                    <div className="flex items-center text-green-600 dark:text-green-400">
-                        <span className="w-2 h-2 rounded-full mr-2 bg-green-500 animate-pulse"></span>
-                        CONNECTED
-                    </div>
-                ) : (
-                    <div className="flex items-center text-amber-600 dark:text-amber-500">
-                        <span className="w-2 h-2 rounded-full mr-2 bg-amber-500 animate-pulse"></span>
-                        ⚡ AUTO-REFRESH ACTIVE
-                    </div>
-                )}
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
                 {/* Email List */}
                 <div className="col-span-1 bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-xl overflow-hidden flex flex-col shadow-sm">
-                    <div className="p-4 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616]">
+                    <div className="p-4 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616] flex justify-between items-center">
                         <h3 className="font-medium text-gray-900 dark:text-gray-200">Inbox ({emails.length})</h3>
+
+                        {/* Status Indicator moved here */}
+                        <div className="text-[10px] font-mono">
+                            {isConnected ? (
+                                <div className="flex items-center text-green-600 dark:text-green-400" title="Values updated via WebSocket">
+                                    <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-green-500 animate-pulse"></span>
+                                    CONNECTED
+                                </div>
+                            ) : (
+                                <div className="flex items-center text-amber-600 dark:text-amber-500" title="Values updated via Polling">
+                                    <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-amber-500 animate-pulse"></span>
+                                    AUTO-REFRESH
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className="flex-1 overflow-y-auto">
                         {emails.length === 0 ? (
