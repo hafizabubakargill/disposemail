@@ -17,7 +17,8 @@ app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
     const io = new SocketIOServer(httpServer, {
-        path: '/socket.io', // Removed trailing slash for better client compatibility
+        path: '/socket.io-live', // Unique path to avoid any default collisions
+        addTrailingSlash: false,
         cors: {
             origin: "*",
             methods: ["GET", "POST"]
@@ -26,7 +27,12 @@ app.prepare().then(() => {
 
     // --- Custom Server Health Check ---
     server.get('/api/health-check', (req, res) => {
-        res.json({ status: 'ok', server: 'custom-socket-server' });
+        res.json({
+            status: 'ok',
+            server: 'custom-socket-server',
+            version: '1.0.2',
+            time: new Date().toISOString()
+        });
     });
 
     // Increase body limit for large emails if using body-parser, 
