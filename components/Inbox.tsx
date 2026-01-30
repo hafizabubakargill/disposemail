@@ -54,7 +54,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         // Initialize socket with strategy: Start with polling, then upgrade to WebSocket.
         // This stops "WebSocket closed before establishment" warnings.
         socketRef.current = io({
-            path: '/socket.io/',
+            path: '/socket.io', // Removed trailing slash
             transports: ['polling', 'websocket'],
             reconnectionAttempts: 10,
             reconnectionDelay: 1000,

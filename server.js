@@ -17,7 +17,7 @@ app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
     const io = new SocketIOServer(httpServer, {
-        path: '/socket.io/',
+        path: '/socket.io', // Removed trailing slash for better client compatibility
         cors: {
             origin: "*",
             methods: ["GET", "POST"]
