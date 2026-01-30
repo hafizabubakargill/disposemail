@@ -10,11 +10,20 @@
 **Why?** Users often need to receive PDFs or verification images.
 **How?** Update the Cloudflare Worker to parse attachments. Store files in **Cloudflare R2** (AWS S3 compatible, cheaper) and save the download link in your `lowdb` database.
 
-### 3. ✍️ Custom Aliases
-**Why?** Users prefer `john.doe@...` over `x7a91b@...` for memorability.
-**How?** Add an input field on the homepage before the "Generate" button. Pass the custom name to the generation logic.
+### 3. ✍️ Custom Aliases & Plus Addressing
+**Why?** Users prefer `john.doe@...` or specific tags like `john+netflix@...`.
+**How?**
+*   **Custom Name:** Add an input field on the homepage.
+*   **Plus Addressing (`user+tag@...`)**: This **works automatically** with your current "Catch-All" setup. `john+test@disposemail.xyz` is treated as a unique inbox. No extra setup needed!
 
-### 4. 📲 Progressive Web App (PWA)
+### 4. 🎲 Random Subdomains (e.g. `user@x9z.disposemail.xyz`)
+**Why?** Harder to block by services that ban the main domain.
+**Cloudflare Setup:**
+1.  Add an **MX Record** for `*` (Wildcard) pointing to Cloudflare's mail servers.
+2.  In Email Routing, ensure the Catch-All covers subdomains (or add the subdomain as a verified domain if Cloudflare requires explicit verification).
+**Note:** This is an advanced setup; Cloudflare often requires adding specific subdomains (e.g. `mail.disposemail.xyz`) rather than infinite wildcards on free plans.
+
+### 5. 📲 Progressive Web App (PWA)
 **Why?** Allows users to "install" the website on their phone home screen.
 **How?** Add a `manifest.json` and service worker. Next.js has standard plugins for this.
 
