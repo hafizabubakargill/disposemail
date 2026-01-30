@@ -51,21 +51,18 @@ The beauty of your setup (Cloudflare Worker + Central Server) is that **one serv
 ### Phase 2: App Configuration
 You need to tell your frontend about the new domains so users can select them.
 
-1.  **Update Environment**:
-    Add a list of domains to your code (or `.env` if you want it dynamic).
+1.  **Update `lib/domains.ts`**:
+    *   This is the **ONLY** file you need to change in the code.
+    *   Just add your new domain to the list:
     ```typescript
-    // constants/domains.ts
-    export const DOMAINS = ['disposemail.xyz', 'tempmail.pro', 'privacy.net'];
+    // lib/domains.ts
+    export const DOMAINS = [
+        'disposemail.xyz',
+        'groundtips.com',
+        'new-domain.com' // <-- Just add this!
+    ];
     ```
-
-2.  **Frontend Update (`app/page.tsx`)**:
-    *   Replace the hardcoded `@disposemail.xyz` with a **Dropdown `<select>`**.
-    *   When the user generates a random string, combine it with the *selected* domain.
-    ```typescript
-    const [selectedDomain, setSelectedDomain] = useState(DOMAINS[0]);
-    // ...
-    const newEmail = `${userPart}@${selectedDomain}`;
-    ```
+    *   **Deploy**, and the dropdown on the homepage will update automatically.
 
 ### Phase 3: The Backend
 **Good news:** You don't need to change `route.ts`.
