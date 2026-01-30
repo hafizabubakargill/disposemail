@@ -59,6 +59,12 @@
       "namedRegex": "^/api/emails/read(?:/)?$"
     },
     {
+      "page": "/api/status",
+      "regex": "^/api/status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/status(?:/)?$"
+    },
+    {
       "page": "/api/webhook/email",
       "regex": "^/api/webhook/email(?:/)?$",
       "routeKeys": {},

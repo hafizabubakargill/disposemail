@@ -5,6 +5,7 @@
   "/api-docs/page": "app/api-docs/page.js",
   "/api/emails/read/route": "app/api/emails/read/route.js",
   "/api/emails/route": "app/api/emails/route.js",
+  "/api/status/route": "app/api/status/route.js",
   "/api/webhook/email/route": "app/api/webhook/email/route.js",
   "/faq/page": "app/faq/page.js",
   "/icon.svg/route": "app/icon.svg/route.js",

@@ -16,6 +16,17 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
+
+    // --- Custom Server Health Check (TOP OF STACK) ---
+    server.get('/api/health-check', (req, res) => {
+        res.json({
+            status: 'ok',
+            server: 'custom-socket-server',
+            version: '1.0.3',
+            time: new Date().toISOString()
+        });
+    });
+
     const io = new SocketIOServer(httpServer, {
         path: '/socket.io-live', // Unique path to avoid any default collisions
         addTrailingSlash: false,
@@ -23,16 +34,6 @@ app.prepare().then(() => {
             origin: "*",
             methods: ["GET", "POST"]
         }
-    });
-
-    // --- Custom Server Health Check ---
-    server.get('/api/health-check', (req, res) => {
-        res.json({
-            status: 'ok',
-            server: 'custom-socket-server',
-            version: '1.0.2',
-            time: new Date().toISOString()
-        });
     });
 
     // Increase body limit for large emails if using body-parser, 

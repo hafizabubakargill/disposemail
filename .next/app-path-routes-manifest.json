@@ -5,6 +5,7 @@
   "/api-docs/page": "/api-docs",
   "/api/emails/read/route": "/api/emails/read",
   "/api/emails/route": "/api/emails",
+  "/api/status/route": "/api/status",
   "/api/webhook/email/route": "/api/webhook/email",
   "/faq/page": "/faq",
   "/icon.svg/route": "/icon.svg",
