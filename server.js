@@ -17,10 +17,16 @@ app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
     const io = new SocketIOServer(httpServer, {
+        path: '/socket.io/',
         cors: {
             origin: "*",
             methods: ["GET", "POST"]
         }
+    });
+
+    // --- Custom Server Health Check ---
+    server.get('/api/health-check', (req, res) => {
+        res.json({ status: 'ok', server: 'custom-socket-server' });
     });
 
     // Increase body limit for large emails if using body-parser, 
@@ -29,8 +35,10 @@ app.prepare().then(() => {
 
     // --- Socket.io Setup ---
     io.on('connection', (socket) => {
+        console.log(`[Socket.io] New connection: ${socket.id}`);
         socket.on('join-room', (email) => {
             socket.join(email);
+            console.log(`[Socket.io] Socket ${socket.id} joined room: ${email}`);
         });
     });
 
@@ -49,5 +57,6 @@ app.prepare().then(() => {
 
     httpServer.listen(PORT, () => {
         console.log(`> Ready on http://localhost:${PORT}`);
+        console.log(`> Socket.io path: /socket.io/`);
     });
 });

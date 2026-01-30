@@ -54,6 +54,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         // Initialize socket with strategy: Start with polling, then upgrade to WebSocket.
         // This stops "WebSocket closed before establishment" warnings.
         socketRef.current = io({
+            path: '/socket.io/',
             transports: ['polling', 'websocket'],
             reconnectionAttempts: 10,
             reconnectionDelay: 1000,
@@ -150,13 +151,13 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         {/* Enhanced Status Indicator */}
                         <div className="flex items-center">
                             {isConnected ? (
-                                <div className="flex items-center px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-[10px] font-bold shadow-[0_0_8px_rgba(34,197,94,0.2)]" title="Real-time Connection Active">
-                                    <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-green-500 animate-pulse"></span>
+                                <div className="flex items-center px-2 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 text-[10px] font-bold shadow-[0_0_15px_rgba(34,197,94,0.3)] animate-in fade-in zoom-in duration-300" title="Real-time Sync Active">
+                                    <span className="w-2 h-2 rounded-full mr-2 bg-green-500 animate-pulse"></span>
                                     CONNECTED
                                 </div>
                             ) : (
-                                <div className="flex items-center px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-500 text-[10px] font-bold" title="Using Smart Auto-Refresh">
-                                    <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-amber-500 animate-pulse"></span>
+                                <div className="flex items-center px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-500 text-[10px] font-bold" title="Using Smart Auto-Refresh">
+                                    <span className="w-2 h-2 rounded-full mr-2 bg-amber-500 animate-pulse"></span>
                                     AUTO-REFRESH
                                 </div>
                             )}
