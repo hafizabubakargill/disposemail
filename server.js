@@ -22,7 +22,7 @@ app.prepare().then(() => {
         res.json({
             status: 'ok',
             server: 'custom-socket-server',
-            version: '1.0.3',
+            version: '1.0.4',
             time: new Date().toISOString()
         });
     });
