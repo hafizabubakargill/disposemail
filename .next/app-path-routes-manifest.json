@@ -9,5 +9,6 @@
   "/api/webhook/email/route": "/api/webhook/email",
   "/faq/page": "/faq",
   "/icon.svg/route": "/icon.svg",
-  "/page": "/"
+  "/page": "/",
+  "/privacy/page": "/privacy"
 }

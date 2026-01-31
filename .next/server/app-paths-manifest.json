@@ -9,5 +9,6 @@
   "/api/webhook/email/route": "app/api/webhook/email/route.js",
   "/faq/page": "app/faq/page.js",
   "/icon.svg/route": "app/icon.svg/route.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/privacy/page": "app/privacy/page.js"
 }

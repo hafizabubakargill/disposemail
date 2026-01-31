@@ -8,6 +8,8 @@ import { DOMAINS, DEFAULT_DOMAIN } from "@/lib/domains";
 export default function Home() {
     const [email, setEmail] = useState<string | null>(null);
     const [copied, setCopied] = useState(false);
+    const [isCustom, setIsCustom] = useState(false);
+    const [customPrefix, setCustomPrefix] = useState('');
 
     // Get random domain helper
     const getRandomDomain = () => DOMAINS[Math.floor(Math.random() * DOMAINS.length)];
@@ -15,10 +17,9 @@ export default function Home() {
     useEffect(() => {
         // Generate or retrieve existing email session
         let stored = localStorage.getItem('disposemail_address');
-
-        // Check if expired (optional, but good for session management)
         const created = localStorage.getItem('disposemail_created');
         const now = Date.now();
+
         if (stored && created && (now - parseInt(created)) > 60 * 60 * 1000) {
             stored = null; // Expired
         }
@@ -30,7 +31,6 @@ export default function Home() {
             localStorage.setItem('disposemail_created', now.toString());
         }
 
-        // Set state
         setEmail(stored);
     }, []);
 
@@ -43,15 +43,18 @@ export default function Home() {
     };
 
     const handleRefresh = () => {
-        const userPart = Math.random().toString(36).substring(2, 10);
+        const userPart = isCustom && customPrefix.length > 0
+            ? customPrefix.toLowerCase().replace(/[^a-z0-9]/g, '')
+            : Math.random().toString(36).substring(2, 10);
+
         const newEmail = `${userPart}@${getRandomDomain()}`;
         localStorage.setItem('disposemail_address', newEmail);
         localStorage.setItem('disposemail_created', Date.now().toString());
         setEmail(newEmail);
-        window.location.reload();
+        // window.location.reload(); // Removed reload for smoother React state update
     };
 
-    if (!email) return null; // or loading spinner
+    if (!email) return null;
 
     return (
         <main className="flex min-h-screen flex-col items-center relative overflow-hidden">
@@ -72,6 +75,7 @@ export default function Home() {
                         <a href="/api-docs" className="hover:text-blue-600 dark:hover:text-white transition-colors">API</a>
                         <a href="/faq" className="hover:text-blue-600 dark:hover:text-white transition-colors">FAQ</a>
                         <a href="/about" className="hover:text-blue-600 dark:hover:text-white transition-colors">About</a>
+                        <a href="/privacy" className="hover:text-blue-600 dark:hover:text-white transition-colors">Privacy</a>
                     </div>
                     <ModeToggle />
                 </div>
@@ -89,10 +93,37 @@ export default function Home() {
                     <span className="text-gray-900 dark:text-white">Disposable.</span>
                 </h1>
 
-                <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12">
+                <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
                     Instantly generated, secure temporary email for anonymous browsing. <br />
                     No registration. No tracking. Just privacy.
                 </p>
+
+                {/* Custom Prefix Toggle */}
+                <div className="mb-6 flex items-center justify-center gap-4">
+                    <button
+                        onClick={() => setIsCustom(!isCustom)}
+                        className={`text-sm px-4 py-2 rounded-full border transition-all ${isCustom ? 'bg-blue-600/10 border-blue-500 text-blue-400' : 'border-gray-200 dark:border-[#222] text-gray-500 hover:border-gray-300'}`}
+                    >
+                        {isCustom ? "✨ Custom Active" : "🛠️ Personalize Address"}
+                    </button>
+                    {isCustom && (
+                        <div className="flex items-center bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-lg px-3 py-1 animate-in slide-in-from-left-2 duration-300">
+                            <input
+                                type="text"
+                                placeholder="custom-name"
+                                value={customPrefix}
+                                onChange={(e) => setCustomPrefix(e.target.value)}
+                                className="bg-transparent border-none outline-none text-sm text-gray-900 dark:text-gray-200 w-32"
+                            />
+                            <button
+                                onClick={handleRefresh}
+                                className="ml-2 text-blue-500 hover:text-blue-400 text-xs font-bold"
+                            >
+                                USE
+                            </button>
+                        </div>
+                    )}
+                </div>
 
                 {/* Email Box */}
                 <div className="bg-white dark:bg-[#111] p-2 pr-2 rounded-2xl border border-gray-200 dark:border-[#222] shadow-2xl flex flex-col md:flex-row items-center gap-2 max-w-2xl mx-auto backdrop-blur-sm relative group mb-4 transition-colors">
@@ -102,7 +133,7 @@ export default function Home() {
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </span>
 
-                        <div className="flex-1 overflow-hidden">
+                        <div className="flex-1 overflow-hidden text-left">
                             <input
                                 type="text"
                                 readOnly
@@ -139,9 +170,16 @@ export default function Home() {
                     </div>
                 </div>
 
-                <p className="text-gray-500 text-sm mb-16">
+                <p className="text-gray-500 text-sm mb-8">
                     Emails auto-delete after 1 hour. <a href="/faq" className="text-blue-500/60 cursor-pointer hover:text-blue-400">Learn more</a>
                 </p>
+
+                {/* Ad Banner (Top) */}
+                <div className="max-w-2xl mx-auto mb-16 px-4">
+                    <div className="bg-white dark:bg-[#111] border border-dashed border-gray-200 dark:border-[#222] rounded-xl p-4 min-h-[100px] flex items-center justify-center">
+                        <span className="text-xs text-gray-400 dark:text-gray-600 uppercase tracking-widest">Ad Placement Area</span>
+                    </div>
+                </div>
             </div>
 
             {/* Inbox Section */}

@@ -31,6 +31,32 @@
 **Why?** Users might want to save a receipt or ticket received in the email.
 **How?** Add a "Print" or "Download PDF" button in the email view.
 
+### 7. 💰 Passive Income Features
+*   **"Keep Inbox Active" Button**: Users can extend an inbox beyond 1 hour by viewing a 30-second rewarded ad.
+*   **Premium Custom Names**: Allow users to reserve a name (e.g., `ceo@...`) if they support the site.
+*   **VPN Recommendations**: Use affiliate links for privacy tools (like NordVPN/ExpressVPN) in the FAQ/About pages.
+
+### 8. 🔍 SEO & Content
+*   **Blog/Guides**: Write articles like "How to avoid spam" or "Why you need a disposable email." This drives organic traffic from Google for AdSense.
+*   **FAQ Expansion**: Deep technical FAQs help rank for specific long-tail keywords.
+
+---
+
+## 📈 Monetization: Google AdSense Setup
+
+To turn this into a passive income stream, follow these steps to integrate AdSense:
+
+### 1. Account Approval
+*   **Content is King**: AdSense often rejects "empty" tools. Ensure your **FAQ**, **About**, and **API Docs** pages are filled with high-quality text.
+*   **Privacy Policy**: Add a mandatory Privacy Policy page explaining data deletion.
+
+### 2. Integration
+1.  **Site Verification**: Add the AdSense script to `app/layout.tsx`.
+2.  **Auto Ads**: Enable "Auto Ads" in your AdSense dashboard—it will automatically find the best spots (header/footer).
+3.  **Manual Placement**:
+    *   **Sidebars**: Place ads on the left/right of the Inbox for desktop users.
+    *   **Between Emails**: Insert a dummy "ad row" every 5 emails in the inbox list.
+
 ---
 
 ## 🌍 How to Add More Domains
