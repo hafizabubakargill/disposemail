@@ -27,9 +27,18 @@
 **Why?** Allows users to "install" the website on their phone home screen.
 **How?** Add a `manifest.json` and service worker. Next.js has standard plugins for this.
 
-### 5. 🖨️ Print & PDF Export
-**Why?** Users might want to save a receipt or ticket received in the email.
-**How?** Add a "Print" or "Download PDF" button in the email view.
+### 9. ✨ Visual & Interactive Excellence
+*   **Live Countdown**: Show a real-time countdown timer (e.g., `59:22 remaining`) next to the email address.
+*   **Inbox Progress Bar**: A visual bar that depletes as the hour passes.
+*   **Desktop Notifications**: Alert the user when a new email arrives, even if the tab is in the background.
+*   **Lottie Animations**: Add subtle, high-quality animations for "Copying," "Refreshing," and "New Email Arrived."
+*   **QR Code**: Generate a QR code for the temporary email so users can quickly scan it on their phones to share/open.
+*   **Dark/Light Mode Sync**: Automatically match the user's OS theme with a beautiful toggle.
+
+### 10. 📎 Advanced Utility
+*   **Email Forwarding**: Allow users to forward a specific email to their real address for one-time saving.
+*   **Auto-Reply**: Set a simple "Out of office" or "Thank you" reply for any incoming mail.
+*   **Email Verification API**: A public endpoint for developers to check if an email is "real" or "disposable" (you can charge for this!).
 
 ### 7. 💰 Passive Income Features
 *   **"Keep Inbox Active" Button**: Users can extend an inbox beyond 1 hour by viewing a 30-second rewarded ad.

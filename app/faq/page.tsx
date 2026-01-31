@@ -24,15 +24,15 @@ export default function FAQ() {
                         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">What are the benefits of Disposable Email?</h3>
                         <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                             Using a temporary email like DisposeMail helps you avoid spam, protect your primary email address from data breaches,
-                            and maintain anonymity while signing up for newsletters or testing services.
+                            and maintain anonymity while signing up for newsletters or testing services. It acts as a shield between your real identity and the internet.
                         </p>
                     </div>
 
                     <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Is it safe for verification?</h3>
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Can I use this for social media accounts?</h3>
                         <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Yes. Most websites accept our domains for OTPs and verification links. However, we recommend
-                            **not** using disposable emails for critical accounts (like banking) since the address is temporary.
+                            While you can use DisposeMail for social media signups, we **strongly discourage** it for accounts you intend to keep.
+                            If you lose access or need to verify your identity later, you won't be able to access this temporary email again.
                         </p>
                     </div>
 
@@ -40,7 +40,55 @@ export default function FAQ() {
                         <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Can I choose my own username?</h3>
                         <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                             Yes! Use the **"Personalize Address"** button on the homepage to set a custom name like `myname@disposemail.xyz`.
-                            This is perfect for professional-looking temporary communication.
+                            This allows you to create recognizable addresses for specific services.
+                        </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">What is groundtips.com or other domains?</h3>
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            These are secondary domains we use to ensure our service remains accessible. Some websites block popular temporary email providers;
+                            switching between domains helps you bypass these restrictions.
+                        </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Does DisposeMail support attachments?</h3>
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Currently, we focus on the text and HTML content of emails. Support for file attachments is a high-priority feature
+                            currently in our development roadmap.
+                        </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">How many addresses can I have?</h3>
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            There are no limits! You can generate as many addresses as you need by clicking the refresh button.
+                            Each one will have its own independent inbox.
+                        </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Is DisposeMail free?</h3>
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Yes, the service is 100% free and requires no registration. We support the site through
+                            non-intrusive advertisements and donations.
+                        </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">What happens to my data?</h3>
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Once your 60 minutes are up, the inbox and all contained emails are purged from our servers.
+                            The data is shredded and cannot be retrieved by us or anyone else.
+                        </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Is this legal?</h3>
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Absolutely. Using a temporary email is a perfectly legal way to protect your privacy online and
+                            reduce the amount of unwanted marketing emails (spam) in your secondary inbox.
                         </p>
                     </div>
                 </div>
