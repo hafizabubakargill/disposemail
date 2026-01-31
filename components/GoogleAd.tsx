@@ -26,7 +26,7 @@ export default function GoogleAd({ slot, format = 'auto', className = '', respon
             <ins
                 className="adsbygoogle"
                 style={{ display: 'block' }}
-                data-ad-client="ca-pub-YOUR_PUBLISHER_ID" // User needs to replace this
+                data-ad-client="ca-pub-5210079727285405"
                 data-ad-slot={slot}
                 data-ad-format={format}
                 data-full-width-responsive={responsive ? "true" : "false"}
