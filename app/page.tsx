@@ -237,54 +237,53 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <div className="relative flex flex-col md:flex-row gap-2 w-full md:w-auto p-1">
+                        <div className="relative flex flex-row gap-2 w-full md:w-auto p-1">
                             <button
                                 onClick={handleCopy}
-                                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 w-full md:min-w-[100px] shadow-[0_4px_10px_rgba(37,99,235,0.3)]"
+                                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 md:px-6 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 flex-1 md:min-w-[100px] shadow-[0_4px_10px_rgba(37,99,235,0.3)]"
                             >
                                 {copied ? (
                                     <>
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7"></path></svg>
-                                        Copied
+                                        <span className="hidden md:inline">Copied</span>
                                     </>
                                 ) : (
                                     <>
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                                        <span className="md:hidden">Copy Address</span>
-                                        <span className="hidden md:inline">Copy</span>
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 5H6a2 2 0 002-2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                                        <span className="text-sm">Copy</span>
                                     </>
                                 )}
                             </button>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={handleRefresh}
-                                    className="bg-gray-100 dark:bg-[#222] hover:bg-gray-200 dark:hover:bg-[#333] text-gray-900 dark:text-white py-3 px-6 md:px-4 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 flex-1 md:flex-none"
-                                    title="Generate New Address"
-                                >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                                    <span className="md:hidden text-sm font-semibold">Regenerate</span>
-                                </button>
-                                <button
-                                    onClick={() => setShowQR(!showQR)}
-                                    className={`py-3 px-4 rounded-xl transition-all active:scale-95 border ${showQR ? 'bg-blue-600 border-blue-600 text-white' : 'bg-white dark:bg-[#111] border-gray-200 dark:border-[#222] text-gray-700 dark:text-gray-300'}`}
-                                    title="Show QR Code"
-                                >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                </button>
-                            </div>
+                            <button
+                                onClick={handleRefresh}
+                                className="bg-gray-100 dark:bg-[#222] hover:bg-gray-200 dark:hover:bg-[#333] text-gray-900 dark:text-white py-3 px-4 md:px-5 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 flex-1 md:flex-none"
+                                title="Generate New Address"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                                <span className="text-sm font-semibold">New</span>
+                            </button>
+                            <button
+                                onClick={() => setShowQR(!showQR)}
+                                className={`py-3 px-4 rounded-xl transition-all active:scale-95 border flex items-center justify-center shadow-sm ${showQR ? 'bg-blue-600 border-blue-600 text-white' : 'bg-white dark:bg-[#111] border-gray-200 dark:border-[#222] text-gray-700 dark:text-gray-300'}`}
+                                title="Show QR Code"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                            </button>
                         </div>
                     </div>
 
-                    {/* QR Code Modal / View */}
+                    {/* QR Code Popover (Better Placement) */}
                     {showQR && (
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 z-20 animate-in zoom-in-95 fade-in duration-200">
-                            <div className="bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 flex flex-col items-center">
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 z-20 animate-in slide-in-from-bottom-2 fade-in duration-200">
+                            <div className="bg-white p-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-gray-100 flex flex-col items-center">
+                                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-r border-b border-gray-100"></div>
                                 <img
-                                    src={`https://chart.googleapis.com/chart?chs=180x180&cht=qr&chl=${encodeURIComponent('mailto:' + email)}&choe=UTF-8`}
+                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent('mailto:' + email)}`}
                                     alt="QR Code"
-                                    className="w-36 h-36"
+                                    className="w-40 h-40"
+                                    onLoad={() => console.log('QR Loaded')}
                                 />
-                                <span className="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-widest font-bold">Scan to Share</span>
+                                <span className="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-widest font-bold">Scan to Share Address</span>
                             </div>
                         </div>
                     )}
