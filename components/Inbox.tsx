@@ -198,20 +198,40 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                 <div className="col-span-1 md:col-span-2 bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-xl overflow-hidden flex flex-col relative shadow-sm">
                     {selectedEmail ? (
                         <>
-                            <div className="p-6 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616]">
-                                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{selectedEmail.subject}</h2>
-                                <div className="flex justify-between items-center text-sm">
-                                    <div className="text-gray-500 dark:text-gray-400">From: <span className="text-blue-600 dark:text-blue-400">{selectedEmail.from_address}</span></div>
-                                    <div className="text-gray-500">{new Date(selectedEmail.received_at).toLocaleString()}</div>
+                            <div className="p-6 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616] flex justify-between items-start">
+                                <div className="flex-1">
+                                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{selectedEmail.subject}</h2>
+                                    <div className="flex flex-col md:flex-row md:justify-between md:items-center text-sm gap-2">
+                                        <div className="text-gray-500 dark:text-gray-400">From: <span className="text-blue-600 dark:text-blue-400 font-medium">{selectedEmail.from_address}</span></div>
+                                        <div className="text-gray-400 text-xs">{new Date(selectedEmail.received_at).toLocaleString()}</div>
+                                    </div>
+                                </div>
+                                <div className="ml-4 flex gap-2">
+                                    <button
+                                        onClick={() => window.print()}
+                                        className="p-2 text-gray-500 hover:bg-gray-200 dark:hover:bg-[#222] rounded-lg transition-colors"
+                                        title="Print Email"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2-2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                                    </button>
                                 </div>
                             </div>
-                            <div className="flex-1 overflow-y-auto p-6 bg-white text-gray-900 email-content">
+                            <div className="flex-1 overflow-y-auto p-6 bg-white text-gray-900 email-content printable-area">
                                 {/* Render HTML content safely - in production use DOMPurify */}
                                 {selectedEmail.html ? (
                                     <div dangerouslySetInnerHTML={{ __html: selectedEmail.html }} />
                                 ) : (
                                     <pre className="whitespace-pre-wrap font-sans text-sm">{selectedEmail.text}</pre>
                                 )}
+                            </div>
+
+                            {/* Affiliate Link Placeholder */}
+                            <div className="p-4 bg-blue-50/50 dark:bg-blue-900/10 border-t border-gray-100 dark:border-[#222] text-center">
+                                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1.5 font-bold">Recommended for Privacy</p>
+                                <a href="#" className="text-xs text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center justify-center gap-1.5">
+                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                    Surf securely with our partner VPN →
+                                </a>
                             </div>
                         </>
                     ) : (
