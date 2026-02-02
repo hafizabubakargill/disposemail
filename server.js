@@ -57,12 +57,12 @@ app.prepare().then(() => {
     // to bypass App Router 404 issues on some Hostinger environments.
 
     // Health Check
-    server.get('/api/status', (req, res) => {
+    server.get('/api-v1/status', (req, res) => {
         res.json({ status: 'running', timestamp: Date.now() });
     });
 
     // Fetch Emails
-    server.get('/api/emails', (req, res) => {
+    server.get('/api-v1/emails', (req, res) => {
         const address = req.query.address;
         if (!address) return res.status(400).json({ error: 'Address required' });
         try {
@@ -75,7 +75,7 @@ app.prepare().then(() => {
     });
 
     // Mark as Read
-    server.post('/api/emails/read', express.json(), (req, res) => {
+    server.post('/api-v1/emails/read', express.json(), (req, res) => {
         const { id } = req.body;
         if (!id) return res.status(400).json({ error: 'ID required' });
         try {
