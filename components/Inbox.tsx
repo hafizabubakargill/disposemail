@@ -60,6 +60,18 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         setSelectedEmail(null);
     };
 
+    const handleSafetySync = () => {
+        setIsConnected(false); // Show syncing state
+        const API_SECRET = "change_me_to_a_secure_secret";
+        fetch(`https://disposemail.xyz/sync-safety-net?secret=${API_SECRET}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.count > 0) fetchEmails();
+            })
+            .catch(err => console.error('Sync failed:', err))
+            .finally(() => setIsConnected(socketRef.current?.connected));
+    };
+
     const fetchEmails = () => {
         fetch('/x-feed/emails?address=' + emailAddress)
             .then(res => res.ok ? res.json() : Promise.reject())
@@ -206,6 +218,16 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         )}
                     </div>
                 </div>
+                <button
+                    onClick={handleSafetySync}
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-50 dark:bg-[#161616] border border-gray-100 dark:border-[#262626] text-gray-600 dark:text-gray-400 text-xs font-bold hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all shadow-sm"
+                    title="Rescue missing emails from Cloudflare Safety Net"
+                >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                    </svg>
+                    Safety Sync
+                </button>
             </div>
 
             {/* Horizontal Scrollable Inbox List */}

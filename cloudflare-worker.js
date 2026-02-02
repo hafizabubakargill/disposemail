@@ -1,8 +1,8 @@
 export default {
+    // 1. HANDLER FOR INCOMING EMAILS
     async email(message, env, ctx) {
-        // --- CONFIG ---
         const WEBHOOK_URL = "https://disposemail.xyz/x-feed/webhook/email";
-        const API_SECRET = "change_me_to_a_secure_secret"; // Must match server.js WEBHOOK_SECRET
+        const API_SECRET = "change_me_to_a_secure_secret";
 
         const sender = message.from;
         const recipient = message.to;
@@ -20,29 +20,62 @@ export default {
         };
 
         try {
-            // 1. Primary Attempt: Send to Server
             const response = await fetch(WEBHOOK_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(emailPayload),
             });
 
-            if (!response.ok) {
-                console.error(`Webhook failed: ${response.status}`);
-                // 2. Fallback Attempt: Save to KV if Server is down/404
-                if (env.EMAILS_KV) {
-                    const kvKey = `msg:${timestamp}:${recipient}`;
-                    await env.EMAILS_KV.put(kvKey, JSON.stringify(emailPayload), { expirationTtl: 86400 }); // Expire in 24h
-                    console.log(`Email saved to KV fallback: ${kvKey}`);
-                }
+            if (!response.ok && env.EMAILS_KV) {
+                await env.EMAILS_KV.put(`msg:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 86400 });
             }
         } catch (e) {
-            console.error("Worker Error:", e);
-            // 3. Disaster Fallback: Save to KV if Fetch fails entirely
             if (env.EMAILS_KV) {
-                const kvKey = `err:${timestamp}:${recipient}`;
-                await env.EMAILS_KV.put(kvKey, JSON.stringify(emailPayload), { expirationTtl: 86400 });
+                await env.EMAILS_KV.put(`err:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 86400 });
             }
         }
     },
+
+    // 2. HANDLER FOR RESCUE SYNC (Called from Browser)
+    async fetch(request, env) {
+        const url = new URL(request.url);
+        const API_SECRET = "change_me_to_a_secure_secret";
+
+        if (url.pathname === "/sync-safety-net") {
+            const secret = url.searchParams.get("secret");
+            if (secret !== API_SECRET) return new Response("Unauthorized", { status: 401 });
+
+            if (!env.EMAILS_KV) return new Response("KV not bound", { status: 500 });
+
+            // List all saved emails
+            const list = await env.EMAILS_KV.list({ prefix: "msg:" });
+            const errors = await env.EMAILS_KV.list({ prefix: "err:" });
+            const allKeys = [...list.keys, ...errors.keys];
+
+            const emailsToRescue = [];
+            for (const key of allKeys) {
+                const val = await env.EMAILS_KV.get(key.name);
+                if (val) {
+                    emailsToRescue.push(JSON.parse(val));
+                    await env.EMAILS_KV.delete(key.name); // Clear after rescuing
+                }
+            }
+
+            if (emailsToRescue.length === 0) return new Response(JSON.stringify({ count: 0 }), { headers: { "Content-Type": "application/json" } });
+
+            // Forward to Server
+            const rescueResponse = await fetch("https://disposemail.xyz/x-feed/rescue", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    emails: emailsToRescue,
+                    secret: API_SECRET
+                })
+            });
+
+            return rescueResponse;
+        }
+
+        return new Response("DisposeMail Worker Active", { status: 200 });
+    }
 };
