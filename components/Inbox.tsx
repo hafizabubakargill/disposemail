@@ -19,12 +19,14 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [isConnected, setIsConnected] = useState(false);
     const [showMobileContent, setShowMobileContent] = useState(false);
     const socketRef = useRef<any>(null);
+    const [unreadCount, setUnreadCount] = useState(0);
+    const [isTabActive, setIsTabActive] = useState(true);
 
     const playNotificationSound = () => {
         try {
             const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
             audio.volume = 0.5;
-            audio.play().catch(e => console.log('Audio blocked (needs interaction):', e));
+            audio.play().catch(e => console.log('Audio blocked:', e));
         } catch (e) {
             console.error('Audio error:', e);
         }
@@ -47,44 +49,64 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         }
     };
 
+    const handleMarkAsUnread = (email: Email) => {
+        setEmails(prev => prev.map(e => e.id === email.id ? { ...e, is_read: false } : e));
+        fetch('/api-v1/emails/unread', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: email.id })
+        }).catch(console.error);
+        setShowMobileContent(false);
+        setSelectedEmail(null);
+    };
+
     const fetchEmails = () => {
         fetch('/api-v1/emails?address=' + emailAddress)
-            .then(res => {
-                if (res.ok) return res.json();
-                throw new Error('Fetch failed');
-            })
+            .then(res => res.ok ? res.json() : Promise.reject())
             .then((data: Email[]) => {
                 setEmails(current => {
-                    if (data.length > current.length && current.length > 0) {
+                    const newEmails = data.filter(e => !current.some(c => c.id === e.id));
+                    if (newEmails.length > 0 && current.length > 0) {
                         playNotificationSound();
-                        if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-                            const newEmail = data[0];
-                            new Notification('New Email from ' + (newEmail.from_address.split('<')[0] || newEmail.from_address), {
-                                body: newEmail.subject,
-                                icon: '/icon.svg'
-                            });
+                        if (!isTabActive) {
+                            setUnreadCount(prev => prev + newEmails.length);
                         }
-                        document.title = "(*) New Email! | DisposeMail";
                     }
                     return data;
                 });
             })
-            .catch(err => console.debug('Sync failed:', err));
+            .catch(err => console.debug('Sync blink:', err));
     };
 
+    // Update Title Flashing
     useEffect(() => {
+        let interval: any;
+        if (!isTabActive && unreadCount > 0) {
+            let toggle = false;
+            interval = setInterval(() => {
+                document.title = toggle ? `(${unreadCount}) New Mail!` : 'DisposeMail';
+                toggle = !toggle;
+            }, 1000);
+        } else {
+            document.title = 'DisposeMail - Secure Disposable Email';
+            if (isTabActive) setUnreadCount(0);
+        }
+        return () => clearInterval(interval);
+    }, [isTabActive, unreadCount]);
+
+    useEffect(() => {
+        // --- 1. Register Service Worker for Background Alerts ---
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(console.error);
+        }
+
         fetchEmails();
 
         // Optimized socket config for backgrounding
         socketRef.current = io({
             path: '/socket.io-live',
-            addTrailingSlash: false,
-            transports: ['websocket', 'polling'],
             reconnection: true,
-            reconnectionAttempts: Infinity,
-            reconnectionDelay: 500, // Faster reconnect
-            reconnectionDelayMax: 5000,
-            timeout: 60000, // Longer timeout for backgrounding resilience
+            transports: ['websocket', 'polling'],
         });
 
         const socket = socketRef.current;
@@ -102,25 +124,33 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             setEmails(prev => {
                 if (prev.some(e => e.id === email.id)) return prev;
                 playNotificationSound();
-                if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-                    new Notification('New Email: ' + email.subject, {
-                        body: 'From: ' + email.from_address,
-                        icon: '/icon.svg'
-                    });
-                }
-                document.title = "(*) New Email! | DisposeMail";
+                if (!isTabActive) setUnreadCount(count => count + 1);
                 return [{ ...email, is_read: false }, ...prev];
             });
         });
 
         const handleFocus = () => {
+            setIsTabActive(true);
             fetchEmails();
-            document.title = "DisposeMail - Secure Disposable Email";
         };
+        const handleBlur = () => setIsTabActive(false);
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                setIsTabActive(true);
+                fetchEmails();
+            } else {
+                setIsTabActive(false);
+            }
+        };
+
         window.addEventListener('focus', handleFocus);
+        window.addEventListener('blur', handleBlur);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
 
         return () => {
             window.removeEventListener('focus', handleFocus);
+            window.removeEventListener('blur', handleBlur);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
             if (socketRef.current) socketRef.current.disconnect();
         };
     }, [emailAddress]);
@@ -136,7 +166,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     useEffect(() => {
         const interval = setInterval(() => {
             if (!isConnected) fetchEmails();
-        }, isConnected ? 20000 : 5000);
+        }, isConnected ? 30000 : 5000);
         return () => clearInterval(interval);
     }, [emailAddress, isConnected]);
 
@@ -237,12 +267,19 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
                             <div className="flex items-center gap-2 shrink-0">
                                 <button
+                                    onClick={() => handleMarkAsUnread(selectedEmail)}
+                                    className="p-3 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/20 rounded-xl transition-all"
+                                    title="Mark as Unread"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </button>
+                                <button
                                     onClick={() => window.print()}
                                     className="p-3 text-gray-500 hover:bg-gray-200 dark:hover:bg-[#222] rounded-xl transition-all"
                                     title="Print Email"
                                 >
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2-2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
                                     </svg>
                                 </button>
                                 <button

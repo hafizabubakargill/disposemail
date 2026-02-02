@@ -56,13 +56,29 @@ app.prepare().then(() => {
     // NOTE: We are moving critical API routes directly into server.js 
     // to bypass App Router 404 issues on some Hostinger environments.
 
-    // --- Production Resilience Middleware ---
+    // --- 1. CRITICAL MIDDLEWARE (Global) ---
     server.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         if (req.method === 'OPTIONS') return res.sendStatus(200);
         next();
+    });
+
+    // --- 2. EXPLICIT STATIC ASSETS (Bypassing Next.js) ---
+    server.get(['/manifest.json', '/site.webmanifest'], (req, res) => {
+        const manifest = {
+            "name": "DisposeMail",
+            "short_name": "DisposeMail",
+            "description": "Secure Disposable Email",
+            "start_url": "/",
+            "display": "standalone",
+            "background_color": "#0a0a0a",
+            "theme_color": "#2563eb",
+            "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+        };
+        res.setHeader('Content-Type', 'application/manifest+json; charset=UTF-8');
+        res.status(200).send(JSON.stringify(manifest, null, 2));
     });
 
     // Unified API Path Renaming to bypass Hostinger blocks
@@ -94,6 +110,17 @@ app.prepare().then(() => {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     });
+
+    apiRouter.post('/emails/unread', express.json(), (req, res) => {
+        const { id } = req.body;
+        if (!id) return res.status(400).json({ error: 'ID required' });
+        try {
+            const success = db.markEmailAsUnread(id);
+            res.json({ success });
+        } catch (error) {
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
     apiRouter.post('/webhook/email', express.json({ limit: '10mb' }), (req, res) => {
         const { to, from, subject, text, html, secret } = req.body;
         if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Unauthorized' });
@@ -117,21 +144,6 @@ app.prepare().then(() => {
     server.use('/api', apiRouter);
     server.use('/api-v1', apiRouter);
 
-    // Explicit Manifest Serving to fix JSON Syntax Errors
-    server.get(['/manifest.json', '/site.webmanifest'], (req, res) => {
-        const manifest = {
-            "name": "DisposeMail",
-            "short_name": "DisposeMail",
-            "description": "Secure Disposable Email",
-            "start_url": "/",
-            "display": "standalone",
-            "background_color": "#0a0a0a",
-            "theme_color": "#2563eb",
-            "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
-        };
-        res.setHeader('Content-Type', 'application/manifest+json; charset=UTF-8');
-        res.send(JSON.stringify(manifest));
-    });
 
     // NOTE: API routes are now handled by Next.js App Router (app/api/...)
     // This server.js is primarily for WebSocket support.
