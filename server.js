@@ -31,7 +31,27 @@ app.prepare().then(() => {
 
     // --- B. THE MEGA-CHECK (Verify Server Reachability) ---
     server.get('/MEGA-CHECK', (req, res) => {
-        res.status(200).send(`<h1>SERVER IS REACTIVE</h1><p>Time: ${new Date().toISOString()}</p><p>Version: 1.0.7-DIAG</p>`);
+        res.status(200).send(`<h1>SERVER IS REACTIVE</h1><p>Time: ${new Date().toISOString()}</p><p>Version: 1.0.8-DIAG</p>`);
+    });
+
+    // --- C. THE LOG VIEWER (View internal logs) ---
+    server.get('/SEE-LOGS', (req, res) => {
+        const logPath = path.join(process.cwd(), 'requests.log');
+        if (!fs.existsSync(logPath)) return res.send('No logs found yet.');
+
+        fs.readFile(logPath, 'utf8', (err, data) => {
+            if (err) return res.status(500).send('Error reading logs');
+            const lines = data.trim().split('\n').reverse().slice(0, 100);
+            res.send(`
+                <html>
+                <body style="background:#000;color:#0f0;font-family:monospace;padding:20px;">
+                    <h2>SHADOW LOGS (Last 100)</h2>
+                    <pre>${lines.join('\n')}</pre>
+                    <script>setTimeout(() => location.reload(), 5000);</script>
+                </body>
+                </html>
+            `);
+        });
     });
 
     // --- Custom Server Health Check (TOP OF STACK) ---
@@ -162,16 +182,23 @@ app.prepare().then(() => {
         res.json({ success: true, id: saved.id });
     });
 
-    // Mount API under BOTH paths for maximum compatibility
+    // Mount API under MULTIPLE paths for maximum compatibility
     server.use('/api', apiRouter);
     server.use('/api-v1', apiRouter);
+    server.use('/x-feed', apiRouter); // Shadow Path to bypass firewall blocks
+    server.use('/internal-v1', apiRouter);
 
 
     // NOTE: API routes are now handled by Next.js App Router (app/api/...)
     // This server.js is primarily for WebSocket support.
 
-    // --- Next.js Handling ---
+    // --- 5. NEXT.JS HANDLER (CATCH-ALL) ---
     server.all('*', (req, res) => {
+        // If it looks like an API call but reached here, it's a 404
+        if (req.url.startsWith('/api') || req.url.startsWith('/x-feed')) {
+            console.log(`[404] Express API Fallthrough: ${req.url}`);
+            return res.status(404).json({ error: 'Endpoint not found on Express stack', url: req.url });
+        }
         return handle(req, res);
     });
 

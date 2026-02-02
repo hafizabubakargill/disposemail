@@ -41,7 +41,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             setEmails(prev => prev.map(e => e.id === email.id ? { ...e, is_read: true } : e));
 
             // Call API to persist
-            fetch('/api-v1/emails/read', {
+            fetch('/x-feed/emails/read', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id: email.id })
@@ -51,7 +51,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
     const handleMarkAsUnread = (email: Email) => {
         setEmails(prev => prev.map(e => e.id === email.id ? { ...e, is_read: false } : e));
-        fetch('/api-v1/emails/unread', {
+        fetch('/x-feed/emails/unread', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: email.id })
@@ -61,7 +61,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     };
 
     const fetchEmails = () => {
-        fetch('/api-v1/emails?address=' + emailAddress)
+        fetch('/x-feed/emails?address=' + emailAddress)
             .then(res => res.ok ? res.json() : Promise.reject())
             .then((data: Email[]) => {
                 setEmails(current => {
