@@ -84,7 +84,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             setEmails(prev => [newEmail, ...prev]);
             playNotificationSound();
 
-            if (Notification.permission === 'granted') {
+            if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
                 new Notification('New Email', { body: email.subject });
             }
         });
@@ -98,7 +98,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
     // Request notification permission
     useEffect(() => {
-        if (Notification.permission === 'default') {
+        if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
             Notification.requestPermission();
         }
     }, []);
@@ -117,7 +117,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         // Simple check: if we have more emails
                         if (data.length > current.length) {
                             playNotificationSound();
-                            if (Notification.permission === 'granted') {
+                            if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
                                 const newCount = data.length - current.length;
                                 if (newCount > 0) new Notification('New Email Received');
                             }
