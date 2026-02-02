@@ -17,11 +17,13 @@ export default function Home() {
     const [timeLeft, setTimeLeft] = useState<number>(3600); // 1 hour in seconds
     const [progress, setProgress] = useState(100);
     const [selectedDomain, setSelectedDomain] = useState(DEFAULT_DOMAIN);
+    const [isMounted, setIsMounted] = useState(false);
 
     // Get random domain helper
     const getRandomDomain = () => DOMAINS[Math.floor(Math.random() * DOMAINS.length)];
 
     useEffect(() => {
+        setIsMounted(true);
         // Generate or retrieve existing email session
         let stored = localStorage.getItem('disposemail_address');
         const created = localStorage.getItem('disposemail_created');
@@ -76,6 +78,11 @@ export default function Home() {
 
     const handleCopy = () => {
         if (email) {
+            // Android Haptic Feedback
+            if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(email);
                 setCopied(true);
@@ -127,10 +134,10 @@ export default function Home() {
     if (!isMounted || !email) return null;
 
     return (
-        <main className="flex min-h-screen flex-col items-center relative overflow-hidden">
+        <main className="flex min-h-screen flex-col items-center relative overflow-x-hidden">
             {/* Background Grid Effect */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none"></div>
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+            <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none z-0"></div>
+            <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
 
             {/* Navbar */}
             <nav className="w-full flex justify-between items-center px-6 md:px-8 py-6 z-50 max-w-7xl relative">
