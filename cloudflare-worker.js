@@ -76,6 +76,7 @@ export default {
             return rescueResponse;
         }
 
-        return new Response("DisposeMail Worker Active", { status: 200 });
+        // ALLOW EVERYTHING ELSE TO PASS THROUGH TO HOSTINGER
+        return fetch(request);
     }
 };
