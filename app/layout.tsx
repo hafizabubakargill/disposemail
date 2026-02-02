@@ -28,6 +28,7 @@ export default function RootLayout({
                     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5210079727285405"
                     crossOrigin="anonymous"
                 ></script>
+                <link rel="icon" href="/icon.svg" type="image/svg+xml" />
                 <link rel="manifest" href="/manifest.json" />
             </head>
             <body className={`${inter.className} min-h-screen bg-background text-foreground overflow-x-hidden antialiased selection:bg-blue-500/30`}>

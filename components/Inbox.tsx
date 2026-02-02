@@ -186,8 +186,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 key={email.id}
                                 onClick={() => handleSelectEmail(email)}
                                 className={`flex-shrink-0 w-[280px] md:w-[320px] p-5 rounded-xl border transition-all cursor-pointer relative group ${selectedEmail?.id === email.id
-                                        ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-500/20'
-                                        : 'bg-gray-50 dark:bg-[#161616] border-gray-100 dark:border-[#262626] hover:border-blue-500/50'
+                                    ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-500/20'
+                                    : 'bg-gray-50 dark:bg-[#161616] border-gray-100 dark:border-[#262626] hover:border-blue-500/50'
                                     }`}
                             >
                                 <div className="flex justify-between items-start mb-2">
@@ -287,7 +287,5 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                 </div>
             )}
         </div>
-    );
-}
     );
 }

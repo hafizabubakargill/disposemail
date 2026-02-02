@@ -94,6 +94,28 @@ app.prepare().then(() => {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     });
+    apiRouter.post('/webhook/email', express.json({ limit: '10mb' }), (req, res) => {
+        const { to, from, subject, text, html, secret } = req.body;
+        if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Unauthorized' });
+
+        const emailData = {
+            id: uuidv4(),
+            address: to.toLowerCase(),
+            from_address: from,
+            subject: subject || '(No Subject)',
+            text: text || '',
+            html: html || '',
+            received_at: Date.now()
+        };
+
+        const saved = db.saveEmail(emailData);
+        io.to(to.toLowerCase()).emit('new-email', saved);
+        res.json({ success: true, id: saved.id });
+    });
+
+    // Mount API under BOTH paths for maximum compatibility
+    server.use('/api', apiRouter);
+    server.use('/api-v1', apiRouter);
 
     // Explicit Manifest Serving to fix JSON Syntax Errors
     server.get(['/manifest.json', '/site.webmanifest'], (req, res) => {
