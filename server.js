@@ -51,6 +51,68 @@ app.prepare().then(() => {
         });
     });
 
+    // NOTE: We are moving critical API routes directly into server.js 
+    // to bypass App Router 404 issues on some Hostinger environments.
+
+    // Health Check
+    server.get('/api/status', (req, res) => {
+        res.json({ status: 'running', timestamp: Date.now() });
+    });
+
+    // Fetch Emails
+    server.get('/api/emails', (req, res) => {
+        const address = req.query.address;
+        if (!address) return res.status(400).json({ error: 'Address required' });
+        try {
+            const emails = db.getEmailsForAddress(address.toLowerCase());
+            res.json(emails);
+        } catch (error) {
+            console.error('Error fetching emails:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    // Mark as Read
+    server.post('/api/emails/read', express.json(), (req, res) => {
+        const { id } = req.body;
+        if (!id) return res.status(400).json({ error: 'ID required' });
+        try {
+            const success = db.markEmailAsRead(id);
+            res.json({ success });
+        } catch (error) {
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    // Webhook (Cloudflare)
+    server.post('/api/webhook/email', express.json({ limit: '10mb' }), (req, res) => {
+        const { to, from, subject, text, html, secret } = req.body;
+
+        if (secret !== WEBHOOK_SECRET) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+
+        const emailData = {
+            id: uuid.v4(),
+            address: to.toLowerCase(),
+            from_address: from,
+            subject: subject || '(No Subject)',
+            text: text || '',
+            html: html || '',
+            received_at: Date.now()
+        };
+
+        const saved = db.saveEmail(emailData);
+        io.to(to.toLowerCase()).emit('new-email', saved);
+        res.json({ success: true, id: saved.id });
+    });
+
+    // Explicit Manifest Serving to fix JSON Syntax Errors
+    server.get(['/manifest.json', '/site.webmanifest'], (req, res) => {
+        res.setHeader('Content-Type', 'application/manifest+json');
+        res.sendFile(path.join(__dirname, 'public', 'manifest.json'));
+    });
+
     // NOTE: API routes are now handled by Next.js App Router (app/api/...)
     // This server.js is primarily for WebSocket support.
 
