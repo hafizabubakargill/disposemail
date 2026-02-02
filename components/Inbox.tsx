@@ -57,12 +57,11 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         playNotificationSound();
                         if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
                             const newEmail = data[0];
-                            new Notification('New Email from ' + newEmail.from_address, {
+                            new Notification('New Email from ' + (newEmail.from_address.split('<')[0] || newEmail.from_address), {
                                 body: newEmail.subject,
                                 icon: '/icon.svg'
                             });
                         }
-                        // Flash Title
                         document.title = "(*) New Email! | DisposeMail";
                     }
                     return data;
@@ -72,44 +71,33 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     };
 
     useEffect(() => {
-        // Initial Fetch
         fetchEmails();
 
-        // Initialize socket
+        // Optimized socket config for backgrounding
         socketRef.current = io({
             path: '/socket.io-live',
             addTrailingSlash: false,
-            transports: ['websocket', 'polling'], // Prefer websocket
+            transports: ['websocket', 'polling'],
             reconnection: true,
             reconnectionAttempts: Infinity,
-            reconnectionDelay: 1000,
-            timeout: 20000,
+            reconnectionDelay: 500, // Faster reconnect
+            reconnectionDelayMax: 5000,
+            timeout: 60000, // Longer timeout for backgrounding resilience
         });
 
         const socket = socketRef.current;
 
         socket.on('connect', () => {
-            console.log('Socket Connected:', socket.id);
             setIsConnected(true);
             socket.emit('join-room', emailAddress);
-            // Re-sync on connect in case we missed something
             fetchEmails();
         });
 
-        socket.on('connect_error', (err: Error) => {
-            console.debug('Socket error, falling back to polling:', err.message);
-            setIsConnected(false);
-        });
-
-        socket.on('disconnect', (reason: string) => {
-            console.warn('Socket Disconnected:', reason);
-            setIsConnected(false);
-        });
+        socket.on('connect_error', () => setIsConnected(false));
+        socket.on('disconnect', () => setIsConnected(false));
 
         socket.on('new-email', (email: Email) => {
-            const newEmail = { ...email, is_read: false };
             setEmails(prev => {
-                // Check for duplicates
                 if (prev.some(e => e.id === email.id)) return prev;
                 playNotificationSound();
                 if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
@@ -119,23 +107,19 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                     });
                 }
                 document.title = "(*) New Email! | DisposeMail";
-                return [newEmail, ...prev];
+                return [{ ...email, is_read: false }, ...prev];
             });
         });
 
-        // Sync on Window Focus (CRITICAL for mobile)
         const handleFocus = () => {
-            console.log('Window focused, syncing inbox...');
             fetchEmails();
-            document.title = "DisposeMail - Secure Disposable Email"; // Reset title
+            document.title = "DisposeMail - Secure Disposable Email";
         };
         window.addEventListener('focus', handleFocus);
 
         return () => {
             window.removeEventListener('focus', handleFocus);
-            if (socketRef.current) {
-                socketRef.current.disconnect();
-            }
+            if (socketRef.current) socketRef.current.disconnect();
         };
     }, [emailAddress]);
 
@@ -149,11 +133,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     // POLLING FALLBACK (Increased frequency when disconnected)
     useEffect(() => {
         const interval = setInterval(() => {
-            if (!isConnected) {
-                fetchEmails();
-            }
-        }, isConnected ? 15000 : 5000); // Poll slower when connected, faster when not
-
+            if (!isConnected) fetchEmails();
+        }, isConnected ? 20000 : 5000);
         return () => clearInterval(interval);
     }, [emailAddress, isConnected]);
 
@@ -162,24 +143,25 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     }
 
     return (
-        <div className="w-full max-w-4xl mx-auto mt-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
-                {/* Email List */}
-                <div className="col-span-1 bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-xl overflow-hidden flex flex-col shadow-sm">
-                    <div className="p-4 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616] flex justify-between items-center">
-                        <h3 className="font-medium text-gray-900 dark:text-gray-200">Inbox ({emails.length})</h3>
+        <div className="w-full max-w-4xl mx-auto mt-4 md:mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[500px] md:h-[600px] relative">
+
+                {/* Email List - Hide on mobile if reading */}
+                <div className={`col-span-1 bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-xl overflow-hidden flex flex-col shadow-sm ${showMobileContent ? 'hidden md:flex' : 'flex'}`}>
+                    <div className="p-4 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616] flex justify-between items-center shrink-0">
+                        <h3 className="font-bold text-sm text-gray-900 dark:text-gray-200">Inbox ({emails.length})</h3>
 
                         {/* Enhanced Status Indicator */}
                         <div className="flex items-center">
                             {isConnected ? (
-                                <div className="flex items-center px-2 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 text-[10px] font-bold shadow-[0_0_15px_rgba(34,197,94,0.3)] animate-in fade-in zoom-in duration-300" title="Real-time Sync Active">
+                                <div className="flex items-center px-2 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 text-[10px] font-bold shadow-[0_0_15px_rgba(34,197,94,0.3)]">
                                     <span className="w-2 h-2 rounded-full mr-2 bg-green-500 animate-pulse"></span>
-                                    CONNECTED
+                                    LIVE
                                 </div>
                             ) : (
-                                <div className="flex items-center px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-500 text-[10px] font-bold" title="Using Smart Auto-Refresh">
+                                <div className="flex items-center px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-500 text-[10px] font-bold">
                                     <span className="w-2 h-2 rounded-full mr-2 bg-amber-500 animate-pulse"></span>
-                                    AUTO-REFRESH
+                                    SYNCING
                                 </div>
                             )}
                         </div>
@@ -190,43 +172,50 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 <div className="w-10 h-10 mb-3 rounded-full border border-dashed border-gray-400 dark:border-gray-600 flex items-center justify-center animate-spin-slow">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                                 </div>
-                                <p className="text-sm animate-pulse">Waiting for emails...</p>
+                                <p className="text-sm font-medium">Waiting for emails...</p>
                             </div>
                         ) : (
                             emails.map(email => (
                                 <div
                                     key={email.id}
                                     onClick={() => handleSelectEmail(email)}
-                                    className={`p-4 border-b border-gray-100 dark:border-[#222] cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-[#1a1a1a] ${selectedEmail?.id === email.id ? 'bg-blue-50 dark:bg-[#1a1a1a] border-l-4 border-l-blue-500' : ''}`}
+                                    className={`p-4 border-b border-gray-100 dark:border-[#222] cursor-pointer transition-all hover:bg-gray-50 dark:hover:bg-[#1a1a1a] ${selectedEmail?.id === email.id ? 'bg-blue-50/50 dark:bg-blue-900/10 border-l-4 border-l-blue-500' : ''}`}
                                 >
-                                    <div className="flex justify-between items-start mb-1">
-                                        <div className="flex items-center overflow-hidden">
+                                    <div className="flex justify-between items-start mb-1 overflow-hidden">
+                                        <div className="flex items-center overflow-hidden flex-1">
                                             {!email.is_read && <span className="w-2 h-2 rounded-full bg-blue-500 mr-2 flex-shrink-0"></span>}
-                                            <span className={`text-sm truncate w-28 ${!email.is_read ? 'font-bold text-gray-900 dark:text-white' : 'font-medium text-gray-700 dark:text-gray-300'}`}>{email.from_address}</span>
+                                            <span className={`text-sm truncate ${!email.is_read ? 'font-bold text-gray-900 dark:text-white' : 'font-medium text-gray-700 dark:text-gray-300'}`}>{email.from_address.split('<')[0]}</span>
                                         </div>
-                                        <span className="text-xs text-gray-500 flex-shrink-0 ml-1">{formatDate(email.received_at)}</span>
+                                        <span className="text-[10px] text-gray-500 shrink-0 ml-2 font-mono">{formatDate(email.received_at)}</span>
                                     </div>
-                                    <div className={`text-sm truncate mb-1 ${!email.is_read ? 'font-bold text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-400'}`}>{email.subject}</div>
-                                    <div className="text-xs text-gray-500 truncate">{email.text.substring(0, 50)}</div>
+                                    <div className={`text-xs truncate ${!email.is_read ? 'font-bold text-gray-800 dark:text-gray-200' : 'text-gray-600 dark:text-gray-400'}`}>{email.subject}</div>
                                 </div>
                             ))
                         )}
                     </div>
                 </div>
 
-                {/* Email Content */}
-                <div className="col-span-1 md:col-span-2 bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-xl overflow-hidden flex flex-col relative shadow-sm">
+                {/* Email Content - Full height on mobile */}
+                <div className={`col-span-1 md:col-span-2 bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-xl overflow-hidden flex flex-col relative shadow-sm ${showMobileContent ? 'flex fixed inset-x-4 top-[15vh] bottom-[5vh] z-50 md:relative md:inset-auto md:h-auto' : 'hidden md:flex'}`}>
                     {selectedEmail ? (
                         <>
-                            <div className="p-6 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616] flex justify-between items-start">
-                                <div className="flex-1">
-                                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{selectedEmail.subject}</h2>
-                                    <div className="flex flex-col md:flex-row md:justify-between md:items-center text-sm gap-2">
-                                        <div className="text-gray-500 dark:text-gray-400">From: <span className="text-blue-600 dark:text-blue-400 font-medium">{selectedEmail.from_address}</span></div>
-                                        <div className="text-gray-400 text-xs">{new Date(selectedEmail.received_at).toLocaleString()}</div>
+                            <div className="p-4 md:p-6 border-b border-gray-200 dark:border-[#222] bg-gray-50 dark:bg-[#161616] flex justify-between items-start sticky top-0 z-10">
+                                <div className="flex-1 overflow-hidden">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <button
+                                            onClick={() => setShowMobileContent(false)}
+                                            className="md:hidden p-1.5 -ml-1 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                                        >
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
+                                        </button>
+                                        <h2 className="text-base md:text-xl font-bold text-gray-900 dark:text-white truncate">{selectedEmail.subject}</h2>
+                                    </div>
+                                    <div className="flex flex-col text-[11px] md:text-sm gap-0.5">
+                                        <div className="text-gray-500 dark:text-gray-400 truncate">From: <span className="text-blue-600 dark:text-blue-400 font-bold">{selectedEmail.from_address}</span></div>
+                                        <div className="text-gray-400 font-mono">{new Date(selectedEmail.received_at).toLocaleString()}</div>
                                     </div>
                                 </div>
-                                <div className="ml-4 flex gap-2">
+                                <div className="ml-2 flex gap-1">
                                     <button
                                         onClick={() => window.print()}
                                         className="p-2 text-gray-500 hover:bg-gray-200 dark:hover:bg-[#222] rounded-lg transition-colors"
@@ -236,7 +225,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     </button>
                                 </div>
                             </div>
-                            <div className="flex-1 overflow-y-auto p-6 bg-white text-gray-900 email-content printable-area">
+                            <div className="flex-1 overflow-y-auto p-4 md:p-6 bg-white text-gray-900 email-content printable-area">
                                 {/* Render HTML content safely - in production use DOMPurify */}
                                 {selectedEmail.html ? (
                                     <div dangerouslySetInnerHTML={{ __html: selectedEmail.html }} />

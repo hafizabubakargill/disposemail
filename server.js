@@ -28,8 +28,10 @@ app.prepare().then(() => {
     });
 
     const io = new SocketIOServer(httpServer, {
-        path: '/socket.io-live', // Unique path to avoid any default collisions
+        path: '/socket.io-live',
         addTrailingSlash: false,
+        pingTimeout: 60000,   // Wait 60s for client pongs before disconnecting
+        pingInterval: 25000,  // Send pings every 25s
         cors: {
             origin: "*",
             methods: ["GET", "POST"]
