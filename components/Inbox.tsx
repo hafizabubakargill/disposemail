@@ -45,20 +45,45 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         }
     };
 
+    const fetchEmails = () => {
+        fetch('/api/emails?address=' + emailAddress)
+            .then(res => {
+                if (res.ok) return res.json();
+                throw new Error('Fetch failed');
+            })
+            .then((data: Email[]) => {
+                setEmails(current => {
+                    if (data.length > current.length && current.length > 0) {
+                        playNotificationSound();
+                        if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+                            const newEmail = data[0];
+                            new Notification('New Email from ' + newEmail.from_address, {
+                                body: newEmail.subject,
+                                icon: '/icon.svg'
+                            });
+                        }
+                        // Flash Title
+                        document.title = "(*) New Email! | DisposeMail";
+                    }
+                    return data;
+                });
+            })
+            .catch(err => console.debug('Sync failed:', err));
+    };
+
     useEffect(() => {
         // Initial Fetch
-        fetch('/api/emails?address=' + emailAddress)
-            .then(res => res.json())
-            .then(data => setEmails(data));
+        fetchEmails();
 
-        // Initialize socket with strategy: Start with polling, then upgrade to WebSocket.
-        // This stops "WebSocket closed before establishment" warnings.
+        // Initialize socket
         socketRef.current = io({
             path: '/socket.io-live',
             addTrailingSlash: false,
-            transports: ['polling', 'websocket'],
-            reconnectionAttempts: 10,
+            transports: ['websocket', 'polling'], // Prefer websocket
+            reconnection: true,
+            reconnectionAttempts: Infinity,
             reconnectionDelay: 1000,
+            timeout: 20000,
         });
 
         const socket = socketRef.current;
@@ -67,11 +92,13 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             console.log('Socket Connected:', socket.id);
             setIsConnected(true);
             socket.emit('join-room', emailAddress);
+            // Re-sync on connect in case we missed something
+            fetchEmails();
         });
 
         socket.on('connect_error', (err: Error) => {
-            // Polling handles this fallback naturally
-            console.debug('Socket connection message:', err.message);
+            console.debug('Socket error, falling back to polling:', err.message);
+            setIsConnected(false);
         });
 
         socket.on('disconnect', (reason: string) => {
@@ -81,15 +108,31 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
         socket.on('new-email', (email: Email) => {
             const newEmail = { ...email, is_read: false };
-            setEmails(prev => [newEmail, ...prev]);
-            playNotificationSound();
-
-            if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-                new Notification('New Email', { body: email.subject });
-            }
+            setEmails(prev => {
+                // Check for duplicates
+                if (prev.some(e => e.id === email.id)) return prev;
+                playNotificationSound();
+                if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+                    new Notification('New Email: ' + email.subject, {
+                        body: 'From: ' + email.from_address,
+                        icon: '/icon.svg'
+                    });
+                }
+                document.title = "(*) New Email! | DisposeMail";
+                return [newEmail, ...prev];
+            });
         });
 
+        // Sync on Window Focus (CRITICAL for mobile)
+        const handleFocus = () => {
+            console.log('Window focused, syncing inbox...');
+            fetchEmails();
+            document.title = "DisposeMail - Secure Disposable Email"; // Reset title
+        };
+        window.addEventListener('focus', handleFocus);
+
         return () => {
+            window.removeEventListener('focus', handleFocus);
             if (socketRef.current) {
                 socketRef.current.disconnect();
             }
@@ -103,39 +146,16 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         }
     }, []);
 
-    // POLLING FALLBACK: Fetch emails every 5 seconds to ensure data freshness
-    // even if sockets are disconnected or failing.
+    // POLLING FALLBACK (Increased frequency when disconnected)
     useEffect(() => {
         const interval = setInterval(() => {
-            fetch('/api/emails?address=' + emailAddress)
-                .then(res => {
-                    if (res.ok) return res.json();
-                    throw new Error('Fetch failed');
-                })
-                .then((data: Email[]) => {
-                    setEmails(current => {
-                        // Simple check: if we have more emails
-                        if (data.length > current.length) {
-                            playNotificationSound();
-                            if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-                                const newCount = data.length - current.length;
-                                if (newCount > 0) new Notification('New Email Received');
-                            }
-                            return data;
-                        }
-
-                        // If IDs differ but count is same (unlikely unless replacement), or just re-syncing
-                        if (data.length !== current.length || (data.length > 0 && data[0].id !== current[0]?.id)) {
-                            return data;
-                        }
-                        return current; // No change
-                    });
-                })
-                .catch(err => console.debug('Polling skipped:', err));
-        }, 5000);
+            if (!isConnected) {
+                fetchEmails();
+            }
+        }, isConnected ? 15000 : 5000); // Poll slower when connected, faster when not
 
         return () => clearInterval(interval);
-    }, [emailAddress]);
+    }, [emailAddress, isConnected]);
 
     const formatDate = (ts: number) => {
         return new Date(ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
