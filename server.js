@@ -43,11 +43,27 @@ app.prepare().then(() => {
             <body style="font-family:sans-serif;padding:40px;">
                 <h1>STRICT NUCLEAR MODE ACTIVE</h1>
                 <p>Status: REACTIVE</p>
-                <p>Version: 1.0.9-NUCLEAR</p>
+                <p>Version: 1.0.10-RESCUE</p>
                 <p>Path: ${req.url}</p>
                 <p>Time: ${new Date().toISOString()}</p>
             </body>
         `);
+    });
+
+    server.get('/WHERE-AM-I', (req, res) => {
+        res.status(200).json({
+            cwd: process.cwd(),
+            pid: process.pid,
+            uptime: process.uptime(),
+            node_version: process.version,
+            env: process.env.NODE_ENV,
+            timestamp: new Date().toISOString(),
+            registered_routes: ['/MEGA-CHECK', '/SEE-LOGS', '/WHERE-AM-I', '/api-test', '/api-v1/*', '/x-feed/*']
+        });
+    });
+
+    server.get('/api-test', (req, res) => {
+        res.send("API TEST SUCCESSFUL - Express is handling this directly.");
     });
 
     server.get('/SEE-LOGS', (req, res) => {
@@ -109,6 +125,18 @@ app.prepare().then(() => {
             res.json({ success: true });
         });
         server.post(`${p}/webhook/email`, express.json({ limit: '10mb' }), handleWebhook);
+
+        // Rescue Endpoint (Phase 14)
+        server.post(`${p}/rescue`, express.json(), (req, res) => {
+            const { emails, secret } = req.body;
+            if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Auth failed' });
+
+            const results = emails.map(e => {
+                const data = { ...e, id: uuidv4(), received_at: e.timestamp || Date.now() };
+                return db.saveEmail(data);
+            });
+            res.json({ success: true, count: results.length });
+        });
     });
 
     // --- 3. SOCKET.IO ---
