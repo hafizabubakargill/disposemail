@@ -1,27 +1,32 @@
 export default {
     async email(message, env, ctx) {
-        const WEBHOOK_URL = "https://disposemail.xyz/api/webhook/email"; // CHANGE THIS if domain is different
-        const API_SECRET = "change_me_to_a_secure_secret"; // Optional: Add header auth if you want
+        // --- CONFIG ---
+        const WEBHOOK_URL = "https://disposemail.xyz/x-feed/webhook/email";
+        const API_SECRET = "change_me_to_a_secure_secret"; // Must match server.js WEBHOOK_SECRET
+
+        const sender = message.from;
+        const recipient = message.to;
+        const subject = message.headers.get("subject") || "(No Subject)";
 
         try {
-            // Get the raw email
-            const rawEmail = await new Response(message.raw).arrayBuffer();
-
-            // Forward to your server
+            // Forward to server using Shadow Path
             const response = await fetch(WEBHOOK_URL, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "message/rfc822",
-                    "X-Api-Key": API_SECRET
-                },
-                body: rawEmail,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    to: recipient,
+                    from: sender,
+                    subject: subject,
+                    text: "Email received. Parsing happens on server.",
+                    html: "",
+                    secret: API_SECRET
+                }),
             });
 
             if (!response.ok) {
-                console.error(`Failed to forward email: ${response.status} ${response.statusText}`);
-                // We generally don't want to reject the email at Cloudflare level just because our webhook failed,
-                // unless we want to bounce it. For now, we log errors.
-                // message.setReject("Internal Server Error"); 
+                console.error(`Webhook failed: ${response.status}`);
+                // OPTIONAL: If you have a KV namespace bound as 'EMAILS_KV'
+                // await env.EMAILS_KV.put(`lost_${Date.now()}`, JSON.stringify({to: recipient, from: sender, subject}));
             }
         } catch (e) {
             console.error("Worker Error:", e);
