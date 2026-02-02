@@ -5,6 +5,7 @@ const { Server: SocketIOServer } = require('socket.io');
 const db = require('./lib/db');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
 
 // Config
 const dev = process.env.NODE_ENV !== 'production';
@@ -19,6 +20,20 @@ app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
 
+    // --- A. DIAGNOSTIC LOGGER (Absolute Top of Stack) ---
+    server.use((req, res, next) => {
+        const logEntry = `[${new Date().toISOString()}] ${req.method} ${req.url} (IP: ${req.ip})\n`;
+        fs.appendFile(path.join(process.cwd(), 'requests.log'), logEntry, (err) => {
+            if (err) console.error('Failed to write to requests.log', err);
+        });
+        next();
+    });
+
+    // --- B. THE MEGA-CHECK (Verify Server Reachability) ---
+    server.get('/MEGA-CHECK', (req, res) => {
+        res.status(200).send(`<h1>SERVER IS REACTIVE</h1><p>Time: ${new Date().toISOString()}</p><p>Version: 1.0.7-DIAG</p>`);
+    });
+
     // --- Custom Server Health Check (TOP OF STACK) ---
     server.get('/api/health-check', (req, res) => {
         res.json({
@@ -32,8 +47,9 @@ app.prepare().then(() => {
     const io = new SocketIOServer(httpServer, {
         path: '/socket.io-live',
         addTrailingSlash: false,
-        pingTimeout: 60000,   // Wait 60s for client pongs before disconnecting
-        pingInterval: 25000,  // Send pings every 25s
+        pingTimeout: 150000,   // Wait 150s for client pongs 
+        pingInterval: 30000,  // Send pings every 30s
+        cookie: false,        // Avoid sticky session issues if proxy is restrictive
         cors: {
             origin: "*",
             methods: ["GET", "POST"]
@@ -85,7 +101,7 @@ app.prepare().then(() => {
     const apiRouter = express.Router();
 
     apiRouter.get('/status', (req, res) => {
-        res.json({ status: 'running', timestamp: Date.now(), version: '1.0.5' });
+        res.json({ status: 'running', timestamp: Date.now(), version: '1.0.7', diagnostic: true });
     });
 
     apiRouter.get('/emails', (req, res) => {
@@ -95,13 +111,13 @@ app.prepare().then(() => {
             const emails = db.getEmailsForAddress(address.toLowerCase());
             res.json(emails);
         } catch (error) {
-            console.error('Error fetching emails:', error);
+            console.error('API Error:', error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     });
 
-    apiRouter.post('/emails/read', express.json(), (req, res) => {
-        const { id } = req.body;
+    const standardRead = (req, res) => {
+        const id = req.body.id || req.query.id;
         if (!id) return res.status(400).json({ error: 'ID required' });
         try {
             const success = db.markEmailAsRead(id);
@@ -109,10 +125,13 @@ app.prepare().then(() => {
         } catch (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         }
-    });
+    };
 
-    apiRouter.post('/emails/unread', express.json(), (req, res) => {
-        const { id } = req.body;
+    apiRouter.post('/emails/read', express.json(), standardRead);
+    apiRouter.get('/emails/read', standardRead); // Support GET for easier testing
+
+    const standardUnread = (req, res) => {
+        const id = req.body.id || req.query.id;
         if (!id) return res.status(400).json({ error: 'ID required' });
         try {
             const success = db.markEmailAsUnread(id);
@@ -120,7 +139,10 @@ app.prepare().then(() => {
         } catch (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         }
-    });
+    };
+
+    apiRouter.post('/emails/unread', express.json(), standardUnread);
+    apiRouter.get('/emails/unread', standardUnread);
     apiRouter.post('/webhook/email', express.json({ limit: '10mb' }), (req, res) => {
         const { to, from, subject, text, html, secret } = req.body;
         if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Unauthorized' });
