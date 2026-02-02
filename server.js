@@ -24,8 +24,11 @@ app.prepare().then(() => {
         const logEntry = `[${new Date().toISOString()}] ${req.method} ${req.url}\n`;
         fs.appendFile(path.join(process.cwd(), 'requests.log'), logEntry, () => { });
 
+        // Version Tracker for Debugging
+        res.setHeader('X-Server-Version', '1.0.11-LOCKDOWN');
+
         // Anti-Cache Headers for all Diagnostic & API routes
-        if (req.url.includes('CHECK') || req.url.includes('LOGS') || req.url.includes('api') || req.url.includes('x-feed')) {
+        if (req.url.includes('CHECK') || req.url.includes('LOGS') || req.url.includes('api') || req.url.includes('x-feed') || req.url === '/V') {
             res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
             res.setHeader('Pragma', 'no-cache');
             res.setHeader('Expires', '0');
