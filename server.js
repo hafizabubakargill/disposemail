@@ -1,8 +1,6 @@
-const express = require('express');
-const next = require('next');
-const http = require('http');
-const { Server: SocketIOServer } = require('socket.io');
 const db = require('./lib/db');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 // Config
 const dev = process.env.NODE_ENV !== 'production';
@@ -93,7 +91,7 @@ app.prepare().then(() => {
         }
 
         const emailData = {
-            id: uuid.v4(),
+            id: uuidv4(),
             address: to.toLowerCase(),
             from_address: from,
             subject: subject || '(No Subject)',
@@ -109,8 +107,24 @@ app.prepare().then(() => {
 
     // Explicit Manifest Serving to fix JSON Syntax Errors
     server.get(['/manifest.json', '/site.webmanifest'], (req, res) => {
-        res.setHeader('Content-Type', 'application/manifest+json');
-        res.sendFile(path.join(__dirname, 'public', 'manifest.json'));
+        const manifest = {
+            "name": "DisposeMail - Secure Disposable Email",
+            "short_name": "DisposeMail",
+            "description": "Instantly generated, secure temporary email for anonymous browsing.",
+            "start_url": "/",
+            "display": "standalone",
+            "background_color": "#0a0a0a",
+            "theme_color": "#2563eb",
+            "icons": [
+                {
+                    "src": "/icon.svg",
+                    "sizes": "any",
+                    "type": "image/svg+xml"
+                }
+            ]
+        };
+        res.setHeader('Content-Type', 'application/manifest+json; charset=utf-8');
+        res.json(manifest);
     });
 
     // NOTE: API routes are now handled by Next.js App Router (app/api/...)
