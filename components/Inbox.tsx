@@ -17,6 +17,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [emails, setEmails] = useState<Email[]>([]);
     const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
     const [isConnected, setIsConnected] = useState(false);
+    const [showMobileContent, setShowMobileContent] = useState(false);
     const socketRef = useRef<any>(null);
 
     const playNotificationSound = () => {
@@ -31,6 +32,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
     const handleSelectEmail = (email: Email) => {
         setSelectedEmail(email);
+        setShowMobileContent(true); // Switch view on mobile
 
         // Mark as read immediately in UI
         if (!email.is_read) {
