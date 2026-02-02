@@ -1,3 +1,7 @@
+const express = require('express');
+const next = require('next');
+const http = require('http');
+const { Server: SocketIOServer } = require('socket.io');
 const db = require('./lib/db');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
@@ -108,23 +112,17 @@ app.prepare().then(() => {
     // Explicit Manifest Serving to fix JSON Syntax Errors
     server.get(['/manifest.json', '/site.webmanifest'], (req, res) => {
         const manifest = {
-            "name": "DisposeMail - Secure Disposable Email",
+            "name": "DisposeMail",
             "short_name": "DisposeMail",
-            "description": "Instantly generated, secure temporary email for anonymous browsing.",
+            "description": "Secure Disposable Email",
             "start_url": "/",
             "display": "standalone",
             "background_color": "#0a0a0a",
             "theme_color": "#2563eb",
-            "icons": [
-                {
-                    "src": "/icon.svg",
-                    "sizes": "any",
-                    "type": "image/svg+xml"
-                }
-            ]
+            "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
         };
-        res.setHeader('Content-Type', 'application/manifest+json; charset=utf-8');
-        res.json(manifest);
+        res.setHeader('Content-Type', 'application/manifest+json; charset=UTF-8');
+        res.send(JSON.stringify(manifest));
     });
 
     // NOTE: API routes are now handled by Next.js App Router (app/api/...)
