@@ -124,7 +124,7 @@ export default function Home() {
         }
     };
 
-    if (!email) return null;
+    if (!isMounted || !email) return null;
 
     return (
         <main className="flex min-h-screen flex-col items-center relative overflow-hidden">
