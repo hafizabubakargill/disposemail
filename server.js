@@ -10,7 +10,6 @@ const fs = require('fs');
 // Config
 const dev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 3000;
-// Add a secret key for the webhook to prevent public spamming if desired
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || "change_me_to_a_secure_secret";
 
 const app = next({ dev });
@@ -20,80 +19,18 @@ app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
 
-    // --- A. DIAGNOSTIC LOGGER (Absolute Top of Stack) ---
+    // --- 1. THE NUCLEAR DIAGNOSTICS (Absolute Top) ---
     server.use((req, res, next) => {
-        const logEntry = `[${new Date().toISOString()}] ${req.method} ${req.url} (IP: ${req.ip})\n`;
-        fs.appendFile(path.join(process.cwd(), 'requests.log'), logEntry, (err) => {
-            if (err) console.error('Failed to write to requests.log', err);
-        });
-        next();
-    });
+        const logEntry = `[${new Date().toISOString()}] ${req.method} ${req.url}\n`;
+        fs.appendFile(path.join(process.cwd(), 'requests.log'), logEntry, () => { });
 
-    // --- B. THE MEGA-CHECK (Verify Server Reachability) ---
-    server.get('/MEGA-CHECK', (req, res) => {
-        res.status(200).send(`<h1>SERVER IS REACTIVE</h1><p>Time: ${new Date().toISOString()}</p><p>Version: 1.0.8-DIAG</p>`);
-    });
-
-    // --- C. THE LOG VIEWER (View internal logs) ---
-    server.get('/SEE-LOGS', (req, res) => {
-        const logPath = path.join(process.cwd(), 'requests.log');
-        if (!fs.existsSync(logPath)) return res.send('No logs found yet.');
-
-        fs.readFile(logPath, 'utf8', (err, data) => {
-            if (err) return res.status(500).send('Error reading logs');
-            const lines = data.trim().split('\n').reverse().slice(0, 100);
-            res.send(`
-                <html>
-                <body style="background:#000;color:#0f0;font-family:monospace;padding:20px;">
-                    <h2>SHADOW LOGS (Last 100)</h2>
-                    <pre>${lines.join('\n')}</pre>
-                    <script>setTimeout(() => location.reload(), 5000);</script>
-                </body>
-                </html>
-            `);
-        });
-    });
-
-    // --- Custom Server Health Check (TOP OF STACK) ---
-    server.get('/api/health-check', (req, res) => {
-        res.json({
-            status: 'ok',
-            server: 'custom-socket-server',
-            version: '1.0.4',
-            time: new Date().toISOString()
-        });
-    });
-
-    const io = new SocketIOServer(httpServer, {
-        path: '/socket.io-live',
-        addTrailingSlash: false,
-        pingTimeout: 150000,   // Wait 150s for client pongs 
-        pingInterval: 30000,  // Send pings every 30s
-        cookie: false,        // Avoid sticky session issues if proxy is restrictive
-        cors: {
-            origin: "*",
-            methods: ["GET", "POST"]
+        // Anti-Cache Headers for all Diagnostic & API routes
+        if (req.url.includes('CHECK') || req.url.includes('LOGS') || req.url.includes('api') || req.url.includes('x-feed')) {
+            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+            res.setHeader('Pragma', 'no-cache');
+            res.setHeader('Expires', '0');
         }
-    });
 
-    // Increase body limit for large emails if using body-parser, 
-    // but we will stream directly to mailparser where possible.
-    // We'll use a raw body handler for the specific route.
-
-    // --- Socket.io Setup ---
-    io.on('connection', (socket) => {
-        console.log(`[Socket.io] New connection: ${socket.id}`);
-        socket.on('join-room', (email) => {
-            socket.join(email);
-            console.log(`[Socket.io] Socket ${socket.id} joined room: ${email}`);
-        });
-    });
-
-    // NOTE: We are moving critical API routes directly into server.js 
-    // to bypass App Router 404 issues on some Hostinger environments.
-
-    // --- 1. CRITICAL MIDDLEWARE (Global) ---
-    server.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -101,114 +38,103 @@ app.prepare().then(() => {
         next();
     });
 
-    // --- 2. EXPLICIT STATIC ASSETS (Bypassing Next.js) ---
-    server.get(['/manifest.json', '/site.webmanifest'], (req, res) => {
+    server.get('/MEGA-CHECK', (req, res) => {
+        res.status(200).send(`
+            <body style="font-family:sans-serif;padding:40px;">
+                <h1>STRICT NUCLEAR MODE ACTIVE</h1>
+                <p>Status: REACTIVE</p>
+                <p>Version: 1.0.9-NUCLEAR</p>
+                <p>Path: ${req.url}</p>
+                <p>Time: ${new Date().toISOString()}</p>
+            </body>
+        `);
+    });
+
+    server.get('/SEE-LOGS', (req, res) => {
+        const logPath = path.join(process.cwd(), 'requests.log');
+        if (!fs.existsSync(logPath)) return res.send('No logs.');
+        fs.readFile(logPath, 'utf8', (err, data) => {
+            const lines = (data || "").trim().split('\n').reverse().slice(0, 100);
+            res.send(`<pre style="background:#000;color:#0f0;padding:20px;">${lines.join('\n')}</pre><script>setTimeout(()=>location.reload(),3000)</script>`);
+        });
+    });
+
+    // --- 2. PRIORITY FLAT ROUTES (No Routers) ---
+
+    // Explicit Manifest
+    const serveManifest = (req, res) => {
         const manifest = {
-            "name": "DisposeMail",
-            "short_name": "DisposeMail",
-            "description": "Secure Disposable Email",
-            "start_url": "/",
-            "display": "standalone",
-            "background_color": "#0a0a0a",
-            "theme_color": "#2563eb",
+            "name": "DisposeMail", "short_name": "DisposeMail",
+            "start_url": "/", "display": "standalone",
+            "background_color": "#0a0a0a", "theme_color": "#2563eb",
             "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
         };
-        res.setHeader('Content-Type', 'application/manifest+json; charset=UTF-8');
-        res.status(200).send(JSON.stringify(manifest, null, 2));
-    });
+        res.setHeader('Content-Type', 'application/manifest+json');
+        res.status(200).send(JSON.stringify(manifest));
+    };
+    server.get('/manifest.json', serveManifest);
+    server.get('/site.webmanifest', serveManifest);
 
-    // Unified API Path Renaming to bypass Hostinger blocks
-    const apiRouter = express.Router();
+    // Flat API Handlers
+    const getStatus = (req, res) => res.json({ status: 'running', version: '1.0.9-NUCLEAR' });
 
-    apiRouter.get('/status', (req, res) => {
-        res.json({ status: 'running', timestamp: Date.now(), version: '1.0.7', diagnostic: true });
-    });
-
-    apiRouter.get('/emails', (req, res) => {
+    const getEmails = (req, res) => {
         const address = req.query.address;
-        if (!address) return res.status(400).json({ error: 'Address required' });
-        try {
-            const emails = db.getEmailsForAddress(address.toLowerCase());
-            res.json(emails);
-        } catch (error) {
-            console.error('API Error:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    });
-
-    const standardRead = (req, res) => {
-        const id = req.body.id || req.query.id;
-        if (!id) return res.status(400).json({ error: 'ID required' });
-        try {
-            const success = db.markEmailAsRead(id);
-            res.json({ success });
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
+        if (!address) return res.status(400).json({ error: 'Missing address' });
+        res.json(db.getEmailsForAddress(address.toLowerCase()));
     };
 
-    apiRouter.post('/emails/read', express.json(), standardRead);
-    apiRouter.get('/emails/read', standardRead); // Support GET for easier testing
-
-    const standardUnread = (req, res) => {
+    const handleRead = (req, res) => {
         const id = req.body.id || req.query.id;
-        if (!id) return res.status(400).json({ error: 'ID required' });
-        try {
-            const success = db.markEmailAsUnread(id);
-            res.json({ success });
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
+        db.markEmailAsRead(id);
+        res.json({ success: true });
     };
 
-    apiRouter.post('/emails/unread', express.json(), standardUnread);
-    apiRouter.get('/emails/unread', standardUnread);
-    apiRouter.post('/webhook/email', express.json({ limit: '10mb' }), (req, res) => {
+    const handleWebhook = (req, res) => {
         const { to, from, subject, text, html, secret } = req.body;
-        if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Unauthorized' });
-
-        const emailData = {
-            id: uuidv4(),
-            address: to.toLowerCase(),
-            from_address: from,
-            subject: subject || '(No Subject)',
-            text: text || '',
-            html: html || '',
-            received_at: Date.now()
-        };
-
-        const saved = db.saveEmail(emailData);
+        if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Auth failed' });
+        const saved = db.saveEmail({ id: uuidv4(), address: to.toLowerCase(), from_address: from, subject: subject || '(No Subject)', text: text || '', html: html || '', received_at: Date.now() });
         io.to(to.toLowerCase()).emit('new-email', saved);
         res.json({ success: true, id: saved.id });
+    };
+
+    // Binding to ALL possible prefixes
+    const prefixes = ['/api', '/api-v1', '/x-feed', '/internal'];
+    prefixes.forEach(p => {
+        server.get(`${p}/status`, getStatus);
+        server.get(`${p}/emails`, getEmails);
+        server.all(`${p}/emails/read`, express.json(), handleRead);
+        server.all(`${p}/emails/unread`, express.json(), (req, res) => {
+            db.markEmailAsUnread(req.body.id || req.query.id);
+            res.json({ success: true });
+        });
+        server.post(`${p}/webhook/email`, express.json({ limit: '10mb' }), handleWebhook);
     });
 
-    // Mount API under MULTIPLE paths for maximum compatibility
-    server.use('/api', apiRouter);
-    server.use('/api-v1', apiRouter);
-    server.use('/x-feed', apiRouter); // Shadow Path to bypass firewall blocks
-    server.use('/internal-v1', apiRouter);
+    // --- 3. SOCKET.IO ---
+    const io = new SocketIOServer(httpServer, {
+        path: '/socket.io-live',
+        pingTimeout: 120000,
+        pingInterval: 30000,
+        cors: { origin: "*" }
+    });
 
+    io.on('connection', (socket) => {
+        socket.on('join-room', (email) => { if (email) socket.join(email.toLowerCase()); });
+    });
 
-    // NOTE: API routes are now handled by Next.js App Router (app/api/...)
-    // This server.js is primarily for WebSocket support.
-
-    // --- 5. NEXT.JS HANDLER (CATCH-ALL) ---
+    // --- 4. NEXT.JS CATCH-ALL ---
     server.all('*', (req, res) => {
-        // If it looks like an API call but reached here, it's a 404
-        if (req.url.startsWith('/api') || req.url.startsWith('/x-feed')) {
-            console.log(`[404] Express API Fallthrough: ${req.url}`);
-            return res.status(404).json({ error: 'Endpoint not found on Express stack', url: req.url });
+        if (req.url.includes('/api/') || req.url.includes('/x-feed/')) {
+            return res.status(404).json({ error: 'Nuclear Fallthrough', path: req.url });
         }
         return handle(req, res);
     });
 
-    // --- Cleanup Job ---
-    setInterval(() => {
-        db.cleanupOldEmails();
-    }, 60 * 1000);
+    // --- 5. CLEANUP ---
+    setInterval(() => db.cleanupOldEmails(), 60 * 1000);
 
-    httpServer.listen(PORT, () => {
-        console.log(`> Ready on http://localhost:${PORT}`);
-        console.log(`> Socket.io path: /socket.io/`);
+    httpServer.listen(PORT, '0.0.0.0', () => {
+        console.log(`> Nuclear Ready on port ${PORT}`);
     });
 });

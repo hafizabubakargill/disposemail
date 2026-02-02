@@ -95,9 +95,18 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     }, [isTabActive, unreadCount]);
 
     useEffect(() => {
-        // --- 1. Register Service Worker for Background Alerts ---
+        // --- 1. THE NUCLEAR CACHE PURGE (Kill old workers) ---
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').catch(console.error);
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                for (let registration of registrations) {
+                    if (!registration.active?.scriptURL.includes('v=1.0.9')) {
+                        registration.unregister();
+                        console.log('Nuclear Purge: Old Service Worker unregistered');
+                    }
+                }
+            });
+            // Register new version
+            navigator.serviceWorker.register('/sw.js?v=1.0.9').catch(console.error);
         }
 
         fetchEmails();
