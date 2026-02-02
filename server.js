@@ -43,12 +43,14 @@ app.prepare().then(() => {
             <body style="font-family:sans-serif;padding:40px;">
                 <h1>STRICT NUCLEAR MODE ACTIVE</h1>
                 <p>Status: REACTIVE</p>
-                <p>Version: 1.0.10-RESCUE</p>
+                <p>Version: 1.0.11-LOCKDOWN</p>
                 <p>Path: ${req.url}</p>
                 <p>Time: ${new Date().toISOString()}</p>
             </body>
         `);
     });
+
+    server.get('/V', (req, res) => res.send('1.0.11-LOCKDOWN'));
 
     server.get('/WHERE-AM-I', (req, res) => {
         res.status(200).json({
@@ -92,7 +94,7 @@ app.prepare().then(() => {
     server.get('/site.webmanifest', serveManifest);
 
     // Flat API Handlers
-    const getStatus = (req, res) => res.json({ status: 'running', version: '1.0.9-NUCLEAR' });
+    const getStatus = (req, res) => res.json({ status: 'running', version: '1.0.11-LOCKDOWN' });
 
     const getEmails = (req, res) => {
         const address = req.query.address;

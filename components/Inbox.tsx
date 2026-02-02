@@ -111,14 +111,14 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.getRegistrations().then(registrations => {
                 for (let registration of registrations) {
-                    if (!registration.active?.scriptURL.includes('v=1.0.9')) {
+                    if (!registration.active?.scriptURL.includes('v=1.0.11')) {
                         registration.unregister();
                         console.log('Nuclear Purge: Old Service Worker unregistered');
                     }
                 }
             });
             // Register new version
-            navigator.serviceWorker.register('/sw.js?v=1.0.9').catch(console.error);
+            navigator.serviceWorker.register('/sw.js?v=1.0.11').catch(console.error);
         }
 
         fetchEmails();
