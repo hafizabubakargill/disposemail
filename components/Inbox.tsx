@@ -39,7 +39,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             setEmails(prev => prev.map(e => e.id === email.id ? { ...e, is_read: true } : e));
 
             // Call API to persist
-            fetch('/api/emails/read', {
+            fetch('/api-v1/emails/read', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id: email.id })
@@ -48,7 +48,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     };
 
     const fetchEmails = () => {
-        fetch('/api/emails?address=' + emailAddress)
+        fetch('/api-v1/emails?address=' + emailAddress)
             .then(res => {
                 if (res.ok) return res.json();
                 throw new Error('Fetch failed');

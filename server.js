@@ -87,7 +87,7 @@ app.prepare().then(() => {
     });
 
     // Webhook (Cloudflare)
-    server.post('/api/webhook/email', express.json({ limit: '10mb' }), (req, res) => {
+    server.post('/api-v1/webhook/email', express.json({ limit: '10mb' }), (req, res) => {
         const { to, from, subject, text, html, secret } = req.body;
 
         if (secret !== WEBHOOK_SECRET) {
