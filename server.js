@@ -56,13 +56,23 @@ app.prepare().then(() => {
     // NOTE: We are moving critical API routes directly into server.js 
     // to bypass App Router 404 issues on some Hostinger environments.
 
-    // Health Check
-    server.get('/api-v1/status', (req, res) => {
-        res.json({ status: 'running', timestamp: Date.now() });
+    // --- Production Resilience Middleware ---
+    server.use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        if (req.method === 'OPTIONS') return res.sendStatus(200);
+        next();
     });
 
-    // Fetch Emails
-    server.get('/api-v1/emails', (req, res) => {
+    // Unified API Path Renaming to bypass Hostinger blocks
+    const apiRouter = express.Router();
+
+    apiRouter.get('/status', (req, res) => {
+        res.json({ status: 'running', timestamp: Date.now(), version: '1.0.5' });
+    });
+
+    apiRouter.get('/emails', (req, res) => {
         const address = req.query.address;
         if (!address) return res.status(400).json({ error: 'Address required' });
         try {
@@ -74,8 +84,7 @@ app.prepare().then(() => {
         }
     });
 
-    // Mark as Read
-    server.post('/api-v1/emails/read', express.json(), (req, res) => {
+    apiRouter.post('/emails/read', express.json(), (req, res) => {
         const { id } = req.body;
         if (!id) return res.status(400).json({ error: 'ID required' });
         try {
@@ -84,29 +93,6 @@ app.prepare().then(() => {
         } catch (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         }
-    });
-
-    // Webhook (Cloudflare)
-    server.post('/api-v1/webhook/email', express.json({ limit: '10mb' }), (req, res) => {
-        const { to, from, subject, text, html, secret } = req.body;
-
-        if (secret !== WEBHOOK_SECRET) {
-            return res.status(401).json({ error: 'Unauthorized' });
-        }
-
-        const emailData = {
-            id: uuidv4(),
-            address: to.toLowerCase(),
-            from_address: from,
-            subject: subject || '(No Subject)',
-            text: text || '',
-            html: html || '',
-            received_at: Date.now()
-        };
-
-        const saved = db.saveEmail(emailData);
-        io.to(to.toLowerCase()).emit('new-email', saved);
-        res.json({ success: true, id: saved.id });
     });
 
     // Explicit Manifest Serving to fix JSON Syntax Errors
