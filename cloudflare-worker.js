@@ -27,11 +27,11 @@ export default {
             });
 
             if (!response.ok && env.EMAILS_KV) {
-                await env.EMAILS_KV.put(`msg:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 86400 });
+                await env.EMAILS_KV.put(`msg:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 1800 });
             }
         } catch (e) {
             if (env.EMAILS_KV) {
-                await env.EMAILS_KV.put(`err:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 86400 });
+                await env.EMAILS_KV.put(`err:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 1800 });
             }
         }
     },
