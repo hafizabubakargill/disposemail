@@ -73,7 +73,10 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     };
 
     const fetchEmails = () => {
-        fetch('/x-feed/emails?address=' + emailAddress)
+        fetch('/x-feed/emails?address=' + emailAddress, {
+            credentials: 'omit', // Bypass strict WAF/Cookie checks
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
             .then(res => res.ok ? res.json() : Promise.reject())
             .then((data: Email[]) => {
                 setEmails(current => {

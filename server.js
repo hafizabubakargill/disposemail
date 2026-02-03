@@ -55,6 +55,9 @@ app.prepare().then(() => {
 
     server.get('/V', (req, res) => res.send('1.0.11-LOCKDOWN'));
 
+    // BASIC STATUS BYPASS
+    server.get('/status', (req, res) => res.send('OK'));
+
     server.get('/WHERE-AM-I', (req, res) => {
         res.status(200).json({
             cwd: process.cwd(),
