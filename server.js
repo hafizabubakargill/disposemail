@@ -58,6 +58,9 @@ app.prepare().then(() => {
     // BASIC STATUS BYPASS
     server.get('/status', (req, res) => res.send('OK'));
 
+    // JSON FALLBACK (Prevents frontend crash if worker is bypassed)
+    server.get('/sync-safety-net', (req, res) => res.json({ count: 0, note: "Server Fallback Active" }));
+
     server.get('/WHERE-AM-I', (req, res) => {
         res.status(200).json({
             cwd: process.cwd(),

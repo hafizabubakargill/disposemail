@@ -84,7 +84,11 @@ export default {
                 })
             });
 
-            return rescueResponse;
+            const finalResponse = new Response(rescueResponse.body, rescueResponse);
+            finalResponse.headers.set("Access-Control-Allow-Origin", "*");
+            finalResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            finalResponse.headers.set("Access-Control-Allow-Headers", "Content-Type");
+            return finalResponse;
         }
 
         // ALLOW EVERYTHING ELSE TO PASS THROUGH TO HOSTINGER
