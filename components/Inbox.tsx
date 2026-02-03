@@ -139,6 +139,9 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             setIsConnected(true);
             socket.emit('join-room', emailAddress);
             fetchEmails();
+            // Force Sync on Connect (Phase 20)
+            console.log('Auto-Sync Triggered');
+            handleSafetySync();
         });
 
         socket.on('connect_error', () => setIsConnected(false));
@@ -198,24 +201,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         return new Date(ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
 
-    useEffect(() => {
-        if (!socket || !isConnected) return;
-
-        // Auto-Sync on Connect/My-Email
-        const runSync = () => {
-            console.log('Auto-Sync Triggered');
-            handleSafetySync();
-        };
-
-        socket.on('connect', runSync);
-
-        // Also run once immediately if we just connected
-        runSync();
-
-        return () => {
-            socket.off('connect', runSync);
-        };
-    }, [socket, isConnected]);
 
     return (
         <div className="w-full max-w-5xl mx-auto mt-4 md:mt-8 px-4">
