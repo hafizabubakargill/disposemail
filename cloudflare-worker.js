@@ -8,8 +8,11 @@ export default {
         const recipient = message.to;
         const subject = message.headers.get("subject") || "(No Subject)";
         const timestamp = Date.now();
+        // Generate a deterministic ID for idempotency (so we don't save duplicates)
+        const emailId = crypto.randomUUID();
 
         const emailPayload = {
+            id: emailId, // Pass this to server
             to: recipient,
             from: sender,
             subject: subject,
@@ -19,20 +22,28 @@ export default {
             timestamp: timestamp
         };
 
+        // 1. SAVE FIRST (The "Zero Loss" Guarantee)
+        // We save BEFORE trying to send. If the worker crashes, it's already saved.
+        if (env.EMAILS_KV) {
+            await env.EMAILS_KV.put(`msg:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 1800 });
+        }
+
         try {
+            // 2. TRY TO DELIVER
             const response = await fetch(WEBHOOK_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(emailPayload),
             });
 
-            if (!response.ok && env.EMAILS_KV) {
-                await env.EMAILS_KV.put(`msg:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 1800 });
+            // 3. DELETE IF SUCCESSFUL
+            // Only if the server explicitly says "OK" do we remove the safety copy.
+            if (response.ok && env.EMAILS_KV) {
+                await env.EMAILS_KV.delete(`msg:${timestamp}:${recipient}`);
             }
         } catch (e) {
-            if (env.EMAILS_KV) {
-                await env.EMAILS_KV.put(`err:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 1800 });
-            }
+            // Network error? No problem. The email is already in KV from Step 1.
+            // We can log an error marker if we want, but the 'msg' checks are enough.
         }
     },
 

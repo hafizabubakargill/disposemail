@@ -115,9 +115,22 @@ app.prepare().then(() => {
     };
 
     const handleWebhook = (req, res) => {
-        const { to, from, subject, text, html, secret } = req.body;
+        const { id, to, from, subject, text, html, secret } = req.body;
         if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Auth failed' });
-        const saved = db.saveEmail({ id: uuidv4(), address: to.toLowerCase(), from_address: from, subject: subject || '(No Subject)', text: text || '', html: html || '', received_at: Date.now() });
+
+        // Use provided ID or generate new one (Idempotency)
+        const finalId = id || uuidv4();
+
+        const saved = db.saveEmail({
+            id: finalId,
+            address: to.toLowerCase(),
+            from_address: from,
+            subject: subject || '(No Subject)',
+            text: text || '',
+            html: html || '',
+            received_at: Date.now()
+        });
+
         io.to(to.toLowerCase()).emit('new-email', saved);
         res.json({ success: true, id: saved.id });
     };
