@@ -12,8 +12,6 @@ export default function Home() {
     const [customPrefix, setCustomPrefix] = useState('');
 
     const [showQR, setShowQR] = useState(false);
-
-    const [menuOpen, setMenuOpen] = useState(false);
     const [timeLeft, setTimeLeft] = useState<number>(3600); // 1 hour in seconds
     const [progress, setProgress] = useState(100);
     // Get random domain helper
@@ -140,57 +138,7 @@ export default function Home() {
     if (!isMounted || !email) return null;
 
     return (
-        <main className="flex min-h-screen flex-col items-center relative overflow-x-hidden">
-            {/* Background Grid Effect */}
-            <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none z-0"></div>
-            <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
-
-            {/* Navbar */}
-            <nav className="w-full flex justify-between items-center px-6 md:px-8 py-6 z-50 max-w-7xl relative">
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(37,99,235,0.4)]">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    </div>
-                    <span className="font-bold text-xl tracking-tight text-gray-900 dark:text-gray-100">DisposeMail</span>
-                </div>
-
-                {/* Desktop Links */}
-                <div className="hidden md:flex items-center gap-6">
-                    <div className="flex gap-6 text-sm text-gray-600 dark:text-gray-400 font-medium">
-                        <a href="/api-docs" className="hover:text-blue-600 dark:hover:text-white transition-colors">API</a>
-                        <a href="/faq" className="hover:text-blue-600 dark:hover:text-white transition-colors">FAQ</a>
-                        <a href="/about" className="hover:text-blue-600 dark:hover:text-white transition-colors">About</a>
-                        <a href="/privacy" className="hover:text-blue-600 dark:hover:text-white transition-colors">Privacy</a>
-                    </div>
-                    <ModeToggle />
-                </div>
-
-                {/* Mobile Hamburger Button */}
-                <div className="flex md:hidden items-center gap-3">
-                    <ModeToggle />
-                    <button
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        className="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#222] rounded-lg transition-colors"
-                    >
-                        {menuOpen ? (
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        ) : (
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                        )}
-                    </button>
-                </div>
-
-                {/* Mobile Menu Overlay */}
-                {menuOpen && (
-                    <div className="absolute top-20 left-0 right-0 bg-white dark:bg-[#111] border-y border-gray-200 dark:border-[#222] p-6 flex flex-col gap-4 z-50 md:hidden animate-in fade-in slide-in-from-top-4 duration-200 shadow-xl">
-                        <a href="/api-docs" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2">API Documentation</a>
-                        <a href="/faq" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2">FAQ</a>
-                        <a href="/about" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2">About Us</a>
-                        <a href="/privacy" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2">Privacy Policy</a>
-                    </div>
-                )}
-            </nav>
-
+        <div className="w-full">
             {/* Hero Section */}
             <div className="w-full max-w-4xl px-4 mt-8 md:mt-20 z-10 text-center">
                 <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-mono mb-6">
@@ -414,25 +362,6 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* --- PROFESSIONAL FOOTER --- */}
-            <footer className="w-full bg-white dark:bg-[#0a0a0a] border-t border-gray-100 dark:border-[#1a1a1a] py-12 px-6">
-                <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div className="flex flex-col items-center md:items-start">
-                        <div className="flex items-center space-x-2 mb-2">
-                            <span className="text-lg font-black tracking-tighter text-blue-600">DisposeMail</span>
-                            <span className="px-2 py-0.5 rounded bg-blue-600/10 text-blue-600 text-[10px] font-black uppercase">v2.0 Beta</span>
-                        </div>
-                        <p className="text-xs text-gray-500 text-center md:text-left">© 2026 DisposeMail. Secure, anonymous, temporary.</p>
-                    </div>
-
-                    <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-xs font-bold uppercase tracking-widest text-gray-400">
-                        <a href="#" className="hover:text-blue-500 transition-colors">About Us</a>
-                        <a href="#" className="hover:text-blue-500 transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-blue-500 transition-colors">Terms of Service</a>
-                        <a href="mailto:support@disposemail.xyz" className="hover:text-blue-500 transition-colors">Support</a>
-                    </div>
-                </div>
-            </footer>
-        </main>
+        </div>
     );
 }
