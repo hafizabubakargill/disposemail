@@ -212,12 +212,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         <div className="flex items-center ml-2">
                             {isConnected ? (
                                 <div className="flex items-center px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 text-[10px] font-black shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-                                    <span className="w-1.5 h-1.5 rounded-full mr-2 bg-green-500 animate-pulse"></span>
+                                    <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-green-500 animate-pulse"></span>
                                     {emails.length} LIVE
                                 </div>
                             ) : (
                                 <div className="flex items-center px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-500 text-[10px] font-black">
-                                    <span className="w-1.5 h-1.5 rounded-full mr-2 bg-amber-500 animate-pulse"></span>
+                                    <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-amber-500 animate-pulse"></span>
                                     SYNCING
                                 </div>
                             )}
@@ -227,7 +227,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
                 <button
                     onClick={handleSafetySync}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest hover:bg-blue-500 active:scale-95 transition-all shadow-lg shadow-blue-500/25 shrink-0"
+                    className="flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-[#111] border border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 text-[11px] font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-[#161616] active:scale-95 transition-all shadow-sm shrink-0"
                     title="Rescue missing emails"
                 >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -254,31 +254,33 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 key={email.id}
                                 onClick={() => handleSelectEmail(email)}
                                 className={`group flex items-center justify-between p-4 md:p-6 transition-all cursor-pointer relative ${selectedEmail?.id === email.id
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-transparent hover:bg-gray-50 dark:hover:bg-[#151515]'
+                                        ? 'bg-blue-600/10 border-l-4 border-l-blue-600'
+                                        : !email.is_read
+                                            ? 'bg-blue-500/10' // Light blue for NEW/UNREAD
+                                            : 'bg-transparent hover:bg-gray-50 dark:hover:bg-[#151515]' // Read look (Transparent/Dark)
                                     }`}
                             >
                                 <div className="flex items-center gap-4 flex-1 min-w-0">
                                     <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${email.is_read ? 'bg-transparent border border-gray-300 dark:border-[#333]' : 'bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(37,99,235,0.5)]'}`}></div>
                                     <div className="flex-1 min-w-0">
                                         <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 mb-1">
-                                            <span className={`text-xs font-black uppercase tracking-widest truncate ${selectedEmail?.id === email.id ? 'text-blue-100' : 'text-blue-600 dark:text-blue-400'}`}>
+                                            <span className={`text-xs font-black uppercase tracking-widest truncate ${!email.is_read ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'}`}>
                                                 From: <span className="lowercase">{email.from_address.split('<')[0] || email.from_address}</span>
                                             </span>
-                                            <span className={`text-[10px] font-mono shrink-0 ${selectedEmail?.id === email.id ? 'text-blue-200' : 'text-gray-400'}`}>
+                                            <span className={`text-[10px] font-mono shrink-0 text-gray-400`}>
                                                 {formatDate(email.received_at)}
                                             </span>
                                         </div>
-                                        <div className={`text-sm md:text-base font-bold truncate ${selectedEmail?.id === email.id ? 'text-white' : 'text-gray-900 dark:text-gray-100'}`}>
+                                        <div className={`text-sm md:text-base font-bold truncate ${!email.is_read ? 'text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'}`}>
                                             Subject: {email.subject}
                                         </div>
-                                        <div className={`text-xs truncate mt-1 opacity-70 ${selectedEmail?.id === email.id ? 'text-blue-50' : 'text-gray-500 dark:text-gray-400'}`}>
+                                        <div className={`text-xs truncate mt-1 opacity-70 text-gray-500 dark:text-gray-400`}>
                                             {email.text.slice(0, 100)}...
                                         </div>
                                     </div>
                                 </div>
                                 <div className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
-                                    <svg className={`w-5 h-5 ${selectedEmail?.id === email.id ? 'text-white' : 'text-blue-600 underline'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
+                                    <svg className={`w-5 h-5 text-blue-600 underline`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
                                 </div>
                             </div>
                         ))
