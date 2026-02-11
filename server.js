@@ -156,7 +156,8 @@ app.prepare().then(() => {
             if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Auth failed' });
 
             const results = emails.map(e => {
-                const data = { ...e, id: uuidv4(), received_at: e.timestamp || Date.now() };
+                // IMPORTANT: Preserving the ID from the Worker (Zero Loss)
+                const data = { ...e, id: e.id || uuidv4(), received_at: e.timestamp || Date.now() };
                 return db.saveEmail(data);
             });
             res.json({ success: true, count: results.length });
