@@ -216,7 +216,7 @@ export default function Home() {
                             onClick={() => setIsCustom(!isCustom)}
                             className={`text-xs px-6 py-2.5 rounded-full transition-all font-bold tracking-tight ${isCustom ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 bg-gray-50 dark:bg-[#161616]'}`}
                         >
-                            {isCustom ? 'Custom Mode: ON' : 'Click for Custom Mode'}
+                            {isCustom ? 'Custom User: ON' : 'Click For Custom User'}
                         </button>
 
                         {isCustom && (
