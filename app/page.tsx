@@ -16,13 +16,14 @@ export default function Home() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [timeLeft, setTimeLeft] = useState<number>(3600); // 1 hour in seconds
     const [progress, setProgress] = useState(100);
-    const [selectedDomain, setSelectedDomain] = useState(DEFAULT_DOMAIN);
-    const [isMounted, setIsMounted] = useState(false);
-
     // Get random domain helper
     const getRandomDomain = () => DOMAINS[Math.floor(Math.random() * DOMAINS.length)];
 
+    const [selectedDomain, setSelectedDomain] = useState(() => DOMAINS[0]);
+    const [isMounted, setIsMounted] = useState(false);
+
     useEffect(() => {
+        setIsMounted(true);
         setIsMounted(true);
         // Generate or retrieve existing email session
         let stored = localStorage.getItem('disposemail_address');
@@ -42,12 +43,14 @@ export default function Home() {
         }
 
         if (!stored) {
+            const domain = getRandomDomain();
             const userPart = Math.random().toString(36).substring(2, 10);
-            stored = `${userPart}@${selectedDomain}`;
+            stored = `${userPart}@${domain}`;
             localStorage.setItem('disposemail_address', stored);
             localStorage.setItem('disposemail_created', now.toString());
             setTimeLeft(3600);
             setProgress(100);
+            setSelectedDomain(domain);
         }
 
         setEmail(stored);
@@ -105,17 +108,20 @@ export default function Home() {
         }
     };
 
-    const handleRefresh = () => {
+    const handleRefresh = (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        const domain = getRandomDomain();
         const userPart = isCustom && customPrefix.length > 0
             ? customPrefix.toLowerCase().replace(/[^a-z0-9]/g, '')
             : Math.random().toString(36).substring(2, 10);
 
-        const newEmail = `${userPart}@${selectedDomain}`;
+        const newEmail = `${userPart}@${domain}`;
         localStorage.setItem('disposemail_address', newEmail);
         localStorage.setItem('disposemail_created', Date.now().toString());
         setEmail(newEmail);
         setTimeLeft(3600);
         setProgress(100);
+        setSelectedDomain(domain);
     };
 
     const handleDomainChange = (newDomain: string) => {
@@ -202,43 +208,38 @@ export default function Home() {
                     No registration. No tracking. Just privacy.
                 </p>
 
-                {/* Custom Prefix & Domain Toggle */}
+                {/* Custom Prefix & Pill UI */}
                 <div className="mb-8 flex flex-wrap items-center justify-center gap-4">
                     <div className="flex bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-full p-1 overflow-hidden transition-colors shadow-sm">
                         <button
+                            type="button"
                             onClick={() => setIsCustom(!isCustom)}
-                            className={`text-xs px-4 py-2 rounded-full transition-all ${isCustom ? 'bg-blue-600 text-white' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+                            className={`text-xs px-6 py-2.5 rounded-full transition-all font-bold ${isCustom ? 'bg-blue-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
                         >
-                            Custom User
+                            {isCustom ? 'Custom Mode' : 'Random Mode'}
                         </button>
-                        <select
-                            value={selectedDomain}
-                            onChange={(e) => handleDomainChange(e.target.value)}
-                            className="bg-transparent text-xs px-4 py-2 outline-none border-l border-gray-200 dark:border-[#222] text-gray-700 dark:text-gray-300 cursor-pointer"
-                        >
-                            {DOMAINS.map(domain => (
-                                <option key={domain} value={domain} className="bg-white dark:bg-[#111]">{domain}</option>
-                            ))}
-                        </select>
-                    </div>
 
-                    {isCustom && (
-                        <div className="flex items-center bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-lg px-3 py-1 animate-in slide-in-from-left-2 duration-300 shadow-sm">
-                            <input
-                                type="text"
-                                placeholder="custom-name"
-                                value={customPrefix}
-                                onChange={(e) => setCustomPrefix(e.target.value)}
-                                className="bg-transparent border-none outline-none text-sm text-gray-900 dark:text-gray-200 w-28 md:w-32"
-                            />
-                            <button
-                                onClick={handleRefresh}
-                                className="ml-2 text-blue-500 hover:text-blue-400 text-xs font-bold"
-                            >
-                                USE
-                            </button>
-                        </div>
-                    )}
+                        {isCustom && (
+                            <form onSubmit={handleRefresh} className="flex items-center">
+                                <input
+                                    id="custom-prefix"
+                                    name="custom-prefix"
+                                    type="text"
+                                    placeholder="custom-name"
+                                    value={customPrefix}
+                                    onChange={(e) => setCustomPrefix(e.target.value)}
+                                    className="bg-transparent border-none outline-none text-xs text-gray-900 dark:text-gray-200 w-24 md:w-32 px-4 py-2 font-medium"
+                                    autoComplete="off"
+                                />
+                                <button
+                                    type="submit"
+                                    className="mr-2 bg-blue-600/10 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all"
+                                >
+                                    SET
+                                </button>
+                            </form>
+                        )}
+                    </div>
                 </div>
 
                 {/* Email Box & Visual Progress */}
@@ -252,6 +253,8 @@ export default function Home() {
 
                             <div className="flex-1 overflow-hidden text-left">
                                 <input
+                                    id="generated-email-address"
+                                    name="generated-email-address"
                                     type="text"
                                     readOnly
                                     value={email}

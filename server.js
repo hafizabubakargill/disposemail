@@ -177,8 +177,8 @@ app.prepare().then(() => {
 
     // --- 4. NEXT.JS CATCH-ALL ---
     server.all('*', (req, res) => {
-        if (req.url.includes('/api/') || req.url.includes('/x-feed/')) {
-            return res.status(404).json({ error: 'Nuclear Fallthrough', path: req.url });
+        if (req.url.startsWith('/api/') || req.url.startsWith('/x-feed/')) {
+            return res.status(404).json({ error: 'Endpoint Not Found', path: req.url, note: "Nuclear Catch-all" });
         }
         return handle(req, res);
     });
