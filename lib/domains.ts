@@ -6,6 +6,10 @@
 
 export const DOMAINS = [
     'disposemail.xyz',
+    'us.disposemail.xyz',
+    'uk.disposemail.xyz',
+    'secure.disposemail.xyz',
+    'temp.disposemail.xyz',
     'groundtips.com'
 ];
 

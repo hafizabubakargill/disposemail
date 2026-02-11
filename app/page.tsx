@@ -299,6 +299,34 @@ export default function Home() {
                 <Inbox emailAddress={email} />
             </div>
 
+            {/* --- AD VALUE: FEATURES GRID --- */}
+            <div className="w-full max-w-5xl mx-auto px-6 py-20 border-t border-gray-100 dark:border-[#222]">
+                <h2 className="text-3xl font-black tracking-tighter text-center mb-12 text-gray-900 dark:text-white">Enterprise-Grade Architecture</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="p-6 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#222]">
+                        <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mb-4 text-white">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 className="font-bold text-lg mb-2">Real-Time Sockets</h3>
+                        <p className="text-sm text-gray-500">No refreshing needed. Emails are pushed to your browser instantly via secure WebSockets.</p>
+                    </div>
+                    <div className="p-6 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#222]">
+                        <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center mb-4 text-white">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        </div>
+                        <h3 className="font-bold text-lg mb-2">TLS Encryption</h3>
+                        <p className="text-sm text-gray-500">Every connection is secured with industry-standard TLS encryption to prevent eavesdropping.</p>
+                    </div>
+                    <div className="p-6 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#222]">
+                        <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-4 text-white">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <h3 className="font-bold text-lg mb-2">Multi-Domain</h3>
+                        <p className="text-sm text-gray-500">Bypass filters with our rotating list of premium domains and subdomains.</p>
+                    </div>
+                </div>
+            </div>
+
             {/* --- ADSENSE COMPLIANCE CONTENT --- */}
             <div className="w-full max-w-5xl mx-auto px-6 py-20 border-t border-gray-100 dark:border-[#222]">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -354,6 +382,42 @@ export default function Home() {
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">3</div>
                         <h4 className="font-bold text-lg mb-2">Receive</h4>
                         <p className="text-sm text-gray-500">Watch emails arrive in real-time. We parse full HTML and attachments.</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* --- AD VALUE: USE CASES --- */}
+            <div className="w-full bg-white dark:bg-[#080808] py-20 px-6 border-t border-gray-100 dark:border-[#222]">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-black tracking-tighter mb-8 text-center text-gray-900 dark:text-white">Common Use Cases</h2>
+                    <div className="space-y-4">
+                        <details className="group p-4 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222] open:bg-blue-50 dark:open:bg-blue-900/10 transition-colors">
+                            <summary className="font-bold cursor-pointer list-none flex justify-between items-center bg-transparent text-gray-900 dark:text-gray-100">
+                                <span>1. Software Testing & QA</span>
+                                <span className="transition-transform group-open:rotate-180">▼</span>
+                            </summary>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
+                                Developers use specific disposable addresses to test user registration flows without cluttering real databases or needing to create thousands of Gmail accounts.
+                            </p>
+                        </details>
+                        <details className="group p-4 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222] open:bg-blue-50 dark:open:bg-blue-900/10 transition-colors">
+                            <summary className="font-bold cursor-pointer list-none flex justify-between items-center bg-transparent text-gray-900 dark:text-gray-100">
+                                <span>2. E-Commerce Discounts</span>
+                                <span className="transition-transform group-open:rotate-180">▼</span>
+                            </summary>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
+                                Sign up for "First Order" coupons on shopping sites without committing your primary email to their daily marketing newsletters.
+                            </p>
+                        </details>
+                        <details className="group p-4 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222] open:bg-blue-50 dark:open:bg-blue-900/10 transition-colors">
+                            <summary className="font-bold cursor-pointer list-none flex justify-between items-center bg-transparent text-gray-900 dark:text-gray-100">
+                                <span>3. Protecting Privacy in Forums</span>
+                                <span className="transition-transform group-open:rotate-180">▼</span>
+                            </summary>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
+                                Register for online communities or download whitepapers while keeping your personal identity secure and anonymous.
+                            </p>
+                        </details>
                     </div>
                 </div>
             </div>

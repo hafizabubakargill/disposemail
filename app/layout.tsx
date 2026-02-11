@@ -13,8 +13,31 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: "DisposeMail - Secure Disposable Email",
-    description: "Instant, secure, and temporary email addresses.",
+    title: {
+        default: "DisposeMail - Secure Disposable Email",
+        template: "%s | DisposeMail"
+    },
+    description: "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable inbox.",
+    keywords: ["disposable email", "temporary email", "temp mail", "anonymous email", "privacy", "secure email", "throwaway email"],
+    authors: [{ name: "DisposeMail Team" }],
+    creator: "DisposeMail",
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        url: "https://disposemail.xyz",
+        title: "DisposeMail - Secure Disposable Email",
+        description: "Instant, secure, and temporary email addresses for privacy protection.",
+        siteName: "DisposeMail",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "DisposeMail - Secure Disposable Email",
+        description: "Protect your real inbox from spam with instant disposable email addresses.",
+    },
+    robots: {
+        index: true,
+        follow: true,
+    }
 };
 
 export default function RootLayout({
