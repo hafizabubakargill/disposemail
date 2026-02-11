@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Inbox from "@/components/Inbox";
 import { ModeToggle } from "@/components/ModeToggle";
-import { DOMAINS, DEFAULT_DOMAIN } from "@/lib/domains";
+import { generateRandomDomain, DEFAULT_DOMAIN } from "@/lib/domains";
 
 export default function Home() {
     const [email, setEmail] = useState<string | null>(null);
@@ -14,14 +14,11 @@ export default function Home() {
     const [showQR, setShowQR] = useState(false);
     const [timeLeft, setTimeLeft] = useState<number>(3600); // 1 hour in seconds
     const [progress, setProgress] = useState(100);
-    // Get random domain helper
-    const getRandomDomain = () => DOMAINS[Math.floor(Math.random() * DOMAINS.length)];
 
-    const [selectedDomain, setSelectedDomain] = useState(() => DOMAINS[0]);
+    const [selectedDomain, setSelectedDomain] = useState(() => DEFAULT_DOMAIN);
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true);
         setIsMounted(true);
         // Generate or retrieve existing email session
         let stored = localStorage.getItem('disposemail_address');
@@ -41,7 +38,7 @@ export default function Home() {
         }
 
         if (!stored) {
-            const domain = getRandomDomain();
+            const domain = generateRandomDomain();
             const userPart = Math.random().toString(36).substring(2, 10);
             stored = `${userPart}@${domain}`;
             localStorage.setItem('disposemail_address', stored);
@@ -108,7 +105,7 @@ export default function Home() {
 
     const handleRefresh = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
-        const domain = getRandomDomain();
+        const domain = generateRandomDomain();
         const userPart = isCustom && customPrefix.length > 0
             ? customPrefix.toLowerCase().replace(/[^a-z0-9]/g, '')
             : Math.random().toString(36).substring(2, 10);
@@ -122,18 +119,7 @@ export default function Home() {
         setSelectedDomain(domain);
     };
 
-    const handleDomainChange = (newDomain: string) => {
-        setSelectedDomain(newDomain);
-        if (email) {
-            const userPart = email.split('@')[0];
-            const newEmail = `${userPart}@${newDomain}`;
-            localStorage.setItem('disposemail_address', newEmail);
-            localStorage.setItem('disposemail_created', Date.now().toString());
-            setEmail(newEmail);
-            setTimeLeft(3600);
-            setProgress(100);
-        }
-    };
+    // Removed handleDomainChange as selection is now random/automated
 
     if (!isMounted || !email) return null;
 

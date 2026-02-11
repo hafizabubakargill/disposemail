@@ -1,16 +1,25 @@
-// List of available domains
+// Base domains for random subdomain generation
 // To add a new domain:
 // 1. Add it to Cloudflare Email Routing (and point to the same Worker).
 // 2. Add the string to this array.
 // 3. Re-deploy.
 
-export const DOMAINS = [
+export const BASE_DOMAINS = [
     'disposemail.xyz',
-    'us.disposemail.xyz',
-    'uk.disposemail.xyz',
-    'secure.disposemail.xyz',
-    'temp.disposemail.xyz',
     'groundtips.com'
 ];
 
-export const DEFAULT_DOMAIN = DOMAINS[0];
+/**
+ * Generates a random domain using one of the base domains.
+ * Format: [random-subdomain].[base-domain]
+ * Example: x7a2.disposemail.xyz
+ */
+export const generateRandomDomain = (): string => {
+    const base = BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
+    // Generate a short, random subdomain (3-5 chars for readability)
+    const sub = Math.random().toString(36).substring(2, 6); // 4 chars
+    return `${sub}.${base}`;
+};
+
+// Kept for compatibility if imported elsewhere, but should be replaced by dynamic generation
+export const DEFAULT_DOMAIN = BASE_DOMAINS[0];
