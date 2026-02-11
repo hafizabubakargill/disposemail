@@ -88,11 +88,15 @@ app.prepare().then(() => {
 
     // --- NEW DIAGNOSTIC ROUTES ---
     server.get('/DEBUG-EMAILS', (req, res) => {
-        const emails = db.get('emails').value();
-        res.json({
-            count: emails.length,
-            last_5: emails.slice(-5).map(e => ({ id: e.id, to: e.address, subject: e.subject, time: new Date(e.received_at).toISOString() }))
-        });
+        try {
+            const emails = db.getAllEmails();
+            res.json({
+                count: emails.length,
+                last_5: emails.slice(-5).map(e => ({ id: e.id, to: e.address, subject: e.subject, time: new Date(e.received_at).toISOString() }))
+            });
+        } catch (err) {
+            res.status(500).json({ error: err.message, stack: err.stack });
+        }
     });
 
     server.get('/TEST-WEBHOOK', (req, res) => {
