@@ -86,6 +86,23 @@ app.prepare().then(() => {
         });
     });
 
+    // --- NEW DIAGNOSTIC ROUTES ---
+    server.get('/DEBUG-EMAILS', (req, res) => {
+        const emails = db.get('emails').value();
+        res.json({
+            count: emails.length,
+            last_5: emails.slice(-5).map(e => ({ id: e.id, to: e.address, subject: e.subject, time: new Date(e.received_at).toISOString() }))
+        });
+    });
+
+    server.get('/TEST-WEBHOOK', (req, res) => {
+        res.json({
+            status: "OK",
+            message: "Webhook route is reachable. Use POST to send data.",
+            endpoint: "/x-feed/webhook/email"
+        });
+    });
+
     // --- 2. PRIORITY FLAT ROUTES (No Routers) ---
 
     // Explicit Manifest
@@ -118,8 +135,15 @@ app.prepare().then(() => {
     };
 
     const handleWebhook = async (req, res) => {
+        console.log(`[WEBHOOK] Incoming request at ${new Date().toISOString()}`);
         const { id, to, from, subject, text, html, raw, secret } = req.body;
-        if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Auth failed' });
+
+        if (secret !== WEBHOOK_SECRET) {
+            console.error(`[WEBHOOK] AUTH FAILURE. Expected: ${WEBHOOK_SECRET.substring(0, 4)}..., Received: ${secret ? secret.substring(0, 4) : 'null'}...`);
+            return res.status(401).json({ error: 'Auth failed' });
+        }
+
+        console.log(`[WEBHOOK] Payload: ID=${id}, TO=${to}, FROM=${from}, SUBJECT=${subject}`);
 
         // Use provided ID or generate new one (Idempotency)
         const finalId = id || uuidv4();
@@ -129,6 +153,7 @@ app.prepare().then(() => {
 
         // IF RAW MIME IS PROVIDED, PARSE IT PROPERLY
         if (raw) {
+            console.log(`[WEBHOOK] Parsing Raw MIME (${raw.length} bytes)`);
             try {
                 const { simpleParser } = require('mailparser');
                 const parsed = await simpleParser(raw);
@@ -136,7 +161,7 @@ app.prepare().then(() => {
                 finalText = parsed.text || '';
                 finalSubject = parsed.subject || finalSubject;
             } catch (err) {
-                console.error('MIME Parsing Error:', err);
+                console.error('[WEBHOOK] MIME Parsing Error:', err);
             }
         }
 
@@ -150,6 +175,7 @@ app.prepare().then(() => {
             received_at: Date.now()
         });
 
+        console.log(`[WEBHOOK] Saved Email ${saved.id} for ${to}`);
         io.to(to.toLowerCase()).emit('new-email', saved);
         res.json({ success: true, id: saved.id });
     };
