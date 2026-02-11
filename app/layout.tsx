@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import Script from "next/script";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -32,6 +33,20 @@ export default function RootLayout({
                 <link rel="manifest" href="/manifest.json" />
             </head>
             <body className={`${inter.className} min-h-screen bg-background text-foreground overflow-x-hidden antialiased selection:bg-blue-500/30`}>
+                {/* Google Analytics (GTags) */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-DX89L9W9FL"
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-DX89L9W9FL');
+                    `}
+                </Script>
+
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"
