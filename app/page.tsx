@@ -347,10 +347,92 @@ export default function Home() {
             </div>
 
             {/* Inbox Section */}
-            <div className="w-full px-4 z-10 pb-20">
+            <div className="w-full px-4 z-10 pb-12">
                 <Inbox emailAddress={email} />
             </div>
 
+            {/* --- ADSENSE COMPLIANCE CONTENT --- */}
+            <div className="w-full max-w-5xl mx-auto px-6 py-20 border-t border-gray-100 dark:border-[#222]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    {/* Why DisposeMail? */}
+                    <div className="space-y-6">
+                        <h2 className="text-3xl font-black tracking-tighter text-gray-900 dark:text-gray-100">
+                            Secure your Digital Life<span className="text-blue-600">.</span>
+                        </h2>
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
+                            DisposeMail provides instant, temporary email addresses to protect your primary inbox from spam, trackers, and data breaches. Our "Zero-Loss" architecture ensures your trial registrations and verification codes arrive with 100% reliability.
+                        </p>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10">
+                                <h4 className="font-bold text-blue-600 mb-1">Privacy First</h4>
+                                <p className="text-xs text-gray-500">No cookies, no logs, no tracking.</p>
+                            </div>
+                            <div className="p-4 rounded-2xl bg-green-500/5 border border-green-500/10">
+                                <h4 className="font-bold text-green-600 mb-1">Save & Sync</h4>
+                                <p className="text-xs text-gray-500">Edge safety net for every mail.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* FAQ Quick Links */}
+                    <div className="space-y-8">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-widest text-[11px]">Frequently Asked Questions</h3>
+                        <div className="space-y-6">
+                            <div>
+                                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">How long do emails last?</h4>
+                                <p className="text-sm text-gray-500">Your address and all received emails are automatically purged after 60 minutes for maximum security.</p>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">Is it free to use?</h4>
+                                <p className="text-sm text-gray-500">Yes, DisposeMail is a forever-free tool powered by high-quality ads to keep our infrastructure growing.</p>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">Can I use custom names?</h4>
+                                <p className="text-sm text-gray-500">Absolutely. Just toggle "Custom User" to set your preferred prefix across multiple domains.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* How it Works / Steps */}
+                <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
+                        <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">1</div>
+                        <h4 className="font-bold text-lg mb-2">Generate</h4>
+                        <p className="text-sm text-gray-500 italic">Hit 'New' to get a random address or set your own custom name.</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
+                        <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">2</div>
+                        <h4 className="font-bold text-lg mb-2">Register</h4>
+                        <p className="text-sm text-gray-500 italic">Use your temporary mail on any website, trial, or newsletter.</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
+                        <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">3</div>
+                        <h4 className="font-bold text-lg mb-2">Receive</h4>
+                        <p className="text-sm text-gray-500 italic">Watch emails arrive in real-time. We parse full HTML and attachments.</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* --- PROFESSIONAL FOOTER --- */}
+            <footer className="w-full bg-white dark:bg-[#0a0a0a] border-t border-gray-100 dark:border-[#1a1a1a] py-12 px-6">
+                <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="flex flex-col items-center md:items-start">
+                        <div className="flex items-center space-x-2 mb-2">
+                            <span className="text-lg font-black tracking-tighter text-blue-600">DisposeMail</span>
+                            <span className="px-2 py-0.5 rounded bg-blue-600/10 text-blue-600 text-[10px] font-black uppercase">v2.0 Beta</span>
+                        </div>
+                        <p className="text-xs text-gray-500 text-center md:text-left">© 2026 DisposeMail. Secure, anonymous, temporary.</p>
+                    </div>
+
+                    <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-xs font-bold uppercase tracking-widest text-gray-400">
+                        <a href="#" className="hover:text-blue-500 transition-colors">About Us</a>
+                        <a href="#" className="hover:text-blue-500 transition-colors">Privacy Policy</a>
+                        <a href="#" className="hover:text-blue-500 transition-colors">Terms of Service</a>
+                        <a href="mailto:support@disposemail.xyz" className="hover:text-blue-500 transition-colors">Support</a>
+                    </div>
+                </div>
+            </footer>
         </main>
     );
 }

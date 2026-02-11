@@ -208,12 +208,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             <div className="flex flex-row justify-between items-center mb-6 gap-4 border-b border-gray-100 dark:border-[#222] pb-6">
                 <div className="flex items-center gap-3">
                     <h3 className="font-bold text-xl text-gray-900 dark:text-gray-100 flex items-center gap-2">
-                        Inbox
+                        Inbox ({emails.length})
                         <div className="flex items-center ml-2">
                             {isConnected ? (
                                 <div className="flex items-center px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 text-[10px] font-black shadow-[0_0_15px_rgba(34,197,94,0.3)]">
                                     <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-green-500 animate-pulse"></span>
-                                    {emails.length} LIVE
+                                    LIVE
                                 </div>
                             ) : (
                                 <div className="flex items-center px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-500 text-[10px] font-black">
@@ -254,10 +254,10 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 key={email.id}
                                 onClick={() => handleSelectEmail(email)}
                                 className={`group flex items-center justify-between p-4 md:p-6 transition-all cursor-pointer relative ${selectedEmail?.id === email.id
-                                        ? 'bg-blue-600/10 border-l-4 border-l-blue-600'
-                                        : !email.is_read
-                                            ? 'bg-blue-500/10' // Light blue for NEW/UNREAD
-                                            : 'bg-transparent hover:bg-gray-50 dark:hover:bg-[#151515]' // Read look (Transparent/Dark)
+                                    ? 'bg-blue-600/10 border-l-4 border-l-blue-600'
+                                    : !email.is_read
+                                        ? 'bg-blue-500/10' // Light blue for NEW/UNREAD
+                                        : 'bg-transparent hover:bg-gray-50 dark:hover:bg-[#151515]' // Read look (Transparent/Dark)
                                     }`}
                             >
                                 <div className="flex items-center gap-4 flex-1 min-w-0">
