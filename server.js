@@ -117,20 +117,36 @@ app.prepare().then(() => {
         res.json({ success: true });
     };
 
-    const handleWebhook = (req, res) => {
-        const { id, to, from, subject, text, html, secret } = req.body;
+    const handleWebhook = async (req, res) => {
+        const { id, to, from, subject, text, html, raw, secret } = req.body;
         if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Auth failed' });
 
         // Use provided ID or generate new one (Idempotency)
         const finalId = id || uuidv4();
+        let finalHtml = html || '';
+        let finalText = text || '';
+        let finalSubject = subject || '(No Subject)';
+
+        // IF RAW MIME IS PROVIDED, PARSE IT PROPERLY
+        if (raw) {
+            try {
+                const { simpleParser } = require('mailparser');
+                const parsed = await simpleParser(raw);
+                finalHtml = parsed.html || parsed.textAsHtml || '';
+                finalText = parsed.text || '';
+                finalSubject = parsed.subject || finalSubject;
+            } catch (err) {
+                console.error('MIME Parsing Error:', err);
+            }
+        }
 
         const saved = db.saveEmail({
             id: finalId,
             address: to.toLowerCase(),
             from_address: from,
-            subject: subject || '(No Subject)',
-            text: text || '',
-            html: html || '',
+            subject: finalSubject,
+            text: finalText,
+            html: finalHtml,
             received_at: Date.now()
         });
 
@@ -151,15 +167,39 @@ app.prepare().then(() => {
         server.post(`${p}/webhook/email`, express.json({ limit: '10mb' }), handleWebhook);
 
         // Rescue Endpoint (Phase 14)
-        server.post(`${p}/rescue`, express.json(), (req, res) => {
+        server.post(`${p}/rescue`, express.json(), async (req, res) => {
             const { emails, secret } = req.body;
             if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Auth failed' });
 
-            const results = emails.map(e => {
-                // IMPORTANT: Preserving the ID from the Worker (Zero Loss)
-                const data = { ...e, id: e.id || uuidv4(), received_at: e.timestamp || Date.now() };
-                return db.saveEmail(data);
-            });
+            const { simpleParser } = require('mailparser');
+
+            const results = [];
+            for (const e of emails) {
+                let finalHtml = e.html || '';
+                let finalText = e.text || '';
+                let finalSubject = e.subject || '(No Subject)';
+
+                if (e.raw) {
+                    try {
+                        const parsed = await simpleParser(e.raw);
+                        finalHtml = parsed.html || parsed.textAsHtml || '';
+                        finalText = parsed.text || '';
+                        finalSubject = parsed.subject || finalSubject;
+                    } catch (err) {
+                        console.error('Rescue MIME Error:', err);
+                    }
+                }
+
+                const data = {
+                    ...e,
+                    id: e.id || uuidv4(),
+                    received_at: e.timestamp || Date.now(),
+                    html: finalHtml,
+                    text: finalText,
+                    subject: finalSubject
+                };
+                results.push(db.saveEmail(data));
+            }
             res.json({ success: true, count: results.length });
         });
     });

@@ -210,32 +210,32 @@ export default function Home() {
 
                 {/* Custom Prefix & Pill UI */}
                 <div className="mb-8 flex flex-wrap items-center justify-center gap-4">
-                    <div className="flex bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-full p-1 overflow-hidden transition-colors shadow-sm">
+                    <div className="flex bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-full p-1.5 overflow-hidden transition-all shadow-sm hover:shadow-md border-opacity-50">
                         <button
                             type="button"
                             onClick={() => setIsCustom(!isCustom)}
-                            className={`text-xs px-6 py-2.5 rounded-full transition-all font-bold ${isCustom ? 'bg-blue-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+                            className={`text-xs px-6 py-2.5 rounded-full transition-all font-bold tracking-tight ${isCustom ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 bg-gray-50 dark:bg-[#161616]'}`}
                         >
-                            {isCustom ? 'Custom Mode' : 'Random Mode'}
+                            {isCustom ? 'Custom Mode: ON' : 'Click for Custom Mode'}
                         </button>
 
                         {isCustom && (
-                            <form onSubmit={handleRefresh} className="flex items-center">
+                            <form onSubmit={handleRefresh} className="flex items-center animate-in slide-in-from-left-2 duration-300">
                                 <input
                                     id="custom-prefix"
                                     name="custom-prefix"
                                     type="text"
-                                    placeholder="custom-name"
+                                    placeholder="enter-name..."
                                     value={customPrefix}
                                     onChange={(e) => setCustomPrefix(e.target.value)}
-                                    className="bg-transparent border-none outline-none text-xs text-gray-900 dark:text-gray-200 w-24 md:w-32 px-4 py-2 font-medium"
+                                    className="bg-transparent border-none outline-none text-xs text-gray-900 dark:text-gray-200 w-28 md:w-40 px-4 py-2 font-bold placeholder-gray-400"
                                     autoComplete="off"
                                 />
                                 <button
                                     type="submit"
-                                    className="mr-2 bg-blue-600/10 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all"
+                                    className="mr-1 bg-blue-600/20 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all"
                                 >
-                                    SET
+                                    CREATE
                                 </button>
                             </form>
                         )}

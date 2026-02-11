@@ -1,25 +1,27 @@
 export default {
     // 1. HANDLER FOR INCOMING EMAILS
     async email(message, env, ctx) {
-        const WEBHOOK_URL = "https://disposemail.xyz/x-feed/webhook/email";
-        const API_SECRET = "change_me_to_a_secure_secret";
+        const WEBHOOK_URL = "https://disposemail.xyz/x-feed/webhook/email"; // Keep this line
+        // const API_SECRET = "change_me_to_a_secure_secret"; // This line is removed
 
-        const sender = message.from;
         const recipient = message.to;
+        const sender = message.from;
         const subject = message.headers.get("subject") || "(No Subject)";
         const timestamp = Date.now();
-        // Generate a deterministic ID for idempotency (so we don't save duplicates)
-        const emailId = crypto.randomUUID();
+        const id = crypto.randomUUID();
+
+        // READ FULL RAW MESSAGE (MIME)
+        const rawResponse = new Response(message.raw);
+        const rawContent = await rawResponse.text();
 
         const emailPayload = {
-            id: emailId, // Pass this to server
+            id,
             to: recipient,
             from: sender,
             subject: subject,
-            text: "Processing email...",
-            html: "",
-            secret: API_SECRET,
-            timestamp: timestamp
+            raw: rawContent,
+            timestamp: timestamp,
+            secret: env.WEBHOOK_SECRET || "change_me_to_a_secure_secret"
         };
 
         // 1. SAVE FIRST (The "Zero Loss" Guarantee)
