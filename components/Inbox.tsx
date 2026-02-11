@@ -261,7 +261,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     }`}
                             >
                                 <div className="flex items-center gap-4 flex-1 min-w-0">
-                                    <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${email.is_read ? 'bg-transparent border border-gray-300 dark:border-[#333]' : 'bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(37,99,235,0.5)]'}`}></div>
+                                    <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${email.is_read ? 'hidden' : 'bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(37,99,235,0.5)]'}`}></div>
                                     <div className="flex-1 min-w-0">
                                         <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 mb-1">
                                             <span className={`text-xs font-black uppercase tracking-widest truncate ${!email.is_read ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'}`}>

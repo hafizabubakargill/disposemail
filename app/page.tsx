@@ -140,7 +140,7 @@ export default function Home() {
     return (
         <div className="w-full">
             {/* Hero Section */}
-            <div className="w-full max-w-4xl px-4 mt-8 md:mt-20 z-10 text-center">
+            <div className="w-full max-w-4xl mx-auto px-4 mt-8 md:mt-20 z-10 text-center">
                 <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-mono mb-6">
                     <span className="w-2 h-2 rounded-full bg-blue-500 mr-2 animate-pulse"></span>
                     END-TO-END ENCRYPTED
@@ -157,14 +157,14 @@ export default function Home() {
                 </p>
 
                 {/* Custom Prefix & Pill UI */}
-                <div className="mb-8 flex flex-wrap items-center justify-center gap-4">
-                    <div className="flex bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-full p-1.5 overflow-hidden transition-all shadow-sm hover:shadow-md border-opacity-50">
+                <div className="mb-12 flex justify-center">
+                    <div className="flex items-center bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] rounded-full p-1 shadow-sm hover:shadow-md transition-all">
                         <button
                             type="button"
                             onClick={() => setIsCustom(!isCustom)}
-                            className={`text-xs px-6 py-2.5 rounded-full transition-all font-bold tracking-tight ${isCustom ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 bg-gray-50 dark:bg-[#161616]'}`}
+                            className={`text-[10px] md:text-xs px-6 py-2.5 rounded-full transition-all font-black uppercase tracking-widest ${isCustom ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 bg-gray-50 dark:bg-[#161616]'}`}
                         >
-                            {isCustom ? 'Custom User: ON' : 'Click For Custom User'}
+                            {isCustom ? 'Custom User: Active' : 'Personalize Address'}
                         </button>
 
                         {isCustom && (
@@ -181,7 +181,7 @@ export default function Home() {
                                 />
                                 <button
                                     type="submit"
-                                    className="mr-1 bg-blue-600/20 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all"
+                                    className="mr-1 bg-blue-600 border border-blue-500 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-lg"
                                 >
                                     CREATE
                                 </button>
@@ -310,14 +310,14 @@ export default function Home() {
                         <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
                             DisposeMail provides instant, temporary email addresses to protect your primary inbox from spam, trackers, and data breaches. Our "Zero-Loss" architecture ensures your trial registrations and verification codes arrive with 100% reliability.
                         </p>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-4 text-center">
                             <div className="p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10">
                                 <h4 className="font-bold text-blue-600 mb-1">Privacy First</h4>
-                                <p className="text-xs text-gray-500">No cookies, no logs, no tracking.</p>
+                                <p className="text-[10px] text-gray-500 uppercase font-black">No cookies, no logs.</p>
                             </div>
                             <div className="p-4 rounded-2xl bg-green-500/5 border border-green-500/10">
-                                <h4 className="font-bold text-green-600 mb-1">Save & Sync</h4>
-                                <p className="text-xs text-gray-500">Edge safety net for every mail.</p>
+                                <h4 className="font-bold text-green-600 mb-1">Zero Cost</h4>
+                                <p className="text-[10px] text-gray-500 uppercase font-black">100% Free Forever.</p>
                             </div>
                         </div>
                     </div>
@@ -334,34 +334,70 @@ export default function Home() {
                                 <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">Is it free to use?</h4>
                                 <p className="text-sm text-gray-500">Yes, DisposeMail is a forever-free tool powered by high-quality ads to keep our infrastructure growing.</p>
                             </div>
-                            <div>
-                                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">Can I use custom names?</h4>
-                                <p className="text-sm text-gray-500">Absolutely. Just toggle "Custom User" to set your preferred prefix across multiple domains.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
 
                 {/* How it Works / Steps */}
                 <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
+                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">1</div>
                         <h4 className="font-bold text-lg mb-2">Generate</h4>
-                        <p className="text-sm text-gray-500 italic">Hit 'New' to get a random address or set your own custom name.</p>
+                        <p className="text-sm text-gray-500">Hit 'New' to get a random address or set your own custom name.</p>
                     </div>
-                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
+                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">2</div>
                         <h4 className="font-bold text-lg mb-2">Register</h4>
-                        <p className="text-sm text-gray-500 italic">Use your temporary mail on any website, trial, or newsletter.</p>
+                        <p className="text-sm text-gray-500">Use your temporary mail on any website, trial, or newsletter.</p>
                     </div>
-                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
+                    <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">3</div>
                         <h4 className="font-bold text-lg mb-2">Receive</h4>
-                        <p className="text-sm text-gray-500 italic">Watch emails arrive in real-time. We parse full HTML and attachments.</p>
+                        <p className="text-sm text-gray-500">Watch emails arrive in real-time. We parse full HTML and attachments.</p>
                     </div>
                 </div>
             </div>
 
+            {/* --- EXTRA VALUE SECTION FOR ADSENSE --- */}
+            <div className="w-full bg-gray-50/50 dark:bg-[#0a0a0a]/50 py-24 px-6 border-y border-gray-100 dark:border-[#111]">
+                <div className="max-w-5xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Why Use a Disposable Email?</h2>
+                        <p className="text-gray-500 max-w-2xl mx-auto">Discover how DisposeMail protects your digital footprint and keeps your data away from unwanted trackers.</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
+                            <div className="w-12 h-12 bg-blue-600/10 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            </div>
+                            <h4 className="font-black text-lg mb-3">Spam Prevention</h4>
+                            <p className="text-sm text-gray-500 leading-relaxed">Stop giving your real email to every website. Use DisposeMail for one-time registrations and keep your primary inbox clean of marketing clutter.</p>
+                        </div>
+                        <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
+                            <div className="w-12 h-12 bg-purple-600/10 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            </div>
+                            <h4 className="font-black text-lg mb-3">Identity Security</h4>
+                            <p className="text-sm text-gray-500 leading-relaxed">Data breaches happen every day. By using a temporary address, your real identity is never linked to the services you trial, keeping your credentials safe from hackers.</p>
+                        </div>
+                        <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
+                            <div className="w-12 h-12 bg-green-600/10 text-green-600 rounded-2xl flex items-center justify-center mb-6">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <h4 className="font-black text-lg mb-3">Instant Access</h4>
+                            <p className="text-sm text-gray-500 leading-relaxed">No confirmation, no setup, no passwords. Just hit 'New' and your inbox is ready to receive verification codes and activation links in milliseconds.</p>
+                        </div>
+                        <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
+                            <div className="w-12 h-12 bg-orange-600/10 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            </div>
+                            <h4 className="font-black text-lg mb-3">Multiple Domains</h4>
+                            <p className="text-sm text-gray-500 leading-relaxed">Switch between multiple high-reputation domains to bypass filters and sign-up restrictions that might block standard temporary email providers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

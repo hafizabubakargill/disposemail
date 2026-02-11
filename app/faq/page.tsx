@@ -2,99 +2,88 @@ import React from 'react';
 
 export default function FAQ() {
     return (
-        <main className="min-h-screen bg-background text-foreground p-8 md:p-24 relative overflow-hidden transition-colors">
-            {/* Background Effects */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
+        <main className="min-h-screen bg-transparent text-foreground p-8 md:p-24 relative overflow-hidden transition-colors">
             <div className="max-w-4xl mx-auto z-10 relative">
-                <h1 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500">
-                    Frequently Asked Questions
+                <h1 className="text-4xl md:text-6xl font-black mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 tracking-tighter">
+                    Help Center & FAQ
                 </h1>
 
-                <div className="space-y-8">
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">How long do emails last?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Every incoming email and the mailbox itself is automatically deleted after **1 hour** of inactivity.
-                            We do not offer recovery services for deleted data, ensuring your privacy is absolute.
-                        </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-8">
+                        <section>
+                            <h2 className="text-xs font-black uppercase tracking-[0.2em] text-blue-600 mb-6 flex items-center gap-2">
+                                <span className="w-8 h-px bg-blue-600"></span> Fundamental Questions
+                            </h2>
+                            <div className="space-y-6">
+                                <div className="bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] p-6 rounded-3xl shadow-sm">
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">What is DisposeMail?</h3>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        DisposeMail is a privacy-first utility that provides instant temporary email addresses. These are used to protect your real identity and primary inbox from junk mail, spam, and data-gathering websites.
+                                    </p>
+                                </div>
+                                <div className="bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] p-6 rounded-3xl shadow-sm">
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">How long do emails last?</h3>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        Every address and every received email is automatically purged from our system after exactly **60 minutes**. This ensures that no legacy data remains on our servers for prying eyes.
+                                    </p>
+                                </div>
+                                <div className="bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] p-6 rounded-3xl shadow-sm">
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Is this service legal?</h3>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        Yes. Using a temporary email is a legal and common method to protect your online privacy and reduce the amount of unsolicited marketing (spam) that clogs up the internet.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
                     </div>
 
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">What are the benefits of Disposable Email?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Using a temporary email like DisposeMail helps you avoid spam, protect your primary email address from data breaches,
-                            and maintain anonymity while signing up for newsletters or testing services. It acts as a shield between your real identity and the internet.
-                        </p>
-                    </div>
-
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Can I use this for social media accounts?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            While you can use DisposeMail for social media signups, we **strongly discourage** it for accounts you intend to keep.
-                            If you lose access or need to verify your identity later, you won't be able to access this temporary email again.
-                        </p>
-                    </div>
-
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Can I choose my own username?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Yes! Use the **"Personalize Address"** button on the homepage to set a custom name like `myname@disposemail.xyz`.
-                            This allows you to create recognizable addresses for specific services.
-                        </p>
-                    </div>
-
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">What is groundtips.com or other domains?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            These are secondary domains we use to ensure our service remains accessible. Some websites block popular temporary email providers;
-                            switching between domains helps you bypass these restrictions.
-                        </p>
-                    </div>
-
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Does DisposeMail support attachments?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Currently, we focus on the text and HTML content of emails. Support for file attachments is a high-priority feature
-                            currently in our development roadmap.
-                        </p>
-                    </div>
-
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">How many addresses can I have?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            There are no limits! You can generate as many addresses as you need by clicking the refresh button.
-                            Each one will have its own independent inbox.
-                        </p>
-                    </div>
-
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Is DisposeMail free?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Yes, the service is 100% free and requires no registration. We support the site through
-                            non-intrusive advertisements and donations.
-                        </p>
-                    </div>
-
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">What happens to my data?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Once your 60 minutes are up, the inbox and all contained emails are purged from our servers.
-                            The data is shredded and cannot be retrieved by us or anyone else.
-                        </p>
-                    </div>
-
-                    <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] p-6 rounded-2xl shadow-sm transition-colors">
-                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-200">Is this legal?</h3>
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                            Absolutely. Using a temporary email is a perfectly legal way to protect your privacy online and
-                            reduce the amount of unwanted marketing emails (spam) in your secondary inbox.
-                        </p>
+                    <div className="space-y-8">
+                        <section>
+                            <h2 className="text-xs font-black uppercase tracking-[0.2em] text-purple-600 mb-6 flex items-center gap-2">
+                                <span className="w-8 h-px bg-purple-600"></span> Technical & Security
+                            </h2>
+                            <div className="space-y-6">
+                                <div className="bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] p-6 rounded-3xl shadow-sm">
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Can I recover deleted emails?</h3>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        No. Once an email is deleted (either manually or by the 60-minute timer), it is permanently wiped from our RAM-based storage. We do not keep backups or archival data.
+                                    </p>
+                                </div>
+                                <div className="bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] p-6 rounded-3xl shadow-sm">
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Why use custom domains?</h3>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        Some websites maintain "blacklists" of common temporary email domains. By providing multiple domains, we allow you to bypass these restrictions and sign up for services that might block others.
+                                    </p>
+                                </div>
+                                <div className="bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] p-6 rounded-3xl shadow-sm">
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Does it support attachments?</h3>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        Yes, our system parses full MIME content. While we focus on making the text and HTML content readable, we also allow you to see and process message structures completely.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div className="mt-12 text-center text-gray-500">
-                    <a href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">← Back to Home</a>
+                <section className="mt-12 bg-blue-600 text-white p-12 rounded-[40px] shadow-2xl shadow-blue-600/30">
+                    <h2 className="text-3xl font-black tracking-tight mb-4">Still have questions?</h2>
+                    <p className="text-blue-100 max-w-xl mb-8">
+                        Our goal is to provide the most reliable temporary email service on the web. If you're experiencing issues or have suggestions, our community is here to help.
+                    </p>
+                    <div className="flex flex-wrap gap-4">
+                        <a href="mailto:support@disposemail.xyz" className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-transform">
+                            Email Support
+                        </a>
+                        <a href="/" className="bg-blue-700 text-white px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-transform border border-blue-500/50">
+                            Create Email Now
+                        </a>
+                    </div>
+                </section>
+
+                <div className="mt-20 text-center">
+                    <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-4">Secure & Anonymous</p>
+                    <a href="/" className="text-gray-900 dark:text-white hover:text-blue-600 transition-colors font-black">← Return to Homepage</a>
                 </div>
             </div>
         </main>
