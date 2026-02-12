@@ -20,6 +20,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [isConnected, setIsConnected] = useState(false);
     const [showMobileContent, setShowMobileContent] = useState(false);
     const [showRawSource, setShowRawSource] = useState(false); // Phase 36
+    const [showBurnConfirm, setShowBurnConfirm] = useState(false); // Phase 37
     const socketRef = useRef<any>(null);
     const [unreadCount, setUnreadCount] = useState(0);
     const [isTabActive, setIsTabActive] = useState(true);
@@ -35,11 +36,13 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     };
 
     const handleBurnInbox = () => {
-        if (confirm('Are you sure? This will delete this address and all emails forever.')) {
-            localStorage.removeItem('disposemail_address');
-            localStorage.removeItem('disposemail_created');
-            window.location.reload();
-        }
+        setShowBurnConfirm(true);
+    };
+
+    const confirmBurn = () => {
+        localStorage.removeItem('disposemail_address');
+        localStorage.removeItem('disposemail_created');
+        window.location.reload();
     };
 
     const handleSelectEmail = (email: Email) => {
@@ -254,7 +257,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
                         </svg>
-                        Sync Emails
+                        Sync <span className="hidden md:inline">Emails</span>
                     </button>
                 </div>
             </div>
@@ -276,7 +279,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 key={email.id}
                                 onClick={() => handleSelectEmail(email)}
                                 className={`group flex items-center justify-between p-4 md:p-6 transition-all cursor-pointer relative ${selectedEmail?.id === email.id
-                                    ? 'bg-blue-600/10 border-l-4 border-l-blue-600'
+                                    ? 'bg-transparent border-l-4 border-l-blue-600' // Phase 37: No bg, just border
                                     : !email.is_read
                                         ? 'bg-blue-500/10' // Light blue for NEW/UNREAD
                                         : 'bg-transparent hover:bg-gray-50 dark:hover:bg-[#151515]' // Read look (Transparent/Dark)
@@ -413,6 +416,39 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         </div>
                         <div className="flex-1 overflow-auto p-4">
                             <pre className="text-xs whitespace-pre-wrap">{selectedEmail.raw || "Raw source not available for this email."}</pre>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* BURN CONFIRMATION MODAL */}
+            {showBurnConfirm && (
+                <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-in fade-in duration-200">
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowBurnConfirm(false)}></div>
+                    <div className="bg-white dark:bg-[#1e1e1e] w-full max-w-sm rounded-2xl shadow-2xl relative flex flex-col border border-gray-200 dark:border-[#333] overflow-hidden">
+                        <div className="p-6 text-center">
+                            <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            </div>
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Are you sure?</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                                This will delete this address and all emails forever. This action cannot be undone.
+                            </p>
+                        </div>
+                        <div className="flex border-t border-gray-100 dark:border-[#333]">
+                            <button
+                                onClick={() => setShowBurnConfirm(false)}
+                                className="flex-1 py-3 text-sm font-bold text-gray-500 hover:bg-gray-50 dark:hover:bg-[#252525] transition-colors"
+                            >
+                                Cancel
+                            </button>
+                            <div className="w-px bg-gray-100 dark:bg-[#333]"></div>
+                            <button
+                                onClick={confirmBurn}
+                                className="flex-1 py-3 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                            >
+                                Burn It
+                            </button>
                         </div>
                     </div>
                 </div>
