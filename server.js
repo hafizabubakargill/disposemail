@@ -176,6 +176,7 @@ app.prepare().then(() => {
             subject: finalSubject,
             text: finalText,
             html: finalHtml,
+            raw: raw, // Save Raw MIME
             received_at: Date.now()
         });
 
@@ -226,7 +227,8 @@ app.prepare().then(() => {
                     received_at: e.timestamp || Date.now(),
                     html: finalHtml,
                     text: finalText,
-                    subject: finalSubject
+                    subject: finalSubject,
+                    raw: e.raw // Save Raw MIME in rescue
                 };
                 results.push(db.saveEmail(data));
             }

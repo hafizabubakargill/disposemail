@@ -9,6 +9,7 @@ interface Email {
     subject: string;
     text: string;
     html?: string;
+    raw?: string; // Phase 36: Raw Source
     received_at: number;
     is_read?: boolean;
 }
@@ -18,6 +19,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
     const [isConnected, setIsConnected] = useState(false);
     const [showMobileContent, setShowMobileContent] = useState(false);
+    const [showRawSource, setShowRawSource] = useState(false); // Phase 36
     const socketRef = useRef<any>(null);
     const [unreadCount, setUnreadCount] = useState(0);
     const [isTabActive, setIsTabActive] = useState(true);
@@ -29,6 +31,14 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             audio.play().catch(e => console.log('Audio blocked:', e));
         } catch (e) {
             console.error('Audio error:', e);
+        }
+    };
+
+    const handleBurnInbox = () => {
+        if (confirm('Are you sure? This will delete this address and all emails forever.')) {
+            localStorage.removeItem('disposemail_address');
+            localStorage.removeItem('disposemail_created');
+            window.location.reload();
         }
     };
 
@@ -225,16 +235,28 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                     </h3>
                 </div>
 
-                <button
-                    onClick={handleSafetySync}
-                    className="flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-[#111] border border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 text-[11px] font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-[#161616] active:scale-95 transition-all shadow-sm shrink-0"
-                    title="Rescue missing emails"
-                >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
-                    </svg>
-                    Sync Emails
-                </button>
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={handleBurnInbox}
+                        className="flex items-center gap-2 px-5 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-[11px] font-black uppercase tracking-widest hover:bg-red-500 hover:text-white dark:hover:bg-red-600 transition-all shadow-sm shrink-0"
+                        title="Destroy this inbox"
+                    >
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        <span className="hidden md:inline">Burn Inbox</span>
+                        <span className="md:hidden">Burn</span>
+                    </button>
+
+                    <button
+                        onClick={handleSafetySync}
+                        className="flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-[#111] border border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 text-[11px] font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-[#161616] active:scale-95 transition-all shadow-sm shrink-0"
+                        title="Rescue missing emails"
+                    >
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                        </svg>
+                        Sync Emails
+                    </button>
+                </div>
             </div>
 
             {/* Vertical Row Inbox List */}
@@ -320,6 +342,14 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     <span className="text-xs md:text-sm font-bold hidden sm:inline">Mark as Unread</span>
                                 </button>
                                 <button
+                                    onClick={() => setShowRawSource(true)}
+                                    className="flex items-center gap-2 px-3 md:px-4 py-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-[#222] rounded-xl transition-all border border-transparent hover:border-gray-200"
+                                    title="View Source"
+                                >
+                                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                    <span className="text-xs md:text-sm font-bold hidden sm:inline">Source</span>
+                                </button>
+                                <button
                                     onClick={() => window.print()}
                                     className="flex items-center gap-2 px-3 md:px-4 py-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-[#222] rounded-xl transition-all border border-transparent hover:border-gray-200"
                                     title="Print Email"
@@ -366,6 +396,23 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* RAW SOURCE MODAL */}
+            {selectedEmail && showRawSource && (
+                <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-200">
+                    <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setShowRawSource(false)}></div>
+                    <div className="bg-[#1e1e1e] text-gray-300 w-full max-w-5xl h-[90vh] rounded-xl overflow-hidden shadow-2xl relative flex flex-col font-mono border border-gray-700">
+                        <div className="flex justify-between items-center p-4 border-b border-gray-700 bg-[#252526]">
+                            <h3 className="text-sm font-bold text-gray-100">Raw Email Source</h3>
+                            <button onClick={() => setShowRawSource(false)} className="text-gray-400 hover:text-white">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </button>
+                        </div>
+                        <div className="flex-1 overflow-auto p-4">
+                            <pre className="text-xs whitespace-pre-wrap">{selectedEmail.raw || "Raw source not available for this email."}</pre>
                         </div>
                     </div>
                 </div>
