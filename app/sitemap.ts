@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://inveromail.info';
+    const baseUrl = 'https://disposemail.xyz';
     return [
         {
             url: baseUrl,

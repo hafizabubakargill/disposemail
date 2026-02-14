@@ -1,7 +1,7 @@
 export default {
     // 1. HANDLER FOR INCOMING EMAILS
     async email(message, env, ctx) {
-        const WEBHOOK_URL = "https://inveromail.info/x-feed/webhook/email"; // Keep this line
+        const WEBHOOK_URL = "https://disposemail.xyz/x-feed/webhook/email"; // Keep this line
         // const API_SECRET = "change_me_to_a_secure_secret"; // This line is removed
 
         const recipient = message.to;
@@ -89,7 +89,7 @@ export default {
             if (emailsToRescue.length === 0) return new Response(JSON.stringify({ count: 0 }), { headers: { "Content-Type": "application/json" } });
 
             // Forward to Server
-            const rescueResponse = await fetch("https://inveromail.info/x-feed/rescue", {
+            const rescueResponse = await fetch("https://disposemail.xyz/x-feed/rescue", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         locale: "en_US",
-        url: "https://inveromail.info",
+        url: "https://disposemail.xyz",
         title: "DisposeMail - Secure Disposable Email",
         description: "Instant, secure, and temporary email addresses for privacy protection.",
         siteName: "DisposeMail",
@@ -56,6 +56,9 @@ export default function RootLayout({
                 ></script>
                 <link rel="icon" href="/icon.svg" type="image/svg+xml" />
                 <link rel="manifest" href="/manifest.json" />
+                <meta name="theme-color" content="#0a0a0a" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
             </head>
             <body className={`${inter.className} min-h-screen bg-background text-foreground overflow-x-hidden antialiased selection:bg-blue-500/30 font-sans flex flex-col`}>
                 {/* Background Grid & Noise Effects (Global) */}

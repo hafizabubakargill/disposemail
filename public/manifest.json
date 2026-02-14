@@ -1,11 +1,11 @@
 {
-    "name": "DisposeMail - Secure Disposable Email",
+    "name": "DisposeMail",
     "short_name": "DisposeMail",
-    "description": "Instantly generated, secure temporary email for anonymous browsing.",
+    "description": "Secure, anonymous, temporary email addresses.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#0a0a0a",
-    "theme_color": "#2563eb",
+    "theme_color": "#0a0a0a",
     "icons": [
         {
             "src": "/icon.svg",

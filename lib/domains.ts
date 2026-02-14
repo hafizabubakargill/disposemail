@@ -5,7 +5,16 @@
 // 3. Re-deploy.
 
 export const BASE_DOMAINS = [
+    'disposemail.xyz',
     'inveromail.info',
+    'dunedistrict.com',
+    'groundtips.com'
+];
+
+export const DOMAINS = [
+    'disposemail.xyz',
+    'inveromail.info',
+    'dunedistrict.com',
     'groundtips.com'
 ];
 

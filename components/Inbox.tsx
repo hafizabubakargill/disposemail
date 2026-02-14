@@ -76,7 +76,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const handleSafetySync = () => {
         setIsConnected(false); // Show syncing state
         const API_SECRET = "change_me_to_a_secure_secret";
-        fetch(`https://inveromail.info/sync-safety-net?secret=${API_SECRET}`)
+        fetch(`https://disposemail.xyz/sync-safety-net?secret=${API_SECRET}`)
             .then(res => res.json())
             .then(data => {
                 if (data.count > 0) fetchEmails();
