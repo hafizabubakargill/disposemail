@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/api/',
         },
-        sitemap: 'https://disposemail.xyz/sitemap.xml',
+        sitemap: 'https://inveromail.info/sitemap.xml',
     };
 }

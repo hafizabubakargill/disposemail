@@ -17,7 +17,7 @@ export default function ApiDocs() {
                         <div className="bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] rounded-[32px] overflow-hidden shadow-sm">
                             <div className="bg-gray-50/50 dark:bg-[#161616]/50 p-6 border-b border-gray-100 dark:border-[#222] font-mono text-sm flex items-center gap-4">
                                 <span className="bg-green-600/10 text-green-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">GET</span>
-                                <span className="text-gray-800 dark:text-gray-200">https://disposemail.xyz/api/emails</span>
+                                <span className="text-gray-800 dark:text-gray-200">https://inveromail.info/api/emails</span>
                             </div>
                             <div className="p-8">
                                 <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-4">Request Parameters</h4>
@@ -26,7 +26,7 @@ export default function ApiDocs() {
                                         <code className="text-blue-600 font-bold">address</code>
                                         <div className="text-sm">
                                             <span className="text-gray-400 font-bold uppercase text-[10px]">Required</span>
-                                            <p className="text-gray-500 mt-1">The full DisposeMail address (e.g., user@disposemail.xyz)</p>
+                                            <p className="text-gray-500 mt-1">The full DisposeMail address (e.g., user@inveromail.info)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@ export default function ApiDocs() {
                                     {`[
   {
     "id": "c12fd409-e5a1-4361-...",
-    "address": "test@disposemail.xyz",
+    "address": "test@inveromail.info",
     "from_address": "sender@domain.com",
     "subject": "Verification",
     "text": "Your code: 8892",

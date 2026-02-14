@@ -72,7 +72,7 @@ export default function FAQ() {
                         Our goal is to provide the most reliable temporary email service on the web. If you're experiencing issues or have suggestions, our community is here to help.
                     </p>
                     <div className="flex flex-wrap gap-4">
-                        <a href="mailto:support@disposemail.xyz" className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-transform">
+                        <a href="mailto:support@inveromail.info" className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-transform">
                             Email Support
                         </a>
                         <a href="/" className="bg-blue-700 text-white px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-transform border border-blue-500/50">

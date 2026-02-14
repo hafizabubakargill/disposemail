@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         locale: "en_US",
-        url: "https://disposemail.xyz",
+        url: "https://inveromail.info",
         title: "DisposeMail - Secure Disposable Email",
         description: "Instant, secure, and temporary email addresses for privacy protection.",
         siteName: "DisposeMail",

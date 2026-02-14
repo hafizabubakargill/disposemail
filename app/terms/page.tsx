@@ -90,7 +90,7 @@ export default function TermsOfService() {
                             <span className="w-2 h-2 rounded-full bg-blue-600"></span> 10. Contact Information
                         </h2>
                         <p>
-                            If you have any questions about these Terms, please contact us at support@disposemail.xyz.
+                            If you have any questions about these Terms, please contact us at support@inveromail.info.
                         </p>
                     </section>
                 </div>

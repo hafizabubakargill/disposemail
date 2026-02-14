@@ -5,14 +5,14 @@
 // 3. Re-deploy.
 
 export const BASE_DOMAINS = [
-    'disposemail.xyz',
+    'inveromail.info',
     'groundtips.com'
 ];
 
 /**
  * Generates a random domain using one of the base domains.
  * Format: [random-subdomain].[base-domain]
- * Example: x7a2.disposemail.xyz
+ * Example: x7a2.inveromail.info
  */
 export const generateRandomDomain = (): string => {
     const base = BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
