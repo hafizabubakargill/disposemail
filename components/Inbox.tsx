@@ -22,6 +22,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [showRawSource, setShowRawSource] = useState(false); // Phase 36
     const [showBurnConfirm, setShowBurnConfirm] = useState(false); // Phase 37
     const socketRef = useRef<any>(null);
+    const lastSyncRef = useRef<number>(0); // Phase 40: Debounce Sync
     const [unreadCount, setUnreadCount] = useState(0);
     const [isTabActive, setIsTabActive] = useState(true);
 
@@ -152,9 +153,13 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             setIsConnected(true);
             socket.emit('join-room', emailAddress);
             fetchEmails();
-            // Force Sync on Connect (Phase 20)
-            console.log('Auto-Sync Triggered');
-            handleSafetySync();
+
+            // Phase 40: Debounce Auto-Sync (Prevent spamming if socket flaps)
+            const now = Date.now();
+            if (now - lastSyncRef.current > 5000) {
+                lastSyncRef.current = now;
+                handleSafetySync();
+            }
         });
 
         socket.on('connect_error', () => setIsConnected(false));
