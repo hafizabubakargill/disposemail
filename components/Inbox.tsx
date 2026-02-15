@@ -127,16 +127,24 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     useEffect(() => {
         // --- 1. THE NUCLEAR CACHE PURGE (Kill old workers) ---
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(registrations => {
-                for (let registration of registrations) {
-                    if (!registration.active?.scriptURL.includes('v=1.0.11')) {
-                        registration.unregister();
-                        console.log('Nuclear Purge: Old Service Worker unregistered');
+            // Defer to idle time to avoid blocking main thread (Fix requestIdleCallback warning)
+            const registerSW = () => {
+                navigator.serviceWorker.getRegistrations().then(registrations => {
+                    for (let registration of registrations) {
+                        if (!registration.active?.scriptURL.includes('v=1.0.11')) {
+                            registration.unregister();
+                            console.log('Nuclear Purge: Old Service Worker unregistered');
+                        }
                     }
-                }
-            });
-            // Register new version
-            navigator.serviceWorker.register('/sw.js?v=1.0.11').catch(console.error);
+                });
+                navigator.serviceWorker.register('/sw.js?v=1.0.11').catch(console.error);
+            };
+
+            if ('requestIdleCallback' in window) {
+                (window as any).requestIdleCallback(registerSW);
+            } else {
+                setTimeout(registerSW, 2000);
+            }
         }
 
         fetchEmails();

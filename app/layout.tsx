@@ -9,7 +9,7 @@ import { Footer } from "@/components/Footer";
 const inter = Inter({
     subsets: ["latin"],
     display: 'swap',
-    preload: true,
+    preload: false,
 });
 
 export const metadata: Metadata = {
@@ -63,7 +63,7 @@ export default function RootLayout({
             </head>
             <body className={`${inter.className} min-h-screen bg-background text-foreground overflow-x-hidden antialiased selection:bg-blue-500/30 font-sans flex flex-col`}>
                 {/* Background Grid & Noise Effects (Global) */}
-                <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none z-0"></div>
+                <div className="fixed inset-0 bg-[url('/noise.svg')] opacity-5 pointer-events-none z-0"></div>
                 <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
 
                 {/* Google Analytics (GTags) */}
