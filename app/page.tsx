@@ -270,7 +270,7 @@ export default function Home() {
                 </div>
 
                 <p className="text-gray-500 text-sm mb-8">
-                    Emails auto-delete after 1 hour. <a href="/faq" className="text-blue-500/60 cursor-pointer hover:text-blue-400 font-medium underline underline-offset-4">Learn more</a>
+                    Emails auto-delete after 1 hour. <a href="/faq" className="text-blue-500/60 cursor-pointer hover:text-blue-400 font-medium underline underline-offset-4" aria-label="Learn more about email expiration">Learn more about expiration</a>
                 </p>
 
                 {/* Ad Banner (Top) - Hidden in Production until active */}
