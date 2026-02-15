@@ -77,7 +77,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const handleSafetySync = () => {
         setIsConnected(false); // Show syncing state
         const API_SECRET = "change_me_to_a_secure_secret";
-        fetch(`https://disposemail.xyz/sync-safety-net?secret=${API_SECRET}`)
+        // Use relative URL to work on any domain (disposemail.xyz, inveromail.info)
+        fetch(`/sync-safety-net?secret=${API_SECRET}`)
             .then(res => res.json())
             .then(data => {
                 if (data.count > 0) fetchEmails();
@@ -370,6 +371,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 <button
                                     onClick={() => setShowMobileContent(false)}
                                     className="p-3 bg-gray-100 dark:bg-[#222] text-gray-900 dark:text-white hover:bg-red-500 hover:text-white rounded-xl transition-all shadow-sm"
+                                    aria-label="Close"
                                 >
                                     <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
                                 </button>
@@ -415,7 +417,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                     <div className="bg-[#1e1e1e] text-gray-300 w-full max-w-5xl h-[90vh] rounded-xl overflow-hidden shadow-2xl relative flex flex-col font-mono border border-gray-700">
                         <div className="flex justify-between items-center p-4 border-b border-gray-700 bg-[#252526]">
                             <h3 className="text-sm font-bold text-gray-100">Raw Email Source</h3>
-                            <button onClick={() => setShowRawSource(false)} className="text-gray-400 hover:text-white">
+                            <button onClick={() => setShowRawSource(false)} className="text-gray-400 hover:text-white" aria-label="Close">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </button>
                         </div>

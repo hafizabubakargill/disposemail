@@ -137,7 +137,7 @@ export default function Home() {
                     <span className="text-gray-900 dark:text-white">Disposable.</span>
                 </h1>
 
-                <p className="text-gray-600 dark:text-gray-400 text-base md:text-xl max-w-2xl mx-auto mb-10">
+                <p className="text-gray-700 dark:text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-10">
                     Instantly generated, secure temporary email for anonymous browsing. <br className="hidden md:block" />
                     No registration. No tracking. Just privacy.
                 </p>
@@ -164,6 +164,7 @@ export default function Home() {
                                     onChange={(e) => setCustomPrefix(e.target.value)}
                                     className="bg-transparent border-none outline-none text-xs text-gray-900 dark:text-gray-200 w-28 md:w-40 px-4 py-2 font-bold placeholder-gray-400"
                                     autoComplete="off"
+                                    aria-label="Custom username prefix"
                                 />
                                 <button
                                     type="submit"
@@ -193,6 +194,7 @@ export default function Home() {
                                     readOnly
                                     value={email}
                                     className="bg-transparent border-none outline-none text-gray-900 dark:text-gray-100 font-mono text-base md:text-xl w-full placeholder-gray-400 dark:placeholder-gray-600 pl-1 md:pl-2 font-medium"
+                                    aria-label="Generated Email Address"
                                 />
                             </div>
                         </div>
@@ -225,6 +227,7 @@ export default function Home() {
                             <button
                                 onClick={() => setShowQR(!showQR)}
                                 className={`py-3 px-4 rounded-xl transition-all active:scale-95 border flex items-center justify-center shadow-sm ${showQR ? 'bg-blue-600 border-blue-600 text-white' : 'bg-white dark:bg-[#111] border-gray-200 dark:border-[#222] text-gray-700 dark:text-gray-300'}`}
+                                aria-label="Show QR Code"
                                 title="Show QR Code"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
@@ -294,21 +297,21 @@ export default function Home() {
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         </div>
                         <h3 className="font-bold text-lg mb-2">Real-Time Sockets</h3>
-                        <p className="text-sm text-gray-500">No refreshing needed. Emails are pushed to your browser instantly via secure WebSockets.</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">No refreshing needed. Emails are pushed to your browser instantly via secure WebSockets.</p>
                     </div>
                     <div className="p-6 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#222]">
                         <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center mb-4 text-white">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                         </div>
                         <h3 className="font-bold text-lg mb-2">TLS Encryption</h3>
-                        <p className="text-sm text-gray-500">Every connection is secured with industry-standard TLS encryption to prevent eavesdropping.</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Every connection is secured with industry-standard TLS encryption to prevent eavesdropping.</p>
                     </div>
                     <div className="p-6 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#222]">
                         <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-4 text-white">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                         </div>
                         <h3 className="font-bold text-lg mb-2">Multi-Domain</h3>
-                        <p className="text-sm text-gray-500">Bypass filters with our rotating list of premium domains and subdomains.</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Bypass filters with our rotating list of premium domains and subdomains.</p>
                     </div>
                 </div>
             </div>
@@ -326,12 +329,12 @@ export default function Home() {
                         </p>
                         <div className="grid grid-cols-2 gap-4 text-center">
                             <div className="p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10">
-                                <h4 className="font-bold text-blue-600 mb-1">Privacy First</h4>
-                                <p className="text-[10px] text-gray-500 uppercase font-black">No cookies, no logs.</p>
+                                <h3 className="font-bold text-blue-600 mb-1">Privacy First</h3>
+                                <p className="text-[10px] text-gray-600 dark:text-gray-400 uppercase font-black">No cookies, no logs.</p>
                             </div>
                             <div className="p-4 rounded-2xl bg-green-500/5 border border-green-500/10">
-                                <h4 className="font-bold text-green-600 mb-1">Zero Cost</h4>
-                                <p className="text-[10px] text-gray-500 uppercase font-black">100% Free Forever.</p>
+                                <h3 className="font-bold text-green-600 mb-1">Zero Cost</h3>
+                                <p className="text-[10px] text-gray-600 dark:text-gray-400 uppercase font-black">100% Free Forever.</p>
                             </div>
                         </div>
                     </div>
@@ -346,7 +349,7 @@ export default function Home() {
                             </div>
                             <div>
                                 <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">Is it free to use?</h4>
-                                <p className="text-sm text-gray-500">Yes, DisposeMail is a forever-free tool powered by high-quality ads to keep our infrastructure growing.</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">Yes, DisposeMail is a forever-free tool powered by high-quality ads to keep our infrastructure growing.</p>
                             </div>
                         </div>
                     </div>
@@ -356,18 +359,18 @@ export default function Home() {
                 <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">1</div>
-                        <h4 className="font-bold text-lg mb-2">Generate</h4>
-                        <p className="text-sm text-gray-500">Hit 'New' to get a random address or set your own custom name.</p>
+                        <h3 className="font-bold text-lg mb-2">Generate</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Hit 'New' to get a random address or set your own custom name.</p>
                     </div>
                     <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">2</div>
-                        <h4 className="font-bold text-lg mb-2">Register</h4>
-                        <p className="text-sm text-gray-500">Use your temporary mail on any website, trial, or newsletter.</p>
+                        <h3 className="font-bold text-lg mb-2">Register</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Use your temporary mail on any website, trial, or newsletter.</p>
                     </div>
                     <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">3</div>
-                        <h4 className="font-bold text-lg mb-2">Receive</h4>
-                        <p className="text-sm text-gray-500">Watch emails arrive in real-time. We parse full HTML and attachments.</p>
+                        <h3 className="font-bold text-lg mb-2">Receive</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Watch emails arrive in real-time. We parse full HTML and attachments.</p>
                     </div>
                 </div>
             </div>
@@ -421,29 +424,29 @@ export default function Home() {
                             <div className="w-12 h-12 bg-blue-600/10 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                             </div>
-                            <h4 className="font-black text-lg mb-3">Spam Prevention</h4>
-                            <p className="text-sm text-gray-500 leading-relaxed">Stop giving your real email to every website. Use DisposeMail for one-time registrations and keep your primary inbox clean of marketing clutter.</p>
+                            <h3 className="font-black text-lg mb-3">Spam Prevention</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Stop giving your real email to every website. Use DisposeMail for one-time registrations and keep your primary inbox clean of marketing clutter.</p>
                         </div>
                         <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
                             <div className="w-12 h-12 bg-purple-600/10 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                             </div>
-                            <h4 className="font-black text-lg mb-3">Identity Security</h4>
-                            <p className="text-sm text-gray-500 leading-relaxed">Data breaches happen every day. By using a temporary address, your real identity is never linked to the services you trial, keeping your credentials safe from hackers.</p>
+                            <h3 className="font-black text-lg mb-3">Identity Security</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Data breaches happen every day. By using a temporary address, your real identity is never linked to the services you trial, keeping your credentials safe from hackers.</p>
                         </div>
                         <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
                             <div className="w-12 h-12 bg-green-600/10 text-green-600 rounded-2xl flex items-center justify-center mb-6">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             </div>
-                            <h4 className="font-black text-lg mb-3">Instant Access</h4>
-                            <p className="text-sm text-gray-500 leading-relaxed">No confirmation, no setup, no passwords. Just hit 'New' and your inbox is ready to receive verification codes and activation links in milliseconds.</p>
+                            <h3 className="font-black text-lg mb-3">Instant Access</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">No confirmation, no setup, no passwords. Just hit 'New' and your inbox is ready to receive verification codes and activation links in milliseconds.</p>
                         </div>
                         <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
                             <div className="w-12 h-12 bg-orange-600/10 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                             </div>
-                            <h4 className="font-black text-lg mb-3">Multiple Domains</h4>
-                            <p className="text-sm text-gray-500 leading-relaxed">Switch between multiple high-reputation domains to bypass filters and sign-up restrictions that might block standard temporary email providers.</p>
+                            <h3 className="font-black text-lg mb-3">Multiple Domains</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Switch between multiple high-reputation domains to bypass filters and sign-up restrictions that might block standard temporary email providers.</p>
                         </div>
                     </div>
                 </div>
