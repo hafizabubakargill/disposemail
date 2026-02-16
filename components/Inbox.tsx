@@ -329,12 +329,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
             {/* FULL SCREEN MODAL / POPUP */}
             {selectedEmail && showMobileContent && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-200">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-8 animate-in fade-in duration-200">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowMobileContent(false)}></div>
-                    <div className="bg-white dark:bg-[#0f0f0f] w-full max-w-4xl h-full md:max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border border-gray-200 dark:border-[#222]">
+                    <div className="bg-white dark:bg-[#0f0f0f] w-full max-w-4xl h-[100dvh] md:h-full md:max-h-[85vh] rounded-none md:rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border-none md:border border-gray-200 dark:border-[#222]">
 
                         {/* Modal Header */}
-                        <div className="p-6 md:p-8 border-b border-gray-100 dark:border-[#222] bg-gray-50 dark:bg-[#141414] flex justify-between items-start shrink-0">
+                        <div className="p-4 md:p-8 border-b border-gray-100 dark:border-[#222] bg-gray-50 dark:bg-[#141414] flex justify-between items-start shrink-0 pt-safe-top">
                             <div className="flex-1 overflow-hidden pr-8">
                                 <h2 className="text-xl md:text-2xl font-black text-gray-900 dark:text-white mb-2 leading-tight">
                                     {selectedEmail.subject}
