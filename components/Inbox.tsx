@@ -334,62 +334,65 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                     <div className="bg-white dark:bg-[#0f0f0f] w-full max-w-4xl h-[100dvh] md:h-full md:max-h-[85vh] rounded-none md:rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border-none md:border border-gray-200 dark:border-[#222]">
 
                         {/* Modal Header */}
-                        <div className="p-4 md:p-8 border-b border-gray-100 dark:border-[#222] bg-gray-50 dark:bg-[#141414] flex justify-between items-start shrink-0 pt-safe-top">
-                            <div className="flex-1 overflow-hidden pr-8">
-                                <h2 className="text-xl md:text-2xl font-black text-gray-900 dark:text-white mb-2 leading-tight">
-                                    {selectedEmail.subject}
-                                </h2>
-                                <div className="flex flex-wrap items-center gap-3 text-sm">
-                                    <div className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold border border-blue-500/20">
-                                        From: {selectedEmail.from_address}
-                                    </div>
-                                    <div className="text-gray-400 font-medium">
-                                        Received: {new Date(selectedEmail.received_at).toLocaleString()}
-                                    </div>
+                        <div className="flex flex-col border-b border-gray-100 dark:border-[#222] bg-gray-50 dark:bg-[#141414] shrink-0 pt-safe-top">
+                            {/* Top Bar: Navigation & Close */}
+                            <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-6">
+                                <button
+                                    onClick={() => setShowMobileContent(false)}
+                                    className="md:hidden flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    <span className="font-bold text-sm">Inbox</span>
+                                </button>
+
+                                <div className="flex items-center gap-2 ml-auto">
+                                    <button
+                                        onClick={() => handleMarkAsUnread(selectedEmail)}
+                                        className="p-2 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/20 rounded-full transition-all"
+                                        title="Mark as Unread"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </button>
+                                    <button
+                                        onClick={() => setShowRawSource(true)}
+                                        className="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-[#222] rounded-full transition-all"
+                                        title="View Source"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                    </button>
+                                    <button
+                                        onClick={() => setShowMobileContent(false)}
+                                        className="hidden md:flex p-2 bg-gray-200 dark:bg-[#333] text-gray-900 dark:text-white rounded-full transition-all hover:bg-red-500 hover:text-white ml-2"
+                                        aria-label="Close"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </button>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-2 md:gap-4 shrink-0">
-                                <button
-                                    onClick={() => handleMarkAsUnread(selectedEmail)}
-                                    className="flex items-center gap-2 px-3 md:px-4 py-2 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/20 rounded-xl transition-all border border-transparent hover:border-amber-200"
-                                    title="Mark as Unread"
-                                >
-                                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                    <span className="text-xs md:text-sm font-bold hidden sm:inline">Mark as Unread</span>
-                                </button>
-                                <button
-                                    onClick={() => setShowRawSource(true)}
-                                    className="flex items-center gap-2 px-3 md:px-4 py-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-[#222] rounded-xl transition-all border border-transparent hover:border-gray-200"
-                                    title="View Source"
-                                >
-                                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                                    <span className="text-xs md:text-sm font-bold hidden sm:inline">Source</span>
-                                </button>
-                                <button
-                                    onClick={() => window.print()}
-                                    className="flex items-center gap-2 px-3 md:px-4 py-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-[#222] rounded-xl transition-all border border-transparent hover:border-gray-200"
-                                    title="Print Email"
-                                >
-                                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2-2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
-                                    </svg>
-                                    <span className="text-xs md:text-sm font-bold hidden sm:inline">Print Email</span>
-                                </button>
-                                <button
-                                    onClick={() => setShowMobileContent(false)}
-                                    className="p-3 bg-gray-100 dark:bg-[#222] text-gray-900 dark:text-white hover:bg-red-500 hover:text-white rounded-xl transition-all shadow-sm"
-                                    aria-label="Close"
-                                >
-                                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                </button>
+                            {/* Subject & Sender Info */}
+                            <div className="px-4 pb-4 md:px-8 md:pb-6">
+                                <h2 className="text-lg md:text-2xl font-black text-gray-900 dark:text-white mb-3 leading-snug break-words">
+                                    {selectedEmail.subject}
+                                </h2>
+                                <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm">
+                                    <div className="max-w-full px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold border border-blue-500/20 truncate">
+                                        {selectedEmail.from_address}
+                                    </div>
+                                    <div className="text-gray-400 font-medium whitespace-nowrap">
+                                        {new Date(selectedEmail.received_at).toLocaleString(undefined, {
+                                            dateStyle: 'short',
+                                            timeStyle: 'short'
+                                        })}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         {/* Modal Content */}
-                        <div className="flex-1 overflow-y-auto p-6 md:p-10 bg-white text-gray-900 email-content printable-area text-lg leading-relaxed">
+                        <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-10 bg-white text-gray-900 email-content printable-area text-base md:text-lg leading-relaxed">
                             {selectedEmail.html ? (
-                                <div className="max-w-none prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: selectedEmail.html }} />
+                                <div className="max-w-full prose prose-sm md:prose-lg dark:prose-invert break-words [&>img]:max-w-full [&>img]:h-auto" dangerouslySetInnerHTML={{ __html: selectedEmail.html }} />
                             ) : (
                                 <pre className="whitespace-pre-wrap font-sans">{selectedEmail.text}</pre>
                             )}
