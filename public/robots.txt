@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Host: https://disposemail.xyz

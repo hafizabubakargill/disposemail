@@ -234,7 +234,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             {/* Header / Info Row */}
             <div className="flex flex-row justify-between items-center mb-6 gap-4 border-b border-gray-100 dark:border-[#222] pb-6">
                 <div className="flex items-center gap-3">
-                    <h3 className="font-bold text-xl text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                    <h2 className="font-bold text-xl text-gray-900 dark:text-gray-100 flex items-center gap-2">
                         Inbox ({emails.length})
                         <div className="flex items-center ml-2">
                             {isConnected ? (
@@ -249,7 +249,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 </div>
                             )}
                         </div>
-                    </h3>
+                    </h2>
                 </div>
 
                 <div className="flex items-center gap-2 md:gap-3">
@@ -264,7 +264,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
                     <button
                         onClick={handleSafetySync}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-[#222] text-gray-700 dark:text-gray-300 text-xs font-bold border border-gray-200 dark:border-[#333] hover:bg-gray-50 dark:hover:bg-[#333] transition-all active:scale-95"
+                        className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-[#222] text-gray-700 dark:text-gray-300 text-xs font-bold border border-gray-200 dark:border-[#333] hover:bg-gray-50 dark:hover:bg-[#333] transition-all active:scale-95"
                         title="Rescue missing emails"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
