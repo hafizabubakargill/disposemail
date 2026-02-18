@@ -369,7 +369,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     </button>
                                     <button
                                         onClick={() => setShowMobileContent(false)}
-                                        className="hidden md:flex p-2 bg-gray-200 dark:bg-[#333] text-gray-900 dark:text-white rounded-full transition-all hover:bg-red-500 hover:text-white ml-2"
+                                        className="flex p-2 bg-gray-200 dark:bg-[#333] text-gray-900 dark:text-white rounded-full transition-all hover:bg-red-500 hover:text-white ml-2"
                                         aria-label="Close"
                                     >
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
