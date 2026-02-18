@@ -48,12 +48,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
-                {/* Google AdSense */}
-                <script
-                    async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5210079727285405"
-                    crossOrigin="anonymous"
-                ></script>
+
                 <link rel="icon" href="/icon.svg" type="image/svg+xml" />
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="theme-color" content="#0a0a0a" />
@@ -69,9 +64,9 @@ export default function RootLayout({
                 {/* Google Analytics (GTags) */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-DX89L9W9FL"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 />
-                <Script id="google-analytics" strategy="afterInteractive">
+                <Script id="google-analytics" strategy="lazyOnload">
                     {`
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}

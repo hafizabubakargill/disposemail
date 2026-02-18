@@ -262,7 +262,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         aria-label="Burn Inbox"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                        <span className="hidden sm:inline">Burn</span>
+                        <span className="hidden sm:inline text-red-700 dark:text-red-400">Burn</span>
                     </button>
 
                     <button
@@ -288,7 +288,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
                             <p className="text-base font-bold text-gray-900 dark:text-gray-100">Waiting for your first email...</p>
-                            <p className="text-xs text-gray-400 mt-2 uppercase tracking-widest font-black">Secure Real-time Monitoring Active</p>
+                            <p className="text-xs text-gray-500 mt-2 uppercase tracking-widest font-black">Secure Real-time Monitoring Active</p>
                         </div>
                     ) : (
                         emails.map(email => (

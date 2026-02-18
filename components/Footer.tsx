@@ -17,7 +17,7 @@ export function Footer() {
                     <p className="text-xs text-gray-500 font-medium">© 2026 DisposeMail. Secure, anonymous, temporary.</p>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-[#555] dark:text-gray-400">
                     <Link href="/about" className="hover:text-blue-500 transition-colors">About Us</Link>
                     <Link href="/privacy" className="hover:text-blue-500 transition-colors">Privacy Policy</Link>
                     <Link href="/terms" className="hover:text-blue-500 transition-colors">Terms of Service</Link>
