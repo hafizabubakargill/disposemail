@@ -3,12 +3,10 @@
   "/_not-found/page": "/_not-found",
   "/about/page": "/about",
   "/api-docs/page": "/api-docs",
-  "/api/emails/read/route": "/api/emails/read",
-  "/api/emails/route": "/api/emails",
-  "/api/status/route": "/api/status",
-  "/api/webhook/email/route": "/api/webhook/email",
   "/faq/page": "/faq",
   "/icon.svg/route": "/icon.svg",
   "/page": "/",
-  "/privacy/page": "/privacy"
+  "/privacy/page": "/privacy",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/terms/page": "/terms"
 }

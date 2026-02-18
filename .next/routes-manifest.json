@@ -47,30 +47,6 @@
       "namedRegex": "^/about(?:/)?$"
     },
     {
-      "page": "/api/emails",
-      "regex": "^/api/emails(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/api/emails(?:/)?$"
-    },
-    {
-      "page": "/api/emails/read",
-      "regex": "^/api/emails/read(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/api/emails/read(?:/)?$"
-    },
-    {
-      "page": "/api/status",
-      "regex": "^/api/status(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/api/status(?:/)?$"
-    },
-    {
-      "page": "/api/webhook/email",
-      "regex": "^/api/webhook/email(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/api/webhook/email(?:/)?$"
-    },
-    {
       "page": "/api-docs",
       "regex": "^/api\\-docs(?:/)?$",
       "routeKeys": {},
@@ -93,6 +69,18 @@
       "regex": "^/privacy(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/privacy(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/terms",
+      "regex": "^/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms(?:/)?$"
     }
   ],
   "dataRoutes": [],
