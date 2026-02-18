@@ -255,7 +255,6 @@ export default function Home() {
                     <div className="mt-4 px-4">
                         <div className="flex justify-between items-center mb-1 text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500">
                             <span className="flex items-center gap-1.5 font-bold">
-                                <span className="px-2 py-0.5 rounded bg-blue-600/10 text-blue-700 dark:text-blue-500 text-[10px] font-black uppercase">V1.0</span>
                                 Inbox Expiring in
                             </span>
                             <span className="text-blue-500 font-black">{formatTime(timeLeft)}</span>
@@ -333,8 +332,8 @@ export default function Home() {
                                 <p className="text-[10px] text-gray-600 dark:text-gray-400 uppercase font-black">No cookies, no logs.</p>
                             </div>
                             <div className="p-4 rounded-2xl bg-green-500/5 border border-green-500/10">
-                                <h3 className="font-bold text-green-700 dark:text-green-500 mb-1">Zero Cost</h3>
-                                <p className="text-xs text-center font-bold text-green-700/70 dark:text-green-400/70">100% FREE FOREVER.</p>
+                                <h3 className="font-bold text-green-800 dark:text-green-500 mb-1">Zero Cost</h3>
+                                <p className="text-xs text-center font-bold text-green-800/70 dark:text-green-400/70">100% FREE FOREVER.</p>
                             </div>
                         </div>
                     </div>

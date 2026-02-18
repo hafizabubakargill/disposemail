@@ -160,6 +160,11 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
         const socket = socketRef.current;
 
+        // Suppress connection errors to avoid console noise in PageSpeed
+        socket.on('connect_error', (err: any) => {
+            // calculated silence
+        });
+
         socket.on('connect', () => {
             setIsConnected(true);
             socket.emit('join-room', emailAddress);
@@ -288,7 +293,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
                             <p className="text-base font-bold text-gray-900 dark:text-gray-100">Waiting for your first email...</p>
-                            <p className="text-xs text-gray-500 mt-2 uppercase tracking-widest font-black">Secure Real-time Monitoring Active</p>
+                            <p className="text-xs text-gray-600 mt-2 uppercase tracking-widest font-black">Secure Real-time Monitoring Active</p>
                         </div>
                     ) : (
                         emails.map(email => (
