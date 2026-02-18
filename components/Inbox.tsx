@@ -154,6 +154,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             path: '/socket.io-live',
             reconnection: true,
             transports: ['websocket', 'polling'],
+            secure: true,
+            rejectUnauthorized: false // Sometimes needed for self-signed or proxy setups
         });
 
         const socket = socketRef.current;
@@ -257,6 +259,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         onClick={handleBurnInbox}
                         className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400 text-xs font-bold border border-red-100 dark:border-red-500/20 hover:bg-red-100 dark:hover:bg-red-500/20 transition-all active:scale-95"
                         title="Destroy this inbox"
+                        aria-label="Burn Inbox"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                         <span className="hidden sm:inline">Burn</span>
