@@ -79,11 +79,13 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
 
             <div
-                className="prose prose-lg dark:prose-invert max-w-none 
+                className="prose prose-lg md:prose-xl dark:prose-invert max-w-none 
           prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-gray-900 dark:prose-headings:text-white
-          prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-p:leading-relaxed
-          prose-strong:text-gray-900 dark:prose-strong:text-white
-          prose-li:text-gray-600 dark:prose-li:text-gray-400"
+          prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-p:leading-relaxed prose-p:mb-8
+          prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-bold
+          prose-li:text-gray-600 dark:prose-li:text-gray-400 prose-li:my-2
+          prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-2xl prose-h4:text-xl
+          prose-img:rounded-3xl prose-img:shadow-2xl"
                 dangerouslySetInnerHTML={{ __html: post.content }}
             />
 

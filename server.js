@@ -154,6 +154,7 @@ app.prepare().then(() => {
         let finalHtml = html || '';
         let finalText = text || '';
         let finalSubject = subject || '(No Subject)';
+        let attachments = [];
 
         // IF RAW MIME IS PROVIDED, PARSE IT PROPERLY
         if (raw) {

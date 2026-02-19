@@ -468,25 +468,25 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
                             {
-                                slug: 'why-disposable-emails-essential-privacy',
-                                title: 'Why Disposable Emails are Essential for Modern Privacy',
-                                date: 'Feb 20, 2026',
-                                category: 'Privacy',
-                                image: '/blog/privacy.png'
-                            },
-                            {
-                                slug: 'avoiding-spam-with-temporary-inboxes',
-                                title: 'Avoiding Spam: How Temporary Inboxes Keep Your Real Mailbox Clean',
+                                slug: 'dangers-reusing-email-social-media',
+                                title: 'The Hidden Dangers of Reusing Your Primary Email on Social Media',
                                 date: 'Feb 18, 2026',
-                                category: 'Security',
-                                image: '/blog/spam.png'
+                                category: 'Privacy',
+                                image: '/blog/social.png'
                             },
                             {
-                                slug: 'evolution-of-email-privacy-2026',
-                                title: 'The Evolution of Email Privacy in 2026',
-                                date: 'Feb 15, 2026',
-                                category: 'Future Tech',
-                                image: '/blog/future.png'
+                                slug: 'top-privacy-extensions-temporary-inbox',
+                                title: 'Top 5 Privacy Extensions to Pair with Your Temporary Inbox',
+                                date: 'Feb 14, 2026',
+                                category: 'Tech Tips',
+                                image: '/blog/extensions.png'
+                            },
+                            {
+                                slug: 'secure-online-shopping-disposable-emails',
+                                title: 'How to Use Disposable Emails for Secure Online Shopping',
+                                date: 'Feb 10, 2026',
+                                category: 'Security',
+                                image: '/blog/shopping.png'
                             }
                         ].map((post) => (
                             <Link
