@@ -12,6 +12,9 @@ const config: Config = {
                 background: "rgb(var(--background))",
                 foreground: "rgb(var(--foreground))",
             },
+            fontFamily: {
+                sans: ["var(--font-inter)"],
+            },
         },
     },
     plugins: [],
