@@ -250,8 +250,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     LIVE
                                 </div>
                             ) : (
-                                <div className="flex items-center px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-500 text-[10px] font-black">
-                                    <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-amber-500 animate-pulse"></span>
+                                <div className="flex items-center px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-300 text-[10px] font-black">
+                                    <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-amber-600 animate-pulse"></span>
                                     SYNCING
                                 </div>
                             )}

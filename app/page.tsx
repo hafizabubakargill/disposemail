@@ -127,8 +127,8 @@ export default function Home() {
         <div className="w-full">
             {/* Hero Section */}
             <div className="w-full max-w-4xl mx-auto px-4 mt-8 md:mt-20 z-10 text-center">
-                <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-mono mb-6">
-                    <span className="w-2 h-2 rounded-full bg-blue-500 mr-2 animate-pulse"></span>
+                <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-200 bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-500/20 text-xs font-mono mb-6 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mr-2 animate-pulse"></span>
                     END-TO-END ENCRYPTED
                 </div>
 
