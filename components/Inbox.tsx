@@ -260,6 +260,16 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         };
     }, [emailAddress]);
 
+    // Body Scroll Lock for Modal
+    useEffect(() => {
+        if (selectedEmail && showMobileContent) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => { document.body.style.overflow = 'unset'; };
+    }, [selectedEmail, showMobileContent]);
+
     // Request notification permission
     useEffect(() => {
         if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
@@ -358,20 +368,25 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                             <span className={`text-xs font-black uppercase tracking-widest truncate ${!email.is_read ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'}`}>
                                                 From: <span className="lowercase">{email.from_address.split('<')[0] || email.from_address}</span>
                                             </span>
-                                            <span className={`text-[10px] font-mono shrink-0 text-gray-400`}>
-                                                {formatDate(email.received_at)}
-                                            </span>
+                                            <div className="flex items-center gap-2 ml-auto md:ml-0">
+                                                {email.attachments && email.attachments.length > 0 && (
+                                                    <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-[#222] border border-gray-200 dark:border-[#333]">
+                                                        <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                                                        </svg>
+                                                        <span className="text-[9px] font-black text-gray-500">{email.attachments.length}</span>
+                                                    </div>
+                                                )}
+                                                <span className={`text-[10px] font-mono shrink-0 text-gray-400`}>
+                                                    {formatDate(email.received_at)}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className={`text-sm md:text-base font-bold truncate ${!email.is_read ? 'text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'} flex items-center gap-2`}>
+                                        <div className={`text-sm md:text-base font-bold line-clamp-2 md:truncate ${!email.is_read ? 'text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'}`}>
                                             Subject: {email.subject}
-                                            {email.attachments && email.attachments.length > 0 && (
-                                                <svg className="w-3.5 h-3.5 text-gray-400 group-hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
-                                                </svg>
-                                            )}
                                         </div>
-                                        <div className={`text-xs truncate mt-1 opacity-70 text-gray-500 dark:text-gray-400`}>
-                                            {email.text.slice(0, 100)}...
+                                        <div className={`text-xs line-clamp-2 md:truncate mt-1 opacity-70 text-gray-500 dark:text-gray-400`}>
+                                            {email.text}
                                         </div>
                                     </div>
                                 </div>
@@ -447,12 +462,14 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         </div>
 
                         {/* Modal Content */}
-                        <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-10 bg-white text-gray-900 email-content printable-area text-base md:text-lg leading-relaxed">
-                            {selectedEmail.html ? (
-                                <div className="max-w-full prose prose-sm md:prose-lg dark:prose-invert break-words [&>img]:max-w-full [&>img]:h-auto" dangerouslySetInnerHTML={{ __html: selectedEmail.html }} />
-                            ) : (
-                                <pre className="whitespace-pre-wrap font-sans">{selectedEmail.text}</pre>
-                            )}
+                        <div className="flex-1 overflow-y-auto overflow-x-auto p-4 md:p-10 bg-white text-gray-900 email-content printable-area text-base md:text-lg leading-relaxed">
+                            <div className="min-w-0 md:min-w-fit">
+                                {selectedEmail.html ? (
+                                    <div className="max-w-full prose prose-sm md:prose-lg dark:prose-invert break-words [&>img]:max-w-full [&>img]:h-auto" dangerouslySetInnerHTML={{ __html: selectedEmail.html }} />
+                                ) : (
+                                    <pre className="whitespace-pre-wrap font-sans break-words">{selectedEmail.text}</pre>
+                                )}
+                            </div>
 
                             {/* Attachments Section */}
                             {selectedEmail.attachments && selectedEmail.attachments.length > 0 && (

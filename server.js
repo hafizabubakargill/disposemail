@@ -219,9 +219,15 @@ app.prepare().then(() => {
 
                 if (!attachment) return res.status(404).send('Attachment not found');
 
+                // Advanced Headers for Reliable Downloads
                 res.setHeader('Content-Type', attachment.contentType || 'application/octet-stream');
                 res.setHeader('Content-Disposition', `attachment; filename="${attachment.filename || 'attachment'}"`);
                 res.setHeader('Content-Length', attachment.size);
+                res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+                res.setHeader('Pragma', 'no-cache');
+                res.setHeader('Expires', '0');
+                res.setHeader('Connection', 'close'); // Ensure buffer is flushed and closed
+
                 res.end(attachment.content);
             } catch (err) {
                 console.error('Attachment download error:', err);
