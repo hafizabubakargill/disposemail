@@ -164,6 +164,12 @@ app.prepare().then(() => {
                 finalHtml = parsed.html || parsed.textAsHtml || '';
                 finalText = parsed.text || '';
                 finalSubject = parsed.subject || finalSubject;
+                attachments = (parsed.attachments || []).map(att => ({
+                    filename: att.filename || 'attachment.dat',
+                    contentType: att.contentType,
+                    size: att.size,
+                    checksum: att.checksum
+                }));
             } catch (err) {
                 console.error('[WEBHOOK] MIME Parsing Error:', err);
             }
@@ -176,7 +182,8 @@ app.prepare().then(() => {
             subject: finalSubject,
             text: finalText,
             html: finalHtml,
-            raw: raw, // Save Raw MIME
+            raw: raw,
+            attachments: attachments,
             received_at: Date.now()
         });
 
@@ -197,6 +204,29 @@ app.prepare().then(() => {
         });
         server.post(`${p}/webhook/email`, express.json({ limit: '10mb' }), handleWebhook);
 
+        server.get(`${p}/emails/attachment`, async (req, res) => {
+            const { id, checksum } = req.query;
+            if (!id || !checksum) return res.status(400).send('Missing params');
+
+            const email = db.getEmailById(id);
+            if (!email || !email.raw) return res.status(404).send('Email/Raw source not found');
+
+            try {
+                const { simpleParser } = require('mailparser');
+                const parsed = await simpleParser(email.raw);
+                const attachment = parsed.attachments.find(a => a.checksum === checksum);
+
+                if (!attachment) return res.status(404).send('Attachment not found');
+
+                res.setHeader('Content-Type', attachment.contentType);
+                res.setHeader('Content-Disposition', `attachment; filename="${attachment.filename}"`);
+                res.send(attachment.content);
+            } catch (err) {
+                console.error('Attachment download error:', err);
+                res.status(500).send('Internal Server Error');
+            }
+        });
+
         // Rescue Endpoint (Phase 14)
         server.post(`${p}/rescue`, express.json(), async (req, res) => {
             const { emails, secret } = req.body;
@@ -209,6 +239,7 @@ app.prepare().then(() => {
                 let finalHtml = e.html || '';
                 let finalText = e.text || '';
                 let finalSubject = e.subject || '(No Subject)';
+                let attachments = [];
 
                 if (e.raw) {
                     try {
@@ -216,6 +247,12 @@ app.prepare().then(() => {
                         finalHtml = parsed.html || parsed.textAsHtml || '';
                         finalText = parsed.text || '';
                         finalSubject = parsed.subject || finalSubject;
+                        attachments = (parsed.attachments || []).map(att => ({
+                            filename: att.filename || 'attachment.dat',
+                            contentType: att.contentType,
+                            size: att.size,
+                            checksum: att.checksum
+                        }));
                     } catch (err) {
                         console.error('Rescue MIME Error:', err);
                     }
@@ -228,7 +265,8 @@ app.prepare().then(() => {
                     html: finalHtml,
                     text: finalText,
                     subject: finalSubject,
-                    raw: e.raw // Save Raw MIME in rescue
+                    raw: e.raw,
+                    attachments: attachments
                 };
                 results.push(db.saveEmail(data));
             }

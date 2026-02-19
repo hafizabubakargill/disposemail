@@ -9,7 +9,13 @@ interface Email {
     subject: string;
     text: string;
     html?: string;
-    raw?: string; // Phase 36: Raw Source
+    raw?: string;
+    attachments?: {
+        filename: string;
+        contentType: string;
+        size: number;
+        checksum: string;
+    }[];
     received_at: number;
     is_read?: boolean;
 }
@@ -403,6 +409,40 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 <div className="max-w-full prose prose-sm md:prose-lg dark:prose-invert break-words [&>img]:max-w-full [&>img]:h-auto" dangerouslySetInnerHTML={{ __html: selectedEmail.html }} />
                             ) : (
                                 <pre className="whitespace-pre-wrap font-sans">{selectedEmail.text}</pre>
+                            )}
+
+                            {/* Attachments Section */}
+                            {selectedEmail.attachments && selectedEmail.attachments.length > 0 && (
+                                <div className="mt-12 pt-8 border-t border-gray-100 dark:border-[#222]">
+                                    <h4 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-6 flex items-center gap-2">
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                                        Attachments ({selectedEmail.attachments.length})
+                                    </h4>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        {selectedEmail.attachments.map((att, idx) => (
+                                            <a
+                                                key={idx}
+                                                href={`/x-feed/emails/attachment?id=${selectedEmail.id}&checksum=${att.checksum}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-between p-4 bg-gray-50 dark:bg-[#161616] rounded-2xl border border-gray-100 dark:border-[#222] hover:bg-blue-50 dark:hover:bg-blue-900/10 hover:border-blue-200 dark:hover:border-blue-800 transition-all group"
+                                            >
+                                                <div className="flex items-center gap-3 min-w-0">
+                                                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#222] flex items-center justify-center border border-gray-200 dark:border-[#333] group-hover:border-blue-300 dark:group-hover:border-blue-700">
+                                                        <svg className="w-5 h-5 text-gray-500 group-hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                                    </div>
+                                                    <div className="truncate">
+                                                        <p className="text-sm font-bold text-gray-900 dark:text-gray-100 truncate">{att.filename}</p>
+                                                        <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-black tracking-tight">{(att.size / 1024).toFixed(1)} KB</p>
+                                                    </div>
+                                                </div>
+                                                <div className="p-2 bg-blue-600 rounded-lg text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                                </div>
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
                             )}
 
                             {/* Affiliate Footer inside Modal */}
