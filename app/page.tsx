@@ -471,35 +471,47 @@ export default function Home() {
                                 slug: 'why-disposable-emails-essential-privacy',
                                 title: 'Why Disposable Emails are Essential for Modern Privacy',
                                 date: 'Feb 20, 2026',
-                                category: 'Privacy'
+                                category: 'Privacy',
+                                image: '/blog/privacy.png'
                             },
                             {
                                 slug: 'avoiding-spam-with-temporary-inboxes',
                                 title: 'Avoiding Spam: How Temporary Inboxes Keep Your Real Mailbox Clean',
                                 date: 'Feb 18, 2026',
-                                category: 'Security'
+                                category: 'Security',
+                                image: '/blog/spam.png'
                             },
                             {
                                 slug: 'evolution-of-email-privacy-2026',
                                 title: 'The Evolution of Email Privacy in 2026',
                                 date: 'Feb 15, 2026',
-                                category: 'Future Tech'
+                                category: 'Future Tech',
+                                image: '/blog/future.png'
                             }
                         ].map((post) => (
                             <Link
                                 key={post.slug}
                                 href={`/blog/${post.slug}`}
-                                className="group p-8 rounded-[32px] bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:border-blue-500/30 transition-all hover:shadow-xl"
+                                className="group p-0 rounded-[32px] bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:border-blue-500/30 transition-all hover:shadow-xl overflow-hidden"
                             >
-                                <div className="flex items-center gap-2 mb-4">
-                                    <span className="text-[10px] text-blue-600 dark:text-blue-400 font-black uppercase tracking-widest">{post.category}</span>
-                                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{post.date}</span>
+                                <div className="h-44 w-full overflow-hidden">
+                                    <img
+                                        src={post.image}
+                                        alt={post.title}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
                                 </div>
-                                <h3 className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors mb-4 line-clamp-2">
-                                    {post.title}
-                                </h3>
-                                <div className="flex items-center text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest mt-auto">
-                                    Read Article <svg className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                <div className="p-8">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <span className="text-[10px] text-blue-600 dark:text-blue-400 font-black uppercase tracking-widest">{post.category}</span>
+                                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{post.date}</span>
+                                    </div>
+                                    <h3 className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors mb-4 line-clamp-2">
+                                        {post.title}
+                                    </h3>
+                                    <div className="flex items-center text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest mt-auto">
+                                        Read Article <svg className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    </div>
                                 </div>
                             </Link>
                         ))}
