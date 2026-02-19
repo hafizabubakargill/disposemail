@@ -219,21 +219,26 @@ app.prepare().then(() => {
 
                 if (!attachment) return res.status(404).send('Attachment not found');
 
-                // Advanced Headers for Reliable Downloads
+                // Standardized headers for reliable binary streaming
+                res.attachment(attachment.filename || 'attachment');
                 res.setHeader('Content-Type', attachment.contentType || 'application/octet-stream');
-                res.setHeader('Content-Disposition', `attachment; filename="${attachment.filename || 'attachment'}"`);
                 res.setHeader('Content-Length', attachment.size);
-                res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-                res.setHeader('Pragma', 'no-cache');
-                res.setHeader('Expires', '0');
-                res.setHeader('Connection', 'close'); // Ensure buffer is flushed and closed
-
-                res.end(attachment.content);
+                res.send(attachment.content);
             } catch (err) {
                 console.error('Attachment download error:', err);
                 res.status(500).send('Internal Server Error');
             }
         });
+
+        // --- 5. CLEANUP ---
+        setInterval(() => {
+            const countBefore = db.getAllEmails().length;
+            db.cleanupOldEmails();
+            const countAfter = db.getAllEmails().length;
+            if (countBefore !== countAfter) {
+                console.log(`[Persistence] Cleanup ran: ${countBefore - countAfter} emails removed. ${countAfter} remaining.`);
+            }
+        }, 60 * 1000);
 
         // Rescue Endpoint (Phase 14)
         server.post(`${p}/rescue`, express.json(), async (req, res) => {
@@ -301,9 +306,6 @@ app.prepare().then(() => {
         }
         return handle(req, res);
     });
-
-    // --- 5. CLEANUP ---
-    setInterval(() => db.cleanupOldEmails(), 60 * 1000);
 
     httpServer.listen(PORT, '0.0.0.0', () => {
         console.log(`> Nuclear Ready on port ${PORT}`);

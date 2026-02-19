@@ -459,7 +459,7 @@ export default function Home() {
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div className="max-w-xl text-left">
                             <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Privacy Insights & News</h2>
-                            <p className="text-gray-600 dark:text-gray-400">Stay updated with the latest trends in digital security and email protection.</p>
+                            <p className="text-gray-700 dark:text-gray-400">Stay updated with the latest trends in digital security and email protection.</p>
                         </div>
                         <Link href="/blog" className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-[#111] text-gray-900 dark:text-gray-100 font-bold hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest text-[10px]">
                             View all articles
@@ -483,7 +483,7 @@ export default function Home() {
                                 <div className="p-8">
                                     <div className="flex items-center gap-2 mb-4">
                                         <span className="text-[10px] text-blue-600 dark:text-blue-400 font-black uppercase tracking-widest">{post.category}</span>
-                                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{post.date}</span>
+                                        <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{post.date}</span>
                                     </div>
                                     <h3 className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors mb-4 line-clamp-2">
                                         {post.title}

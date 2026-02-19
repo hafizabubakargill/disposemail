@@ -264,10 +264,15 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     useEffect(() => {
         if (selectedEmail && showMobileContent) {
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'unset';
         }
-        return () => { document.body.style.overflow = 'unset'; };
+        return () => {
+            document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'unset';
+        };
     }, [selectedEmail, showMobileContent]);
 
     // Request notification permission
@@ -365,19 +370,19 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${email.is_read ? 'hidden' : 'bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(37,99,235,0.5)]'}`}></div>
                                     <div className="flex-1 min-w-0">
                                         <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 mb-1">
-                                            <span className={`text-xs font-black uppercase tracking-widest truncate ${!email.is_read ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'}`}>
-                                                From: <span className="lowercase">{email.from_address.split('<')[0] || email.from_address}</span>
+                                            <span className={`text-xs font-black tracking-widest truncate ${!email.is_read ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'}`}>
+                                                From: <span className="lowercase font-bold">{email.from_address.split('<')[0] || email.from_address}</span>
                                             </span>
                                             <div className="flex items-center gap-2 ml-auto md:ml-0">
                                                 {email.attachments && email.attachments.length > 0 && (
-                                                    <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-[#222] border border-gray-200 dark:border-[#333]">
-                                                        <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-[#222] border border-gray-100 dark:border-[#333]">
+                                                        <svg className="w-3 h-3 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
                                                         </svg>
-                                                        <span className="text-[9px] font-black text-gray-500">{email.attachments.length}</span>
+                                                        <span className="text-[9px] font-black text-gray-600 dark:text-gray-400">{email.attachments.length}</span>
                                                     </div>
                                                 )}
-                                                <span className={`text-[10px] font-mono shrink-0 text-gray-400`}>
+                                                <span className={`text-[10px] font-mono shrink-0 text-gray-500 dark:text-gray-400`}>
                                                     {formatDate(email.received_at)}
                                                 </span>
                                             </div>
