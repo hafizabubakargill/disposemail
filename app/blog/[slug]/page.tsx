@@ -54,6 +54,14 @@ export default function BlogPostPage({ params }: Props) {
                 </span>
             </div>
 
+            <div className="relative aspect-video w-full mb-12 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-[#1a1a1a] shadow-2xl">
+                <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                />
+            </div>
+
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 text-gray-900 dark:text-white leading-tight">
                 {post.title}
             </h1>

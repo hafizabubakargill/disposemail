@@ -23,9 +23,9 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-6">
                 <div className="flex gap-6 text-sm text-gray-600 dark:text-gray-400 font-medium font-bold uppercase tracking-widest text-[10px]">
                     <Link href="/" className="hover:text-blue-600 dark:hover:text-white transition-colors">Home</Link>
-                    <Link href="/api-docs" className="hover:text-blue-600 dark:hover:text-white transition-colors">API</Link>
-                    <Link href="/faq" className="hover:text-blue-600 dark:hover:text-white transition-colors">FAQ</Link>
                     <Link href="/about" className="hover:text-blue-600 dark:hover:text-white transition-colors">About</Link>
+                    <Link href="/blog" className="hover:text-blue-600 dark:hover:text-white transition-colors">Blog</Link>
+                    <Link href="/contact" className="hover:text-blue-600 dark:hover:text-white transition-colors">Contact</Link>
                 </div>
                 <ModeToggle />
             </div>
@@ -50,9 +50,9 @@ export function Navbar() {
             {menuOpen && (
                 <div className="absolute top-20 left-0 right-0 bg-white dark:bg-[#111] border-y border-gray-200 dark:border-[#222] p-6 flex flex-col gap-4 z-50 md:hidden animate-in fade-in slide-in-from-top-4 duration-200 shadow-xl">
                     <Link href="/" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>Home</Link>
-                    <Link href="/api-docs" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>API Documentation</Link>
-                    <Link href="/faq" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>FAQ</Link>
                     <Link href="/about" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>About Us</Link>
+                    <Link href="/blog" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>Blog</Link>
+                    <Link href="/contact" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>Contact Us</Link>
                 </div>
             )}
         </nav>
