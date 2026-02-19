@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Inbox from "@/components/Inbox";
 import { ModeToggle } from "@/components/ModeToggle";
 import { generateRandomDomain, DEFAULT_DOMAIN } from "@/lib/domains";
+import Link from "next/link";
 
 export default function Home() {
     const [email, setEmail] = useState<string | null>(null);
@@ -447,6 +448,61 @@ export default function Home() {
                             <h3 className="font-black text-lg mb-3">Multiple Domains</h3>
                             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Switch between multiple high-reputation domains to bypass filters and sign-up restrictions that might block standard temporary email providers.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* --- LATEST FROM BLOG --- */}
+            <div className="w-full bg-white dark:bg-[#080808] py-24 px-6 border-t border-gray-100 dark:border-[#1a1a1a]">
+                <div className="max-w-5xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                        <div className="max-w-xl text-left">
+                            <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Privacy Insights & News</h2>
+                            <p className="text-gray-600 dark:text-gray-400">Stay updated with the latest trends in digital security and email protection.</p>
+                        </div>
+                        <Link href="/blog" className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-[#111] text-gray-900 dark:text-gray-100 font-bold hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest text-[10px]">
+                            View all articles
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            {
+                                slug: 'why-disposable-emails-essential-privacy',
+                                title: 'Why Disposable Emails are Essential for Modern Privacy',
+                                date: 'Feb 20, 2026',
+                                category: 'Privacy'
+                            },
+                            {
+                                slug: 'avoiding-spam-with-temporary-inboxes',
+                                title: 'Avoiding Spam: How Temporary Inboxes Keep Your Real Mailbox Clean',
+                                date: 'Feb 18, 2026',
+                                category: 'Security'
+                            },
+                            {
+                                slug: 'evolution-of-email-privacy-2026',
+                                title: 'The Evolution of Email Privacy in 2026',
+                                date: 'Feb 15, 2026',
+                                category: 'Future Tech'
+                            }
+                        ].map((post) => (
+                            <Link
+                                key={post.slug}
+                                href={`/blog/${post.slug}`}
+                                className="group p-8 rounded-[32px] bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:border-blue-500/30 transition-all hover:shadow-xl"
+                            >
+                                <div className="flex items-center gap-2 mb-4">
+                                    <span className="text-[10px] text-blue-600 dark:text-blue-400 font-black uppercase tracking-widest">{post.category}</span>
+                                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{post.date}</span>
+                                </div>
+                                <h3 className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors mb-4 line-clamp-2">
+                                    {post.title}
+                                </h3>
+                                <div className="flex items-center text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest mt-auto">
+                                    Read Article <svg className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </div>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>

@@ -26,7 +26,6 @@ export function Navbar() {
                     <Link href="/api-docs" className="hover:text-blue-600 dark:hover:text-white transition-colors">API</Link>
                     <Link href="/faq" className="hover:text-blue-600 dark:hover:text-white transition-colors">FAQ</Link>
                     <Link href="/about" className="hover:text-blue-600 dark:hover:text-white transition-colors">About</Link>
-                    <Link href="/privacy" className="hover:text-blue-600 dark:hover:text-white transition-colors">Privacy</Link>
                 </div>
                 <ModeToggle />
             </div>
@@ -54,7 +53,6 @@ export function Navbar() {
                     <Link href="/api-docs" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>API Documentation</Link>
                     <Link href="/faq" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>FAQ</Link>
                     <Link href="/about" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>About Us</Link>
-                    <Link href="/privacy" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>Privacy Policy</Link>
                 </div>
             )}
         </nav>

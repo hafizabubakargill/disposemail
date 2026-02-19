@@ -18,7 +18,9 @@ export function Footer() {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">
+                    <Link href="/blog" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Blog</Link>
                     <Link href="/about" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">About Us</Link>
+                    <Link href="/contact" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Contact</Link>
                     <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link>
                     <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Terms of Service</Link>
                     <Link href="/faq" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">FAQ</Link>
