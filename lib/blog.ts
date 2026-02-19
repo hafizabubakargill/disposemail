@@ -181,3 +181,7 @@ export const blogPosts: BlogPost[] = [
     `
   }
 ];
+
+export function getSortedPosts() {
+  return [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}

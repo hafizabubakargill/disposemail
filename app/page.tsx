@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Inbox from "@/components/Inbox";
+import { getSortedPosts } from "@/lib/blog";
 import { ModeToggle } from "@/components/ModeToggle";
 import { generateRandomDomain, DEFAULT_DOMAIN } from "@/lib/domains";
 import Link from "next/link";
@@ -466,29 +467,7 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                slug: 'dangers-reusing-email-social-media',
-                                title: 'The Hidden Dangers of Reusing Your Primary Email on Social Media',
-                                date: 'Feb 18, 2026',
-                                category: 'Privacy',
-                                image: '/blog/social.png'
-                            },
-                            {
-                                slug: 'top-privacy-extensions-temporary-inbox',
-                                title: 'Top 5 Privacy Extensions to Pair with Your Temporary Inbox',
-                                date: 'Feb 14, 2026',
-                                category: 'Tech Tips',
-                                image: '/blog/extensions.png'
-                            },
-                            {
-                                slug: 'secure-online-shopping-disposable-emails',
-                                title: 'How to Use Disposable Emails for Secure Online Shopping',
-                                date: 'Feb 10, 2026',
-                                category: 'Security',
-                                image: '/blog/shopping.png'
-                            }
-                        ].map((post) => (
+                        {getSortedPosts().slice(0, 3).map((post) => (
                             <Link
                                 key={post.slug}
                                 href={`/blog/${post.slug}`}

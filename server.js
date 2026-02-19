@@ -219,9 +219,10 @@ app.prepare().then(() => {
 
                 if (!attachment) return res.status(404).send('Attachment not found');
 
-                res.setHeader('Content-Type', attachment.contentType);
-                res.setHeader('Content-Disposition', `attachment; filename="${attachment.filename}"`);
-                res.send(attachment.content);
+                res.setHeader('Content-Type', attachment.contentType || 'application/octet-stream');
+                res.setHeader('Content-Disposition', `attachment; filename="${attachment.filename || 'attachment'}"`);
+                res.setHeader('Content-Length', attachment.size);
+                res.end(attachment.content);
             } catch (err) {
                 console.error('Attachment download error:', err);
                 res.status(500).send('Internal Server Error');

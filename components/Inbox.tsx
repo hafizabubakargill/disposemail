@@ -34,11 +34,45 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
     const playNotificationSound = () => {
         try {
-            const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
-            audio.volume = 0.5;
-            audio.play().catch(e => console.log('Audio blocked:', e));
+            const context = new (window.AudioContext || (window as any).webkitAudioContext)();
+            const oscillator = context.createOscillator();
+            const gain = context.createGain();
+
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(880, context.currentTime); // A5 note
+            oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 0.1);
+
+            gain.gain.setValueAtTime(0.3, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.5);
+
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+            oscillator.start();
+            oscillator.stop(context.currentTime + 0.5);
         } catch (e) {
-            console.error('Audio error:', e);
+            console.log('Audio blocked or unsupported');
+        }
+    };
+
+    const showNotification = (title: string, body: string) => {
+        if (!("Notification" in window)) return;
+        if (Notification.permission === "granted") {
+            const n = new Notification(title, {
+                body: body,
+                icon: '/icon.svg'
+            });
+            n.onclick = () => {
+                window.focus();
+                n.close();
+            };
+        }
+    };
+
+    const requestNotificationPermission = () => {
+        if (!("Notification" in window)) return;
+        if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+            Notification.requestPermission();
         }
     };
 
@@ -104,6 +138,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                     const newEmails = data.filter(e => !current.some(c => c.id === e.id));
                     if (newEmails.length > 0 && current.length > 0) {
                         playNotificationSound();
+                        const latest = newEmails[0];
+                        showNotification(`New Email: ${latest.subject}`, `From: ${latest.from_address}`);
                         if (!isTabActive) {
                             setUnreadCount(prev => prev + newEmails.length);
                         }
@@ -153,6 +189,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             }
         }
 
+        requestNotificationPermission();
         fetchEmails();
 
         // Optimized socket config for backgrounding
@@ -191,6 +228,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             setEmails(prev => {
                 if (prev.some(e => e.id === email.id)) return prev;
                 playNotificationSound();
+                showNotification(`New Email: ${email.subject}`, `From: ${email.from_address}`);
                 if (!isTabActive) setUnreadCount(count => count + 1);
                 return [{ ...email, is_read: false }, ...prev];
             });

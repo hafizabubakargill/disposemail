@@ -1,4 +1,4 @@
-import { blogPosts } from "@/lib/blog";
+import { getSortedPosts } from "@/lib/blog";
 import Link from "next/link";
 
 export const metadata = {
@@ -7,6 +7,7 @@ export const metadata = {
 };
 
 export default function BlogPage() {
+    const posts = getSortedPosts();
     return (
         <div className="max-w-5xl mx-auto px-6 py-20">
             <div className="text-center mb-16">
@@ -19,7 +20,7 @@ export default function BlogPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {blogPosts.map((post) => (
+                {posts.map((post) => (
                     <Link
                         key={post.slug}
                         href={`/blog/${post.slug}`}
