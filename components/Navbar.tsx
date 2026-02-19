@@ -15,7 +15,7 @@ export function Navbar() {
                 </div>
                 <div className="flex items-center gap-2">
                     <span className="font-bold text-xl tracking-tight text-gray-900 dark:text-gray-100">DisposeMail</span>
-                    <span className="px-2 py-0.5 rounded bg-blue-600/10 text-blue-600 text-[10px] font-black uppercase">v1.0</span>
+                    <span className="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-[10px] font-black uppercase">v1.0</span>
                 </div>
             </Link>
 

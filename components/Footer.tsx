@@ -17,12 +17,12 @@ export function Footer() {
                     <p className="text-xs text-gray-500 font-medium">© 2026 DisposeMail. Secure, anonymous, temporary.</p>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-gray-600 dark:text-gray-400">
-                    <Link href="/about" className="hover:text-blue-500 transition-colors">About Us</Link>
-                    <Link href="/privacy" className="hover:text-blue-500 transition-colors">Privacy Policy</Link>
-                    <Link href="/terms" className="hover:text-blue-500 transition-colors">Terms of Service</Link>
-                    <Link href="/faq" className="hover:text-blue-500 transition-colors">FAQ</Link>
-                    <a href="mailto:support@disposemail.xyz" className="hover:text-blue-500 transition-colors">Support</a>
+                <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">
+                    <Link href="/about" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">About Us</Link>
+                    <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link>
+                    <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Terms of Service</Link>
+                    <Link href="/faq" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">FAQ</Link>
+                    <a href="mailto:support@disposemail.xyz" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Support</a>
                 </div>
             </div>
         </footer>

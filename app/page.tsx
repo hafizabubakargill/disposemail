@@ -268,8 +268,8 @@ export default function Home() {
                     </div>
                 </div>
 
-                <p className="text-gray-500 text-sm mb-8">
-                    Emails auto-delete after 1 hour. <a href="/faq" className="text-blue-500/60 cursor-pointer hover:text-blue-400 font-medium underline underline-offset-4" aria-label="Learn more about email expiration">Learn more about expiration</a>
+                <p className="text-gray-600 text-sm mb-8 dark:text-gray-300">
+                    Emails auto-delete after 1 hour. <a href="/faq" className="text-blue-700 dark:text-blue-400 cursor-pointer hover:underline font-bold underline underline-offset-4" aria-label="Learn more about email expiration">Learn more about expiration</a>
                 </p>
 
                 {/* Ad Banner (Top) - Hidden in Production until active */}
@@ -321,19 +321,19 @@ export default function Home() {
                     {/* Why DisposeMail? */}
                     <div className="space-y-6">
                         <h2 className="text-3xl font-black tracking-tighter text-gray-900 dark:text-gray-100">
-                            Secure your Digital Life<span className="text-blue-600">.</span>
+                            Secure your Digital Life<span className="text-blue-700 dark:text-blue-400">.</span>
                         </h2>
                         <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
                             DisposeMail provides instant, temporary email addresses to protect your primary inbox from spam, trackers, and data breaches. Our "Zero-Loss" architecture ensures your trial registrations and verification codes arrive with 100% reliability.
                         </p>
                         <div className="grid grid-cols-2 gap-4 text-center">
-                            <div className="p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10">
-                                <h3 className="font-bold text-blue-600 mb-1">Privacy First</h3>
-                                <p className="text-[10px] text-gray-600 dark:text-gray-400 uppercase font-black">No cookies, no logs.</p>
+                            <div className="p-4 rounded-2xl bg-blue-100 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700">
+                                <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-1">Privacy First</h3>
+                                <p className="text-[10px] text-gray-700 dark:text-gray-300 uppercase font-black">No cookies, no logs.</p>
                             </div>
-                            <div className="p-4 rounded-2xl bg-green-500/5 border border-green-500/10">
-                                <h3 className="font-bold text-green-800 dark:text-green-500 mb-1">Zero Cost</h3>
-                                <p className="text-xs text-center font-bold text-green-800/70 dark:text-green-400/70">100% FREE FOREVER.</p>
+                            <div className="p-4 rounded-2xl bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700">
+                                <h3 className="font-bold text-green-900 dark:text-green-300 mb-1">Zero Cost</h3>
+                                <p className="text-xs text-center font-bold text-green-800 dark:text-green-200">100% FREE FOREVER.</p>
                             </div>
                         </div>
                     </div>
