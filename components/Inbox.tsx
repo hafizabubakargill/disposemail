@@ -43,6 +43,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     // Phase 56: Sender Blocking
     const [blockedSenders, setBlockedSendersState] = useState<string[]>([]);
     const blockedSendersRef = useRef<string[]>([]);
+    const [blockSenderConfirm, setBlockSenderConfirm] = useState<string | null>(null);
 
     useEffect(() => {
         const saved = localStorage.getItem(`blocked_senders_${emailAddress}`);
@@ -69,10 +70,15 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     };
 
     const handleBlockSender = (address: string) => {
-        if (window.confirm(`Block future emails from ${address} for this session?`)) {
-            setBlockedSenders([...blockedSendersRef.current, address]);
-            showToast(`Blocked sender: ${address}`);
+        setBlockSenderConfirm(address);
+    };
+
+    const confirmBlockSender = () => {
+        if (blockSenderConfirm) {
+            setBlockedSenders([...blockedSendersRef.current, blockSenderConfirm]);
+            showToast(`Blocked sender: ${blockSenderConfirm}`);
         }
+        setBlockSenderConfirm(null);
     };
 
     const playNotificationSound = () => {
@@ -366,24 +372,24 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                 <div className="flex items-center gap-2 md:gap-3">
                     <button
                         onClick={handleBurnInbox}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400 text-xs font-bold border border-red-100 dark:border-red-500/20 hover:bg-red-100 dark:hover:bg-red-500/20 transition-all active:scale-95"
-                        title="Destroy this inbox"
+                        className="group relative flex items-center gap-2 px-4 py-2 rounded-xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400 text-xs font-bold border border-red-100 dark:border-red-500/20 hover:bg-red-100 dark:hover:bg-red-500/20 transition-all active:scale-95 z-10"
                         aria-label="Burn Inbox"
                     >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                         <span className="hidden sm:inline text-red-800 dark:text-red-300 font-bold">Burn</span>
+                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Destroy this inbox</div>
                     </button>
 
                     <button
                         onClick={handleSafetySync}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-[#222] text-gray-700 dark:text-gray-300 text-xs font-bold border border-gray-200 dark:border-[#333] hover:bg-gray-50 dark:hover:bg-[#333] transition-all active:scale-95"
-                        title="Rescue missing emails"
+                        className="group relative flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-[#222] text-gray-700 dark:text-gray-300 text-xs font-bold border border-gray-200 dark:border-[#333] hover:bg-gray-50 dark:hover:bg-[#333] transition-all active:scale-95 z-10"
                         aria-label="Sync Emails"
                     >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
                         <span className="hidden sm:inline font-bold text-blue-800 dark:text-blue-300">Sync</span>
+                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Rescue missing emails</div>
                     </button>
                 </div>
             </div>
@@ -469,32 +475,40 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
                                 <div className="flex items-center gap-2 ml-auto">
                                     <button
-                                        onClick={() => handleBlockSender(selectedEmail.from_address)}
-                                        className="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-full transition-all"
-                                        title="Block Sender"
+                                        onClick={() => setBlockSenderConfirm(selectedEmail.from_address)}
+                                        className="group relative flex items-center gap-1.5 p-2 px-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-full md:rounded-lg transition-all"
+                                        aria-label="Block Sender"
                                     >
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                                        <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                                        <span className="hidden md:inline text-sm font-bold">Block</span>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Block Sender</div>
                                     </button>
                                     <button
                                         onClick={() => handleMarkAsUnread(selectedEmail)}
-                                        className="p-2 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/20 rounded-full transition-all"
-                                        title="Mark as Unread"
+                                        className="group relative flex items-center gap-1.5 p-2 px-3 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/20 rounded-full md:rounded-lg transition-all"
+                                        aria-label="Mark as Unread"
                                     >
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                        <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                        <span className="hidden md:inline text-sm font-bold">Unread</span>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Mark Unread</div>
                                     </button>
                                     <button
                                         onClick={() => setShowRawSource(true)}
-                                        className="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-[#222] rounded-full transition-all"
-                                        title="View Source"
+                                        className="group relative flex items-center gap-1.5 p-2 px-3 text-gray-500 hover:bg-gray-100 dark:hover:bg-[#222] rounded-full md:rounded-lg transition-all"
+                                        aria-label="View Source"
                                     >
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                        <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                        <span className="hidden md:inline text-sm font-bold">Code</span>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">View Code</div>
                                     </button>
                                     <button
                                         onClick={() => setShowMobileContent(false)}
-                                        className="flex p-2 bg-gray-200 dark:bg-[#333] text-gray-900 dark:text-white rounded-full transition-all hover:bg-red-500 hover:text-white ml-2"
+                                        className="group relative flex items-center gap-1.5 p-2 px-3 bg-gray-200 dark:bg-[#333] text-gray-900 dark:text-white rounded-full md:rounded-lg transition-all hover:bg-red-500 hover:text-white ml-2"
                                         aria-label="Close"
                                     >
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                        <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                        <span className="hidden md:inline text-sm font-bold">Close</span>
+                                        <div className="md:hidden absolute top-full right-0 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Close Message</div>
                                     </button>
                                 </div>
                             </div>
@@ -639,12 +653,46 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 onClick={confirmBurn}
                                 className="flex-1 py-3 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                             >
-                                Burn It
+                                Burn
                             </button>
                         </div>
                     </div>
                 </div>
             )}
+
+            {/* BLOCK SENDER CONFIRMATION MODAL */}
+            {blockSenderConfirm && (
+                <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-in fade-in duration-200">
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setBlockSenderConfirm(null)}></div>
+                    <div className="bg-white dark:bg-[#1e1e1e] w-full max-w-sm rounded-2xl shadow-2xl relative flex flex-col border border-gray-200 dark:border-[#333] overflow-hidden">
+                        <div className="p-6 text-center">
+                            <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                            </div>
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Block Sender?</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                                Future emails from <strong className="text-gray-900 dark:text-gray-200 break-all">{blockSenderConfirm}</strong> will be dropped silently for your current session.
+                            </p>
+                        </div>
+                        <div className="flex border-t border-gray-100 dark:border-[#333]">
+                            <button
+                                onClick={() => setBlockSenderConfirm(null)}
+                                className="flex-1 py-3 text-sm font-bold text-gray-500 hover:bg-gray-50 dark:hover:bg-[#252525] transition-colors"
+                            >
+                                Cancel
+                            </button>
+                            <div className="w-px bg-gray-100 dark:bg-[#333]"></div>
+                            <button
+                                onClick={confirmBlockSender}
+                                className="flex-1 py-3 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                            >
+                                Block
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Phase 56: Toast Notification */}
             {toastMessage && (
                 <div className="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-gray-900 border border-gray-700 text-white text-sm font-bold rounded-full shadow-2xl z-[200] animate-in slide-in-from-bottom-5">

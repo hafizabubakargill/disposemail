@@ -1,2 +1,2 @@
-:HL["/_next/static/chunks/23489d654568d3f1.css","style"]
+:HL["/_next/static/chunks/a5a1e41bdd319931.css","style"]
 0:{"buildId":"disposemail-v1","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"/_not-found","paramType":null,"paramKey":"/_not-found","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
