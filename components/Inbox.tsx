@@ -32,6 +32,49 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [unreadCount, setUnreadCount] = useState(0);
     const [isTabActive, setIsTabActive] = useState(true);
 
+    // Phase 56: Toast feedback
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+    const showToast = (message: string) => {
+        setToastMessage(message);
+        setTimeout(() => setToastMessage(null), 3000);
+    };
+
+    // Phase 56: Sender Blocking
+    const [blockedSenders, setBlockedSendersState] = useState<string[]>([]);
+    const blockedSendersRef = useRef<string[]>([]);
+
+    useEffect(() => {
+        const saved = localStorage.getItem(`blocked_senders_${emailAddress}`);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                setBlockedSendersState(parsed);
+                blockedSendersRef.current = parsed;
+            } catch (e) { }
+        }
+    }, [emailAddress]);
+
+    const setBlockedSenders = (senders: string[]) => {
+        setBlockedSendersState(senders);
+        blockedSendersRef.current = senders;
+        localStorage.setItem(`blocked_senders_${emailAddress}`, JSON.stringify(senders));
+
+        // Remove currently blocked emails from view
+        setEmails(prev => prev.filter(e => !senders.includes(e.from_address)));
+        if (selectedEmail && senders.includes(selectedEmail.from_address)) {
+            setSelectedEmail(null);
+            setShowMobileContent(false);
+        }
+    };
+
+    const handleBlockSender = (address: string) => {
+        if (window.confirm(`Block future emails from ${address} for this session?`)) {
+            setBlockedSenders([...blockedSendersRef.current, address]);
+            showToast(`Blocked sender: ${address}`);
+        }
+    };
+
     const playNotificationSound = () => {
         try {
             const context = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -134,8 +177,9 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         })
             .then(res => res.ok ? res.json() : Promise.reject())
             .then((data: Email[]) => {
+                const nonBlockedData = data.filter(e => !blockedSendersRef.current.includes(e.from_address));
                 setEmails(current => {
-                    const newEmails = data.filter(e => !current.some(c => c.id === e.id));
+                    const newEmails = nonBlockedData.filter(e => !current.some(c => c.id === e.id));
                     if (newEmails.length > 0 && current.length > 0) {
                         playNotificationSound();
                         const latest = newEmails[0];
@@ -144,7 +188,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                             setUnreadCount(prev => prev + newEmails.length);
                         }
                     }
-                    return data;
+                    return nonBlockedData;
                 });
             })
             .catch(err => console.debug('Sync blink:', err));
@@ -225,6 +269,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         socket.on('disconnect', () => setIsConnected(false));
 
         socket.on('new-email', (email: Email) => {
+            if (blockedSendersRef.current.includes(email.from_address)) return;
             setEmails(prev => {
                 if (prev.some(e => e.id === email.id)) return prev;
                 playNotificationSound();
@@ -424,6 +469,13 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
                                 <div className="flex items-center gap-2 ml-auto">
                                     <button
+                                        onClick={() => handleBlockSender(selectedEmail.from_address)}
+                                        className="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-full transition-all"
+                                        title="Block Sender"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                                    </button>
+                                    <button
                                         onClick={() => handleMarkAsUnread(selectedEmail)}
                                         className="p-2 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/20 rounded-full transition-all"
                                         title="Mark as Unread"
@@ -591,6 +643,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                             </button>
                         </div>
                     </div>
+                </div>
+            )}
+            {/* Phase 56: Toast Notification */}
+            {toastMessage && (
+                <div className="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-gray-900 border border-gray-700 text-white text-sm font-bold rounded-full shadow-2xl z-[200] animate-in slide-in-from-bottom-5">
+                    {toastMessage}
                 </div>
             )}
         </div>
