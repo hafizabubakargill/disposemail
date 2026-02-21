@@ -1,0 +1,31 @@
+{
+    "Navbar": {
+        "home": "Home",
+        "features": "Features",
+        "blog": "Blog",
+        "faq": "FAQ",
+        "contact": "Contact"
+    },
+    "Hero": {
+        "title": "Your Privacy, <br></br><span>Disposable.</span>",
+        "subtitle": "Instantly generated, secure temporary email for anonymous browsing. <br></br>No registration. No tracking. Just privacy."
+    },
+    "Inbox": {
+        "title": "Inbox",
+        "waiting": "Waiting for your first email...",
+        "monitoring": "Secure Real-time Monitoring Active",
+        "burn": "Burn",
+        "burn_tooltip": "Destroy this inbox",
+        "sync": "Sync",
+        "sync_tooltip": "Rescue missing emails",
+        "block": "Block",
+        "unread": "Unread",
+        "code": "Code",
+        "close": "Close"
+    },
+    "Footer": {
+        "about": "About Us",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
+    }
+}

@@ -293,6 +293,9 @@ self.__SERVER_FILES_MANIFEST={
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.js",
     "turbopack": {
+      "resolveAlias": {
+        "next-intl/config": "./i18n.ts"
+      },
       "root": "/Users/abubakargill/Downloads/Anti Gravity/Project 1"
     },
     "distDirRoot": ".next"

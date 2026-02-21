@@ -1,0 +1,32 @@
+{
+    "Navbar": {
+        "home": "首页",
+        "features": "特性",
+        "blog": "博客",
+        "faq": "常见问题",
+        "contact": "联系我们"
+    },
+    "Hero": {
+        "title": "即时、安全且匿名的临时邮箱",
+        "subtitle": "使用 DisposeMail 保护您的真实收件箱免受垃圾邮件和网络钓鱼的侵害。",
+        "your_address_label": "您的安全地址："
+    },
+    "Inbox": {
+        "title": "收件箱",
+        "waiting": "等待您的第一封邮件...",
+        "monitoring": "安全实时监控已启用",
+        "burn": "销毁",
+        "burn_tooltip": "销毁此收件箱",
+        "sync": "同步",
+        "sync_tooltip": "恢复丢失的邮件",
+        "block": "屏蔽",
+        "unread": "未读",
+        "code": "代码",
+        "close": "关闭"
+    },
+    "Footer": {
+        "about": "关于我们",
+        "privacy": "隐私政策",
+        "terms": "服务条款"
+    }
+}

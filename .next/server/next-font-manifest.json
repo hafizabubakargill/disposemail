@@ -1,33 +1,30 @@
 {
   "app": {
-    "[project]/app/_not-found/page": [
+    "[project]/app/[locale]/about/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/about/page": [
+    "[project]/app/[locale]/api-docs/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/api-docs/page": [
+    "[project]/app/[locale]/blog/[slug]/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/blog/[slug]/page": [
+    "[project]/app/[locale]/blog/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/blog/page": [
+    "[project]/app/[locale]/contact/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/contact/page": [
+    "[project]/app/[locale]/faq/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/faq/page": [
+    "[project]/app/[locale]/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/page": [
+    "[project]/app/[locale]/privacy/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/app/privacy/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/app/terms/page": [
+    "[project]/app/[locale]/terms/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ]
   },

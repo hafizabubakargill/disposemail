@@ -1,16 +1,16 @@
 {
+  "/[locale]/about/page": "app/[locale]/about/page.js",
+  "/[locale]/api-docs/page": "app/[locale]/api-docs/page.js",
+  "/[locale]/blog/[slug]/page": "app/[locale]/blog/[slug]/page.js",
+  "/[locale]/blog/page": "app/[locale]/blog/page.js",
+  "/[locale]/contact/page": "app/[locale]/contact/page.js",
+  "/[locale]/faq/page": "app/[locale]/faq/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/privacy/page": "app/[locale]/privacy/page.js",
+  "/[locale]/terms/page": "app/[locale]/terms/page.js",
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/about/page": "app/about/page.js",
-  "/api-docs/page": "app/api-docs/page.js",
   "/api/contact/route": "app/api/contact/route.js",
-  "/blog/[slug]/page": "app/blog/[slug]/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/faq/page": "app/faq/page.js",
   "/icon.svg/route": "app/icon.svg/route.js",
-  "/page": "app/page.js",
-  "/privacy/page": "app/privacy/page.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/terms/page": "app/terms/page.js"
+  "/sitemap.xml/route": "app/sitemap.xml/route.js"
 }

@@ -1,0 +1,31 @@
+{
+  "sorted_middleware": [],
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/node_modules_next_dist_esm_build_templates_edge-wrapper_3b93bb62.js",
+        "server/edge/chunks/[root-of-the-server]__d803cd56._.js",
+        "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_ea1ac715.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/((?!api|_next|_vercel|.*\\..*).*){(\\\\.json)}?",
+          "originalSource": "/((?!api|_next|_vercel|.*\\..*).*)"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "disposemail-v1",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "fYyQwfpi2JbaVJeGD5dCeZ6mMNgog6CmVNGLdkG8mn0=",
+        "__NEXT_PREVIEW_MODE_ID": "765b2d4cfc1375e37076d3ff00a639fa",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "48f89461b8ff835bb45d084a9c7f671265f12d0080a4e0615fbdfb613f58f1b4",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "965e173e1264d990a6928990ca0ffc71ce8bc8a202fa58a2e9ea376e4da77b46"
+      }
+    }
+  },
+  "instrumentation": null,
+  "functions": {}
+}

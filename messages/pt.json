@@ -1,0 +1,32 @@
+{
+    "Navbar": {
+        "home": "Início",
+        "features": "Recursos",
+        "blog": "Blog",
+        "faq": "Perguntas Frequentes",
+        "contact": "Contato"
+    },
+    "Hero": {
+        "title": "E-mail Descartável Instantâneo, Seguro e Anônimo",
+        "subtitle": "Proteja sua caixa de entrada contra spam, hackers e phishing com o DisposeMail.",
+        "your_address_label": "Seu Endereço Seguro:"
+    },
+    "Inbox": {
+        "title": "Caixa de Entrada",
+        "waiting": "Aguardando seu primeiro e-mail...",
+        "monitoring": "Monitoramento em tempo real ativo",
+        "burn": "Destruir",
+        "burn_tooltip": "Destruir esta caixa de entrada",
+        "sync": "Sincronizar",
+        "sync_tooltip": "Resgatar e-mails perdidos",
+        "block": "Bloquear",
+        "unread": "Não lido",
+        "code": "Código",
+        "close": "Fechar"
+    },
+    "Footer": {
+        "about": "Sobre Nós",
+        "privacy": "Política de Privacidade",
+        "terms": "Termos de Serviço"
+    }
+}

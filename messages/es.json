@@ -1,0 +1,32 @@
+{
+    "Navbar": {
+        "home": "Inicio",
+        "features": "Características",
+        "blog": "Blog",
+        "faq": "Preguntas Frecuentes",
+        "contact": "Contacto"
+    },
+    "Hero": {
+        "title": "Correo Electrónico Desechable Instantáneo, Seguro y Anónimo",
+        "subtitle": "Protege tu buzón real de spam, hackeos y phishing con DisposeMail.",
+        "your_address_label": "Tu Dirección Segura:"
+    },
+    "Inbox": {
+        "title": "Bandeja de entrada",
+        "waiting": "Esperando tu primer correo...",
+        "monitoring": "Monitoreo seguro en tiempo real activo",
+        "burn": "Destruir",
+        "burn_tooltip": "Destruir este buzón",
+        "sync": "Sincronizar",
+        "sync_tooltip": "Rescatar correos perdidos",
+        "block": "Bloquear",
+        "unread": "No leído",
+        "code": "Código",
+        "close": "Cerrar"
+    },
+    "Footer": {
+        "about": "Sobre Nosotros",
+        "privacy": "Política de Privacidad",
+        "terms": "Términos de Servicio"
+    }
+}

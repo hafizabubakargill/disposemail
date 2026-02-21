@@ -1,8 +1,10 @@
 'use client';
 
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 
 export function Footer() {
+    const t = useTranslations('Footer');
     return (
         <footer className="w-full bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-[#1f1f1f] py-12 px-6 mt-auto">
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
@@ -20,8 +22,8 @@ export function Footer() {
                 <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">
                     <Link href="/api-docs" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">API</Link>
                     <Link href="/faq" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">FAQ</Link>
-                    <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link>
-                    <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Terms of Service</Link>
+                    <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('privacy')}</Link>
+                    <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('terms')}</Link>
                 </div>
             </div>
         </footer>

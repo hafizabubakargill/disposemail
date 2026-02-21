@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import io, { Socket } from 'socket.io-client';
+import { useCallback, useEffect, useState, useRef } from "react";
+import { io } from "socket.io-client";
+import { useTranslations } from 'next-intl';
 
-interface Email {
+export interface Email {
     id: string;
     from_address: string;
     subject: string;
@@ -21,6 +22,7 @@ interface Email {
 }
 
 export default function Inbox({ emailAddress }: { emailAddress: string }) {
+    const t = useTranslations('Inbox');
     const [emails, setEmails] = useState<Email[]>([]);
     const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
     const [isConnected, setIsConnected] = useState(false);
@@ -352,7 +354,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             <div className="flex flex-row justify-between items-center mb-6 gap-4 border-b border-gray-100 dark:border-[#222] pb-6">
                 <div className="flex items-center gap-3">
                     <h2 className="font-bold text-xl text-gray-900 dark:text-gray-100 flex items-center gap-2">
-                        Inbox ({emails.length})
+                        {t('title')} ({emails.length})
                         <div className="flex items-center ml-2">
                             {isConnected ? (
                                 <div className="flex items-center px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 text-[10px] font-black shadow-[0_0_15px_rgba(34,197,94,0.3)]">
@@ -376,8 +378,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         aria-label="Burn Inbox"
                     >
                         <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                        <span className="hidden sm:inline text-red-800 dark:text-red-300 font-bold">Burn</span>
-                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Destroy this inbox</div>
+                        <span className="hidden sm:inline text-red-800 dark:text-red-300 font-bold">{t('burn')}</span>
+                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('burn_tooltip')}</div>
                     </button>
 
                     <button
@@ -388,8 +390,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
-                        <span className="hidden sm:inline font-bold text-blue-800 dark:text-blue-300">Sync</span>
-                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Rescue missing emails</div>
+                        <span className="hidden sm:inline font-bold text-blue-800 dark:text-blue-300">{t('sync')}</span>
+                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('sync_tooltip')}</div>
                     </button>
                 </div>
             </div>
@@ -402,8 +404,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                             <div className="w-16 h-16 mb-6 rounded-full bg-gray-50 dark:bg-[#161616] flex items-center justify-center animate-pulse border border-gray-100 dark:border-[#222]">
                                 <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
-                            <p className="text-base font-bold text-gray-900 dark:text-gray-100">Waiting for your first email...</p>
-                            <p className="text-xs text-gray-700 dark:text-gray-300 mt-2 uppercase tracking-widest font-black">Secure Real-time Monitoring Active</p>
+                            <p className="text-base font-bold text-gray-900 dark:text-gray-100">{t('waiting')}</p>
+                            <p className="text-xs text-gray-700 dark:text-gray-300 mt-2 uppercase tracking-widest font-black">{t('monitoring')}</p>
                         </div>
                     ) : (
                         emails.map(email => (
@@ -480,8 +482,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                         aria-label="Block Sender"
                                     >
                                         <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
-                                        <span className="hidden md:inline text-sm font-bold">Block</span>
-                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Block Sender</div>
+                                        <span className="hidden md:inline text-sm font-bold">{t('block')}</span>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('block')}</div>
                                     </button>
                                     <button
                                         onClick={() => handleMarkAsUnread(selectedEmail)}
@@ -489,8 +491,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                         aria-label="Mark as Unread"
                                     >
                                         <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                        <span className="hidden md:inline text-sm font-bold">Unread</span>
-                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Mark Unread</div>
+                                        <span className="hidden md:inline text-sm font-bold">{t('unread')}</span>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('unread')}</div>
                                     </button>
                                     <button
                                         onClick={() => setShowRawSource(true)}
@@ -498,8 +500,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                         aria-label="View Source"
                                     >
                                         <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                                        <span className="hidden md:inline text-sm font-bold">Code</span>
-                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">View Code</div>
+                                        <span className="hidden md:inline text-sm font-bold">{t('code')}</span>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('code')}</div>
                                     </button>
                                     <button
                                         onClick={() => setShowMobileContent(false)}
@@ -507,8 +509,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                         aria-label="Close"
                                     >
                                         <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                        <span className="hidden md:inline text-sm font-bold">Close</span>
-                                        <div className="md:hidden absolute top-full right-0 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Close Message</div>
+                                        <span className="hidden md:inline text-sm font-bold">{t('close')}</span>
+                                        <div className="md:hidden absolute top-full right-0 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('close')}</div>
                                     </button>
                                 </div>
                             </div>

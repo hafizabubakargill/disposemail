@@ -1,0 +1,3 @@
+module.exports=[62234,a=>{a.v({Navbar:{home:"Главная",features:"Функции",blog:"Блог",faq:"ЧАВО",contact:"Контакты"},Hero:{title:"Мгновенная, безопасная и анонимная одноразовая почта",subtitle:"Защитите свой реальный ящик от спама и фишинга с помощью DisposeMail.",your_address_label:"Ваш безопасный адрес:"},Inbox:{title:"Входящие",waiting:"Ожидание первого письма...",monitoring:"Активен безопасный мониторинг",burn:"Уничтожить",burn_tooltip:"Уничтожить этот ящик",sync:"Синхронизация",sync_tooltip:"Восстановить письма",block:"Блокировать",unread:"Не прочитано",code:"Код",close:"Закрыть"},Footer:{about:"О нас",privacy:"Политика Конфиденциальности",terms:"Условия Использования"}})}];
+
+//# sourceMappingURL=messages_ru_json_7cc162e8._.js.map

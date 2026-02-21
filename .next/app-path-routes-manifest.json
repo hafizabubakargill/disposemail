@@ -1,16 +1,16 @@
 {
+  "/[locale]/about/page": "/[locale]/about",
+  "/[locale]/api-docs/page": "/[locale]/api-docs",
+  "/[locale]/blog/[slug]/page": "/[locale]/blog/[slug]",
+  "/[locale]/blog/page": "/[locale]/blog",
+  "/[locale]/contact/page": "/[locale]/contact",
+  "/[locale]/faq/page": "/[locale]/faq",
+  "/[locale]/page": "/[locale]",
+  "/[locale]/privacy/page": "/[locale]/privacy",
+  "/[locale]/terms/page": "/[locale]/terms",
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
-  "/about/page": "/about",
-  "/api-docs/page": "/api-docs",
   "/api/contact/route": "/api/contact",
-  "/blog/[slug]/page": "/blog/[slug]",
-  "/blog/page": "/blog",
-  "/contact/page": "/contact",
-  "/faq/page": "/faq",
   "/icon.svg/route": "/icon.svg",
-  "/page": "/",
-  "/privacy/page": "/privacy",
-  "/sitemap.xml/route": "/sitemap.xml",
-  "/terms/page": "/terms"
+  "/sitemap.xml/route": "/sitemap.xml"
 }
