@@ -18,7 +18,6 @@ export function Navbar() {
                 </div>
                 <div className="flex items-center gap-2">
                     <span className="font-bold text-xl tracking-tight text-gray-900 dark:text-gray-100">DisposeMail</span>
-                    <span className="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 text-[10px] font-black uppercase">v1.0</span>
                 </div>
             </Link>
 
@@ -28,6 +27,7 @@ export function Navbar() {
                     <Link href="/" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('home')}</Link>
                     <Link href="/about" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('about', { fallback: 'About' })}</Link>
                     <Link href="/blog" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('blog')}</Link>
+                    <Link href="/faq" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('faq')}</Link>
                     <Link href="/contact" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('contact')}</Link>
                 </div>
                 <div className="flex items-center gap-2">
@@ -59,6 +59,7 @@ export function Navbar() {
                     <Link href="/" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('home')}</Link>
                     <Link href="/about" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('about', { fallback: 'About Us' })}</Link>
                     <Link href="/blog" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('blog')}</Link>
+                    <Link href="/faq" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('faq')}</Link>
                     <Link href="/contact" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('contact')}</Link>
                 </div>
             )}

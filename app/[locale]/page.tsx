@@ -10,6 +10,12 @@ import { useTranslations } from 'next-intl';
 
 export default function Home() {
     const t = useTranslations('Hero');
+    const tf = useTranslations('Features');
+    const tfaq = useTranslations('FAQ');
+    const ts = useTranslations('Steps');
+    const tuc = useTranslations('UseCases');
+    const twhy = useTranslations('Why');
+    const tb = useTranslations('Blog');
     const [email, setEmail] = useState<string | null>(null);
     const [copied, setCopied] = useState(false);
     const [isCustom, setIsCustom] = useState(false);
@@ -133,7 +139,7 @@ export default function Home() {
             <div className="w-full max-w-4xl mx-auto px-4 mt-8 md:mt-20 z-10 text-center">
                 <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-200 bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-500/20 text-xs font-mono mb-6 shadow-sm">
                     <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mr-2 animate-pulse"></span>
-                    END-TO-END ENCRYPTED
+                    {t('encrypted')}
                 </div>
 
                 <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-500 dark:from-white dark:to-gray-500">
@@ -157,7 +163,7 @@ export default function Home() {
                             onClick={() => setIsCustom(!isCustom)}
                             className={`text-[10px] md:text-xs px-6 py-2.5 rounded-full transition-all font-black uppercase tracking-widest ${isCustom ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 bg-gray-50 dark:bg-[#161616]'}`}
                         >
-                            {isCustom ? 'Custom User: Active' : 'Personalize Address'}
+                            {isCustom ? t('custom_active') : t('personalize')}
                         </button>
 
                         {isCustom && (
@@ -166,7 +172,7 @@ export default function Home() {
                                     id="custom-prefix"
                                     name="custom-prefix"
                                     type="text"
-                                    placeholder="enter-name..."
+                                    placeholder={t('enter_name')}
                                     value={customPrefix}
                                     onChange={(e) => setCustomPrefix(e.target.value)}
                                     className="bg-transparent border-none outline-none text-xs text-gray-900 dark:text-gray-200 w-28 md:w-40 px-4 py-2 font-bold placeholder-gray-400"
@@ -177,7 +183,7 @@ export default function Home() {
                                     type="submit"
                                     className="mr-1 bg-blue-600 border border-blue-500 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-lg"
                                 >
-                                    CREATE
+                                    {t('create')}
                                 </button>
                             </form>
                         )}
@@ -214,22 +220,22 @@ export default function Home() {
                                 {copied ? (
                                     <>
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7"></path></svg>
-                                        <span className="hidden md:inline">Copied</span>
+                                        <span className="hidden md:inline">{t('copied')}</span>
                                     </>
                                 ) : (
                                     <>
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 5H6a2 2 0 002-2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                                        <span className="text-sm">Copy</span>
+                                        <span className="text-sm">{t('copy')}</span>
                                     </>
                                 )}
                             </button>
                             <button
                                 onClick={handleRefresh}
                                 className="bg-gray-100 dark:bg-[#222] hover:bg-gray-200 dark:hover:bg-[#333] text-gray-900 dark:text-white py-3 px-4 md:px-5 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 flex-1 md:flex-none"
-                                title="Generate New Address"
+                                title={t('new_tooltip')}
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                                <span className="text-sm font-semibold">New</span>
+                                <span className="text-sm font-semibold">{t('new')}</span>
                             </button>
                             <button
                                 onClick={() => setShowQR(!showQR)}
@@ -237,7 +243,7 @@ export default function Home() {
                                 aria-label="Show QR Code"
                             >
                                 <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-[100] pointer-events-none">Scan QR code</div>
+                                <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-[100] pointer-events-none">{t('scan_qr')}</div>
                             </button>
                         </div>
                     </div>
@@ -253,7 +259,7 @@ export default function Home() {
                                     className="w-40 h-40"
                                     onLoad={() => console.log('QR Loaded')}
                                 />
-                                <span className="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-widest font-bold">Scan to Share Address</span>
+                                <span className="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-widest font-bold">{t('scan_qr')}</span>
                             </div>
                         </div>
                     )}
@@ -262,7 +268,7 @@ export default function Home() {
                     <div className="mt-4 px-4">
                         <div className="flex justify-between items-center mb-1 text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500">
                             <span className="flex items-center gap-1.5 font-bold">
-                                Inbox Expiring in
+                                {t('expiring')}
                             </span>
                             <span className="text-blue-500 font-black">{formatTime(timeLeft)}</span>
                         </div>
@@ -276,14 +282,14 @@ export default function Home() {
                 </div>
 
                 <p className="text-gray-600 text-sm mb-8 dark:text-gray-300">
-                    Emails auto-delete after 1 hour. <a href="/faq" className="text-blue-700 dark:text-blue-400 cursor-pointer hover:underline font-bold underline underline-offset-4" aria-label="Learn more about email expiration">Learn more about expiration</a>
+                    {t('auto_delete')} <a href="/faq" className="text-blue-700 dark:text-blue-400 cursor-pointer hover:underline font-bold underline underline-offset-4" aria-label="Learn more about email expiration">{t('learn_more')}</a>
                 </p>
 
                 {/* Ad Banner (Top) - Hidden in Production until active */}
                 {process.env.NODE_ENV === 'development' && (
                     <div className="max-w-2xl mx-auto mb-16 px-4">
                         <div className="bg-white dark:bg-[#111] border border-dashed border-gray-200 dark:border-[#222] rounded-xl p-4 min-h-[100px] flex items-center justify-center">
-                            <span className="text-xs text-gray-400 dark:text-gray-600 uppercase tracking-widest">Ad Placement Area</span>
+                            <span className="text-xs text-gray-400 dark:text-gray-600 uppercase tracking-widest">{t('ad_area')}</span>
                         </div>
                     </div>
                 )}
@@ -296,28 +302,28 @@ export default function Home() {
 
             {/* --- AD VALUE: FEATURES GRID --- */}
             <div className="w-full max-w-5xl mx-auto px-6 py-20 border-t border-gray-100 dark:border-[#222]">
-                <h2 className="text-3xl font-black tracking-tighter text-center mb-12 text-gray-900 dark:text-white">Enterprise-Grade Architecture</h2>
+                <h2 className="text-3xl font-black tracking-tighter text-center mb-12 text-gray-900 dark:text-white">{tf('title')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="p-6 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#222]">
                         <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mb-4 text-white">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         </div>
-                        <h3 className="font-bold text-lg mb-2">Real-Time Sockets</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">No refreshing needed. Emails are pushed to your browser instantly via secure WebSockets.</p>
+                        <h3 className="font-bold text-lg mb-2">{tf('sockets_title')}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{tf('sockets_desc')}</p>
                     </div>
                     <div className="p-6 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#222]">
                         <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center mb-4 text-white">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                         </div>
-                        <h3 className="font-bold text-lg mb-2">TLS Encryption</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Every connection is secured with industry-standard TLS encryption to prevent eavesdropping.</p>
+                        <h3 className="font-bold text-lg mb-2">{tf('tls_title')}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{tf('tls_desc')}</p>
                     </div>
                     <div className="p-6 rounded-3xl bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#222]">
                         <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-4 text-white">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                         </div>
-                        <h3 className="font-bold text-lg mb-2">Multi-Domain</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Bypass filters with our rotating list of premium domains and subdomains.</p>
+                        <h3 className="font-bold text-lg mb-2">{tf('domain_title')}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{tf('domain_desc')}</p>
                     </div>
                 </div>
             </div>
@@ -328,34 +334,34 @@ export default function Home() {
                     {/* Why DisposeMail? */}
                     <div className="space-y-6">
                         <h2 className="text-3xl font-black tracking-tighter text-gray-900 dark:text-gray-100">
-                            Secure your Digital Life<span className="text-blue-700 dark:text-blue-400">.</span>
+                            {tf('secure_life')}<span className="text-blue-700 dark:text-blue-400">.</span>
                         </h2>
                         <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
-                            DisposeMail provides instant, temporary email addresses to protect your primary inbox from spam, trackers, and data breaches. Our "Zero-Loss" architecture ensures your trial registrations and verification codes arrive with 100% reliability.
+                            {tf('secure_desc')}
                         </p>
                         <div className="grid grid-cols-2 gap-4 text-center">
                             <div className="p-4 rounded-2xl bg-blue-100 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700">
-                                <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-1">Privacy First</h3>
-                                <p className="text-[10px] text-gray-700 dark:text-gray-300 uppercase font-black">No cookies, no logs.</p>
+                                <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-1">{tf('privacy_first')}</h3>
+                                <p className="text-[10px] text-gray-700 dark:text-gray-300 uppercase font-black">{tf('no_logs')}</p>
                             </div>
                             <div className="p-4 rounded-2xl bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700">
-                                <h3 className="font-bold text-green-900 dark:text-green-300 mb-1">Zero Cost</h3>
-                                <p className="text-xs text-center font-bold text-green-800 dark:text-green-200">100% FREE FOREVER.</p>
+                                <h3 className="font-bold text-green-900 dark:text-green-300 mb-1">{tf('zero_cost')}</h3>
+                                <p className="text-xs text-center font-bold text-green-800 dark:text-green-200">{tf('free_forever')}</p>
                             </div>
                         </div>
                     </div>
 
                     {/* FAQ Quick Links */}
                     <div className="space-y-8">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-widest text-[11px]">Frequently Asked Questions</h3>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-widest text-[11px]">{tfaq('homepage_faq')}</h3>
                         <div className="space-y-6">
                             <div>
-                                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">How long do emails last?</h4>
-                                <p className="text-sm text-gray-500">Your address and all received emails are automatically purged after 60 minutes for maximum security.</p>
+                                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">{tfaq('q1')}</h4>
+                                <p className="text-sm text-gray-500">{tfaq('a1')}</p>
                             </div>
                             <div>
-                                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">Is it free to use?</h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">Yes, DisposeMail is a forever-free tool powered by high-quality ads to keep our infrastructure growing.</p>
+                                <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">{tfaq('q2')}</h4>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">{tfaq('a2')}</p>
                             </div>
                         </div>
                     </div>
@@ -365,18 +371,18 @@ export default function Home() {
                 <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">1</div>
-                        <h3 className="font-bold text-lg mb-2">Generate</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Hit 'New' to get a random address or set your own custom name.</p>
+                        <h3 className="font-bold text-lg mb-2">{ts('step1_title')}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{ts('step1_desc')}</p>
                     </div>
                     <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">2</div>
-                        <h3 className="font-bold text-lg mb-2">Register</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Use your temporary mail on any website, trial, or newsletter.</p>
+                        <h3 className="font-bold text-lg mb-2">{ts('step2_title')}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{ts('step2_desc')}</p>
                     </div>
                     <div className="flex flex-col items-center text-center p-8 rounded-3xl bg-gray-50/50 dark:bg-[#111] border border-gray-100 dark:border-[#222]">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-black mb-6 shadow-xl shadow-blue-600/20">3</div>
-                        <h3 className="font-bold text-lg mb-2">Receive</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Watch emails arrive in real-time. We parse full HTML and attachments.</p>
+                        <h3 className="font-bold text-lg mb-2">{ts('step3_title')}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{ts('step3_desc')}</p>
                     </div>
                 </div>
             </div>
@@ -384,33 +390,33 @@ export default function Home() {
             {/* --- AD VALUE: USE CASES --- */}
             <div className="w-full bg-white dark:bg-[#080808] py-20 px-6 border-t border-gray-100 dark:border-[#222]">
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-black tracking-tighter mb-8 text-center text-gray-900 dark:text-white">Common Use Cases</h2>
+                    <h2 className="text-3xl font-black tracking-tighter mb-8 text-center text-gray-900 dark:text-white uppercase">{tuc('title')}</h2>
                     <div className="space-y-4">
                         <details className="group p-4 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222] open:bg-blue-50 dark:open:bg-blue-900/10 transition-colors">
                             <summary className="font-bold cursor-pointer list-none flex justify-between items-center bg-transparent text-gray-900 dark:text-gray-100">
-                                <span>1. Software Testing & QA</span>
+                                <span>{tuc('case1_title')}</span>
                                 <span className="transition-transform group-open:rotate-180">▼</span>
                             </summary>
                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
-                                Developers use specific disposable addresses to test user registration flows without cluttering real databases or needing to create thousands of Gmail accounts.
+                                {tuc('case1_desc')}
                             </p>
                         </details>
                         <details className="group p-4 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222] open:bg-blue-50 dark:open:bg-blue-900/10 transition-colors">
                             <summary className="font-bold cursor-pointer list-none flex justify-between items-center bg-transparent text-gray-900 dark:text-gray-100">
-                                <span>2. E-Commerce Discounts</span>
+                                <span>{tuc('case2_title')}</span>
                                 <span className="transition-transform group-open:rotate-180">▼</span>
                             </summary>
                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
-                                Sign up for "First Order" coupons on shopping sites without committing your primary email to their daily marketing newsletters.
+                                {tuc('case2_desc')}
                             </p>
                         </details>
                         <details className="group p-4 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222] open:bg-blue-50 dark:open:bg-blue-900/10 transition-colors">
                             <summary className="font-bold cursor-pointer list-none flex justify-between items-center bg-transparent text-gray-900 dark:text-gray-100">
-                                <span>3. Protecting Privacy in Forums</span>
+                                <span>{tuc('case3_title')}</span>
                                 <span className="transition-transform group-open:rotate-180">▼</span>
                             </summary>
                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
-                                Register for online communities or download whitepapers while keeping your personal identity secure and anonymous.
+                                {tuc('case3_desc')}
                             </p>
                         </details>
                     </div>
@@ -421,8 +427,8 @@ export default function Home() {
             <div className="w-full bg-gray-50/50 dark:bg-[#0a0a0a]/50 py-24 px-6 border-y border-gray-100 dark:border-[#111]">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Why Use a Disposable Email?</h2>
-                        <p className="text-gray-500 max-w-2xl mx-auto">Discover how DisposeMail protects your digital footprint and keeps your data away from unwanted trackers.</p>
+                        <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">{twhy('title')}</h2>
+                        <p className="text-gray-500 max-w-2xl mx-auto">{twhy('subtitle')}</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -430,29 +436,29 @@ export default function Home() {
                             <div className="w-12 h-12 bg-blue-600/10 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                             </div>
-                            <h3 className="font-black text-lg mb-3">Spam Prevention</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Stop giving your real email to every website. Use DisposeMail for one-time registrations and keep your primary inbox clean of marketing clutter.</p>
+                            <h3 className="font-black text-lg mb-3">{twhy('item1_title')}</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{twhy('item1_desc')}</p>
                         </div>
                         <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
                             <div className="w-12 h-12 bg-purple-600/10 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                             </div>
-                            <h3 className="font-black text-lg mb-3">Identity Security</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Data breaches happen every day. By using a temporary address, your real identity is never linked to the services you trial, keeping your credentials safe from hackers.</p>
+                            <h3 className="font-black text-lg mb-3">{twhy('item2_title')}</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{twhy('item2_desc')}</p>
                         </div>
                         <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
                             <div className="w-12 h-12 bg-green-600/10 text-green-600 rounded-2xl flex items-center justify-center mb-6">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             </div>
-                            <h3 className="font-black text-lg mb-3">Instant Access</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">No confirmation, no setup, no passwords. Just hit 'New' and your inbox is ready to receive verification codes and activation links in milliseconds.</p>
+                            <h3 className="font-black text-lg mb-3">{twhy('item3_title')}</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{twhy('item3_desc')}</p>
                         </div>
                         <div className="p-8 rounded-[32px] bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] hover:scale-[1.02] transition-transform">
                             <div className="w-12 h-12 bg-orange-600/10 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                             </div>
-                            <h3 className="font-black text-lg mb-3">Multiple Domains</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Switch between multiple high-reputation domains to bypass filters and sign-up restrictions that might block standard temporary email providers.</p>
+                            <h3 className="font-black text-lg mb-3">{twhy('item4_title')}</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{twhy('item4_desc')}</p>
                         </div>
                     </div>
                 </div>
@@ -463,11 +469,11 @@ export default function Home() {
                 <div className="max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div className="max-w-xl text-left">
-                            <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Privacy Insights & News</h2>
-                            <p className="text-gray-700 dark:text-gray-400">Stay updated with the latest trends in digital security and email protection.</p>
+                            <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">{tb('title')}</h2>
+                            <p className="text-gray-700 dark:text-gray-400">{tb('subtitle')}</p>
                         </div>
                         <Link href="/blog" className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-[#111] text-gray-900 dark:text-gray-100 font-bold hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest text-[10px]">
-                            View all articles
+                            {tb('view_all')}
                         </Link>
                     </div>
 
@@ -494,7 +500,7 @@ export default function Home() {
                                         {post.title}
                                     </h3>
                                     <div className="flex items-center text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest mt-auto">
-                                        Read Article <svg className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                        {tb('read_more')} <svg className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                     </div>
                                 </div>
                             </Link>

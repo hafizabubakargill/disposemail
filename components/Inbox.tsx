@@ -27,14 +27,13 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
     const [isConnected, setIsConnected] = useState(false);
     const [showMobileContent, setShowMobileContent] = useState(false);
-    const [showRawSource, setShowRawSource] = useState(false); // Phase 36
-    const [showBurnConfirm, setShowBurnConfirm] = useState(false); // Phase 37
+    const [showRawSource, setShowRawSource] = useState(false);
+    const [showBurnConfirm, setShowBurnConfirm] = useState(false);
     const socketRef = useRef<any>(null);
-    const lastSyncRef = useRef<number>(0); // Phase 40: Debounce Sync
+    const lastSyncRef = useRef<number>(0);
     const [unreadCount, setUnreadCount] = useState(0);
     const [isTabActive, setIsTabActive] = useState(true);
 
-    // Phase 56: Toast feedback
     const [toastMessage, setToastMessage] = useState<string | null>(null);
 
     const showToast = (message: string) => {
@@ -42,7 +41,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         setTimeout(() => setToastMessage(null), 3000);
     };
 
-    // Phase 56: Sender Blocking
     const [blockedSenders, setBlockedSendersState] = useState<string[]>([]);
     const blockedSendersRef = useRef<string[]>([]);
     const [blockSenderConfirm, setBlockSenderConfirm] = useState<string | null>(null);
@@ -63,7 +61,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         blockedSendersRef.current = senders;
         localStorage.setItem(`blocked_senders_${emailAddress}`, JSON.stringify(senders));
 
-        // Remove currently blocked emails from view
         setEmails(prev => prev.filter(e => !senders.includes(e.from_address)));
         if (selectedEmail && senders.includes(selectedEmail.from_address)) {
             setSelectedEmail(null);
@@ -71,14 +68,10 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         }
     };
 
-    const handleBlockSender = (address: string) => {
-        setBlockSenderConfirm(address);
-    };
-
     const confirmBlockSender = () => {
         if (blockSenderConfirm) {
             setBlockedSenders([...blockedSendersRef.current, blockSenderConfirm]);
-            showToast(`Blocked sender: ${blockSenderConfirm}`);
+            showToast(`${t('block')} ${blockSenderConfirm}`);
         }
         setBlockSenderConfirm(null);
     };
@@ -90,7 +83,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             const gain = context.createGain();
 
             oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(880, context.currentTime); // A5 note
+            oscillator.frequency.setValueAtTime(880, context.currentTime);
             oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 0.1);
 
             gain.gain.setValueAtTime(0.3, context.currentTime);
@@ -139,13 +132,11 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
     const handleSelectEmail = (email: Email) => {
         setSelectedEmail(email);
-        setShowMobileContent(true); // Switch view on mobile
+        setShowMobileContent(true);
 
-        // Mark as read immediately in UI
         if (!email.is_read) {
             setEmails(prev => prev.map(e => e.id === email.id ? { ...e, is_read: true } : e));
 
-            // Call API to persist
             fetch('/x-feed/emails/read', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -166,9 +157,8 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     };
 
     const handleSafetySync = () => {
-        setIsConnected(false); // Show syncing state
+        setIsConnected(false);
         const API_SECRET = "change_me_to_a_secure_secret";
-        // Use relative URL to work on any domain (disposemail.xyz, inveromail.info)
         fetch(`/sync-safety-net?secret=${API_SECRET}`)
             .then(res => res.json())
             .then(data => {
@@ -180,7 +170,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
     const fetchEmails = () => {
         fetch('/x-feed/emails?address=' + emailAddress, {
-            credentials: 'omit', // Bypass strict WAF/Cookie checks
+            credentials: 'omit',
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
             .then(res => res.ok ? res.json() : Promise.reject())
@@ -202,7 +192,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             .catch(err => console.debug('Sync blink:', err));
     };
 
-    // Update Title Flashing
     useEffect(() => {
         let interval: any;
         if (!isTabActive && unreadCount > 0) {
@@ -219,9 +208,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
     }, [isTabActive, unreadCount]);
 
     useEffect(() => {
-        // --- 1. THE NUCLEAR CACHE PURGE (Kill old workers) ---
         if ('serviceWorker' in navigator) {
-            // Defer to idle time to avoid blocking main thread (Fix requestIdleCallback warning)
             const registerSW = () => {
                 navigator.serviceWorker.getRegistrations().then(registrations => {
                     for (let registration of registrations) {
@@ -244,20 +231,17 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         requestNotificationPermission();
         fetchEmails();
 
-        // Optimized socket config for backgrounding
         socketRef.current = io({
             path: '/socket.io-live',
             reconnection: true,
             transports: ['websocket', 'polling'],
             secure: true,
-            rejectUnauthorized: false // Sometimes needed for self-signed or proxy setups
+            rejectUnauthorized: false
         });
 
         const socket = socketRef.current;
 
-        // Suppress connection errors to avoid console noise in PageSpeed
         socket.on('connect_error', (err: any) => {
-            // calculated silence
         });
 
         socket.on('connect', () => {
@@ -265,7 +249,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
             socket.emit('join-room', emailAddress);
             fetchEmails();
 
-            // Phase 40: Debounce Auto-Sync (Prevent spamming if socket flaps)
             const now = Date.now();
             if (now - lastSyncRef.current > 5000) {
                 lastSyncRef.current = now;
@@ -313,7 +296,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         };
     }, [emailAddress]);
 
-    // Body Scroll Lock for Modal
     useEffect(() => {
         if (selectedEmail && showMobileContent) {
             document.body.style.overflow = 'hidden';
@@ -328,14 +310,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
         };
     }, [selectedEmail, showMobileContent]);
 
-    // Request notification permission
     useEffect(() => {
         if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
             Notification.requestPermission();
         }
     }, []);
 
-    // POLLING FALLBACK (Increased frequency when disconnected)
     useEffect(() => {
         const interval = setInterval(() => {
             if (!isConnected) fetchEmails();
@@ -350,7 +330,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
     return (
         <div className="w-full max-w-5xl mx-auto mt-4 md:mt-8 px-4">
-            {/* Header / Info Row */}
             <div className="flex flex-row justify-between items-center mb-6 gap-4 border-b border-gray-100 dark:border-[#222] pb-6">
                 <div className="flex items-center gap-3">
                     <h2 className="font-bold text-xl text-gray-900 dark:text-gray-100 flex items-center gap-2">
@@ -396,7 +375,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                 </div>
             </div>
 
-            {/* Vertical Row Inbox List */}
             <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-3xl overflow-hidden shadow-2xl transition-all">
                 <div className="flex flex-col divide-y divide-gray-100 dark:divide-[#222]">
                     {emails.length === 0 ? (
@@ -413,10 +391,10 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 key={email.id}
                                 onClick={() => handleSelectEmail(email)}
                                 className={`group flex items-center justify-between p-4 md:p-6 transition-all cursor-pointer relative ${selectedEmail?.id === email.id
-                                    ? 'bg-transparent border-l-4 border-l-blue-600' // Phase 37: No bg, just border
+                                    ? 'bg-transparent border-l-4 border-l-blue-600'
                                     : !email.is_read
-                                        ? 'bg-blue-500/10' // Light blue for NEW/UNREAD
-                                        : 'bg-transparent hover:bg-gray-50 dark:hover:bg-[#151515]' // Read look (Transparent/Dark)
+                                        ? 'bg-blue-500/10'
+                                        : 'bg-transparent hover:bg-gray-50 dark:hover:bg-[#151515]'
                                     }`}
                             >
                                 <div className="flex items-center gap-4 flex-1 min-w-0">
@@ -457,15 +435,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                 </div>
             </div>
 
-            {/* FULL SCREEN MODAL / POPUP */}
             {selectedEmail && showMobileContent && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-8 animate-in fade-in duration-200 overflow-hidden">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowMobileContent(false)}></div>
                     <div className="bg-white dark:bg-[#0f0f0f] w-full max-w-4xl h-[100dvh] md:h-full md:max-h-[85vh] rounded-none md:rounded-3xl shadow-2xl relative flex flex-col border-none md:border border-gray-200 dark:border-[#222] overflow-hidden">
 
-                        {/* Modal Header */}
                         <div className="flex flex-col border-b border-gray-100 dark:border-[#222] bg-gray-50 dark:bg-[#141414] shrink-0 pt-safe-top">
-                            {/* Top Bar: Navigation & Close */}
                             <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-6">
                                 <button
                                     onClick={() => setShowMobileContent(false)}
@@ -515,7 +490,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 </div>
                             </div>
 
-                            {/* Subject & Sender Info */}
                             <div className="px-4 pb-4 md:px-8 md:pb-6">
                                 <h2 className="text-lg md:text-2xl font-black text-gray-900 dark:text-white mb-3 leading-snug break-words">
                                     {selectedEmail.subject}
@@ -534,7 +508,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                             </div>
                         </div>
 
-                        {/* Modal Content */}
                         <div className="flex-1 overflow-y-auto overflow-x-auto p-4 md:p-10 bg-white text-gray-900 email-content printable-area text-base md:text-lg leading-relaxed">
                             <div className="min-w-0 md:min-w-fit">
                                 {selectedEmail.html ? (
@@ -544,7 +517,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 )}
                             </div>
 
-                            {/* Attachments Section */}
                             {selectedEmail.attachments && selectedEmail.attachments.length > 0 && (
                                 <div className="mt-12 pt-8 border-t border-gray-100 dark:border-[#222]">
                                     <h4 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-6 flex items-center gap-2">
@@ -587,7 +559,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 </div>
                             )}
 
-                            {/* Affiliate Footer inside Modal */}
                             <div className="mt-12 p-6 bg-gray-50 dark:bg-[#161616] rounded-2xl border border-gray-100 dark:border-[#222]">
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
@@ -611,7 +582,6 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                     </div>
                 </div>
             )}
-            {/* RAW SOURCE MODAL */}
             {selectedEmail && showRawSource && (
                 <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-200">
                     <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setShowRawSource(false)}></div>
@@ -623,13 +593,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                             </button>
                         </div>
                         <div className="flex-1 overflow-auto p-4">
-                            <pre className="text-xs whitespace-pre-wrap">{selectedEmail.raw || "Raw source not available for this email."}</pre>
+                            <pre className="text-xs whitespace-pre-wrap">{selectedEmail.raw || t('no_raw')}</pre>
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* BURN CONFIRMATION MODAL */}
             {showBurnConfirm && (
                 <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-in fade-in duration-200">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowBurnConfirm(false)}></div>
@@ -638,9 +607,9 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                             <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                             </div>
-                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Are you sure?</h3>
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('are_you_sure')}</h3>
                             <p className="text-sm text-gray-500 dark:text-gray-400">
-                                This will delete this address and all emails forever. This action cannot be undone.
+                                {t('burn_confirm_desc')}
                             </p>
                         </div>
                         <div className="flex border-t border-gray-100 dark:border-[#333]">
@@ -648,21 +617,20 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 onClick={() => setShowBurnConfirm(false)}
                                 className="flex-1 py-3 text-sm font-bold text-gray-500 hover:bg-gray-50 dark:hover:bg-[#252525] transition-colors"
                             >
-                                Cancel
+                                {t('cancel')}
                             </button>
                             <div className="w-px bg-gray-100 dark:bg-[#333]"></div>
                             <button
                                 onClick={confirmBurn}
                                 className="flex-1 py-3 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                             >
-                                Burn
+                                {t('confirm_burn')}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* BLOCK SENDER CONFIRMATION MODAL */}
             {blockSenderConfirm && (
                 <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-in fade-in duration-200">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setBlockSenderConfirm(null)}></div>
@@ -671,9 +639,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                             <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
                             </div>
-                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Block Sender?</h3>
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('block_sender')}</h3>
                             <p className="text-sm text-gray-500 dark:text-gray-400">
-                                Future emails from <strong className="text-gray-900 dark:text-gray-200 break-all">{blockSenderConfirm}</strong> will be dropped silently for your current session.
+                                {t.rich('block_sender_desc', {
+                                    address: blockSenderConfirm,
+                                    strong: (chunks) => <strong className="text-gray-900 dark:text-gray-200 break-all">{chunks}</strong>
+                                })}
                             </p>
                         </div>
                         <div className="flex border-t border-gray-100 dark:border-[#333]">
@@ -681,21 +652,20 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                 onClick={() => setBlockSenderConfirm(null)}
                                 className="flex-1 py-3 text-sm font-bold text-gray-500 hover:bg-gray-50 dark:hover:bg-[#252525] transition-colors"
                             >
-                                Cancel
+                                {t('cancel')}
                             </button>
                             <div className="w-px bg-gray-100 dark:bg-[#333]"></div>
                             <button
                                 onClick={confirmBlockSender}
                                 className="flex-1 py-3 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                             >
-                                Block
+                                {t('block')}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* Phase 56: Toast Notification */}
             {toastMessage && (
                 <div className="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-gray-900 border border-gray-700 text-white text-sm font-bold rounded-full shadow-2xl z-[200] animate-in slide-in-from-bottom-5">
                     {toastMessage}

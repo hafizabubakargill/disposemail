@@ -1,21 +1,20 @@
+'use client';
+
 import { getSortedPosts } from "@/lib/blog";
 import Link from "next/link";
-
-export const metadata = {
-    title: "Official Blog - Privacy, Security & Tech Insights",
-    description: "Stay updated with the latest in digital privacy, spam protection, and the future of secure communication from the DisposeMail team.",
-};
+import { useTranslations } from 'next-intl';
 
 export default function BlogPage() {
+    const t = useTranslations('Blog');
     const posts = getSortedPosts();
     return (
         <div className="max-w-5xl mx-auto px-6 py-20">
             <div className="text-center mb-16">
                 <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">
-                    The Privacy Journal<span className="text-blue-600">.</span>
+                    {t('title')}<span className="text-blue-600">.</span>
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-                    Insights, guides, and updates on protecting your digital life in an increasingly tracked world.
+                    {t('subtitle')}
                 </p>
             </div>
 
@@ -50,7 +49,7 @@ export default function BlogPage() {
                                 {post.excerpt}
                             </p>
                             <div className="flex items-center text-blue-600 dark:text-blue-400 text-xs font-black uppercase tracking-widest">
-                                Read Article
+                                {t('read_more')}
                                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </div>
                         </div>
