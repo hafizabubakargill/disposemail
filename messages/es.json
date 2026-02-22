@@ -9,7 +9,7 @@
     "Hero": {
         "encrypted": "CIFRADO DE EXTREMO A EXTREMO",
         "title": "Tu Privacidad, <br></br><span>Desechable.</span>",
-        "subtitle": "Correo electrónico temporal seguro y generado al instante para navegación anónima. <br className=\"hidden md:block\"></br>Sin registro. Sin seguimiento. Solo privacidad."
+        "subtitle": "Correo electrónico temporal seguro y generado al instante para navegación anónima. <br />Sin registro. Sin seguimiento. Solo privacidad."
     },
     "Inbox": {
         "title": "Bandeja",
@@ -73,11 +73,6 @@
         "item3_desc": "Sin registros ni contraseñas. Tu bandeja está lista para recibir códigos en milisegundos.",
         "item4_title": "Múltiples Dominios",
         "item4_desc": "Cambia entre varios dominios para evitar restricciones de sitios que bloquean proveedores comunes."
-    },
-    "BlogSection": {
-        "title": "Seguridad y Noticias",
-        "subtitle": "Mantente al día con las últimas tendencias en seguridad digital.",
-        "view_all": "Ver todos los artículos"
     },
     "About": {
         "title": "Sobre DisposeMail",
@@ -192,14 +187,14 @@
         "copyright": "© 2026 DisposeMail. Seguro, anónimo, temporal."
     },
     "Blog": {
-        "title": "The Privacy Journal",
-        "subtitle": "Información, guías y actualizaciones sobre la protección de tu vida digital.",
-        "view_all": "Ver todos los artículos",
+        "title": "Seguridad y Noticias",
+        "subtitle": "Mantente al día con las últimas tendencias en seguridad digital.",
         "read_more": "Leer Artículo",
         "back_all": "Volver al Blog",
         "author_role": "Autor y Defensor de la Privacidad",
         "cta_title": "Protege tu bandeja de entrada hoy.",
         "cta_desc": "Deja de compartir tu correo real con cada sitio web. Crea tu primera dirección desechable en segundos.",
-        "cta_btn": "Generar Dirección Gratuita"
+        "cta_btn": "Generar Dirección Gratuita",
+        "view_all": "Ver todos los artículos"
     }
 }

@@ -9,7 +9,7 @@
     "Hero": {
         "encrypted": "端到端加密",
         "title": "您的隐私， <br></br><span>即刻销毁。</span>",
-        "subtitle": "即时生成的安全临时邮箱，为匿名浏览而生。<br className=\"hidden md:block\"></br>无需注册。拒绝追踪。唯有隐私。",
+        "subtitle": "即时生成的安全临时邮箱，为匿名浏览而生。<br />无需注册。拒绝追踪。唯有隐私。",
         "personalize": "个性化地址",
         "custom_active": "自定义用户：已激活",
         "enter_name": "输入名称...",
@@ -113,11 +113,6 @@
         "item4_title": "多个域名",
         "item4_desc": "在多个高信誉域名之间切换，绕过可能封锁标准临时邮箱提供商的限制。"
     },
-    "BlogSection": {
-        "title": "隐私洞察与新闻",
-        "subtitle": "关注数字安全和邮件保护的最新趋势。",
-        "view_all": "查看所有文章"
-    },
     "About": {
         "title": "关于 DisposeMail",
         "mission_title": "我们的使命",
@@ -207,12 +202,12 @@
     "Blog": {
         "title": "隐私洞察与新闻",
         "subtitle": "关注数字安全和邮件保护的最新趋势。",
-        "view_all": "查看所有文章",
         "read_more": "阅读文章",
         "back_all": "返回博客",
         "author_role": "作者与隐私倡导者",
         "cta_title": "今天就开始保护您的收件箱。",
         "cta_desc": "不要再向每个网站分享您的真实邮箱。只需几秒钟即可创建您的第一个临时地址。",
-        "cta_btn": "生成免费地址"
+        "cta_btn": "生成免费地址",
+        "view_all": "查看所有文章"
     }
 }

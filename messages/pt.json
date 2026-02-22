@@ -9,7 +9,7 @@
     "Hero": {
         "encrypted": "CRIPTOGRAFIA DE PONTA A PONTA",
         "title": "Sua Privacidade, <br></br><span>Descartável.</span>",
-        "subtitle": "E-mail temporário seguro e gerado instantaneamente para navegação anônima. <br className=\"hidden md:block\"></br>Sem registro. Sem rastreamento. Apenas privacidade."
+        "subtitle": "E-mail temporário seguro e gerado instantaneamente para navegação anônima. <br />Sem registro. Sem rastreamento. Apenas privacidade."
     },
     "Inbox": {
         "title": "Caixa de Entrada",
@@ -73,11 +73,6 @@
         "item3_desc": "Sem confirmação, sem senhas. Sua caixa está pronta para receber códigos em milissegundos.",
         "item4_title": "Múltiplos Domínios",
         "item4_desc": "Alterne entre vários domínios premium para evitar restrições de sites que bloqueiam provedores comuns."
-    },
-    "BlogSection": {
-        "title": "Segurança e Notícias",
-        "subtitle": "Fique atualizado com as últimas tendências em segurança digital.",
-        "view_all": "Ver todos os artigos"
     },
     "About": {
         "title": "Sobre o DisposeMail",
@@ -192,14 +187,14 @@
         "copyright": "© 2026 DisposeMail. Seguro, anônimo, temporário."
     },
     "Blog": {
-        "title": "The Privacy Journal",
-        "subtitle": "Informações, guias e atualizações sobre a proteção da sua vida digital.",
-        "view_all": "Ver todos os artigos",
+        "title": "Segurança e Notícias",
+        "subtitle": "Fique atualizado com as últimas tendências em segurança digital.",
         "read_more": "Ler Artigo",
-        "back_all": "Voltar ao Blog",
+        "back_all": "Volver ao Blog",
         "author_role": "Autor e Defensor da Privacidade",
         "cta_title": "Proteja sua caixa de entrada hoje.",
         "cta_desc": "Pare de compartilhar seu e-mail real com todos os sites. Crie seu primeiro endereço descartável em segundos.",
-        "cta_btn": "Gerar Endereço Gratuito"
+        "cta_btn": "Gerar Endereço Gratuito",
+        "view_all": "Ver todos os artigos"
     }
 }
