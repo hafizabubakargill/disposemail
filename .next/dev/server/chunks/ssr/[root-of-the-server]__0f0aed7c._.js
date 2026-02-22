@@ -180,8 +180,8 @@ const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$pr
 __turbopack_context__.s([
     "default",
     ()=>RootLayout,
-    "metadata",
-    ()=>metadata
+    "generateMetadata",
+    ()=>generateMetadata
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$inter_2fe1ab3d$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[next]/internal/font/google/inter_2fe1ab3d.js [app-rsc] (ecmascript)");
@@ -200,55 +200,62 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$intl
 ;
 ;
 ;
-const metadata = {
-    title: {
-        default: "DisposeMail - Secure Disposable Email",
-        template: "%s | DisposeMail"
-    },
-    description: "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable inbox.",
-    keywords: [
-        "disposable email",
-        "temporary email",
-        "temp mail",
-        "anonymous email",
-        "privacy",
-        "secure email",
-        "throwaway email"
-    ],
-    authors: [
-        {
-            name: "DisposeMail Team"
+async function generateMetadata({ params }) {
+    const { locale } = await params;
+    const baseUrl = "https://disposemail.xyz";
+    const path = locale === 'en' ? '' : `/${locale}`;
+    const canonical = `${baseUrl}${path}`;
+    return {
+        title: {
+            default: "DisposeMail - Secure Disposable Email",
+            template: "%s | DisposeMail"
+        },
+        description: "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable inbox.",
+        keywords: [
+            "disposable email",
+            "temporary email",
+            "temp mail",
+            "anonymous email",
+            "privacy",
+            "secure email",
+            "throwaway email"
+        ],
+        authors: [
+            {
+                name: "DisposeMail Team"
+            }
+        ],
+        creator: "DisposeMail",
+        openGraph: {
+            type: "website",
+            locale: locale === 'zh' ? 'zh_CN' : locale === 'en' ? 'en_US' : `${locale}_${locale.toUpperCase()}`,
+            url: canonical,
+            title: "DisposeMail - Secure Disposable Email",
+            description: "Instant, secure, and temporary email addresses for privacy protection.",
+            siteName: "DisposeMail"
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "DisposeMail - Secure Disposable Email",
+            description: "Protect your real inbox from spam with instant disposable email addresses."
+        },
+        robots: {
+            index: true,
+            follow: true
+        },
+        alternates: {
+            canonical: canonical,
+            languages: {
+                'en': `${baseUrl}`,
+                'es': `${baseUrl}/es`,
+                'pt': `${baseUrl}/pt`,
+                'ru': `${baseUrl}/ru`,
+                'zh': `${baseUrl}/zh`,
+                'x-default': baseUrl
+            }
         }
-    ],
-    creator: "DisposeMail",
-    openGraph: {
-        type: "website",
-        locale: "en_US",
-        url: "https://disposemail.xyz",
-        title: "DisposeMail - Secure Disposable Email",
-        description: "Instant, secure, and temporary email addresses for privacy protection.",
-        siteName: "DisposeMail"
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "DisposeMail - Secure Disposable Email",
-        description: "Protect your real inbox from spam with instant disposable email addresses."
-    },
-    robots: {
-        index: true,
-        follow: true
-    },
-    alternates: {
-        canonical: "https://disposemail.xyz",
-        languages: {
-            'en': 'https://disposemail.xyz/en',
-            'es': 'https://disposemail.xyz/es',
-            'pt': 'https://disposemail.xyz/pt',
-            'ru': 'https://disposemail.xyz/ru',
-            'zh': 'https://disposemail.xyz/zh'
-        }
-    }
-};
+    };
+}
 async function RootLayout({ children, params }) {
     const { locale } = await params;
     const messages = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$intl$2f$dist$2f$esm$2f$development$2f$server$2f$react$2d$server$2f$getMessages$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__getMessages$3e$__["getMessages"])();
@@ -264,7 +271,7 @@ async function RootLayout({ children, params }) {
                         type: "image/svg+xml"
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 69,
+                        lineNumber: 77,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("link", {
@@ -272,7 +279,7 @@ async function RootLayout({ children, params }) {
                         href: "/manifest.json"
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 70,
+                        lineNumber: 78,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -280,7 +287,7 @@ async function RootLayout({ children, params }) {
                         content: "#0a0a0a"
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 71,
+                        lineNumber: 79,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -288,7 +295,7 @@ async function RootLayout({ children, params }) {
                         content: "black-translucent"
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 73,
+                        lineNumber: 81,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -296,13 +303,13 @@ async function RootLayout({ children, params }) {
                         content: "yes"
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 74,
+                        lineNumber: 82,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/[locale]/layout.tsx",
-                lineNumber: 67,
+                lineNumber: 75,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("body", {
@@ -312,14 +319,14 @@ async function RootLayout({ children, params }) {
                         className: "fixed inset-0 bg-[url('/noise.svg')] opacity-5 pointer-events-none z-0"
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 78,
+                        lineNumber: 86,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-0"
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 79,
+                        lineNumber: 87,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$script$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -327,7 +334,7 @@ async function RootLayout({ children, params }) {
                         strategy: "lazyOnload"
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 82,
+                        lineNumber: 90,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$script$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -341,7 +348,7 @@ async function RootLayout({ children, params }) {
                     `
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 86,
+                        lineNumber: 94,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$intl$2f$dist$2f$esm$2f$development$2f$react$2d$server$2f$NextIntlClientProviderServer$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__NextIntlClientProvider$3e$__["NextIntlClientProvider"], {
@@ -356,7 +363,7 @@ async function RootLayout({ children, params }) {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Navbar$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Navbar"], {}, void 0, false, {
                                         fileName: "[project]/app/[locale]/layout.tsx",
-                                        lineNumber: 103,
+                                        lineNumber: 111,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -364,40 +371,40 @@ async function RootLayout({ children, params }) {
                                         children: children
                                     }, void 0, false, {
                                         fileName: "[project]/app/[locale]/layout.tsx",
-                                        lineNumber: 104,
+                                        lineNumber: 112,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Footer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Footer"], {}, void 0, false, {
                                         fileName: "[project]/app/[locale]/layout.tsx",
-                                        lineNumber: 107,
+                                        lineNumber: 115,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/[locale]/layout.tsx",
-                                lineNumber: 102,
+                                lineNumber: 110,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/[locale]/layout.tsx",
-                            lineNumber: 96,
+                            lineNumber: 104,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/[locale]/layout.tsx",
-                        lineNumber: 95,
+                        lineNumber: 103,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/[locale]/layout.tsx",
-                lineNumber: 76,
+                lineNumber: 84,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/[locale]/layout.tsx",
-        lineNumber: 66,
+        lineNumber: 74,
         columnNumber: 9
     }, this);
 }

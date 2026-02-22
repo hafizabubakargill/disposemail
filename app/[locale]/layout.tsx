@@ -14,43 +14,51 @@ const inter = Inter({
     variable: '--font-inter',
 });
 
-export const metadata: Metadata = {
-    title: {
-        default: "DisposeMail - Secure Disposable Email",
-        template: "%s | DisposeMail"
-    },
-    description: "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable inbox.",
-    keywords: ["disposable email", "temporary email", "temp mail", "anonymous email", "privacy", "secure email", "throwaway email"],
-    authors: [{ name: "DisposeMail Team" }],
-    creator: "DisposeMail",
-    openGraph: {
-        type: "website",
-        locale: "en_US",
-        url: "https://disposemail.xyz",
-        title: "DisposeMail - Secure Disposable Email",
-        description: "Instant, secure, and temporary email addresses for privacy protection.",
-        siteName: "DisposeMail",
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "DisposeMail - Secure Disposable Email",
-        description: "Protect your real inbox from spam with instant disposable email addresses.",
-    },
-    robots: {
-        index: true,
-        follow: true,
-    },
-    alternates: {
-        canonical: "https://disposemail.xyz",
-        languages: {
-            'en': 'https://disposemail.xyz/en',
-            'es': 'https://disposemail.xyz/es',
-            'pt': 'https://disposemail.xyz/pt',
-            'ru': 'https://disposemail.xyz/ru',
-            'zh': 'https://disposemail.xyz/zh',
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const baseUrl = "https://disposemail.xyz";
+    const path = locale === 'en' ? '' : `/${locale}`;
+    const canonical = `${baseUrl}${path}`;
+
+    return {
+        title: {
+            default: "DisposeMail - Secure Disposable Email",
+            template: "%s | DisposeMail"
         },
-    }
-};
+        description: "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable inbox.",
+        keywords: ["disposable email", "temporary email", "temp mail", "anonymous email", "privacy", "secure email", "throwaway email"],
+        authors: [{ name: "DisposeMail Team" }],
+        creator: "DisposeMail",
+        openGraph: {
+            type: "website",
+            locale: locale === 'zh' ? 'zh_CN' : locale === 'en' ? 'en_US' : `${locale}_${locale.toUpperCase()}`,
+            url: canonical,
+            title: "DisposeMail - Secure Disposable Email",
+            description: "Instant, secure, and temporary email addresses for privacy protection.",
+            siteName: "DisposeMail",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "DisposeMail - Secure Disposable Email",
+            description: "Protect your real inbox from spam with instant disposable email addresses.",
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
+        alternates: {
+            canonical: canonical,
+            languages: {
+                'en': `${baseUrl}`,
+                'es': `${baseUrl}/es`,
+                'pt': `${baseUrl}/pt`,
+                'ru': `${baseUrl}/ru`,
+                'zh': `${baseUrl}/zh`,
+                'x-default': baseUrl,
+            },
+        }
+    };
+}
 
 export default async function RootLayout({
     children,
