@@ -7,7 +7,7 @@ export function Footer() {
     const t = useTranslations('Footer');
     return (
         <footer className="w-full bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-[#1f1f1f] py-12 px-6 mt-auto">
-            <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                 <div className="flex flex-col items-center md:items-start text-center md:text-left">
                     <Link href="/" className="flex items-center space-x-3 mb-2 hover:opacity-80 transition-opacity">
                         <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center shrink-0">

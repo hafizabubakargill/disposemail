@@ -151,7 +151,7 @@ export default function Home() {
 
                 <p className="text-gray-700 dark:text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-10">
                     {t.rich('subtitle', {
-                        br: () => <br className="hidden md:block" />
+                        br: () => <br />
                     })}
                 </p>
 

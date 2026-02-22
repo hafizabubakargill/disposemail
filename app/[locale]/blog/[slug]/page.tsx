@@ -6,10 +6,11 @@ import Link from "next/link";
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default function BlogPostPage({ params }: { params: { slug: string; locale: string } }) {
     const t = useTranslations('Blog');
-    const { slug } = React.use(params as any) as any;
-    const post = blogPosts.find((p) => p.slug === slug);
+    const { slug, locale } = React.use(params as any) as any;
+    const localePosts = blogPosts[locale] || blogPosts.en;
+    const post = localePosts.find((p) => p.slug === slug);
 
     if (!post) {
         notFound();

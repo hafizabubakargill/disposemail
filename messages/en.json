@@ -9,7 +9,7 @@
     "Hero": {
         "encrypted": "End-to-End Encrypted",
         "title": "Your Privacy, <br></br><span>Disposable.</span>",
-        "subtitle": "Securely generated temporary emails for anonymous browsing.<br />No registration. No tracking. Just privacy.",
+        "subtitle": "Securely generated temporary emails for anonymous browsing.<br></br>No registration. No tracking. Just privacy.",
         "personalize": "Personalize Address",
         "custom_active": "Custom Mode: Active",
         "enter_name": "Enter name...",
@@ -25,7 +25,7 @@
         "ad_area": "Ad Placement Area"
     },
     "Inbox": {
-        "title": "Inbound Messages",
+        "title": "Inbox",
         "waiting": "Waiting for emails...",
         "monitoring": "Secure Monitoring Active",
         "burn": "Burn Inbox",

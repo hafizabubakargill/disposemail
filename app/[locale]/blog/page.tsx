@@ -3,10 +3,12 @@
 import { getSortedPosts } from "@/lib/blog";
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
+import { useParams } from "next/navigation";
 
 export default function BlogPage() {
     const t = useTranslations('Blog');
-    const posts = getSortedPosts();
+    const { locale } = useParams();
+    const posts = getSortedPosts(locale as string);
     return (
         <div className="max-w-5xl mx-auto px-6 py-20">
             <div className="text-center mb-16">
