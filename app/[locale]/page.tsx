@@ -5,7 +5,7 @@ import Inbox from "@/components/Inbox";
 import { getSortedPosts } from "@/lib/blog";
 import { Hero } from "@/components/Hero";
 import { useEmailSession } from "@/hooks/useEmailSession";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 
 export default function Home() {
@@ -15,6 +15,7 @@ export default function Home() {
     const tuc = useTranslations('UseCases');
     const twhy = useTranslations('Why');
     const tb = useTranslations('Blog');
+    const locale = useLocale();
 
     const {
         email,
@@ -226,7 +227,7 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {getSortedPosts().slice(0, 3).map((post) => (
+                        {getSortedPosts(locale).slice(0, 3).map((post) => (
                             <Link
                                 key={post.slug}
                                 href={`/blog/${post.slug}`}
