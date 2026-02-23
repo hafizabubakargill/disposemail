@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 18px;
+      color: #2563eb;
+      letter-spacing: -0.5px;
+    }
+    .email-container {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .email-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+    .email-address {
+      font-family: monospace;
+      font-size: 14px;
+      color: #1e293b;
+      word-break: break-all;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+    button {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+    }
+    .btn-secondary {
+      background-color: #f1f5f9;
+      color: #334155;
+      border: 1px solid #e2e8f0;
+    }
+    .btn-secondary:hover {
+      background-color: #e2e8f0;
+    }
+    .footer {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    .footer a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div className="header">
+    <div className="logo">DisposeMail</div>
+  </div>
+  
+  <div className="email-container">
+    <div className="email-label">Your Current Address</div>
+    <div id="email-display" className="email-address">Generating...</div>
+  </div>
+
+  <div className="actions">
+    <button id="copy-btn" className="btn-primary">Copy</button>
+    <button id="refresh-btn" className="btn-secondary">New Address</button>
+  </div>
+
+  <div className="footer">
+    Go to <a href="https://disposemail.xyz" target="_blank">disposemail.xyz</a> for full inbox.
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

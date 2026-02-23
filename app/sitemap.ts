@@ -19,6 +19,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/blog/secure-online-shopping-disposable-emails',
         '/blog/top-privacy-extensions-temporary-inbox',
         '/blog/dangers-reusing-email-social-media',
+        '/temp-mail-for-facebook',
+        '/temp-mail-for-netflix',
+        '/temp-mail-for-instagram',
+        '/temp-mail-for-amazon',
+        '/temp-mail-for-spotify',
     ];
 
     return routes.map((route) => ({

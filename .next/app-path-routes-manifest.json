@@ -1,4 +1,5 @@
 {
+  "/[locale]/[slug]/page": "/[locale]/[slug]",
   "/[locale]/about/page": "/[locale]/about",
   "/[locale]/api-docs/page": "/[locale]/api-docs",
   "/[locale]/blog/[slug]/page": "/[locale]/blog/[slug]",

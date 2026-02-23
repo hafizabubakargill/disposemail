@@ -1,14 +1,43 @@
-'use client';
-
 import { blogPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import React from 'react';
+import { Metadata } from "next";
 
-export default function BlogPostPage({ params }: { params: { slug: string; locale: string } }) {
-    const t = useTranslations('Blog');
-    const { slug, locale } = React.use(params as any) as any;
+export async function generateStaticParams() {
+    const locales = ['en', 'es', 'pt', 'ru', 'zh'];
+    const params: { locale: string; slug: string }[] = [];
+
+    locales.forEach(locale => {
+        const posts = blogPosts[locale] || blogPosts.en;
+        posts.forEach(post => {
+            params.push({ locale, slug: post.slug });
+        });
+    });
+
+    return params;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+    const { locale, slug } = await params;
+    const localePosts = blogPosts[locale] || blogPosts.en;
+    const post = localePosts.find((p) => p.slug === slug);
+
+    if (!post) return {};
+
+    return {
+        title: post.title,
+        description: post.excerpt,
+        alternates: {
+            canonical: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}blog/${slug}`,
+        }
+    };
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
+    const { slug, locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Blog' });
     const localePosts = blogPosts[locale] || blogPosts.en;
     const post = localePosts.find((p) => p.slug === slug);
 
