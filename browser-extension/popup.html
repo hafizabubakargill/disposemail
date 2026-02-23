@@ -1,108 +1,421 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DisposeMail</title>
   <style>
-    body {
-      width: 300px;
-      padding: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background-color: #ffffff;
+      padding: 0;
     }
+
+    body {
+      width: 340px;
+      min-height: 420px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0f;
+      color: #f0f0f8;
+      overflow: hidden;
+    }
+
+    /* Animated glow bg */
+    .bg-glow {
+      position: fixed;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    /* Header */
     .header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
       margin-bottom: 20px;
     }
+
     .logo {
-      font-weight: 800;
-      font-size: 18px;
-      color: #2563eb;
-      letter-spacing: -0.5px;
-    }
-    .email-container {
-      background-color: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      position: relative;
-    }
-    .email-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #64748b;
-      margin-bottom: 4px;
-    }
-    .email-address {
-      font-family: monospace;
-      font-size: 14px;
-      color: #1e293b;
-      word-break: break-all;
-    }
-    .actions {
       display: flex;
+      align-items: center;
       gap: 8px;
     }
-    button {
-      flex: 1;
-      padding: 10px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s;
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .btn-primary {
-      background-color: #2563eb;
+
+    .logo-icon svg {
+      width: 15px;
+      height: 15px;
       color: white;
-      border: none;
     }
-    .btn-primary:hover {
-      background-color: #1d4ed8;
+
+    .logo-text {
+      font-size: 15px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .btn-secondary {
-      background-color: #f1f5f9;
-      color: #334155;
-      border: 1px solid #e2e8f0;
+
+    .status-dot {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      color: #4ade80;
+      font-weight: 600;
     }
-    .btn-secondary:hover {
-      background-color: #e2e8f0;
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse-dot 2s infinite;
     }
-    .footer {
-      margin-top: 16px;
-      text-align: center;
-      font-size: 11px;
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.6;
+        transform: scale(0.8);
+      }
+    }
+
+    /* Address Card */
+    .card {
+      background: linear-gradient(145deg, #141421, #0f1020);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.4), transparent);
+    }
+
+    .card-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #4b5563;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .email-address {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #e2e8f0;
+      word-break: break-all;
+      line-height: 1.5;
+      transition: opacity 0.3s;
+    }
+
+    .email-address.loading {
+      opacity: 0.35;
+    }
+
+    .email-username {
+      color: #60a5fa;
+      font-weight: 700;
+    }
+
+    .email-domain {
       color: #94a3b8;
     }
+
+    /* Timer */
+    .timer-bar-wrap {
+      margin-top: 12px;
+    }
+
+    .timer-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #4b5563;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .timer-label span:last-child {
+      color: #a78bfa;
+    }
+
+    .timer-bar {
+      height: 3px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .timer-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      border-radius: 99px;
+      width: 100%;
+      transition: width 1s linear;
+    }
+
+    /* Action buttons */
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s ease;
+      letter-spacing: 0.2px;
+    }
+
+    .btn svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.09);
+      color: #e2e8f0;
+    }
+
+    .btn.copied {
+      background: linear-gradient(135deg, #059669, #047857) !important;
+      color: white !important;
+    }
+
+    /* History */
+    .section-title {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #374151;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .history-item:hover {
+      background: rgba(37, 99, 235, 0.1);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+
+    .history-email {
+      font-family: monospace;
+      font-size: 11px;
+      color: #6b7280;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    .use-btn {
+      font-size: 9px;
+      font-weight: 700;
+      color: #3b82f6;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .use-btn:hover {
+      color: #60a5fa;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 10px;
+      color: #1f2937;
+    }
+
     .footer a {
       color: #2563eb;
       text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      color: #60a5fa;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.04);
+      margin: 14px 0;
     }
   </style>
 </head>
+
 <body>
-  <div className="header">
-    <div className="logo">DisposeMail</div>
-  </div>
-  
-  <div className="email-container">
-    <div className="email-label">Your Current Address</div>
-    <div id="email-display" className="email-address">Generating...</div>
-  </div>
+  <div class="bg-glow"></div>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <span class="logo-text">DisposeMail</span>
+      </div>
+      <div class="status-dot">
+        <div class="dot"></div>
+        Active
+      </div>
+    </div>
 
-  <div className="actions">
-    <button id="copy-btn" className="btn-primary">Copy</button>
-    <button id="refresh-btn" className="btn-secondary">New Address</button>
-  </div>
+    <!-- Address Card -->
+    <div class="card">
+      <div class="card-label">Your Temporary Address</div>
+      <div id="email-display" class="email-address loading">Generating...</div>
+      <div class="timer-bar-wrap">
+        <div class="timer-label">
+          <span>Session</span>
+          <span id="timer-text">24h window</span>
+        </div>
+        <div class="timer-bar">
+          <div id="timer-fill" class="timer-fill"></div>
+        </div>
+      </div>
+    </div>
 
-  <div className="footer">
-    Go to <a href="https://disposemail.xyz" target="_blank">disposemail.xyz</a> for full inbox.
+    <!-- Action Buttons -->
+    <div class="actions">
+      <button id="copy-btn" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+        Copy Address
+      </button>
+      <button id="refresh-btn" class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M23 4v6h-6" />
+          <path d="M1 20v-6h6" />
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+        </svg>
+        New Address
+      </button>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- History -->
+    <div class="section-title">Recent addresses</div>
+    <div id="history-list" class="history-list">
+      <div style="font-size:10px;color:#374151;text-align:center;padding:8px">No history yet</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" style="margin-top:14px">
+      <a href="https://disposemail.xyz" target="_blank">Open Full Inbox at disposemail.xyz →</a>
+    </div>
   </div>
 
   <script src="popup.js"></script>
 </body>
+
 </html>

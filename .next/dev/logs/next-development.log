@@ -1,2 +1,808 @@
 [00:00:10.888] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:01:02.529] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:48:51.666] Browser ERROR   uncaughtError: Error: ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+
+
+[14:48:51.840] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:48:51.840] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:48:51.840] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:48:51.840] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:48:51.840] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:48:51.840] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:48:51.840] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:48:51.840] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:00.887] Browser ERROR   uncaughtError: Error: ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+
+
+[14:49:01.065] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:01.066] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:01.066] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:01.066] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:01.066] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:01.066] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:01.066] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:01.066] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:08.685] Browser ERROR   uncaughtError: Error: ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+
+
+[14:49:08.863] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:08.863] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:08.864] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:08.864] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:08.864] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:08.864] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:08.864] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:08.864] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:43.420] Browser ERROR   uncaughtError: Error: ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+
+
+[14:49:43.582] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:43.582] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:43.582] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:43.582] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:43.582] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:43.582] Browser ERROR   ./app/[locale]/page.tsx:5:1
+Export getSortedPosts doesn't exist in target module
+  3 | import { useEffect, useState } from "react";
+  4 | import Inbox from "@/components/Inbox";
+> 5 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { Hero } from "@/components/Hero";
+  7 | import { useEmailSession } from "@/hooks/useEmailSession";
+  8 | import { useTranslations } from "next-intl";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/page.tsx [Client Component Browser]
+    ./app/[locale]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/page.tsx [Client Component SSR]
+    ./app/[locale]/page.tsx [Server Component]
+[14:49:43.582] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-client] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:49:43.582] Browser ERROR   ./app/[locale]/blog/page.tsx:3:1
+Export getSortedPosts doesn't exist in target module
+  1 | 'use client';
+  2 |
+> 3 | import { getSortedPosts } from "@/lib/blog";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useTranslations } from 'next-intl';
+  6 | import { useParams } from "next/navigation";
+
+The export getSortedPosts was not found in module [project]/lib/blog.ts [app-ssr] (ecmascript).
+Did you mean to import blogPosts?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/[locale]/blog/page.tsx [Client Component Browser]
+    ./app/[locale]/blog/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/[locale]/blog/page.tsx [Client Component SSR]
+    ./app/[locale]/blog/page.tsx [Server Component]
+[14:50:08.583] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:51:05.444] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:56:12.440] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:57:23.466] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:57:24.490] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:57:25.773] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

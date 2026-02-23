@@ -1,0 +1,110 @@
+/* DisposeMail Content Script Styles */
+/* All classes are prefixed with "dm-" to avoid collisions with page styles */
+
+.dm-tooltip {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.dm-wrapper:hover .dm-tooltip,
+.dm-wrapper:focus-within .dm-tooltip {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.dm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.3px !important;
+  transition: all 0.15s ease !important;
+  outline: none !important;
+  text-decoration: none !important;
+  height: auto !important;
+  min-height: unset !important;
+  max-height: unset !important;
+  text-transform: none !important;
+}
+
+.dm-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af) !important;
+  transform: scale(1.04) !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5) !important;
+}
+
+.dm-btn:active {
+  transform: scale(0.97) !important;
+}
+
+.dm-btn svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.dm-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  width: 22px !important;
+  height: 22px !important;
+  cursor: pointer !important;
+  transition: background 0.15s !important;
+  padding: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  flex-shrink: 0;
+}
+
+.dm-btn-icon:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+}
+
+.dm-filled-badge {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2147483647;
+  font-size: 9px;
+  font-weight: 800;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.dm-wrapper {
+  position: relative !important;
+  display: block !important;
+}
