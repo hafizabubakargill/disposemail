@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DisposeMail</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,30 +14,29 @@
 
     body {
       width: 340px;
-      min-height: 420px;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0a0f;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #09090f;
       color: #f0f0f8;
       overflow: hidden;
     }
 
-    /* Animated glow bg */
+    /* Glow */
     .bg-glow {
       position: fixed;
-      top: -60px;
+      top: -80px;
       left: 50%;
       transform: translateX(-50%);
-      width: 280px;
-      height: 280px;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .container {
       position: relative;
       z-index: 1;
-      padding: 20px;
+      padding: 18px;
     }
 
     /* Header */
@@ -47,35 +44,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
     }
 
     .logo-icon {
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      border-radius: 7px;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
     }
 
     .logo-icon svg {
-      width: 15px;
-      height: 15px;
+      width: 17px;
+      height: 17px;
       color: white;
     }
 
     .logo-text {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 800;
-      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #3b82f6, #818cf8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -95,27 +94,25 @@
       height: 6px;
       border-radius: 50%;
       background: #4ade80;
-      animation: pulse-dot 2s infinite;
+      animation: blink 2s infinite;
     }
 
-    @keyframes pulse-dot {
+    @keyframes blink {
 
       0%,
       100% {
         opacity: 1;
-        transform: scale(1);
       }
 
       50% {
-        opacity: 0.6;
-        transform: scale(0.8);
+        opacity: 0.4;
       }
     }
 
     /* Address Card */
     .card {
-      background: linear-gradient(145deg, #141421, #0f1020);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: linear-gradient(145deg, #111128, #0d0d1e);
+      border: 1px solid rgba(99, 102, 241, 0.18);
       border-radius: 16px;
       padding: 16px;
       margin-bottom: 12px;
@@ -130,7 +127,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
     }
 
     .card-label {
@@ -148,11 +145,10 @@
       color: #e2e8f0;
       word-break: break-all;
       line-height: 1.5;
-      transition: opacity 0.3s;
     }
 
     .email-address.loading {
-      opacity: 0.35;
+      opacity: 0.3;
     }
 
     .email-username {
@@ -161,11 +157,11 @@
     }
 
     .email-domain {
-      color: #94a3b8;
+      color: #818cf8;
     }
 
     /* Timer */
-    .timer-bar-wrap {
+    .timer-wrap {
       margin-top: 12px;
     }
 
@@ -173,20 +169,20 @@
       display: flex;
       justify-content: space-between;
       font-size: 9px;
-      color: #4b5563;
-      font-weight: 600;
+      color: #374151;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 5px;
     }
 
     .timer-label span:last-child {
-      color: #a78bfa;
+      color: #818cf8;
     }
 
     .timer-bar {
       height: 3px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 99px;
       overflow: hidden;
     }
@@ -195,11 +191,10 @@
       height: 100%;
       background: linear-gradient(90deg, #2563eb, #7c3aed);
       border-radius: 99px;
-      width: 100%;
-      transition: width 1s linear;
+      transition: width 60s linear;
     }
 
-    /* Action buttons */
+    /* Actions */
     .actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -229,13 +224,13 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
       color: white;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      filter: brightness(1.1);
       transform: translateY(-1px);
     }
 
@@ -254,21 +249,96 @@
       color: #e2e8f0;
     }
 
-    .btn.copied {
+    .btn.success {
       background: linear-gradient(135deg, #059669, #047857) !important;
       color: white !important;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3) !important;
     }
 
-    /* History */
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.04);
+      margin: 12px 0;
+    }
+
+    /* Recent Addresses — Premium Gate */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
     .section-title {
       font-size: 9px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: #374151;
       font-weight: 700;
+    }
+
+    .premium-badge {
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+
+    .premium-gate {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .premium-gate-icon {
+      font-size: 20px;
       margin-bottom: 8px;
     }
 
+    .premium-gate-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .premium-gate-text {
+      font-size: 10px;
+      color: #374151;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .upgrade-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #0a0a0f;
+      font-size: 11px;
+      font-weight: 800;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: filter 0.15s;
+    }
+
+    .upgrade-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    /* History list (premium) */
     .history-list {
       display: flex;
       flex-direction: column;
@@ -304,7 +374,7 @@
 
     .use-btn {
       font-size: 9px;
-      font-weight: 700;
+      font-weight: 800;
       color: #3b82f6;
       background: none;
       border: none;
@@ -324,23 +394,26 @@
       margin-top: 14px;
       text-align: center;
       font-size: 10px;
-      color: #1f2937;
     }
 
-    .footer a {
-      color: #2563eb;
+    .inbox-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #4f46e5;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 11px;
+      transition: color 0.15s;
     }
 
-    .footer a:hover {
-      color: #60a5fa;
+    .inbox-link:hover {
+      color: #818cf8;
     }
 
-    .divider {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.04);
-      margin: 14px 0;
+    .inbox-link svg {
+      width: 10px;
+      height: 10px;
     }
   </style>
 </head>
@@ -360,27 +433,26 @@
         <span class="logo-text">DisposeMail</span>
       </div>
       <div class="status-dot">
-        <div class="dot"></div>
-        Active
+        <div class="dot"></div>Active
       </div>
     </div>
 
     <!-- Address Card -->
     <div class="card">
       <div class="card-label">Your Temporary Address</div>
-      <div id="email-display" class="email-address loading">Generating...</div>
-      <div class="timer-bar-wrap">
+      <div id="email-display" class="email-address loading">Generating…</div>
+      <div class="timer-wrap">
         <div class="timer-label">
           <span>Session</span>
-          <span id="timer-text">24h window</span>
+          <span id="timer-text">—</span>
         </div>
         <div class="timer-bar">
-          <div id="timer-fill" class="timer-fill"></div>
+          <div id="timer-fill" class="timer-fill" style="width:100%"></div>
         </div>
       </div>
     </div>
 
-    <!-- Action Buttons -->
+    <!-- Actions -->
     <div class="actions">
       <button id="copy-btn" class="btn btn-primary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
@@ -403,15 +475,26 @@
 
     <div class="divider"></div>
 
-    <!-- History -->
-    <div class="section-title">Recent addresses</div>
-    <div id="history-list" class="history-list">
-      <div style="font-size:10px;color:#374151;text-align:center;padding:8px">No history yet</div>
+    <!-- Recent Addresses (Premium Gate) -->
+    <div class="section-header">
+      <div class="section-title">Recent Addresses</div>
+      <div class="premium-badge">★ Premium</div>
+    </div>
+    <div id="history-section">
+      <!-- Filled by popup.js based on isPremium -->
     </div>
 
     <!-- Footer -->
-    <div class="footer" style="margin-top:14px">
-      <a href="https://disposemail.xyz" target="_blank">Open Full Inbox at disposemail.xyz →</a>
+    <div class="footer">
+      <a id="inbox-link" href="https://disposemail.xyz" target="_blank" class="inbox-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+        Open Full Inbox at disposemail.xyz
+      </a>
     </div>
   </div>
 

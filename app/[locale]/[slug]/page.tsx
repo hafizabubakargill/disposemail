@@ -1,15 +1,9 @@
 import { getUseCase, useCases } from "@/lib/use-cases";
 import { notFound } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Metadata } from "next";
 import React from "react";
-import Link from "next/link";
-import { Hero } from "@/components/Hero";
-import { useEmailSession } from "@/hooks/useEmailSession";
-import Inbox from "@/components/Inbox";
-
 import UseCaseClient from "@/components/UseCaseClient";
 
 export async function generateStaticParams() {
@@ -53,11 +47,10 @@ export default async function UseCasePage({ params }: { params: Promise<{ locale
     return (
         <NextIntlClientProvider messages={messages} locale={locale}>
             <UseCaseClient
-                serviceName={useCase.service}
-                useCaseTitle={useCase.title}
-                useCaseDescription={useCase.description}
+                serviceName={useCase!.service}
+                useCaseTitle={useCase!.title}
+                useCaseDescription={useCase!.description}
             />
         </NextIntlClientProvider>
     );
 }
-

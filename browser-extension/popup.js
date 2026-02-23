@@ -1,89 +1,98 @@
 // DisposeMail Popup Script
-// Handles communication with the background service worker and manages the popup UI.
-
 'use strict';
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
 function sendMsg(action, data = {}) {
     return new Promise((resolve, reject) => {
         chrome.runtime.sendMessage({ action, ...data }, (response) => {
-            if (chrome.runtime.lastError) {
-                reject(chrome.runtime.lastError);
-            } else {
-                resolve(response);
-            }
+            if (chrome.runtime.lastError) { reject(chrome.runtime.lastError); return; }
+            resolve(response);
         });
     });
 }
 
-// Render the email address with colored parts
-function renderEmail(address, displayEl) {
-    if (!address) { displayEl.textContent = 'Generating...'; return; }
+function renderEmail(address, el) {
+    if (!address) { el.textContent = 'Generating…'; return; }
     const [user, domain] = address.split('@');
-    displayEl.innerHTML = `<span class="email-username">${user}</span><span class="email-domain">@${domain}</span>`;
-    displayEl.classList.remove('loading');
+    el.innerHTML = `<span class="email-username">${user}</span><span class="email-domain">@${domain}</span>`;
+    el.classList.remove('loading');
 }
 
-// Format time ago
-function timeAgo(timestamp) {
-    if (!timestamp) return '24h window';
-    const elapsed = Date.now() - timestamp;
-    const hoursLeft = Math.max(0, 24 - Math.floor(elapsed / 3600000));
-    const minsLeft = Math.max(0, 60 - Math.floor((elapsed % 3600000) / 60000));
-    if (hoursLeft > 0) return `~${hoursLeft}h ${minsLeft}m left`;
-    if (minsLeft > 0) return `~${minsLeft}m left`;
-    return 'Expiring soon';
+function formatTimeLeft(createdAt) {
+    if (!createdAt) return '—';
+    const SESSION_MS = 24 * 60 * 60 * 1000;
+    const elapsed = Date.now() - createdAt;
+    const remaining = Math.max(0, SESSION_MS - elapsed);
+    if (remaining === 0) return 'Expired';
+    const h = Math.floor(remaining / 3600000);
+    const m = Math.floor((remaining % 3600000) / 60000);
+    if (h > 0) return `~${h}h ${m}m left`;
+    return `~${m}m left`;
 }
 
-function timerProgress(timestamp) {
-    if (!timestamp) return 100;
-    const elapsed = Date.now() - timestamp;
-    const total = 24 * 3600 * 1000; // 24 hours
-    return Math.max(0, Math.min(100, ((total - elapsed) / total) * 100));
+function timerProgress(createdAt) {
+    if (!createdAt) return 100;
+    const SESSION_MS = 24 * 60 * 60 * 1000;
+    const elapsed = Date.now() - createdAt;
+    return Math.max(0, Math.min(100, ((SESSION_MS - elapsed) / SESSION_MS) * 100));
 }
 
-// Render history items
-function renderHistory(history, currentAddress) {
-    const listEl = document.getElementById('history-list');
-    if (!history || history.length <= 1) {
-        listEl.innerHTML = '<div style="font-size:10px;color:#374151;text-align:center;padding:8px;">No other addresses yet</div>';
+function renderHistory(history, currentAddress, isPremium) {
+    const section = document.getElementById('history-section');
+
+    if (!isPremium) {
+        section.innerHTML = `
+      <div class="premium-gate">
+        <div class="premium-gate-icon">🔒</div>
+        <div class="premium-gate-title">Premium Feature</div>
+        <div class="premium-gate-text">Upgrade to save and reuse up to 10 recent addresses across all your sessions.</div>
+        <a href="https://disposemail.xyz/pricing" target="_blank" class="upgrade-btn">
+          ★ Upgrade to Premium
+        </a>
+      </div>`;
         return;
     }
-    listEl.innerHTML = '';
-    // Show all except the current one (which is shown in the card)
-    history
-        .filter(addr => addr !== currentAddress)
-        .slice(0, 4)
-        .forEach(addr => {
-            const item = document.createElement('div');
-            item.className = 'history-item';
-            item.innerHTML = `
-        <span class="history-email">${addr}</span>
-        <button class="use-btn" data-addr="${addr}">Use</button>
-      `;
-            item.querySelector('.use-btn').addEventListener('click', async (e) => {
-                e.stopPropagation();
-                const selected = e.target.dataset.addr;
-                await sendMsg('setAddress', { address: selected });
-                await loadAndRender();
-            });
-            item.addEventListener('click', async () => {
-                try {
-                    await navigator.clipboard.writeText(addr);
-                    item.style.borderColor = 'rgba(37,99,235,0.5)';
-                    item.style.background = 'rgba(37,99,235,0.15)';
-                    setTimeout(() => {
-                        item.style.borderColor = '';
-                        item.style.background = '';
-                    }, 1200);
-                } catch (e) { /* CSP fallback */ }
-            });
-            listEl.appendChild(item);
+
+    // Premium: show history
+    const others = (history || []).filter(a => a !== currentAddress).slice(0, 4);
+    if (others.length === 0) {
+        section.innerHTML = `<div style="font-size:10px;color:#374151;text-align:center;padding:8px;">No other addresses yet</div>`;
+        return;
+    }
+
+    section.innerHTML = '';
+    const list = document.createElement('div');
+    list.className = 'history-list';
+    others.forEach(addr => {
+        const item = document.createElement('div');
+        item.className = 'history-item';
+        item.innerHTML = `<span class="history-email">${addr}</span><button class="use-btn" data-addr="${addr}">Use</button>`;
+        item.querySelector('.use-btn').addEventListener('click', async (e) => {
+            e.stopPropagation();
+            await sendMsg('setAddress', { address: e.target.dataset.addr });
+            loadAndRender();
         });
+        item.addEventListener('click', async () => {
+            try { await navigator.clipboard.writeText(addr); } catch (e) { }
+            item.style.borderColor = 'rgba(37,99,235,0.4)';
+            setTimeout(() => { item.style.borderColor = ''; }, 1200);
+        });
+        list.appendChild(item);
+    });
+    section.appendChild(list);
 }
 
-// ─── Core Load/Render ────────────────────────────────────────────────────────
+function updateInboxLink(address) {
+    const link = document.getElementById('inbox-link');
+    if (address) {
+        const encoded = encodeURIComponent(address);
+        link.href = `https://disposemail.xyz/?email=${encoded}`;
+    } else {
+        link.href = 'https://disposemail.xyz';
+    }
+}
+
 let currentAddress = null;
+let timerInterval = null;
 
 async function loadAndRender() {
     const displayEl = document.getElementById('email-display');
@@ -91,64 +100,65 @@ async function loadAndRender() {
     const timerFill = document.getElementById('timer-fill');
 
     try {
-        const { address, createdAt } = await sendMsg('getAddress');
+        const { address, createdAt, isPremium } = await sendMsg('getAddress');
         currentAddress = address;
         renderEmail(address, displayEl);
-        timerText.textContent = timeAgo(createdAt);
+        timerText.textContent = formatTimeLeft(createdAt);
         timerFill.style.width = timerProgress(createdAt) + '%';
+        updateInboxLink(address);
 
         const { history } = await sendMsg('getHistory');
-        renderHistory(history, address);
+        renderHistory(history, address, isPremium);
+
+        // Live countdown
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timerText.textContent = formatTimeLeft(createdAt);
+            timerFill.style.width = timerProgress(createdAt) + '%';
+        }, 60000);
     } catch (err) {
-        displayEl.textContent = 'Error loading address';
+        displayEl.textContent = 'Error loading';
         displayEl.classList.remove('loading');
     }
 }
 
-// ─── Event Listeners ─────────────────────────────────────────────────────────
+// ─── Copy Button ─────────────────────────────────────────────────────────────
 document.getElementById('copy-btn').addEventListener('click', async function () {
     if (!currentAddress) return;
-    try {
-        await navigator.clipboard.writeText(currentAddress);
-        this.textContent = '✓ Copied!';
-        this.classList.add('copied');
-        setTimeout(() => {
-            this.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy Address`;
-            this.classList.remove('copied');
-        }, 2500);
-    } catch (err) {
-        // Fallback for restricted contexts
+    try { await navigator.clipboard.writeText(currentAddress); } catch (e) {
         const ta = document.createElement('textarea');
-        ta.value = currentAddress;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
+        ta.value = currentAddress; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
     }
+    const orig = this.innerHTML;
+    this.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+    this.classList.add('success');
+    setTimeout(() => { this.innerHTML = orig; this.classList.remove('success'); }, 2500);
 });
 
+// ─── Refresh Button ───────────────────────────────────────────────────────────
 document.getElementById('refresh-btn').addEventListener('click', async function () {
     const displayEl = document.getElementById('email-display');
     displayEl.classList.add('loading');
     this.disabled = true;
+    const orig = this.innerHTML;
     this.textContent = 'Generating…';
 
     try {
         const { address } = await sendMsg('generateNew');
         currentAddress = address;
         renderEmail(address, displayEl);
-        document.getElementById('timer-text').textContent = '24h window';
+        document.getElementById('timer-text').textContent = '~24h left';
         document.getElementById('timer-fill').style.width = '100%';
-        const { history } = await sendMsg('getHistory');
-        renderHistory(history, address);
+        updateInboxLink(address);
+        const { history, isPremium } = await sendMsg('getHistory');
+        renderHistory(history, address, isPremium);
     } catch (err) {
-        displayEl.textContent = 'Error';
-        displayEl.classList.remove('loading');
+        displayEl.textContent = 'Error'; displayEl.classList.remove('loading');
     } finally {
         this.disabled = false;
-        this.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>New Address`;
+        this.innerHTML = orig;
     }
 });
 
-// ─── Init ────────────────────────────────────────────────────────────────────
 loadAndRender();
