@@ -38,22 +38,6 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/about(?:/)?$"
     },
     {
-      "page": "/[locale]/api-doc",
-      "regex": "^/([^/]+?)/api\\-doc(?:/)?$",
-      "routeKeys": {
-        "nxtPlocale": "nxtPlocale"
-      },
-      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/api\\-doc(?:/)?$"
-    },
-    {
-      "page": "/[locale]/api-docs",
-      "regex": "^/([^/]+?)/api\\-docs(?:/)?$",
-      "routeKeys": {
-        "nxtPlocale": "nxtPlocale"
-      },
-      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/api\\-docs(?:/)?$"
-    },
-    {
       "page": "/[locale]/blog",
       "regex": "^/([^/]+?)/blog(?:/)?$",
       "routeKeys": {

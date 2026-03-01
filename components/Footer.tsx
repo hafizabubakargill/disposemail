@@ -19,11 +19,10 @@ export function Footer() {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">
-                    <Link href="/api-docs" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('api')}</Link>
                     <Link href="/faq" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('faq')}</Link>
                     <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('privacy')}</Link>
                     <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('terms')}</Link>
-                    <a href="/sitemap.xml" target="_blank" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Sitemap</a>
+                    <a href="/sitemap.xml" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Sitemap</a>
                 </div>
             </div>
         </footer>

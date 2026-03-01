@@ -145,7 +145,6 @@
         "business_desc": "Para oportunidades de parceria, acesso a API ou integrações de domínios.",
         "quick_links": "Links Rápidos",
         "faq": "Perguntas Frequentes",
-        "api": "Documentação da API",
         "blog": "Últimas Atualizações",
         "success_title": "Mensagem Enviada!",
         "success_desc": "Obrigado por entrar em contato. Recebemos sua consulta.",
@@ -203,7 +202,6 @@
     "Footer": {
         "privacy": "Política de Privacidade",
         "terms": "Termos de Serviço",
-        "api": "API",
         "faq": "FAQ",
         "copyright": "© 2026 DisposeMail. Seguro, anônimo, temporário."
     },

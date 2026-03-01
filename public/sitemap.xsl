@@ -11,40 +11,38 @@
         <title>Sitemap — DisposeMail</title>
         <style>
           * { box-sizing: border-box; margin: 0; padding: 0; }
-          body { background: #09090f; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
-          .header { background: linear-gradient(135deg, #0f172a, #111827); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 28px 40px; }
-          .header-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+          body { background: #0a0a0a; color: #e5e7eb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; min-height: 100vh; }
+          .header { background: #0a0a0a; border-bottom: 1px solid #1f1f1f; padding: 24px 40px; }
+          .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
           .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-          .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #2563eb, #4f46e5, #7c3aed); border-radius: 9px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
-          .logo-icon svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-          .logo-text { font-size: 18px; font-weight: 800; background: linear-gradient(90deg, #3b82f6, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-          .badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; }
-          .container { max-width: 860px; margin: 0 auto; padding: 40px; }
-          .meta { font-size: 12px; color: #4b5563; margin-bottom: 32px; font-weight: 600; }
-          .meta strong { color: #6b7280; }
-          table { width: 100%; border-collapse: collapse; }
-          thead tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
-          th { text-align: left; font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: #4b5563; font-weight: 700; padding: 0 0 12px 0; }
-          td { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
-          td a { color: #60a5fa; text-decoration: none; font-size: 13px; font-weight: 500; word-break: break-all; }
+          .logo-icon { width: 32px; height: 32px; background: #2563eb; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+          .logo-icon svg { width: 20px; height: 20px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+          .logo-text { font-size: 20px; font-weight: 900; color: #ffffff; letter-spacing: -0.025em; }
+          .badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #9ca3af; background: #111111; border: 1px solid #1f1f1f; padding: 4px 10px; border-radius: 6px; }
+          .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+          .meta { font-size: 14px; color: #9ca3af; margin-bottom: 32px; }
+          .meta strong { color: #ffffff; }
+          table { width: 100%; border-collapse: collapse; background: #111111; border: 1px solid #1f1f1f; border-radius: 12px; overflow: hidden; }
+          thead { background: #161616; }
+          th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280; font-weight: 700; padding: 16px 24px; border-bottom: 1px solid #1f1f1f; }
+          td { padding: 16px 24px; border-bottom: 1px solid #1f1f1f; vertical-align: middle; }
+          td a { color: #60a5fa; text-decoration: none; font-size: 14px; font-weight: 500; }
           td a:hover { color: #93c5fd; text-decoration: underline; }
-          .freq { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 99px; }
-          .freq-monthly { background: rgba(99,102,241,0.12); color: #818cf8; }
-          .freq-weekly { background: rgba(37,99,235,0.12); color: #60a5fa; }
-          .priority { font-family: monospace; font-size: 12px; color: #6b7280; }
-          .date { font-size: 11px; color: #374151; }
+          .freq { font-size: 11px; font-weight: 600; text-transform: capitalize; color: #9ca3af; }
+          .priority { font-family: monospace; font-size: 13px; color: #9ca3af; }
+          .date { font-size: 13px; color: #6b7280; }
         </style>
       </head>
       <body>
         <div class="header">
           <div class="header-inner">
-            <a class="logo" href="https://disposemail.xyz">
+            <a class="logo" href="/">
               <div class="logo-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
               </div>
               <span class="logo-text">DisposeMail</span>
             </a>
-            <span class="badge">XML Sitemap</span>
+            <span class="badge">Sitemap</span>
           </div>
         </div>
         <div class="container">

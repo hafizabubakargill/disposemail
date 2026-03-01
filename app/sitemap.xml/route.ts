@@ -9,7 +9,6 @@ const ROUTES = [
     { path: '/faq', priority: '0.8', freq: 'monthly' },
     { path: '/privacy', priority: '0.7', freq: 'monthly' },
     { path: '/terms', priority: '0.7', freq: 'monthly' },
-    { path: '/api-docs', priority: '0.8', freq: 'monthly' },
     { path: '/blog', priority: '0.9', freq: 'weekly' },
     { path: '/contact', priority: '0.7', freq: 'monthly' },
     { path: '/blog/why-disposable-emails-essential-privacy', priority: '0.8', freq: 'weekly' },

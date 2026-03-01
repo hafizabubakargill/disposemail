@@ -145,7 +145,6 @@
         "business_desc": "关于合作伙伴机会、高并发 API 访问或自定义域名集成。",
         "quick_links": "快速链接",
         "faq": "常见问题",
-        "api": "API 文档",
         "blog": "最新动态",
         "success_title": "消息已发送！",
         "success_desc": "感谢您的联系。我们已收到您的咨询。",
@@ -203,7 +202,6 @@
     "Footer": {
         "privacy": "隐私政策",
         "terms": "服务条款",
-        "api": "API",
         "faq": "常见问题",
         "copyright": "© 2026 DisposeMail. 安全、匿名、临时。"
     },

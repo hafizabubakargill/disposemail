@@ -145,7 +145,6 @@
         "business_desc": "For technical issues or priority support, reach out to our core team directly. We typically respond within 24 hours.",
         "quick_links": "Quick Resolution",
         "faq": "Read FAQ",
-        "api": "API Documentation",
         "blog": "Blog & Updates",
         "success_title": "Message Sent!",
         "success_desc": "Thank you for reaching out. We've received your message and will get back to you shortly.",
@@ -203,7 +202,6 @@
     "Footer": {
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
-        "api": "API",
         "faq": "FAQ",
         "copyright": "© 2026 DisposeMail. Secure, anonymous, temporary."
     },

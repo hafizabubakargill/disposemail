@@ -10,7 +10,6 @@ const routes = [
     '/faq',
     '/privacy',
     '/terms',
-    '/api-docs',
     '/blog',
     '/contact',
     '/blog/why-disposable-emails-essential-privacy',
