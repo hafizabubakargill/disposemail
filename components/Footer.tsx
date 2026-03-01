@@ -15,7 +15,10 @@ export function Footer() {
                         </div>
                         <span className="text-xl font-black tracking-tighter text-gray-900 dark:text-white">DisposeMail</span>
                     </Link>
-                    <p className="text-xs text-gray-700 dark:text-gray-300 font-medium">{t('copyright')}</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300 font-medium mb-1">{t('copyright')}</p>
+                    <a href="https://hostinger.com?REFERRALCODE=abubakargill" target="_blank" rel="noopener noreferrer" className="text-[10px] text-gray-500 hover:text-blue-600 transition-colors uppercase tracking-wider font-bold">
+                        Powered by Hostinger — Get 20% off
+                    </a>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">

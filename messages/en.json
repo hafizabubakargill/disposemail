@@ -77,6 +77,8 @@
         "a6": "Some websites maintain 'blacklists' of common temporary email domains. By providing multiple domains, we allow you to bypass these restrictions and sign up for services that might block others.",
         "q7": "Does it support attachments?",
         "a7": "Yes, our system parses full MIME content. While we focus on making the text and HTML content readable, we also allow you to see and process message structures completely.",
+        "q8": "Is it DisposeMail or DisposalMail?",
+        "a8": "People often search for **disposalmail**, **disposal temp mail**, **disposmail**, or **dispose mail**. Whether you type **disposalmail.com** or disposemail.xyz, you're looking for a secure temporary email. We are officially DisposeMail, but we provide the disposal mail services you need.",
         "still_questions": "Still have questions?",
         "support_desc": "Our goal is to provide the most reliable temporary email service on the web. If you're experiencing issues or have suggestions, our community is here to help.",
         "support_btn": "Email Support",

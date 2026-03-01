@@ -8,14 +8,16 @@ export const BASE_DOMAINS = [
     'disposemail.xyz',
     'inveromail.info',
     'dunedistrict.com',
-    'groundtips.com'
+    'groundtips.com',
+    'nivoramail.pro'
 ];
 
 export const DOMAINS = [
     'disposemail.xyz',
     'inveromail.info',
     'dunedistrict.com',
-    'groundtips.com'
+    'groundtips.com',
+    'nivoramail.pro'
 ];
 
 /**
