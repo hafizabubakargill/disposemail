@@ -31,13 +31,31 @@ export default function FAQ() {
                             <div>
                                 <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q1')}</h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">
-                                    {t.rich('a1', { strong: (chunks) => <strong>{chunks}</strong> })}
+                                    {t.rich('a1', { b: (chunks) => <strong>{chunks}</strong> })}
                                 </p>
                             </div>
                             <div>
                                 <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q8')}</h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">
-                                    {t.rich('a8', { strong: (chunks) => <strong>{chunks}</strong> })}
+                                    {t.rich('a8', { b: (chunks) => <strong>{chunks}</strong> })}
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q9')}</h3>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    {t.rich('a9', { b: (chunks) => <strong>{chunks}</strong> })}
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q10')}</h3>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    {t.rich('a10', { b: (chunks) => <strong>{chunks}</strong> })}
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q11')}</h3>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    {t.rich('a11', { b: (chunks) => <strong>{chunks}</strong> })}
                                 </p>
                             </div>
                         </div>

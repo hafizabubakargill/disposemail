@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Script from "next/script";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import HostingerCTA from "@/components/HostingerCTA";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
@@ -112,6 +113,7 @@ export default async function RootLayout({
                             <main className="flex-1 w-full">
                                 {children}
                             </main>
+                            <HostingerCTA />
                             <Footer />
                         </div>
                     </ThemeProvider>

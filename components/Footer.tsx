@@ -18,21 +18,11 @@ export function Footer() {
                     <p className="text-xs text-gray-700 dark:text-gray-300 font-medium">{t('copyright')}</p>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center gap-8">
-                    <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">
-                        <Link href="/api-docs" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('api')}</Link>
-                        <Link href="/faq" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('faq')}</Link>
-                        <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('privacy')}</Link>
-                        <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('terms')}</Link>
-                    </div>
-
-                    <a href="https://hostinger.com?REFERRALCODE=abubakargill" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold text-white transition-all duration-200 bg-gray-900 dark:bg-white dark:text-gray-900 rounded-xl hover:shadow-lg hover:-translate-y-0.5 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                        <svg className="w-4 h-4 text-purple-500 dark:text-purple-600" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                        </svg>
-                        <span>Powered by Hostinger <span className="text-purple-400 dark:text-purple-600 font-black ml-1">— Get 20% Off</span></span>
-                    </a>
+                <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">
+                    <Link href="/api-docs" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('api')}</Link>
+                    <Link href="/faq" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('faq')}</Link>
+                    <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('privacy')}</Link>
+                    <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('terms')}</Link>
                 </div>
             </div>
         </footer>
