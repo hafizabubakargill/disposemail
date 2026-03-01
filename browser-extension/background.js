@@ -6,7 +6,9 @@ const DOMAINS = [
     'inbox.disposemail.xyz',
     'temp.disposemail.xyz',
     'drop.disposemail.xyz',
-    'nivoramail.pro'
+    'nivoramail.pro',
+    'avelixmail.pro',
+    'oryvomail.pro'
 ];
 
 const ADJECTIVES = ['swift', 'silent', 'quiet', 'fast', 'cool', 'fresh', 'safe', 'bright', 'clear', 'smart', 'clean', 'anon'];
