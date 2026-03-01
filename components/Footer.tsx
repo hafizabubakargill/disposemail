@@ -23,6 +23,7 @@ export function Footer() {
                     <Link href="/faq" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('faq')}</Link>
                     <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('privacy')}</Link>
                     <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('terms')}</Link>
+                    <a href="/sitemap.xml" target="_blank" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Sitemap</a>
                 </div>
             </div>
         </footer>

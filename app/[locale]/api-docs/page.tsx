@@ -4,10 +4,10 @@ export default function ApiDocs() {
     return (
         <main className="min-h-screen bg-transparent text-foreground p-8 md:p-24 relative overflow-hidden transition-colors">
             <div className="max-w-4xl mx-auto z-10 relative">
-                <h1 className="text-4xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 tracking-tighter">
-                    Developer API
+                <h1 className="text-4xl md:text-7xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 tracking-tighter">
+                    API Reference
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400 mb-12 text-lg">Build powerful integrations and automate temporary email workflows with our high-speed ingestion and retrieval API.</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-16 text-xl leading-relaxed max-w-2xl">Integrate DisposeMail directly into your applications. Our REST API allows you to programmatically manage temporary inboxes and retrieve messages in real-time.</p>
 
                 <div className="space-y-16">
                     <section>
