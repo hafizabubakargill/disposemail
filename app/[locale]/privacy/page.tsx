@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
     return (
         <main className="flex min-h-screen flex-col items-center bg-transparent px-6 py-20">
             <div className="max-w-3xl w-full bg-white dark:bg-[#111] p-10 rounded-[32px] border border-gray-100 dark:border-[#222] shadow-xl relative z-10">
-                <a href="/" className="text-blue-600 hover:text-blue-500 mb-8 inline-block font-bold uppercase tracking-widest text-[10px] flex items-center gap-2">
+                <a href="/" className="text-blue-600 hover:text-blue-500 mb-8 inline-block font-bold uppercase tracking-widest text-[11px] flex items-center gap-2">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     {t('back_inbox')}
                 </a>
@@ -61,7 +61,7 @@ export default function PrivacyPolicy() {
                     </section>
                 </div>
 
-                <div className="mt-16 pt-8 border-t border-gray-100 dark:border-[#222] text-[10px] text-gray-400 font-bold uppercase tracking-widest flex justify-between">
+                <div className="mt-16 pt-8 border-t border-gray-100 dark:border-[#222] text-[11px] text-gray-400 font-bold uppercase tracking-widest flex justify-between">
                     <span>{t('effective_date')}</span>
                     <span className="text-blue-600">{t('verified')}</span>
                 </div>

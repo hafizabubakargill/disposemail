@@ -336,12 +336,12 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                         {t('title')} ({emails.length})
                         <div className="flex items-center ml-2">
                             {isConnected ? (
-                                <div className="flex items-center px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 text-[10px] font-black shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                                <div className="flex items-center px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 text-[11px] font-black shadow-[0_0_15px_rgba(34,197,94,0.3)]">
                                     <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-green-500 animate-pulse"></span>
                                     LIVE
                                 </div>
                             ) : (
-                                <div className="flex items-center px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-300 text-[10px] font-black">
+                                <div className="flex items-center px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-300 text-[11px] font-black">
                                     <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-amber-600 animate-pulse"></span>
                                     SYNCING
                                 </div>
@@ -358,7 +358,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                     >
                         <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                         <span className="hidden sm:inline text-red-800 dark:text-red-300 font-bold">{t('burn')}</span>
-                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('burn_tooltip')}</div>
+                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('burn_tooltip')}</div>
                     </button>
 
                     <button
@@ -370,7 +370,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
                         <span className="hidden sm:inline font-bold text-gray-900 dark:text-gray-100">{t('sync')}</span>
-                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('sync_tooltip')}</div>
+                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('sync_tooltip')}</div>
                     </button>
                 </div>
             </div>
@@ -413,7 +413,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                                         <span className="text-[9px] font-black text-gray-600 dark:text-gray-400">{email.attachments.length}</span>
                                                     </div>
                                                 )}
-                                                <span className={`text-[10px] font-mono shrink-0 text-gray-500 dark:text-gray-400`}>
+                                                <span className={`text-[11px] font-mono shrink-0 text-gray-500 dark:text-gray-400`}>
                                                     {formatDate(email.received_at)}
                                                 </span>
                                             </div>
@@ -458,7 +458,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     >
                                         <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
                                         <span className="hidden md:inline text-sm font-bold">{t('block')}</span>
-                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('block')}</div>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('block')}</div>
                                     </button>
                                     <button
                                         onClick={() => handleMarkAsUnread(selectedEmail)}
@@ -467,7 +467,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     >
                                         <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                         <span className="hidden md:inline text-sm font-bold">{t('unread')}</span>
-                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('unread')}</div>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('unread')}</div>
                                     </button>
                                     <button
                                         onClick={() => setShowRawSource(true)}
@@ -476,7 +476,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     >
                                         <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                                         <span className="hidden md:inline text-sm font-bold">{t('code')}</span>
-                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('code')}</div>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('code')}</div>
                                     </button>
                                     <button
                                         onClick={() => setShowMobileContent(false)}
@@ -485,7 +485,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                     >
                                         <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                                         <span className="hidden md:inline text-sm font-bold">{t('close')}</span>
-                                        <div className="md:hidden absolute top-full right-0 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('close')}</div>
+                                        <div className="md:hidden absolute top-full right-0 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('close')}</div>
                                     </button>
                                 </div>
                             </div>
@@ -547,7 +547,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                                     </div>
                                                     <div className="truncate">
                                                         <p className="text-sm font-bold text-gray-900 dark:text-gray-100 truncate">{att.filename}</p>
-                                                        <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-black tracking-tight">{(att.size / 1024).toFixed(1)} KB</p>
+                                                        <p className="text-[11px] text-gray-500 dark:text-gray-400 uppercase font-black tracking-tight">{(att.size / 1024).toFixed(1)} KB</p>
                                                     </div>
                                                 </div>
                                                 <div className="p-2 bg-blue-600 rounded-lg text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -565,7 +565,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
                                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Recommended for Privacy</p>
+                                        <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">Recommended for Privacy</p>
                                         <a
                                             href="https://www.expressvpn.com/refer-a-friend/30-days-free?referrer_id=103461074"
                                             target="_blank"

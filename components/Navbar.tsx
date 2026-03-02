@@ -23,7 +23,7 @@ export function Navbar() {
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-6">
-                <div className="flex gap-6 text-sm text-gray-600 dark:text-gray-400 font-medium font-bold uppercase tracking-widest text-[10px]">
+                <div className="flex gap-6 text-sm text-gray-600 dark:text-gray-400 font-medium font-bold uppercase tracking-widest text-[11px]">
                     <Link href="/" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('home')}</Link>
                     <Link href="/about" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('about', { fallback: 'About' })}</Link>
                     <Link href="/blog" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('blog')}</Link>

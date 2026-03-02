@@ -87,7 +87,7 @@ export const Hero = ({
                     <button
                         type="button"
                         onClick={() => setIsCustom(!isCustom)}
-                        className={`text-[10px] md:text-xs px-6 py-2.5 rounded-full transition-all font-black uppercase tracking-widest ${isCustom ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 bg-gray-50 dark:bg-[#161616]'}`}
+                        className={`text-[11px] md:text-xs px-6 py-2.5 rounded-full transition-all font-black uppercase tracking-widest ${isCustom ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 bg-gray-50 dark:bg-[#161616]'}`}
                     >
                         {isCustom ? t('custom_active') : t('personalize')}
                     </button>
@@ -107,7 +107,7 @@ export const Hero = ({
                             />
                             <button
                                 type="submit"
-                                className="mr-1 bg-blue-600 border border-blue-500 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-lg"
+                                className="mr-1 bg-blue-600 border border-blue-500 text-white px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-widest transition-all shadow-lg"
                             >
                                 {t('create')}
                             </button>
@@ -132,7 +132,7 @@ export const Hero = ({
                                 type="text"
                                 readOnly
                                 value={email}
-                                className="bg-transparent border-none outline-none text-gray-900 dark:text-gray-100 font-mono text-base md:text-xl w-full placeholder-gray-400 dark:placeholder-gray-600 pl-1 md:pl-2 font-medium"
+                                className="bg-transparent border-none outline-none text-gray-900 dark:text-gray-100 font-mono text-base md:text-[1rem] w-full placeholder-gray-400 dark:placeholder-gray-600 pl-1 md:pl-2 font-medium"
                                 aria-label="Generated Email Address"
                             />
                         </div>
@@ -169,7 +169,7 @@ export const Hero = ({
                             aria-label="Show QR Code"
                         >
                             <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                            <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-[100] pointer-events-none">{t('scan_qr')}</div>
+                            <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-[100] pointer-events-none">{t('scan_qr')}</div>
                         </button>
                     </div>
                 </div>
@@ -184,14 +184,14 @@ export const Hero = ({
                                 alt="QR Code"
                                 className="w-40 h-40"
                             />
-                            <span className="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-widest font-bold">{t('scan_qr')}</span>
+                            <span className="text-[11px] text-gray-500 mt-2 font-mono uppercase tracking-widest font-bold">{t('scan_qr')}</span>
                         </div>
                     </div>
                 )}
 
                 {/* Progress Bar & Countdown */}
                 <div className="mt-4 px-4">
-                    <div className="flex justify-between items-center mb-1 text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500">
+                    <div className="flex justify-between items-center mb-1 text-[11px] md:text-xs font-mono uppercase tracking-widest text-gray-500">
                         <span className="flex items-center gap-1.5 font-bold">
                             {t('expiring')}
                         </span>

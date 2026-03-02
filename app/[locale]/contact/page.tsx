@@ -61,7 +61,6 @@ export default function ContactPage() {
                         <h3 className="font-bold text-xl mb-4 text-gray-900 dark:text-white">{t('quick_links')}</h3>
                         <div className="flex flex-col gap-3">
                             <Link href="/faq" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">{t('faq')}</Link>
-                            <Link href="/api-docs" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">{t('api')}</Link>
                             <Link href="/blog" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">{t('blog')}</Link>
                         </div>
                     </div>
@@ -97,7 +96,7 @@ export default function ContactPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-1">{t('name_label')}</label>
+                                <label className="text-[11px] font-black uppercase tracking-widest text-gray-500 ml-1">{t('name_label')}</label>
                                 <input
                                     required
                                     type="text"
@@ -109,7 +108,7 @@ export default function ContactPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-1">{t('email_label')}</label>
+                                <label className="text-[11px] font-black uppercase tracking-widest text-gray-500 ml-1">{t('email_label')}</label>
                                 <input
                                     required
                                     type="email"
@@ -121,7 +120,7 @@ export default function ContactPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-1">{t('message_label')}</label>
+                                <label className="text-[11px] font-black uppercase tracking-widest text-gray-500 ml-1">{t('message_label')}</label>
                                 <textarea
                                     required
                                     rows={4}

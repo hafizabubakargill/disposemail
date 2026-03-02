@@ -37,10 +37,10 @@ export default function BlogPage() {
                         </div>
                         <div className="p-8 flex flex-col h-full">
                             <div className="flex items-center gap-2 mb-4">
-                                <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest rounded-full">
+                                <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[11px] font-black uppercase tracking-widest rounded-full">
                                     {post.category}
                                 </span>
-                                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                                <span className="text-[11px] text-gray-400 font-bold uppercase tracking-widest">
                                     {post.date}
                                 </span>
                             </div>

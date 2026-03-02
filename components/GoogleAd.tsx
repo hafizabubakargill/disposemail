@@ -22,7 +22,7 @@ export default function GoogleAd({ slot, format = 'auto', className = '', respon
     return (
         <div className={`overflow-hidden my-4 ${className}`}>
             {/* Placeholder for Development */}
-            <div className="text-[10px] text-gray-400 dark:text-gray-600 mb-1 uppercase tracking-widest text-center">Advertisement</div>
+            <div className="text-[11px] text-gray-400 dark:text-gray-600 mb-1 uppercase tracking-widest text-center">Advertisement</div>
             <ins
                 className="adsbygoogle"
                 style={{ display: 'block' }}

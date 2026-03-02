@@ -91,7 +91,7 @@ export default function Home() {
                         <div className="grid grid-cols-2 gap-4 text-center">
                             <div className="p-4 rounded-2xl bg-blue-100 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700">
                                 <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-1">{tf('privacy_first')}</h3>
-                                <p className="text-[10px] text-gray-700 dark:text-gray-300 uppercase font-black">{tf('no_logs')}</p>
+                                <p className="text-[11px] text-gray-700 dark:text-gray-300 uppercase font-black">{tf('no_logs')}</p>
                             </div>
                             <div className="p-4 rounded-2xl bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700">
                                 <h3 className="font-bold text-green-900 dark:text-green-300 mb-1">{tf('zero_cost')}</h3>
@@ -221,7 +221,7 @@ export default function Home() {
                             <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">{tb('title')}</h2>
                             <p className="text-gray-700 dark:text-gray-400">{tb('subtitle')}</p>
                         </div>
-                        <Link href="/blog" className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-[#111] text-gray-900 dark:text-gray-100 font-bold hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest text-[10px]">
+                        <Link href="/blog" className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-[#111] text-gray-900 dark:text-gray-100 font-bold hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest text-[11px]">
                             {tb('view_all')}
                         </Link>
                     </div>
@@ -242,13 +242,13 @@ export default function Home() {
                                 </div>
                                 <div className="p-8">
                                     <div className="flex items-center gap-2 mb-4">
-                                        <span className="text-[10px] text-blue-600 dark:text-blue-400 font-black uppercase tracking-widest">{post.category}</span>
-                                        <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{post.date}</span>
+                                        <span className="text-[11px] text-blue-600 dark:text-blue-400 font-black uppercase tracking-widest">{post.category}</span>
+                                        <span className="text-[11px] text-gray-500 font-bold uppercase tracking-widest">{post.date}</span>
                                     </div>
                                     <h3 className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors mb-4 line-clamp-2">
                                         {post.title}
                                     </h3>
-                                    <div className="flex items-center text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest mt-auto">
+                                    <div className="flex items-center text-blue-600 dark:text-blue-400 text-[11px] font-black uppercase tracking-widest mt-auto">
                                         {tb('read_more')} <svg className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                     </div>
                                 </div>

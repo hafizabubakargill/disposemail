@@ -8,7 +8,7 @@ export default function FAQ() {
     return (
         <main className="min-h-screen bg-transparent p-8 md:p-24 relative overflow-hidden transition-colors">
             <div className="max-w-4xl mx-auto z-10 relative">
-                <a href="/" className="text-blue-600 hover:text-blue-500 mb-8 inline-block font-bold uppercase tracking-widest text-[10px] flex items-center gap-2">
+                <a href="/" className="text-blue-600 hover:text-blue-500 mb-8 inline-block font-bold uppercase tracking-widest text-[11px] flex items-center gap-2">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     {t('back_home')}
                 </a>
@@ -107,7 +107,7 @@ export default function FAQ() {
 
                     <div className="absolute bottom-10 right-10 flex gap-1 items-center opacity-20 pointer-events-none">
                         <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                        <span className="text-[10px] font-black tracking-widest uppercase">{t('secure_anon')}</span>
+                        <span className="text-[11px] font-black tracking-widest uppercase">{t('secure_anon')}</span>
                     </div>
                 </div>
             </div>
