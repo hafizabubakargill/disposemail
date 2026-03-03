@@ -215,5 +215,16 @@
         "cta_title": "Protect your inbox today.",
         "cta_desc": "Stop sharing your real email with every website. Create your first disposable address in seconds.",
         "cta_btn": "Generate Free Address"
+    },
+    "HostingerCTA": {
+        "badge": "Recommended Host",
+        "title1": "Build Your Next Project with",
+        "title2": "Hostinger",
+        "description": "Fast, secure, and user-friendly web hosting. Get everything you need to launch a website today, trusted by DisposeMail.",
+        "button": "Claim 20% Discount",
+        "feature1_title": "Lightning Fast",
+        "feature1_desc": "LiteSpeed Web Server",
+        "feature2_title": "Free SSL & Security",
+        "feature2_desc": "Included in all plans"
     }
 }

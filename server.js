@@ -6,7 +6,22 @@ const db = require('./lib/db');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
+const rateLimit = require('express-rate-limit');
 
+// Rate Limiting Configurations
+const apiLimiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 100, // Limit each IP to 100 requests per windowMs
+    message: { error: 'Too many requests from this IP, please try again after a minute' },
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+const webhookLimiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 50, // Limit webhook strictly
+    message: { error: 'Webhook rate limit exceeded' }
+});
 // Config
 const dev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 3000;
@@ -196,6 +211,8 @@ app.prepare().then(() => {
     // Binding to ALL possible prefixes
     const prefixes = ['/api', '/api-v1', '/x-feed', '/internal'];
     prefixes.forEach(p => {
+        server.use(`${p}/`, apiLimiter); // Apply general API rate limiting
+
         server.get(`${p}/status`, getStatus);
         server.get(`${p}/emails`, getEmails);
         server.all(`${p}/emails/read`, express.json(), handleRead);
@@ -203,7 +220,7 @@ app.prepare().then(() => {
             db.markEmailAsUnread(req.body.id || req.query.id);
             res.json({ success: true });
         });
-        server.post(`${p}/webhook/email`, express.json({ limit: '10mb' }), handleWebhook);
+        server.post(`${p}/webhook/email`, webhookLimiter, express.json({ limit: '10mb' }), handleWebhook);
 
         server.get(`${p}/emails/attachment`, async (req, res) => {
             const { id, checksum } = req.query;
@@ -295,7 +312,22 @@ app.prepare().then(() => {
         cors: { origin: "*" }
     });
 
+    // Basic WebSocket connection rate limiter
+    const connectionLimits = new Map();
+    setInterval(() => connectionLimits.clear(), 60000); // Clear every minute
+
     io.on('connection', (socket) => {
+        const ip = socket.handshake.address || socket.conn.remoteAddress || 'unknown';
+        const currentCount = connectionLimits.get(ip) || 0;
+
+        if (currentCount > 30) {
+            console.warn(`[Socket.io] Blocked connection from ${ip} (Rate Limit)`);
+            socket.disconnect(true);
+            return;
+        }
+
+        connectionLimits.set(ip, currentCount + 1);
+
         socket.on('join-room', (email) => { if (email) socket.join(email.toLowerCase()); });
     });
 

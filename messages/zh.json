@@ -215,5 +215,16 @@
         "cta_desc": "不要再向每个网站分享您的真实邮箱。只需几秒钟即可创建您的第一个临时地址。",
         "cta_btn": "生成免费地址",
         "view_all": "查看所有文章"
+    },
+    "HostingerCTA": {
+        "badge": "推荐的主机",
+        "title1": "使用以下工具构建您的下一个项目",
+        "title2": "Hostinger",
+        "description": "快速、安全且易于使用的网络托管。获取立即发布网站所需的全部功能，受到 DisposeMail 的信任。",
+        "button": "领取 20% 折扣",
+        "feature1_title": "闪电般的数据处理速度",
+        "feature1_desc": "LiteSpeed Web 服务器",
+        "feature2_title": "免费 SSL 和安全性",
+        "feature2_desc": "包含在所有计划中"
     }
 }
