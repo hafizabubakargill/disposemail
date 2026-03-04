@@ -74,7 +74,7 @@ export default async function RootLayout({
     return (
         <html lang={locale} suppressHydrationWarning>
             <head>
-
+                <meta name="monetag" content="71bf4df43556e3ebfbea173ef07c5f0e" />
                 <link rel="icon" href="/icon.svg" type="image/svg+xml" />
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="theme-color" content="#0a0a0a" />

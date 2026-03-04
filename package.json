@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "prebuild": "rimraf .next/cache",
+    "prebuild": "rm -rf .next/cache || true",
     "build": "next build",
     "postinstall": "npm run build",
     "start": "NODE_ENV=production node server.js",
