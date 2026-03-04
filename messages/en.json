@@ -226,5 +226,12 @@
         "feature1_desc": "LiteSpeed Web Server",
         "feature2_title": "Free SSL & Security",
         "feature2_desc": "Included in all plans"
+    },
+    "ApiDocs": {
+        "meta_title": "Developer API - DisposeMail - Secure Disposable Email",
+        "meta_desc": "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable email API.",
+        "page_title": "Developer API",
+        "page_subtitle": "Integrate secure, temporary email generation into your applications.",
+        "coming_soon": "Our public API is currently undergoing final security reviews. Full documentation and API key registration will be available soon."
     }
 }

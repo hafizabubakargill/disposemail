@@ -226,5 +226,12 @@
         "feature1_desc": "LiteSpeed Web 服务器",
         "feature2_title": "免费 SSL 和安全性",
         "feature2_desc": "包含在所有计划中"
+    },
+    "ApiDocs": {
+        "meta_title": "开发者 API - DisposeMail - 安全的临时电子邮件",
+        "meta_desc": "立即创建安全的临时电子邮件地址。使用 DisposeMail 的端到端加密临时电子邮件 API 保护您的隐私，避免垃圾邮件并保持匿名。",
+        "page_title": "开发者 API",
+        "page_subtitle": "将安全的临时电子邮件生成集成到您的应用程序中。",
+        "coming_soon": "我们的公共 API 目前正在进行最终的安全审查。完整的文档和 API 密钥注册即将推出。"
     }
 }

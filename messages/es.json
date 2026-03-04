@@ -215,5 +215,12 @@
         "cta_desc": "Deja de compartir tu correo real con cada sitio web. Crea tu primera dirección desechable en segundos.",
         "cta_btn": "Generar Dirección Gratuita",
         "view_all": "Ver todos los artículos"
+    },
+    "ApiDocs": {
+        "meta_title": "API para Desarrolladores - DisposeMail - Correo Desechable Seguro",
+        "meta_desc": "Crea instantáneamente direcciones de correo temporales y seguras. Protege tu privacidad, evita el spam y mantente anónimo con la API de correo desechable encriptado de extremo a extremo de DisposeMail.",
+        "page_title": "API para Desarrolladores",
+        "page_subtitle": "Integra la generación de correos temporales seguros en tus aplicaciones.",
+        "coming_soon": "Nuestra API pública está actualmente bajo revisiones finales de seguridad. La documentación completa y el registro de claves API estarán disponibles pronto."
     }
 }

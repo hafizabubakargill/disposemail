@@ -215,5 +215,12 @@
         "cta_desc": "Pare de compartilhar seu e-mail real com todos os sites. Crie seu primeiro endereço descartável em segundos.",
         "cta_btn": "Gerar Endereço Gratuito",
         "view_all": "Ver todos os artigos"
+    },
+    "ApiDocs": {
+        "meta_title": "API para Desenvolvedores - DisposeMail - E-mail Descartável Seguro",
+        "meta_desc": "Crie instantaneamente endereços de e-mail temporários e seguros. Proteja sua privacidade, evite spam e permaneça anônimo com a API de e-mail descartável com criptografia de ponta a ponta do DisposeMail.",
+        "page_title": "API para Desenvolvedores",
+        "page_subtitle": "Integre a geração segura de e-mail temporário em suas aplicações.",
+        "coming_soon": "Nossa API pública está atualmente passando por revisões finais de segurança. A documentação completa e o registro da chave de API estarão disponíveis em breve."
     }
 }
