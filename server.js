@@ -333,6 +333,11 @@ app.prepare().then(() => {
 
     // --- 4. NEXT.JS CATCH-ALL ---
     server.all('*', (req, res) => {
+        // Exception for Next.js API routes that need to be handled by app/api
+        if (req.url.startsWith('/api/contact')) {
+            return handle(req, res);
+        }
+
         if (req.url.startsWith('/api/') || req.url.startsWith('/x-feed/')) {
             return res.status(404).json({ error: 'Endpoint Not Found', path: req.url, note: "Nuclear Catch-all" });
         }
