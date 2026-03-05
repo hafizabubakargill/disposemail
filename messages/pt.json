@@ -133,7 +133,7 @@
         "mission_title": "Nuestra Missão",
         "mission_desc": "Em uma era de vigilância constante, o <strong>DisposeMail</strong> foi construído com uma única missão: proteger sua caixa de entrada principal e identidade pessoal. Acreditamos que a privacidade é um direito humano fundamental, não um luxo. Nosso serviço fornece um escudo temporário entre o seu eu real e o vasto mundo da Internet, muitas vezes repleto de rastreamento.",
         "why_exist_title": "Por que existimos",
-        "why_exist_desc": "Sempre que você se inscreve em um boletim informativo, teste ou aplicativo, corre o risco de expor seu e-mail a spammers, rastreadores e possíveis hackers. Uma vez que seu e-mail está em uma 'lista', ele fica lá para sempre. O DisposeMail fornece um buffer instantâneo e seguro que permite que você acesse a web sem o fardo de spam a longo prazo.",
+        "why_exist_desc": "Sempre que você se inscreve em um boletim informativo, teste ou aplicativo, corre o risco de expor seu e-mail a spammers, rastreadores e possíveis cybercriminals. Uma vez que seu e-mail está em uma 'lista', ele fica lá para sempre. O DisposeMail fornece um buffer instantâneo e seguro que permite que você acesse a web sem o fardo de spam a longo prazo.",
         "tech_title": "Nossa Tecnologia",
         "tech_desc": "Utilizamos infraestrutura de nuvem moderna, aproveitando as redes Cloudflare Edge e nós VPS seguros para rotear e-mails instantaneamente. Diferente de outros provedores, não armazenamos seus dados em um banco de dados persistente. Nossa arquitetura WebSocket de alto desempenho garante que, quando um e-mail chega, ele seja exibido na sua tela em tempo real.",
         "commitment_title": "Compromisso com a Privacidade",
