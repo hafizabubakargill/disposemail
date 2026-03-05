@@ -253,4 +253,53 @@ export const portuguesePosts = [
       <p>Privacidade em nossa época é invisível e as companhias lucram muito. Dados são petróleo on line. Usar disposáveis de e-mail é a única lei de física possível e blindada para sumir de bases com um total e alto grau que vai te livrar das propangandas enganosas dos pop ups em sua rotina normal do dia para ver apenas paz e não caos na poluição no seu PC, celular Apple Iphone no Safari e no Google em aparelhos ou Android Samsung com total controle final livre usando os descartáveis a uma ferramenta fantástica DisposeMail para sua vida pessoal hoje ou nas amanhãs para compras de viagens não faturadas por rastreio em tarifas mais elevedas e em fraudes no banco ao assinar boletos, contas bancárias na Web na forma livre original não monitorada pelo Governo Americano Chinês ou da Europa sem ter limites estritos sem barreiras físicas digitais on IPs atrelados nas tuas buscas corriqueiras, mantendo sigilo de pesquisa sobre você mesmo.</p>
     `
   }
+,
+  {
+    slug: 'temporary-email-discord-gaming-identity',
+    title: 'E-mail temporário para Discord e Jogos: Proteja sua Identidade',
+    excerpt: 'Descubra por que usar um domínio de e-mail temporário para fóruns de Discord é crucial para se proteger.',
+    date: '6 de março de 2026',
+    author: 'Equipe de Segurança Gamer',
+    category: 'Privacidade',
+    image: '/blog/discord_gaming.png',
+    content: `
+      <p>Em 2026, a comunidade de gamers se tornou um alvo principal para cibercriminosos. Fornecer seu e-mail principal para se registrar numa versão beta ou num servidor de Discord é um erro enorme.</p>
+      <h3>A Necessidade de um E-mail Temporário</h3>
+      <p>Usar um <strong>e-mail temporário para discord</strong> é a melhor forma de salvaguardar sua identidade primária, protegendo suas contas da PSN ou da Steam contra roubos e tentativas de phishing direcionado.</p>
+      <h3>O Melhor Domínio de Correio Descartável</h3>
+      <p>Um bom <strong>domínio de e-mail temporário</strong> tem que contornar bloqueios sem problemas. O DisposeMail utiliza uma rotação de domínios premium que passa despercebida nos filtros dos jogos.</p>
+    `
+  },
+  {
+    slug: '10-minute-mail-alternative-upgrade',
+    title: 'Alternativa ao 10 Minute Mail: Porque o DisposeMail é a Evolução',
+    excerpt: 'Se está à procura da melhor alternativa aos emails antigos de 10 minutos, conheça nosso moderno gerador de email.',
+    date: '10 de março de 2026',
+    author: 'Revisor Técnico',
+    category: 'Guias',
+    image: '/blog/ten_minute_upgrade.png',
+    content: `
+      <p>Os geradores de e-mail básicos serviram seu propósito no passado. Hoje, se procura uma verdadeira <strong>alternativa ao 10 minute mail</strong>, você precisa de um provedor que nunca seja bloqueado.</p>
+      <h3>Falhas nos Sistemas Antigos</h3>
+      <p>Um prazo de apenas 10 minutos muitas vezes não é suficiente. Por isso o DisposeMail atua como o modelo <strong>gerador de e-mail temporário</strong> com limite expandido para 60 minutos e tecnologia WebSocket.</p>
+      <h3>Segurança Otimizada</h3>
+      <p>Nunca mais espere a página recarregar. Os e-mails caem imediatamente na sua tela. Melhore sua privacidade e largue o serviço de 10 minutos hoje mesmo.</p>
+    `
+  },
+  {
+    slug: 'temporary-email-netflix-trials-skip-verification',
+    title: 'E-mail Temporário para Netflix e Testes sem Registro',
+    excerpt: 'Saiba como utilizar um e-mail falso e seguro para se cadastrar e se esquivar da verificação em sites de streaming.',
+    date: '14 de março de 2026',
+    author: 'Especialista de Streaming',
+    category: 'Otimização',
+    image: '/blog/netflix_trials.png',
+    content: `
+      <p>Ao tentar pegar aqueles 7 dias gratuitos, esbarramos imediatamente num pedido de verificação. A forma mais sensata de resolver essa questão é usando um <strong>e-mail temporário sem registro</strong>.</p>
+      <h3>Buscando Testes de Streaming</h3>
+      <p>Criar um <strong>e-mail descartável para Netflix</strong> muitas vezes falha se você usar domínios batidos. Nossa rotação no DisposeMail permite acesso confiável e protege sua caixa de entrada pessoal de todos os spams que chegam depois do cancelamento.</p>
+      <h3>Evite a Verificação Facilmente</h3>
+      <p>Para conseguir <strong>pular a verificação</strong> com sucesso, use seus novos e-mails instantâneos para interceptar os códigos de confirmação e aproveite seus períodos de teste à vontade.</p>
+    `
+  }
 ];
