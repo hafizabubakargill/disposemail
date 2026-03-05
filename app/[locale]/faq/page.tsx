@@ -29,6 +29,24 @@ export default function FAQ() {
                                 </p>
                             </div>
                             <div>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q12')}</h3>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    {t('a12')}
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q13')}</h3>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    {t('a13')}
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q14')}</h3>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    {t('a14')}
+                                </p>
+                            </div>
+                            <div>
                                 <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('q1')}</h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">
                                     {t.rich('a1', { b: (chunks) => <strong>{chunks}</strong> })}

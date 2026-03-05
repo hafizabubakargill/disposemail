@@ -90,7 +90,13 @@
         "support_btn": "Поддержка по почте",
         "create_btn": "Создать почту сейчас",
         "secure_anon": "Безопасно и Анонимно",
-        "homepage_faq": "Частые вопросы"
+        "homepage_faq": "Частые вопросы",
+        "q12": "How can I create a temporary email address?",
+        "a12": "Simply visit our homepage and a secure, random temporary email address is instantly generated for you. No signup required.",
+        "q13": "What are the best free services for disposable email?",
+        "a13": "DisposeMail is widely considered one of the best free services because we offer premium features like custom domains, real-time WebSockets, and complete zero-log privacy at absolutely no cost.",
+        "q14": "How do temporary email services work?",
+        "a14": "Our platform provisions a temporary inbox on our secure servers. When an email targets that address, it is processed in memory and pushed seamlessly to your browser, before being permanently deleted after 1 hour."
     },
     "Steps": {
         "step1_title": "Создать",
@@ -105,9 +111,9 @@
         "case1_title": "1. Тестирование ПО и QA",
         "case1_desc": "Разработчики используют разовые адреса для тестов без захламления реальных баз.",
         "case2_title": "2. Скидки в магазинах",
-        "case2_desc": "Регистрируйтесь для купонов без подписки личной почты на ежедневный маркетинг.",
+        "case2_desc": "Sign up for 'First Order' coupons on shopping sites without committing your primary email to their daily marketing newsletters. Generate a temporary email for immediate shopping discounts and checkout safely.",
         "case3_title": "3. Приватность на форумах",
-        "case3_desc": "Регистрируйтесь в сообществах, сохраняя личные данные в безопасности."
+        "case3_desc": "Register for online communities like Discord or download temporary email domains from forums while keeping your personal identity secure and anonymous with a disposable throwaway address."
     },
     "Why": {
         "title": "Зачем нужна временная почта?",

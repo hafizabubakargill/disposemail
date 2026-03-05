@@ -90,7 +90,13 @@
         "support_btn": "Soporte por Correo",
         "create_btn": "Crear Correo Ahora",
         "secure_anon": "Seguro y Anónimo",
-        "homepage_faq": "Preguntas Frequentes"
+        "homepage_faq": "Preguntas Frequentes",
+        "q12": "How can I create a temporary email address?",
+        "a12": "Simply visit our homepage and a secure, random temporary email address is instantly generated for you. No signup required.",
+        "q13": "What are the best free services for disposable email?",
+        "a13": "DisposeMail is widely considered one of the best free services because we offer premium features like custom domains, real-time WebSockets, and complete zero-log privacy at absolutely no cost.",
+        "q14": "How do temporary email services work?",
+        "a14": "Our platform provisions a temporary inbox on our secure servers. When an email targets that address, it is processed in memory and pushed seamlessly to your browser, before being permanently deleted after 1 hour."
     },
     "Steps": {
         "step1_title": "Generar",
@@ -105,9 +111,9 @@
         "case1_title": "1. Pruebas de Software y QA",
         "case1_desc": "Desarrolladores usan correos desechables para probar flujos de registro sin ensuciar bases de datos reales.",
         "case2_title": "2. Descuentos de E-Commerce",
-        "case2_desc": "Regístrate para cupones en sitios de compras sin comprometer tu correo principal a marketing diario.",
+        "case2_desc": "Sign up for 'First Order' coupons on shopping sites without committing your primary email to their daily marketing newsletters. Generate a temporary email for immediate shopping discounts and checkout safely.",
         "case3_title": "3. Protegiendo Privacidad en Foros",
-        "case3_desc": "Regístrate en comunidades en línea manteniendo tu identidad personal segura y anónima."
+        "case3_desc": "Register for online communities like Discord or download temporary email domains from forums while keeping your personal identity secure and anonymous with a disposable throwaway address."
     },
     "Why": {
         "title": "¿Por qué usar un correo desechable?",
