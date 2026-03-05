@@ -5,7 +5,7 @@ self.options = {
 self.lary = ""
 importScripts('https://5gvci.com/act/files/service-worker.min.js?r=sw')
 
-const CACHE_NAME = 'disposemail-v1.0.11';
+const CACHE_NAME = 'disposemail-v1.0.12';
 const ASSETS_TO_CACHE = [
     '/',
     '/icon.svg',
