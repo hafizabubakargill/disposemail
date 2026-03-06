@@ -38,6 +38,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/about(?:/)?$"
     },
     {
+      "page": "/[locale]/api-docs",
+      "regex": "^/([^/]+?)/api\\-docs(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/api\\-docs(?:/)?$"
+    },
+    {
       "page": "/[locale]/blog",
       "regex": "^/([^/]+?)/blog(?:/)?$",
       "routeKeys": {

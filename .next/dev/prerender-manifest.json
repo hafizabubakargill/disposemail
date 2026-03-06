@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/en/blog/why-disposable-emails-essential-privacy":{},"/en/blog/avoiding-spam-with-temporary-inboxes":{},"/en/blog/evolution-of-email-privacy-2026":{},"/en/blog/secure-online-shopping-disposable-emails":{},"/en/blog/top-privacy-extensions-temporary-inbox":{},"/en/blog/dangers-reusing-email-social-media":{},"/es/blog/why-disposable-emails-essential-privacy":{},"/es/blog/avoiding-spam-with-temporary-inboxes":{},"/es/blog/evolution-of-email-privacy-2026":{},"/es/blog/secure-online-shopping-disposable-emails":{},"/es/blog/top-privacy-extensions-temporary-inbox":{},"/es/blog/dangers-reusing-email-social-media":{},"/pt/blog/why-disposable-emails-essential-privacy":{},"/pt/blog/avoiding-spam-with-temporary-inboxes":{},"/pt/blog/evolution-of-email-privacy-2026":{},"/pt/blog/secure-online-shopping-disposable-emails":{},"/pt/blog/top-privacy-extensions-temporary-inbox":{},"/pt/blog/dangers-reusing-email-social-media":{},"/ru/blog/why-disposable-emails-essential-privacy":{},"/ru/blog/avoiding-spam-with-temporary-inboxes":{},"/ru/blog/evolution-of-email-privacy-2026":{},"/ru/blog/secure-online-shopping-disposable-emails":{},"/ru/blog/top-privacy-extensions-temporary-inbox":{},"/ru/blog/dangers-reusing-email-social-media":{},"/zh/blog/why-disposable-emails-essential-privacy":{},"/zh/blog/avoiding-spam-with-temporary-inboxes":{},"/zh/blog/evolution-of-email-privacy-2026":{},"/zh/blog/secure-online-shopping-disposable-emails":{},"/zh/blog/top-privacy-extensions-temporary-inbox":{},"/zh/blog/dangers-reusing-email-social-media":{}},"dynamicRoutes":{"/[locale]/blog/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/[locale]/blog/[slug]","routeRegex":"^\\/([^/]+?)\\/blog\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"192992c3fb2d021a3aeee9aefb4808b3","previewModeSigningKey":"2ef1b382698792015fd088d5f6b4a01ad3e8c1757107a39cab2bc9c010757f81","previewModeEncryptionKey":"8a5bebe7019cff4b427a406459311867c0b1831bdffe255782110e64732db78e"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "a5986d2a3d7830bb4ec0c66f17fece00",
+    "previewModeSigningKey": "5bf9f49c5014c924fe982e2409fd61736cc0eb791d32123db833f5f80b6f8c7b",
+    "previewModeEncryptionKey": "a2151e1d7f11fee0ba6a072ab9efaa357f7fab1b91b9e7ae21a01bbd97733249"
+  }
+}

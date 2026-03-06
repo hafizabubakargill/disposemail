@@ -47,6 +47,15 @@ app.prepare().then(() => {
     // Apply Global Site Limiter to everything
     server.use(globalSiteLimiter);
 
+    // SEO: Redirect www to non-www
+    server.use((req, res, next) => {
+        if (req.headers.host && req.headers.host.startsWith('www.')) {
+            const cleanHost = req.headers.host.substring(4);
+            return res.redirect(301, 'https://' + cleanHost + req.url);
+        }
+        next();
+    });
+
     // --- 1. THE NUCLEAR DIAGNOSTICS (Absolute Top) ---
     server.use((req, res, next) => {
         const logEntry = `[${new Date().toISOString()}] ${req.method} ${req.url}\n`;

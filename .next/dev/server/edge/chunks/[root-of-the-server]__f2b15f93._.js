@@ -35,7 +35,7 @@ const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$pr
 });
 const config = {
     matcher: [
-        '/((?!api|_next|_vercel|.*\\..*).*)'
+        '/((?!api/|_next|_vercel|.*\\..*).*)'
     ]
 };
 }),
