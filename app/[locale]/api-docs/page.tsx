@@ -23,7 +23,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
 
     return (
         <NextIntlClientProvider messages={messages} locale={locale}>
-            <div className="w-full min-h-[80vh] flex flex-col items-center p-6 sm:p-12 border-t border-gray-200 dark:border-[#1a1a1a] relative">
+            <div className="w-full min-h-[80vh] flex flex-col items-center p-6 sm:p-12 relative">
                 {/* Background Details */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none opacity-50" />
 

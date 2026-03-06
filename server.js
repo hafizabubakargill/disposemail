@@ -22,6 +22,16 @@ const webhookLimiter = rateLimit({
     max: 50, // Limit webhook strictly
     message: { error: 'Webhook rate limit exceeded' }
 });
+
+const globalSiteLimiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 200, // Allow high amounts of normal browsing, but block DDoS/Brute force
+    skip: (req) => req.url.startsWith('/_next/') || req.url.match(/\.(svg|png|jpg|jpeg|ico|json|xsl|txt)$/),
+    message: 'We have detected unusual traffic from your network. To prevent abuse, please wait a minute before accessing DisposeMail again.',
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
 // Config
 const dev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 3000;
@@ -33,6 +43,9 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
+
+    // Apply Global Site Limiter to everything
+    server.use(globalSiteLimiter);
 
     // --- 1. THE NUCLEAR DIAGNOSTICS (Absolute Top) ---
     server.use((req, res, next) => {

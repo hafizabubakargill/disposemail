@@ -5,7 +5,7 @@ export default async function HostingerCTA() {
     const t = await getTranslations('HostingerCTA');
 
     return (
-        <section className="w-full bg-white dark:bg-[#0a0a0a] py-20 px-6 border-t border-gray-100 dark:border-[#1a1a1a]">
+        <section className="w-full py-20 px-6">
             <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden relative shadow-2xl">
                 {/* Background Gradients */}
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 z-0"></div>
