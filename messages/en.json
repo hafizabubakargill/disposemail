@@ -209,7 +209,8 @@
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
         "faq": "FAQ",
-        "copyright": "© 2026 DisposeMail. Secure, anonymous, temporary."
+        "copyright": "© 2026 DisposeMail. Secure, anonymous, temporary.",
+        "api_docs": "API Docs"
     },
     "Blog": {
         "title": "Privacy Insights & News",

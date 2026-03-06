@@ -12,7 +12,8 @@ const STATIC_ROUTES = [
     { path: '/privacy', priority: '0.7', freq: 'monthly' },
     { path: '/terms', priority: '0.7', freq: 'monthly' },
     { path: '/blog', priority: '0.9', freq: 'daily' },
-    { path: '/contact', priority: '0.7', freq: 'monthly' }
+    { path: '/contact', priority: '0.7', freq: 'monthly' },
+    { path: '/api-docs', priority: '0.8', freq: 'monthly' }
 ];
 
 export async function GET() {

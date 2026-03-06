@@ -209,7 +209,8 @@
         "privacy": "Política de Privacidad",
         "terms": "Términos de Servicio",
         "faq": "FAQ",
-        "copyright": "© 2026 DisposeMail. Seguro, anónimo, temporal."
+        "copyright": "© 2026 DisposeMail. Seguro, anónimo, temporal.",
+        "api_docs": "Docs de API"
     },
     "Blog": {
         "title": "Seguridad y Noticias",

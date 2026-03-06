@@ -209,7 +209,8 @@
         "privacy": "隐私政策",
         "terms": "服务条款",
         "faq": "常见问题",
-        "copyright": "© 2026 DisposeMail. 安全、匿名、临时。"
+        "copyright": "© 2026 DisposeMail. 安全、匿名、临时。",
+        "api_docs": "API 文档"
     },
     "Blog": {
         "title": "隐私洞察与新闻",
