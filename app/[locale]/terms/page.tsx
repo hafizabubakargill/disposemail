@@ -49,7 +49,7 @@ export default function TermsOfService() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec6_title')}
+                            {t('sec6_title')}
                         </h2>
                         <p>
                             {t('sec6_desc')}
@@ -58,7 +58,7 @@ export default function TermsOfService() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec7_title')}
+                            {t('sec7_title')}
                         </h2>
                         <p>
                             {t('sec7_desc')}
@@ -67,7 +67,7 @@ export default function TermsOfService() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec8_title')}
+                            {t('sec8_title')}
                         </h2>
                         <p>
                             {t('sec8_desc')}
@@ -76,7 +76,7 @@ export default function TermsOfService() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec9_title')}
+                            {t('sec9_title')}
                         </h2>
                         <p>
                             {t('sec9_desc')}
@@ -85,7 +85,7 @@ export default function TermsOfService() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec10_title')}
+                            {t('sec10_title')}
                         </h2>
                         <p>
                             {t('sec10_desc')}

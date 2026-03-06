@@ -177,7 +177,7 @@
         "sec4_desc": "Usamos redes de publicidade de terceiros, especificamente Monetag, para monetizar e manter nosso serviço gratuito. Esses parceiros podem usar dados não pessoais para fornecer anúncios relevantes.",
         "sec5_title": "Medidas de Segurança",
         "sec5_desc": "Todo o tráfego é criptografado via SSL/TLS. Nossa infraestrutura é reforçada para garantir que seus dados permaneçam privados.",
-        "effective_date": "Data de Vigência: Janeiro 2024",
+        "effective_date": "Data de Vigência: Janeiro 2026",
         "verified": "Segurança Verificada"
     },
     "Terms": {
@@ -203,7 +203,7 @@
         "sec9_desc": "Estes termos são regidos pelas leis da jurisdição em que operamos.",
         "sec10_title": "10. Contato",
         "sec10_desc": "Para perguntas sobre estes termos, contate-nos em support@disposemail.xyz.",
-        "last_updated": "Última atualização: Janeiro 2024"
+        "last_updated": "Última atualização: Janeiro 2026"
     },
     "Footer": {
         "privacy": "Política de Privacidade",
@@ -223,10 +223,18 @@
         "view_all": "Ver todos os artigos"
     },
     "ApiDocs": {
-        "meta_title": "API para Desenvolvedores - DisposeMail - E-mail Descartável Seguro",
-        "meta_desc": "Crie instantaneamente endereços de e-mail temporários e seguros. Proteja sua privacidade, evite spam e permaneça anônimo com a API de e-mail descartável com criptografia de ponta a ponta do DisposeMail.",
-        "page_title": "API para Desenvolvedores",
-        "page_subtitle": "Integre a geração segura de e-mail temporário em suas aplicações.",
-        "coming_soon": "Nossa API pública está atualmente passando por revisões finais de segurança. A documentação completa e o registro da chave de API estarão disponíveis em breve."
+        "meta_title": "Documentação da API | DisposeMail",
+        "meta_desc": "Integre a geração de e-mails temporários seguros com a API de DisposeMail.",
+        "page_title": "Documentação da API",
+        "page_subtitle": "Uma API RESTful para programadores gerarem endereços de correio descartáveis.",
+        "endpoint_generate": "1. Gerar Novo E-mail",
+        "endpoint_generate_desc": "Cria um novo endereço temporário. Não requer autenticação. Expira em 60 minutos.",
+        "endpoint_messages": "2. Obter Mensagens",
+        "endpoint_messages_desc": "Recupera a caixa de entrada de um e-mail ativo.",
+        "method": "Método",
+        "url": "URL",
+        "response": "Resposta JSON",
+        "rate_limit": "Limitação de Taxa",
+        "rate_limit_desc": "Nossa API é limitada a 10 solicitações por minuto por endereço IP."
     }
 }

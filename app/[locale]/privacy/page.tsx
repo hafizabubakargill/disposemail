@@ -17,7 +17,7 @@ export default function PrivacyPolicy() {
                 <div className="space-y-10 text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec1_title')}
+                            {t('sec1_title')}
                         </h2>
                         <p>
                             {t('sec1_desc')}
@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec2_title')}
+                            {t('sec2_title')}
                         </h2>
                         <p>
                             {t.rich('sec2_desc', { strong: (chunks) => <strong>{chunks}</strong> })}
@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec3_title')}
+                            {t('sec3_title')}
                         </h2>
                         <p>
                             {t('sec3_desc')}
@@ -44,7 +44,7 @@ export default function PrivacyPolicy() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec4_title')}
+                            {t('sec4_title')}
                         </h2>
                         <p>
                             {t('sec4_desc')}
@@ -53,7 +53,7 @@ export default function PrivacyPolicy() {
 
                     <section>
                         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-blue-600"></span> {t('sec5_title')}
+                            {t('sec5_title')}
                         </h2>
                         <p>
                             {t('sec5_desc')}

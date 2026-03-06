@@ -234,10 +234,18 @@
         "feature2_desc": "包含在所有计划中"
     },
     "ApiDocs": {
-        "meta_title": "开发者 API - DisposeMail - 安全的临时电子邮件",
-        "meta_desc": "立即创建安全的临时电子邮件地址。使用 DisposeMail 的端到端加密临时电子邮件 API 保护您的隐私，避免垃圾邮件并保持匿名。",
-        "page_title": "开发者 API",
-        "page_subtitle": "将安全的临时电子邮件生成集成到您的应用程序中。",
-        "coming_soon": "我们的公共 API 目前正在进行最终的安全审查。完整的文档和 API 密钥注册即将推出。"
+        "meta_title": "API 文档 | DisposeMail",
+        "meta_desc": "使用 DisposeMail API 将安全、临时的电子邮件生成集成到您的应用程序中。",
+        "page_title": "API 文档",
+        "page_subtitle": "一个强大的 RESTful API，供开发人员以编程方式生成和管理一次性电子邮件地址。",
+        "endpoint_generate": "1. 生成新电子邮件",
+        "endpoint_generate_desc": "创建一个新的唯一临时电子邮件地址。无需身份验证。 60 分钟后过期。",
+        "endpoint_messages": "2. 获取消息",
+        "endpoint_messages_desc": "检索特定活动电子邮件地址的收件箱内容。需要地址标识符。",
+        "method": "方法",
+        "url": "端点 URL",
+        "response": "JSON 响应",
+        "rate_limit": "速率限制",
+        "rate_limit_desc": "为了确保稳定性，我们的公共 API 被严格限制为每个 IP 地址每分钟 10 个请求。"
     }
 }

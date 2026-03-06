@@ -177,7 +177,7 @@
         "sec4_desc": "We use third-party advertising networks, specifically Monetag, to monetize and keep our service free. These partners may use non-personal data to provide relevant advertisements.",
         "sec5_title": "Security Commitment",
         "sec5_desc": "All traffic is encrypted via SSL/TLS. Our infrastructure is hardened to prevent unauthorized access and ensure your temporary data remains private.",
-        "effective_date": "Effective: January 2024",
+        "effective_date": "Effective: January 2026",
         "verified": "Verified Secure"
     },
     "Terms": {
@@ -203,7 +203,7 @@
         "sec9_desc": "These terms are governed by the laws of the jurisdiction in which we operate.",
         "sec10_title": "10. Contact",
         "sec10_desc": "For questions about these terms, contact us at support@disposemail.xyz.",
-        "last_updated": "Last Updated: January 2024"
+        "last_updated": "Last Updated: January 2026"
     },
     "Footer": {
         "privacy": "Privacy Policy",
@@ -234,10 +234,18 @@
         "feature2_desc": "Included in all plans"
     },
     "ApiDocs": {
-        "meta_title": "Developer API - DisposeMail - Secure Disposable Email",
-        "meta_desc": "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable email API.",
-        "page_title": "Developer API",
-        "page_subtitle": "Integrate secure, temporary email generation into your applications.",
-        "coming_soon": "Our public API is currently undergoing final security reviews. Full documentation and API key registration will be available soon."
+        "meta_title": "API Documentation | DisposeMail",
+        "meta_desc": "Integrate secure, temporary email generation into your applications with the DisposeMail API.",
+        "page_title": "API Documentation",
+        "page_subtitle": "A robust, RESTful API for developers to programmatically generate and manage disposable email addresses.",
+        "endpoint_generate": "1. Generate New Email",
+        "endpoint_generate_desc": "Creates a new, unique temporary email address. No authentication required. Expires in 60 minutes.",
+        "endpoint_messages": "2. Fetch Messages",
+        "endpoint_messages_desc": "Retrieves the inbox contents for a specific active email address. Requires the address identifier.",
+        "method": "Method",
+        "url": "Endpoint URL",
+        "response": "JSON Response",
+        "rate_limit": "Rate Limiting",
+        "rate_limit_desc": "To ensure stability, our public API is heavily rate-limited to 10 requests per minute per IP address. For enterprise access without strict limits, please contact support."
     }
 }
