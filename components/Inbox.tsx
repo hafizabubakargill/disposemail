@@ -37,6 +37,27 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
 
     const unreadEmailsCount = emails.filter(e => !e.is_read).length;
 
+    useEffect(() => {
+        // Securely intercept and rewrite all image/link attributes to prevent IP-tracking and target hijacking
+        DOMPurify.addHook('afterSanitizeAttributes', function (node) {
+            if (node.tagName && node.tagName.toLowerCase() === 'img' && node.hasAttribute('src')) {
+                const originalSrc = node.getAttribute('src');
+                if (originalSrc && originalSrc.startsWith('http')) {
+                    // Proxy all images through backend node fetch to hide client IP
+                    node.setAttribute('src', `/api/proxy-image?url=${encodeURIComponent(originalSrc)}`);
+                }
+            }
+            if (node.tagName && node.tagName.toLowerCase() === 'a') {
+                node.setAttribute('target', '_blank');
+                node.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+        
+        return () => {
+            DOMPurify.removeHook('afterSanitizeAttributes');
+        };
+    }, []);
+
     const [toastMessage, setToastMessage] = useState<string | null>(null);
 
     const showToast = (message: string) => {

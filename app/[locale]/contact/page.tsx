@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function ContactPage() {
     const t = useTranslations('Contact');
@@ -13,6 +14,7 @@ export default function ContactPage() {
         message: '',
         honeypot: '', // Anti-spam hidden field
     });
+    const [turnstileToken, setTurnstileToken] = useState<string>('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,7 +26,7 @@ export default function ContactPage() {
             const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({ ...formData, turnstileToken }),
             });
 
             if (res.ok) {
@@ -128,6 +130,13 @@ export default function ContactPage() {
                                     className="w-full px-5 py-4 rounded-xl bg-gray-50 dark:bg-[#161616] border border-gray-100 dark:border-[#222] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all text-sm resize-none"
                                     value={formData.message}
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                />
+                            </div>
+
+                            <div className="flex justify-center my-4">
+                                <Turnstile 
+                                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} 
+                                    onSuccess={(token) => setTurnstileToken(token)}
                                 />
                             </div>
 

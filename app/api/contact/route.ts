@@ -25,6 +25,35 @@ export async function POST(req: Request) {
             return NextResponse.json({ success: true }, { status: 200 }); // Silent ignore
         }
 
+        // 1.5. Cloudflare Turnstile Validation
+        const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+        if (turnstileSecret && turnstileSecret !== '') {
+            if (!data.turnstileToken) {
+                console.warn('[Contact] Missing Turnstile token');
+                return NextResponse.json({ error: 'Security validation failed' }, { status: 400 });
+            }
+
+            const formData = new URLSearchParams();
+            formData.append('secret', turnstileSecret);
+            formData.append('response', data.turnstileToken);
+            
+            // Extract IP for Cloudflare (Next.js 13+ headers)
+            const forwardedFor = req.headers.get('x-forwarded-for');
+            const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : '';
+            if (ip) formData.append('remoteip', ip);
+
+            const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const outcome = await verifyRes.json();
+            if (!outcome.success) {
+                console.warn('[Contact] Invalid Turnstile token state:', outcome['error-codes']);
+                return NextResponse.json({ error: 'Security verification failed' }, { status: 403 });
+            }
+        }
+
         // 2. Anti-spam: Basic validation
         if (!data.name || !data.email || !data.message) {
             return NextResponse.json({ error: 'Missing fields' }, { status: 400 });

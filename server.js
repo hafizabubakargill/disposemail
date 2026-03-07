@@ -209,6 +209,44 @@ app.prepare().then(() => {
             }
         });
 
+        // --- 4.5 IMAGE PROXY (Anti-Tracking) ---
+        server.get(`${p}/proxy-image`, async (req, res) => {
+            const { url } = req.query;
+            if (!url) return res.status(400).send('Missing image URL');
+
+            try {
+                // Ensure we only proxy http/https
+                if (!url.startsWith('http')) return res.status(400).send('Invalid URL protocol');
+
+                // Set a short timeout so requests don't hang the server
+                const proxyReq = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (compatible; ImageProxy/1.0)',
+                        'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8'
+                    },
+                    signal: AbortSignal.timeout(5000) 
+                });
+
+                if (!proxyReq.ok) {
+                    return res.status(proxyReq.status).send('External image fetch failed');
+                }
+
+                const contentType = proxyReq.headers.get('content-type');
+                if (contentType) res.setHeader('Content-Type', contentType);
+
+                // Cache perfectly for 1 hour to reduce server load
+                res.setHeader('Cache-Control', 'public, max-age=3600');
+
+                // Stream the response directly to the client
+                const arrayBuffer = await proxyReq.arrayBuffer();
+                res.send(Buffer.from(arrayBuffer));
+            } catch (err) {
+                console.error('[ImageProxy] Fetch error:', err.message);
+                res.status(500).send('Proxy Error');
+            }
+        });
+
         // --- 5. CLEANUP (Every 5 Minutes) ---
         setInterval(() => {
             try {

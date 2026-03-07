@@ -11,17 +11,25 @@ export const portuguesePosts = [
       <p>No cenário digital de 2026, seu endereço de e-mail principal evoluiu para muito mais do que um simples canal de comunicação; é agora sua definitiva âncora digital, um identificador permanente que vincula seus registros financeiros, interações sociais e histórico profissional em um único perfil rastreável. Cada vez que você fornece esse endereço a um site, está essencialmente entregando uma chave mestra para sua vida digital. O problema é que a maioria dos sites não são as fortalezas seguras que afirmam ser. As violações de dados tornaram-se uma ocorrência diária, com "shadow brokers" usando IA avançada para liquidar bancos de dados roubados em minutos após um comprometimento. Neste ambiente de alto risco, o uso de um endereço de e-mail descartável não é apenas uma conveniência — é uma necessidade absoluta para quem valoriza sua segurança e privacidade pessoal.</p>
 
       <h3>A Anatomia de uma Violação de Dados Moderna</h3>
-      <p>Para entender por que os e-mails temporários são tão críticos, primeiro precisamos observar como os dados são explorados hoje em dia. Quando um site é invadido, os cybercriminals não levam apenas sua senha; eles levam seu endereço de e-mail, que serve como um nome de usuário universal. Como a maioria das pessoas reutiliza seu e-mail principal para tudo, desde suas contas bancárias até seu login na Netflix, um único vazamento em um fórum menor ou loja de nicho pode expor toda a sua pegada digital. Os cybercriminals usam ferramentas de "credential stuffing", alimentadas por modelos de linguagem massivos, para testar essas combinações de e-mail e senha vazadas em milhares de outros serviços. Se encontrarem uma correspondência para seu e-mail principal, não ganham apenas acesso a um site; ganham um portal para toda a sua vida.</p>\n      <div class="my-8 flex justify-center w-full">
-        <div class="relative w-full">
-            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-[#080808] text-[8px] font-black tracking-widest text-[#666] uppercase border border-[#333] rounded-full z-20 shadow-lg">[ SPONSORED ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-500/5 hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
-                <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span class="text-base font-bold text-gray-200">Recommended Reading: <span class="text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-300">Download the Security Report</span></span>
+      <p>Para entender por que os e-mails temporários são tão críticos, primeiro precisamos observar como os dados são explorados hoje em dia. Quando um site é invadido, os cybercriminals não levam apenas sua senha; eles levam seu endereço de e-mail, que serve como um nome de usuário universal. Como a maioria das pessoas reutiliza seu e-mail principal para tudo, desde suas contas bancárias até seu login na Netflix, um único vazamento em um fórum menor ou loja de nicho pode expor toda a sua pegada digital. Os cybercriminals usam ferramentas de "credential stuffing", alimentadas por modelos de linguagem massivos, para testar essas combinações de e-mail e senha vazadas em milhares de outros serviços. Se encontrarem uma correspondência para seu e-mail principal, não ganham apenas acesso a um site; ganham um portal para toda a sua vida.</p>\n      <div class="my-10 w-full">
+        <div class="relative bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black border border-gray-200 dark:border-gray-800 rounded-3xl p-1 overflow-hidden shadow-xl dark:shadow-2xl group">
+            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-200 dark:bg-gray-800 text-[10px] font-black tracking-widest text-gray-500 dark:text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-300 dark:border-gray-700 shadow-sm dark:shadow-lg">[ ADVERTISEMENT ]</div>
+            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-white/80 dark:bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-white/90 dark:group-hover:bg-black/20 mt-1" style="text-decoration: none;">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-200 dark:border-blue-500/20 group-hover:bg-blue-200 dark:group-hover:bg-blue-600/30 transition-colors">
+                        <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
+                        <p class="text-base text-gray-500 dark:text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
+                    </div>
+                </div>
+                <div class="shrink-0 mt-2 sm:mt-0">
+                    <div class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg dark:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -48,19 +56,19 @@ export const portuguesePosts = [
       <h3>Conclusão: O Futuro da Higiene Digital</h3>
       <p>À medida que avançamos mais na década de 2020, a fronteira entre nossas vidas físicas e digitais continuará a se dissolver. As ferramentas que usamos para proteger nossas casas físicas — fechaduras, alarmes e cercas — devem ter equivalentes digitais. O e-mail descartável é a "porta de bloqueio" do século XXI. É uma solução simples, eficaz e elegante para um problema complexo. Ao priorizar sua higiene digital hoje, você está construindo um futuro mais seguro e privado para si mesmo. O DisposeMail orgulha-se de estar na vanguarda deste movimento, fornecendo a infraestrutura essencial para uma web mais segura e anônima. Não espere pela próxima violação catastrófica para agir.</p>
       
-\n    \n      <div class="my-10 flex justify-center w-full">
-        <div class="relative w-full max-w-lg">
-            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-400 uppercase border border-indigo-500/30 rounded z-20 shadow-lg">[ AD ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
-                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
-                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
-                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
-                    </div>
+
+
+    \n      <div class="my-8 w-full">
+        <div class="relative bg-gray-50 dark:bg-[#050505] border border-green-300 dark:border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500 dark:hover:border-green-500/60 transition-colors">
+            <div class="absolute top-0 right-0 px-2 py-1 bg-green-100 dark:bg-green-500/10 text-[9px] font-black tracking-widest text-green-700 dark:text-green-500 uppercase border-b border-l border-green-300 dark:border-green-500/30 rounded-bl-lg z-20 shadow-sm dark:shadow-lg">[ STRATEGIC AD ]</div>
+            <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="relative z-10 block mt-2" style="text-decoration: none;">
+                <div class="flex items-center gap-3">
+                    <span class="text-green-600 dark:text-green-500 animate-pulse text-lg">_></span>
+                    <span class="text-base font-bold text-gray-800 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
+                </div>
+                <div class="mt-3 pl-8 flex items-center gap-2">
+                    <span class="text-sm text-gray-500">Run execution to secure connection:</span>
+                    <span class="text-sm font-bold text-green-600 dark:text-green-400 underline decoration-green-400/50 dark:decoration-green-500/30 underline-offset-4 group-hover:decoration-green-600 dark:group-hover:decoration-green-500">Execute Payload</span>
                 </div>
             </a>
         </div>
@@ -78,23 +86,21 @@ export const portuguesePosts = [
       <p>O spam evoluiu de um mero incômodo para uma indústria sofisticada de bilhões de dólares que ameaça a própria utilidade da ferramenta de comunicação mais básica da internet: o e-mail. Em 2026, o volume de lixo eletrônico automatizado atingiu proporções impressionantes, com bots alimentados por IA capazes de gerar milhões de mensagens hiperpersonalizadas por segundo. Essas mensagens não são mais apenas sobre a venda de produtos duvidosos; elas são muitas vezes a primeira fase de um ataque cibernético complexo, projetado para explorar a psicologia humana através de "spear-phishing" ou para entregar cargas úteis de malware silenciosas. A abordagem tradicional de combate ao spam — confiar em filtros — é uma estratégia reativa que está falhando cada vez mais. Para obter uma caixa de entrada verdadeiramente limpa, você deve mudar sua estratégia da detecção para a prevenção.</p>
 
       <h3>A Economia da "Lista Quente"</h3>
-      <p>Quando você se inscreve em um serviço ou newsletter "gratuita", muitas vezes está sendo adicionado a uma "lista de leads". Essas listas são a força vital da indústria de marketing do mercado cinza. Elas são vendidas, comercializadas e cruzadas em um ciclo interminável. Uma única entrada em um site duvidoso pode fazer com que seu endereço seja sinalizado como "quente" (ativo e monitorado) por milhares de sistemas automatizados em questão de horas. Uma vez que seu e-mail principal está nessas listas, é quase impossível removê-lo. Clicar em "Cancelar inscrição" pode muitas vezes ser contraproducente; muitos spammers usam o link de cancelamento como uma confirmação de que um ser humano está realmente lendo o e-mail. Esta confirmação torna seu endereço ainda mais valioso para outros spammers.</p>\n      <div class="my-10 flex justify-center w-full">
-        <div class="relative w-full max-w-lg">
-            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-400 uppercase border border-indigo-500/30 rounded z-20 shadow-lg">[ AD ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
-                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
-                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
-                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
-                    </div>
+      <p>Quando você se inscreve em um serviço ou newsletter "gratuita", muitas vezes está sendo adicionado a uma "lista de leads". Essas listas são a força vital da indústria de marketing do mercado cinza. Elas são vendidas, comercializadas e cruzadas em um ciclo interminável. Uma única entrada em um site duvidoso pode fazer com que seu endereço seja sinalizado como "quente" (ativo e monitorado) por milhares de sistemas automatizados em questão de horas. Uma vez que seu e-mail principal está nessas listas, é quase impossível removê-lo. Clicar em "Cancelar inscrição" pode muitas vezes ser contraproducente; muitos spammers usam o link de cancelamento como uma confirmação de que um ser humano está realmente lendo o e-mail. Esta confirmação torna seu endereço ainda mais valioso para outros spammers.</p>\n      <div class="my-8 w-full">
+        <div class="relative bg-gray-50 dark:bg-[#050505] border border-green-300 dark:border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500 dark:hover:border-green-500/60 transition-colors">
+            <div class="absolute top-0 right-0 px-2 py-1 bg-green-100 dark:bg-green-500/10 text-[9px] font-black tracking-widest text-green-700 dark:text-green-500 uppercase border-b border-l border-green-300 dark:border-green-500/30 rounded-bl-lg z-20 shadow-sm dark:shadow-lg">[ STRATEGIC AD ]</div>
+            <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="relative z-10 block mt-2" style="text-decoration: none;">
+                <div class="flex items-center gap-3">
+                    <span class="text-green-600 dark:text-green-500 animate-pulse text-lg">_></span>
+                    <span class="text-base font-bold text-gray-800 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
+                </div>
+                <div class="mt-3 pl-8 flex items-center gap-2">
+                    <span class="text-sm text-gray-500">Run execution to secure connection:</span>
+                    <span class="text-sm font-bold text-green-600 dark:text-green-400 underline decoration-green-400/50 dark:decoration-green-500/30 underline-offset-4 group-hover:decoration-green-600 dark:group-hover:decoration-green-500">Execute Payload</span>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -118,13 +124,21 @@ export const portuguesePosts = [
       <h3>Resumo: Prevenção é a Única Cura</h3>
       <p>Na análise final, não há filtro poderoso o suficiente para parar um spammer determinado com uma IA. A única defesa eficaz é reter o alvo. O DisposeMail fornece o escudo mais eficaz na era digital, permitindo que você navegue na web com confiança e desenvoltura. Sua caixa de entrada é seu espaço digital mais íntimo; ela deve ser reservada para aqueles que você escolhe convidar, não aberta a qualquer bot com um script automatizado. Assuma o controle do seu ponto de entrada hoje e recupere o silêncio e a segurança de uma caixa de entrada principal limpa. A paz de espírito que você ganha vale cada segundo do esforço.</p>
       
-\n    \n      <div class="my-8 flex justify-center w-full">
-        <div class="relative w-full">
-            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-[#080808] text-[8px] font-black tracking-widest text-[#666] uppercase border border-[#333] rounded-full z-20 shadow-lg">[ SPONSORED ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-500/5 hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
-                <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span class="text-base font-bold text-gray-200">Recommended Reading: <span class="text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-300">Download the Security Report</span></span>
+
+
+    \n      <div class="my-10 flex justify-center w-full">
+        <div class="relative w-full max-w-lg">
+            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-gray-100 dark:bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-600 dark:text-indigo-400 uppercase border border-indigo-200 dark:border-indigo-500/30 rounded z-20 shadow-sm dark:shadow-lg">[ AD ]</div>
+            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-gray-800 rounded-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.2)] dark:hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
+                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-200 dark:border-indigo-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-base font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
+                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
+                    </div>
                 </div>
             </a>
         </div>
@@ -142,21 +156,23 @@ export const portuguesePosts = [
       <p>O ano de 2026 marca um momento divisor de águas na história da internet. Passamos de uma era de simples coleta de dados para uma era de modelagem preditiva de comportamento total. Neste novo cenário, a privacidade não é mais apenas sobre esconder seu nome ou sua localização; é sobre proteger o "gêmeo digital" que cada grande plataforma de tecnologia está tentando construir de você. Seu endereço de e-mail, antes apenas uma forma de enviar texto, tornou-se a chave de índice primária para esses modelos. É o fio que une seus dados de saúde, seus hábitos financeiros e seus pensamentos privados em uma única narrativa explorável. A evolução da privacidade do e-mail é uma resposta direta a esse nível sem precedentes de vigilância.</p>
 
       <h3>A Ascensão da Vigilância por IA</h3>
-      <p>Os pixels de rastreamento evoluíram de simples gatilhos de "recibo de abertura" para sensores comportamentais avançados. Pixels modernos, movidos por IA, podem agora detectar sua velocidade de rolagem, as seções de um e-mail em que você demora e até mesmo sua frequência cardíaca através da análise de variações sutis no tempo de sua interação. Esses dados são alimentados em mecanismos de lances em tempo real (RTB) que vendem acesso à sua atenção nos microssegundos que uma página leva para carregar. Ferramentas de privacidade tradicionais que apenas bloqueiam imagens não são mais suficientes; o rastreamento mudou-se para a própria estrutura das mensagens que recebemos.</p>\n      <div class="my-8 w-full">
-        <div class="relative bg-[#050505] border border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500/60 transition-colors">
-            <div class="absolute top-0 right-0 px-2 py-1 bg-green-500/10 text-[9px] font-black tracking-widest text-green-500 uppercase border-b border-l border-green-500/30 rounded-bl-lg z-20 shadow-lg">[ STRATEGIC AD ]</div>
-            <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="relative z-10 block mt-2" style="text-decoration: none;">
-                <div class="flex items-center gap-3">
-                    <span class="text-green-500 animate-pulse text-lg">_></span>
-                    <span class="text-base font-bold text-gray-300 group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
-                </div>
-                <div class="mt-3 pl-8 flex items-center gap-2">
-                    <span class="text-sm text-gray-500">Run execution to secure connection:</span>
-                    <span class="text-sm font-bold text-green-400 underline decoration-green-500/30 underline-offset-4 group-hover:decoration-green-500">Execute Payload</span>
+      <p>Os pixels de rastreamento evoluíram de simples gatilhos de "recibo de abertura" para sensores comportamentais avançados. Pixels modernos, movidos por IA, podem agora detectar sua velocidade de rolagem, as seções de um e-mail em que você demora e até mesmo sua frequência cardíaca através da análise de variações sutis no tempo de sua interação. Esses dados são alimentados em mecanismos de lances em tempo real (RTB) que vendem acesso à sua atenção nos microssegundos que uma página leva para carregar. Ferramentas de privacidade tradicionais que apenas bloqueiam imagens não são mais suficientes; o rastreamento mudou-se para a própria estrutura das mensagens que recebemos.</p>\n      <div class="my-10 flex justify-center w-full">
+        <div class="relative w-full max-w-lg">
+            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-gray-100 dark:bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-600 dark:text-indigo-400 uppercase border border-indigo-200 dark:border-indigo-500/30 rounded z-20 shadow-sm dark:shadow-lg">[ AD ]</div>
+            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-gray-800 rounded-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.2)] dark:hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
+                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-200 dark:border-indigo-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-base font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
+                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
+                    </div>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -180,13 +196,23 @@ export const portuguesePosts = [
       <h3>Conclusão: Reivindicando a Dignidade Digital</h3>
       <p>Em sua essência, a evolução da privacidade é sobre dignidade humana. É sobre o direito de existir no mundo digital sem um registro permanente de cada erro, cada busca curiosa ou cada interesse fugaz. Acreditamos que privacidade não é sobre ter "algo a esconder"; é sobre ter "algo a proteger" — sua vida interior, seu foco e sua liberdade de manipulação. A DisposeMail não é apenas um serviço; é um compromisso com a ideia de que o indivíduo deve permanecer mestre de seu próprio destino digital. O futuro pertence àqueles que controlam seus próprios dados, e estamos aqui para fornecer as ferramentas para esse futuro.</p>
       
-\n    \n      <div class="my-8 flex justify-center w-full">
-        <div class="relative w-full">
-            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-[#080808] text-[8px] font-black tracking-widest text-[#666] uppercase border border-[#333] rounded-full z-20 shadow-lg">[ SPONSORED ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-500/5 hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
-                <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span class="text-base font-bold text-gray-200">Recommended Reading: <span class="text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-300">Download the Security Report</span></span>
+
+
+    \n      <div class="my-10 w-full">
+        <div class="relative bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black border border-gray-200 dark:border-gray-800 rounded-3xl p-1 overflow-hidden shadow-xl dark:shadow-2xl group">
+            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-200 dark:bg-gray-800 text-[10px] font-black tracking-widest text-gray-500 dark:text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-300 dark:border-gray-700 shadow-sm dark:shadow-lg">[ ADVERTISEMENT ]</div>
+            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-white/80 dark:bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-white/90 dark:group-hover:bg-black/20 mt-1" style="text-decoration: none;">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-200 dark:border-blue-500/20 group-hover:bg-blue-200 dark:group-hover:bg-blue-600/30 transition-colors">
+                        <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
+                        <p class="text-base text-gray-500 dark:text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
+                    </div>
+                </div>
+                <div class="shrink-0 mt-2 sm:mt-0">
+                    <div class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg dark:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
@@ -204,21 +230,25 @@ export const portuguesePosts = [
       <p>As compras online são uma das principais formas pelas quais os usuários comprometem sua segurança digital sem saber. Quando você cria uma conta com um varejista, não está apenas fornecendo uma forma de enviarem um recibo; você está entregando um identificador permanente que vincula suas informações de cartão de crédito, endereço físico e hábitos de compra. Em 2026, as violações de dados no varejo estão em níveis recordes, com "shadow brokers" especializados em liquidar bancos de dados de clientes em minutos. A forma mais eficaz de proteger sua pegada financeira é garantir que seu endereço de e-mail principal — aquele vinculado ao seu banco e identidade — nunca entre no sistema do varejista em primeiro lugar.</p>
 
       <h3>A Brecha no "Checkout de Convidado"</h3>
-      <p>Muitos usuários confiam no checkout de convidado pensando que é mais seguro, mas os varejistas ainda exigem um e-mail para o rastreamento do pedido. Esse e-mail é muitas vezes compartilhado imediatamente com redes de marketing de afiliados e corretores de dados. Ao usar um endereço DisposeMail para essas transações, você satisfaz o requisito técnico para confirmação de pedido enquanto corta a capacidade de rastreamento de longo prazo. Você recebe seu link de rastreamento, baixa seu recibo e então o endereço expira. Mesmo que o varejista sofra uma invasão seis meses depois, o e-mail vazado já está morto, tornando-o inútil para cybercriminals tentando ataques de phishing direcionados.</p>\n      <div class="my-8 w-full">
-        <div class="relative bg-[#050505] border border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500/60 transition-colors">
-            <div class="absolute top-0 right-0 px-2 py-1 bg-green-500/10 text-[9px] font-black tracking-widest text-green-500 uppercase border-b border-l border-green-500/30 rounded-bl-lg z-20 shadow-lg">[ STRATEGIC AD ]</div>
-            <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="relative z-10 block mt-2" style="text-decoration: none;">
-                <div class="flex items-center gap-3">
-                    <span class="text-green-500 animate-pulse text-lg">_></span>
-                    <span class="text-base font-bold text-gray-300 group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
+      <p>Muitos usuários confiam no checkout de convidado pensando que é mais seguro, mas os varejistas ainda exigem um e-mail para o rastreamento do pedido. Esse e-mail é muitas vezes compartilhado imediatamente com redes de marketing de afiliados e corretores de dados. Ao usar um endereço DisposeMail para essas transações, você satisfaz o requisito técnico para confirmação de pedido enquanto corta a capacidade de rastreamento de longo prazo. Você recebe seu link de rastreamento, baixa seu recibo e então o endereço expira. Mesmo que o varejista sofra uma invasão seis meses depois, o e-mail vazado já está morto, tornando-o inútil para cybercriminals tentando ataques de phishing direcionados.</p>\n      <div class="my-10 w-full">
+        <div class="relative bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black border border-gray-200 dark:border-gray-800 rounded-3xl p-1 overflow-hidden shadow-xl dark:shadow-2xl group">
+            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-200 dark:bg-gray-800 text-[10px] font-black tracking-widest text-gray-500 dark:text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-300 dark:border-gray-700 shadow-sm dark:shadow-lg">[ ADVERTISEMENT ]</div>
+            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-white/80 dark:bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-white/90 dark:group-hover:bg-black/20 mt-1" style="text-decoration: none;">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-200 dark:border-blue-500/20 group-hover:bg-blue-200 dark:group-hover:bg-blue-600/30 transition-colors">
+                        <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
+                        <p class="text-base text-gray-500 dark:text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
+                    </div>
                 </div>
-                <div class="mt-3 pl-8 flex items-center gap-2">
-                    <span class="text-sm text-gray-500">Run execution to secure connection:</span>
-                    <span class="text-sm font-bold text-green-400 underline decoration-green-500/30 underline-offset-4 group-hover:decoration-green-500">Execute Payload</span>
+                <div class="shrink-0 mt-2 sm:mt-0">
+                    <div class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg dark:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -242,19 +272,15 @@ export const portuguesePosts = [
       <h3>Conclusão: Comprando em Seus Próprios Termos</h3>
       <p>À medida que navegamos no complexo mundo do e-commerce moderno, as ferramentas que usamos devem ser tão sofisticadas quanto os rastreadores que elas combatem. Reivindicar sua privacidade não deve ser uma tarefa árdua; deve ser uma parte perfeita de cada transação. Ao adotar o hábito de usar endereços descartáveis para tudo, exceto seus serviços mais essenciais, você está construindo um muro digital que protege suas informações mais sensíveis. É uma mudança simples que produz dividendos massivos em segurança de longo prazo e paz de espírito. Comece a tratar cada loja online como uma possível violação de dados e proteja-se na fonte com o DisposeMail.</p>
       
-\n    \n      <div class="my-10 flex justify-center w-full">
-        <div class="relative w-full max-w-lg">
-            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-400 uppercase border border-indigo-500/30 rounded z-20 shadow-lg">[ AD ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
-                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
-                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
-                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
-                    </div>
+
+
+    \n      <div class="my-8 flex justify-center w-full">
+        <div class="relative w-full">
+            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-gray-100 dark:bg-[#080808] text-[8px] font-black tracking-widest text-gray-500 dark:text-[#666] uppercase border border-gray-300 dark:border-[#333] rounded-full z-20 shadow-sm dark:shadow-lg">[ SPONSORED ]</div>
+            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-500/5 hover:bg-blue-100 dark:hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-base font-bold text-gray-800 dark:text-gray-200">Recommended Reading: <span class="text-blue-600 dark:text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-700 dark:hover:text-blue-300">Download the Security Report</span></span>
                 </div>
             </a>
         </div>
@@ -274,15 +300,15 @@ export const portuguesePosts = [
       <h3>1. uBlock Origin: O Escudo Essencial</h3>
       <p>O uBlock Origin continua sendo o padrão ouro para bloqueio eficiente e de amplo espectro de anúncios e rastreadores. Ao contrário de outros bloqueadores de anúncios que têm acordos secretos com anunciantes, o uBlock é verdadeiramente impulsionado pela comunidade. Em 2026, seu "Modo Avançado" permite que os usuários bloqueiem seletivamente scripts e frames específicos, evitando os "pixels invisíveis" que rastreiam seus movimentos entre as páginas. Ao usá-lo junto com o DisposeMail, você está essencialmente cortando tanto o "ID" (o e-mail) quanto o "Rastreador" (o script). Isso cria um buraco negro no banco de dados do corretor de dados onde seu perfil costumava estar.</p>\n      <div class="my-8 flex justify-center w-full">
         <div class="relative w-full">
-            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-[#080808] text-[8px] font-black tracking-widest text-[#666] uppercase border border-[#333] rounded-full z-20 shadow-lg">[ SPONSORED ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-500/5 hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
+            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-gray-100 dark:bg-[#080808] text-[8px] font-black tracking-widest text-gray-500 dark:text-[#666] uppercase border border-gray-300 dark:border-[#333] rounded-full z-20 shadow-sm dark:shadow-lg">[ SPONSORED ]</div>
+            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-500/5 hover:bg-blue-100 dark:hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
                 <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span class="text-base font-bold text-gray-200">Recommended Reading: <span class="text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-300">Download the Security Report</span></span>
+                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-base font-bold text-gray-800 dark:text-gray-200">Recommended Reading: <span class="text-blue-600 dark:text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-700 dark:hover:text-blue-300">Download the Security Report</span></span>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -309,19 +335,19 @@ export const portuguesePosts = [
       <h3>Conclusão: Retomando o Controle</h3>
       <p>Assumir o controle do seu navegador é um ato de soberania digital. É uma recusa em ser um produto passivo na economia da atenção. Ao passar dez minutos instalando essas extensões e tornando o DisposeMail seu padrão para registros, você está efetivamente optando por sair da máquina de vigilância global. Você está recuperando a internet para o que ela deveria ser: um lugar para descoberta e aprendizado, não um mercado para sua vida pessoal. À medida que o mundo digital se torna mais complexo, as recompensas por dar esses pequenos passos só crescerão. Tome o controle do seu navegador, tome o controle da sua caixa de entrada e recupere sua privacidade hoje.</p>
       
-\n    \n      <div class="my-10 flex justify-center w-full">
-        <div class="relative w-full max-w-lg">
-            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-400 uppercase border border-indigo-500/30 rounded z-20 shadow-lg">[ AD ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
-                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
-                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
-                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
-                    </div>
+
+
+    \n      <div class="my-8 w-full">
+        <div class="relative bg-gray-50 dark:bg-[#050505] border border-green-300 dark:border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500 dark:hover:border-green-500/60 transition-colors">
+            <div class="absolute top-0 right-0 px-2 py-1 bg-green-100 dark:bg-green-500/10 text-[9px] font-black tracking-widest text-green-700 dark:text-green-500 uppercase border-b border-l border-green-300 dark:border-green-500/30 rounded-bl-lg z-20 shadow-sm dark:shadow-lg">[ STRATEGIC AD ]</div>
+            <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="relative z-10 block mt-2" style="text-decoration: none;">
+                <div class="flex items-center gap-3">
+                    <span class="text-green-600 dark:text-green-500 animate-pulse text-lg">_></span>
+                    <span class="text-base font-bold text-gray-800 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
+                </div>
+                <div class="mt-3 pl-8 flex items-center gap-2">
+                    <span class="text-sm text-gray-500">Run execution to secure connection:</span>
+                    <span class="text-sm font-bold text-green-600 dark:text-green-400 underline decoration-green-400/50 dark:decoration-green-500/30 underline-offset-4 group-hover:decoration-green-600 dark:group-hover:decoration-green-500">Execute Payload</span>
                 </div>
             </a>
         </div>
@@ -339,23 +365,25 @@ export const portuguesePosts = [
       <p>As plataformas de redes sociais são os coletores de dados mais sofisticados do mundo. Elas não rastreiam apenas o que você posta; elas rastreiam quem você conhece, para onde você vai e como você pensa. Seu endereço de e-mail principal é a "cola" que permite conectar seu perfil social com sua vida offline, seu histórico profissional e até seus registros médicos através de integrações de corretores de dados de terceiros. Em 2026, o conceito de "shadow profiles" atingiu a maturidade, em que as plataformas constroem dossiês completos sobre você, mesmo que você nunca tenha compartilhado explicitamente essas informações. Usar seu e-mail real como login é essencialmente fornecer a elas uma chave mestra para toda a sua existência digital.</p>
 
       <h3>A Armatização do "Gráfico Social"</h3>
-      <p>Seu endereço de e-mail é um identificador único que permanece constante por anos, tornando-o o anexo perfeito para análise comportamental de longo prazo. Quando este anexo é vinculado a uma plataforma social, permite que a plataforma te "siga" em outros sites através de seus botões "Curtir" e "Compartilhar" integrados de forma onipresente. Ao mudar para um alias dedicado ou usar o DisposeMail para interações iniciais, você quebra este fluxo contínuo de dados. Você isola suas interações sociais de suas comunicações financeiras e pessoais, evitando que um único vazamento ou uma mudança na política de privacidade exponha toda a sua vida. Quebrar o gráfico social é o primeiro passo para a liberdade digital.</p>\n      <div class="my-10 flex justify-center w-full">
-        <div class="relative w-full max-w-lg">
-            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-400 uppercase border border-indigo-500/30 rounded z-20 shadow-lg">[ AD ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
-                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
-                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+      <p>Seu endereço de e-mail é um identificador único que permanece constante por anos, tornando-o o anexo perfeito para análise comportamental de longo prazo. Quando este anexo é vinculado a uma plataforma social, permite que a plataforma te "siga" em outros sites através de seus botões "Curtir" e "Compartilhar" integrados de forma onipresente. Ao mudar para um alias dedicado ou usar o DisposeMail para interações iniciais, você quebra este fluxo contínuo de dados. Você isola suas interações sociais de suas comunicações financeiras e pessoais, evitando que um único vazamento ou uma mudança na política de privacidade exponha toda a sua vida. Quebrar o gráfico social é o primeiro passo para a liberdade digital.</p>\n      <div class="my-10 w-full">
+        <div class="relative bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black border border-gray-200 dark:border-gray-800 rounded-3xl p-1 overflow-hidden shadow-xl dark:shadow-2xl group">
+            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-200 dark:bg-gray-800 text-[10px] font-black tracking-widest text-gray-500 dark:text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-300 dark:border-gray-700 shadow-sm dark:shadow-lg">[ ADVERTISEMENT ]</div>
+            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-white/80 dark:bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-white/90 dark:group-hover:bg-black/20 mt-1" style="text-decoration: none;">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-200 dark:border-blue-500/20 group-hover:bg-blue-200 dark:group-hover:bg-blue-600/30 transition-colors">
+                        <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
-                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
+                        <p class="text-base text-gray-500 dark:text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
                     </div>
+                </div>
+                <div class="shrink-0 mt-2 sm:mt-0">
+                    <div class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg dark:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -379,17 +407,15 @@ export const portuguesePosts = [
       <h3>Resumo: Reivindicando a Autonomia Digital</h3>
       <p>A era das redes sociais "gratuitas" às custas da sua privacidade está chegando ao fim, à medida que mais usuários percebem o verdadeiro preço da entrada. Proteger seu e-mail principal é o primeiro e mais importante passo para reivindicar sua autonomia digital. Você tem o direito de compartilhar seus pensamentos sem compartilhar toda a sua identidade com cada algoritmo que cruzar seu caminho. O DisposeMail fornece as ferramentas para se envolver com o mundo nos seus termos, garantindo que sua vida social continue sendo uma escolha, não um registro permanente armazenado em um banco de dados corporativo. Comece a dissociar sua identidade da sua interação hoje mesmo.</p>
       
-\n    \n      <div class="my-8 w-full">
-        <div class="relative bg-[#050505] border border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500/60 transition-colors">
-            <div class="absolute top-0 right-0 px-2 py-1 bg-green-500/10 text-[9px] font-black tracking-widest text-green-500 uppercase border-b border-l border-green-500/30 rounded-bl-lg z-20 shadow-lg">[ STRATEGIC AD ]</div>
-            <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="relative z-10 block mt-2" style="text-decoration: none;">
+
+
+    \n      <div class="my-8 flex justify-center w-full">
+        <div class="relative w-full">
+            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-gray-100 dark:bg-[#080808] text-[8px] font-black tracking-widest text-gray-500 dark:text-[#666] uppercase border border-gray-300 dark:border-[#333] rounded-full z-20 shadow-sm dark:shadow-lg">[ SPONSORED ]</div>
+            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-500/5 hover:bg-blue-100 dark:hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
                 <div class="flex items-center gap-3">
-                    <span class="text-green-500 animate-pulse text-lg">_></span>
-                    <span class="text-base font-bold text-gray-300 group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
-                </div>
-                <div class="mt-3 pl-8 flex items-center gap-2">
-                    <span class="text-sm text-gray-500">Run execution to secure connection:</span>
-                    <span class="text-sm font-bold text-green-400 underline decoration-green-500/30 underline-offset-4 group-hover:decoration-green-500">Execute Payload</span>
+                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-base font-bold text-gray-800 dark:text-gray-200">Recommended Reading: <span class="text-blue-600 dark:text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-700 dark:hover:text-blue-300">Download the Security Report</span></span>
                 </div>
             </a>
         </div>
@@ -407,23 +433,25 @@ export const portuguesePosts = [
       <p>À medida que navegamos por 2026, o cenário de ameaças cibernéticas evoluiu drasticamente. Não estamos mais lidando com e-mails mal digitados de "príncipes" oferecendo milhões. Os ataques de phishing modernos são altamente direcionados, relevantes e impulsionados por Inteligência Artificial (LLMs). Eles criam e-mails copiando a forma de falar do seu banco ou empresa. Usar o endereço DisposeMail garante que um invasor falhe instantaneamente devido ao anonimato arquitetônico total.</p>
 
       <h3>A Anatomia de um Ataque</h3>
-      <p>Um invasor precisa do seu e-mail como vetor-chave universal. Quando uma loja sofre um pequeno vazamento, eles não obtêm apenas suas informações periféricas; eles adquirem a senha e o seu e-mail atrelado globalmente. Se a loja possuir penas um alias no portal do DisposeMail o processo fica sem uma continuação possível ao crime.</p>\n      <div class="my-10 flex justify-center w-full">
-        <div class="relative w-full max-w-lg">
-            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-400 uppercase border border-indigo-500/30 rounded z-20 shadow-lg">[ AD ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
-                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
-                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+      <p>Um invasor precisa do seu e-mail como vetor-chave universal. Quando uma loja sofre um pequeno vazamento, eles não obtêm apenas suas informações periféricas; eles adquirem a senha e o seu e-mail atrelado globalmente. Se a loja possuir penas um alias no portal do DisposeMail o processo fica sem uma continuação possível ao crime.</p>\n      <div class="my-10 w-full">
+        <div class="relative bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black border border-gray-200 dark:border-gray-800 rounded-3xl p-1 overflow-hidden shadow-xl dark:shadow-2xl group">
+            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-200 dark:bg-gray-800 text-[10px] font-black tracking-widest text-gray-500 dark:text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-300 dark:border-gray-700 shadow-sm dark:shadow-lg">[ ADVERTISEMENT ]</div>
+            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-white/80 dark:bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-white/90 dark:group-hover:bg-black/20 mt-1" style="text-decoration: none;">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-200 dark:border-blue-500/20 group-hover:bg-blue-200 dark:group-hover:bg-blue-600/30 transition-colors">
+                        <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
-                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
+                        <p class="text-base text-gray-500 dark:text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
                     </div>
+                </div>
+                <div class="shrink-0 mt-2 sm:mt-0">
+                    <div class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg dark:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -440,13 +468,21 @@ export const portuguesePosts = [
       
 
       
-\n    \n      <div class="my-8 flex justify-center w-full">
-        <div class="relative w-full">
-            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-[#080808] text-[8px] font-black tracking-widest text-[#666] uppercase border border-[#333] rounded-full z-20 shadow-lg">[ SPONSORED ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-500/5 hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
-                <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span class="text-base font-bold text-gray-200">Recommended Reading: <span class="text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-300">Download the Security Report</span></span>
+
+
+    \n      <div class="my-10 flex justify-center w-full">
+        <div class="relative w-full max-w-lg">
+            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-gray-100 dark:bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-600 dark:text-indigo-400 uppercase border border-indigo-200 dark:border-indigo-500/30 rounded z-20 shadow-sm dark:shadow-lg">[ AD ]</div>
+            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-gray-800 rounded-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.2)] dark:hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
+                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-200 dark:border-indigo-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-base font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
+                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
+                    </div>
                 </div>
             </a>
         </div>
@@ -492,25 +528,23 @@ export const portuguesePosts = [
       <p>Em 2026, a comunidade global de jogos transformou-se de um passatempo de nicho num dos alvos mais lucrativos para cibercriminosos e corretores de dados. Quer esteja a juntar-se ativamente a um novo servidor Discord não verificado, a registar-se num teste beta fechado de um jogo ou a inscrever-se num fórum de modificações comunitário, fornecer o seu endereço de e-mail principal e permanente é agora reconhecido pelos profissionais de cibersegurança como um enorme risco inaceitável. Este guia abrangente explicará os mecanismos intrincados de como os agentes de ameaças visam a comunidade, por que sua caixa de entrada principal está vulnerável, e as melhores defesas.</p>
       
       <h3>A Realidade das Violações de Jogos</h3>
-      <p>O ecossistema de jogos é excecionalmente vulnerável a violações de dados por várias razões. Primeiro, é um ecossistema altamente fragmentado. Em segundo lugar, fóruns comunitários e servidores privados do Discord raramente são geridos por equipas de cibersegurança profissionais; operam frequentemente com orçamentos apertados. Quando estas bases de dados menores e menos seguras são violadas usando scanners automatizados, os cibercriminosos extraem as tabelas de utilizadores, que contêm universalmente o seu endereço de e-mail registado.</p>\n      <div class="my-10 w-full">
-        <div class="relative bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-1 overflow-hidden shadow-2xl group">
-            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-800 text-[10px] font-black tracking-widest text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-700 shadow-lg">[ ADVERTISEMENT ]</div>
-            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-black/20 mt-1" style="text-decoration: none;">
-                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
-                    <div class="w-14 h-14 rounded-2xl bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-500/20 group-hover:bg-blue-600/30 transition-colors">
-                        <svg class="w-7 h-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+      <p>O ecossistema de jogos é excecionalmente vulnerável a violações de dados por várias razões. Primeiro, é um ecossistema altamente fragmentado. Em segundo lugar, fóruns comunitários e servidores privados do Discord raramente são geridos por equipas de cibersegurança profissionais; operam frequentemente com orçamentos apertados. Quando estas bases de dados menores e menos seguras são violadas usando scanners automatizados, os cibercriminosos extraem as tabelas de utilizadores, que contêm universalmente o seu endereço de e-mail registado.</p>\n      <div class="my-10 flex justify-center w-full">
+        <div class="relative w-full max-w-lg">
+            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-gray-100 dark:bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-600 dark:text-indigo-400 uppercase border border-indigo-200 dark:border-indigo-500/30 rounded z-20 shadow-sm dark:shadow-lg">[ AD ]</div>
+            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-gray-800 rounded-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.2)] dark:hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
+                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-200 dark:border-indigo-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                     </div>
-                    <div>
-                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
-                        <p class="text-base text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
+                    <div class="flex flex-col">
+                        <span class="text-base font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
+                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
                     </div>
-                </div>
-                <div class="shrink-0 mt-2 sm:mt-0">
-                    <div class="px-8 py-3 bg-white text-black text-sm font-bold rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all shadow-xl group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
       <p>Assim que o seu e-mail é colhido, é imediatamente inserido em pipelines de roubo de credenciais automatizados. Como a psicologia dita que os utilizadores reutilizam senhas frequentemente, se tiver usado o seu e-mail bancário para fóruns e esse fórum falhar, eles usam isso contra o seu banco.</p>
@@ -535,13 +569,23 @@ export const portuguesePosts = [
       <h3>Garantindo Sua Vida Digital Contra Intrusões Extraterritoriais</h3>
       <p>Conclui-se que tomar providências com e-mails temporários cria a barreira física virtual exata para que todos os cibercriminosos gastem os seus esforços num beco sem saída cibernético e sem dados utilizáveis, salvando-o eternamente.</p>
       
-\n    \n      <div class="my-8 flex justify-center w-full">
-        <div class="relative w-full">
-            <div class="absolute -top-3 left-4 px-2 py-0.5 bg-[#080808] text-[8px] font-black tracking-widest text-[#666] uppercase border border-[#333] rounded-full z-20 shadow-lg">[ SPONSORED ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="block w-full p-5 pt-6 border-l-4 border-blue-500 bg-blue-500/5 hover:bg-blue-500/10 transition-colors rounded-r-lg" style="text-decoration: none;">
-                <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span class="text-base font-bold text-gray-200">Recommended Reading: <span class="text-blue-400 underline decoration-blue-500/30 underline-offset-4 font-normal hover:text-blue-300">Download the Security Report</span></span>
+
+
+    \n      <div class="my-10 w-full">
+        <div class="relative bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black border border-gray-200 dark:border-gray-800 rounded-3xl p-1 overflow-hidden shadow-xl dark:shadow-2xl group">
+            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-200 dark:bg-gray-800 text-[10px] font-black tracking-widest text-gray-500 dark:text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-300 dark:border-gray-700 shadow-sm dark:shadow-lg">[ ADVERTISEMENT ]</div>
+            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-white/80 dark:bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-white/90 dark:group-hover:bg-black/20 mt-1" style="text-decoration: none;">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-200 dark:border-blue-500/20 group-hover:bg-blue-200 dark:group-hover:bg-blue-600/30 transition-colors">
+                        <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
+                        <p class="text-base text-gray-500 dark:text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
+                    </div>
+                </div>
+                <div class="shrink-0 mt-2 sm:mt-0">
+                    <div class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg dark:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
@@ -561,24 +605,24 @@ export const portuguesePosts = [
       
       <h3>Os Erros Estruturais Antigos</h3>
       <p>O problema mais óbvio dos antigos 10 minutos é que raramente duram o necessário. Filas e servidores congestionados nas maiores bases de dados como governamentais ou de compras, acabam por demorar acima do limite. O registo é falhado. Sem retorno. Necessitas sempre dum moderno e rápido <strong>gerador de e-mail temporário</strong> para não ficar com a sua submissão estagnada ou presa.</p>\n      <div class="my-10 w-full">
-        <div class="relative bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-1 overflow-hidden shadow-2xl group">
-            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-800 text-[10px] font-black tracking-widest text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-700 shadow-lg">[ ADVERTISEMENT ]</div>
-            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-black/20 mt-1" style="text-decoration: none;">
+        <div class="relative bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black border border-gray-200 dark:border-gray-800 rounded-3xl p-1 overflow-hidden shadow-xl dark:shadow-2xl group">
+            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-200 dark:bg-gray-800 text-[10px] font-black tracking-widest text-gray-500 dark:text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-300 dark:border-gray-700 shadow-sm dark:shadow-lg">[ ADVERTISEMENT ]</div>
+            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-white/80 dark:bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-white/90 dark:group-hover:bg-black/20 mt-1" style="text-decoration: none;">
                 <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
-                    <div class="w-14 h-14 rounded-2xl bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-500/20 group-hover:bg-blue-600/30 transition-colors">
-                        <svg class="w-7 h-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-200 dark:border-blue-500/20 group-hover:bg-blue-200 dark:group-hover:bg-blue-600/30 transition-colors">
+                        <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
-                        <p class="text-base text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
+                        <p class="text-base text-gray-500 dark:text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
                     </div>
                 </div>
                 <div class="shrink-0 mt-2 sm:mt-0">
-                    <div class="px-8 py-3 bg-white text-black text-sm font-bold rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all shadow-xl group-hover:shadow-blue-500/20">Learn More</div>
+                    <div class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg dark:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -594,17 +638,19 @@ export const portuguesePosts = [
       <h3>Construção Limpa e Sem Histórico</h3>
       <p>Para assegurar total limpeza do lixo recetivo e digital, o servidor funciona no conceito de RAM sem disco, significando que logo ao limite e final, todos as ligações digitais ao remetente ou ao correio desvanecem por completo. Proteja a sua rotina virtual descartando a fraca e obsoleta concorrência cibernética antiga.</p>
       
-\n    \n      <div class="my-8 w-full">
-        <div class="relative bg-[#050505] border border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500/60 transition-colors">
-            <div class="absolute top-0 right-0 px-2 py-1 bg-green-500/10 text-[9px] font-black tracking-widest text-green-500 uppercase border-b border-l border-green-500/30 rounded-bl-lg z-20 shadow-lg">[ STRATEGIC AD ]</div>
+
+
+    \n      <div class="my-8 w-full">
+        <div class="relative bg-gray-50 dark:bg-[#050505] border border-green-300 dark:border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500 dark:hover:border-green-500/60 transition-colors">
+            <div class="absolute top-0 right-0 px-2 py-1 bg-green-100 dark:bg-green-500/10 text-[9px] font-black tracking-widest text-green-700 dark:text-green-500 uppercase border-b border-l border-green-300 dark:border-green-500/30 rounded-bl-lg z-20 shadow-sm dark:shadow-lg">[ STRATEGIC AD ]</div>
             <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="relative z-10 block mt-2" style="text-decoration: none;">
                 <div class="flex items-center gap-3">
-                    <span class="text-green-500 animate-pulse text-lg">_></span>
-                    <span class="text-base font-bold text-gray-300 group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
+                    <span class="text-green-600 dark:text-green-500 animate-pulse text-lg">_></span>
+                    <span class="text-base font-bold text-gray-800 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
                 </div>
                 <div class="mt-3 pl-8 flex items-center gap-2">
                     <span class="text-sm text-gray-500">Run execution to secure connection:</span>
-                    <span class="text-sm font-bold text-green-400 underline decoration-green-500/30 underline-offset-4 group-hover:decoration-green-500">Execute Payload</span>
+                    <span class="text-sm font-bold text-green-600 dark:text-green-400 underline decoration-green-400/50 dark:decoration-green-500/30 underline-offset-4 group-hover:decoration-green-600 dark:group-hover:decoration-green-500">Execute Payload</span>
                 </div>
             </a>
         </div>
@@ -623,25 +669,23 @@ export const portuguesePosts = [
       <p>Todos já deparámos com esta situação frustrante: quer aceder a um serviço de streaming sob oferta, testar uma aplicação nova ou visualizar um jornal internacional protegido por verificações, mas encontra um muro direto obrigatório para inserir as suas informações. Estas plataformas fazem isto para reunir dados para uso num poderoso e indesejável funil de publicidade maciço. O melhor contorno será sempre um competente <strong>e-mail temporário sem registro</strong>, deixando as grandes redes corporativas na ignorância completa da sua verdadeira persona.</p>
       
       <h3>A Realidade das Subscrições</h3>
-      <p>Um registo com palavra-passe baseia-se muitas das vezes na esperança da multinacional no esquecimento ou preguiça do cliente em cancelar. Se a isto associar os incontáveis esforços de reativação via e-mail meses após o cancelamento. Cortando o mal pela raiz com e-mails e plataformas descartáveis, bloqueia-se o "Pipeline" comunicacional.</p>\n      <div class="my-10 w-full">
-        <div class="relative bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-1 overflow-hidden shadow-2xl group">
-            <div class="absolute -top-[1px] -right-[1px] px-3 py-1 bg-gray-800 text-[10px] font-black tracking-widest text-gray-400 uppercase rounded-bl-xl rounded-tr-3xl z-20 border-b border-l border-gray-700 shadow-lg">[ ADVERTISEMENT ]</div>
-            <a href="https://omg10.com/4/10691842" target="_blank" rel="noopener nofollow" class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-black/50 backdrop-blur-xl rounded-[22px] transition-colors group-hover:bg-black/20 mt-1" style="text-decoration: none;">
-                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
-                    <div class="w-14 h-14 rounded-2xl bg-blue-600/20 flex items-center justify-center shrink-0 border border-blue-500/20 group-hover:bg-blue-600/30 transition-colors">
-                        <svg class="w-7 h-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+      <p>Um registo com palavra-passe baseia-se muitas das vezes na esperança da multinacional no esquecimento ou preguiça do cliente em cancelar. Se a isto associar os incontáveis esforços de reativação via e-mail meses após o cancelamento. Cortando o mal pela raiz com e-mails e plataformas descartáveis, bloqueia-se o "Pipeline" comunicacional.</p>\n      <div class="my-10 flex justify-center w-full">
+        <div class="relative w-full max-w-lg">
+            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-gray-100 dark:bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-600 dark:text-indigo-400 uppercase border border-indigo-200 dark:border-indigo-500/30 rounded z-20 shadow-sm dark:shadow-lg">[ AD ]</div>
+            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-gray-800 rounded-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.2)] dark:hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
+                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-200 dark:border-indigo-500/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                     </div>
-                    <div>
-                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Enterprise-Grade Protection</h4>
-                        <p class="text-base text-gray-400 m-0 leading-tight">Discover zero-knowledge architecture solutions.</p>
+                    <div class="flex flex-col">
+                        <span class="text-base font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
+                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
                     </div>
-                </div>
-                <div class="shrink-0 mt-2 sm:mt-0">
-                    <div class="px-8 py-3 bg-white text-black text-sm font-bold rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all shadow-xl group-hover:shadow-blue-500/20">Learn More</div>
                 </div>
             </a>
         </div>
-    </div></p>
+    </div></p>\n      </p>
       
 
 
@@ -654,19 +698,19 @@ export const portuguesePosts = [
       <h3>Ultrapassando Dificuldades Rapidamente</h3>
       <p>Para proceder seguro e <strong>evitar a verificação</strong> chata de limites e subscrições invasivas, comece criando ativamente o recipiente (a sua caixa recetora DisposeMail). Depois, dirija-se à subscrição pedida e garanta total isolamento cibernético, recolhendo e desfrutando da recompensa final digital sem deixar rastros para futuras mensagens e SPAM infindáveis.</p>
       
-\n    \n      <div class="my-10 flex justify-center w-full">
-        <div class="relative w-full max-w-lg">
-            <div class="absolute -top-3 right-4 px-2 py-0.5 bg-black/80 backdrop-blur-md text-[9px] font-black tracking-widest text-indigo-400 uppercase border border-indigo-500/30 rounded z-20 shadow-lg">[ AD ]</div>
-            <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative flex flex-col sm:flex-row items-center justify-center p-6 transition-all duration-300 bg-[#0a0a0a] border border-gray-800 rounded-2xl hover:border-indigo-500/50 hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.4)] overflow-hidden" style="text-decoration: none;">
-                <div class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-indigo-500 via-purple-500 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-                <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center text-center sm:text-left">
-                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white group-hover:text-indigo-200 transition-colors">Boost Your Digital Security</span>
-                        <span class="text-sm text-gray-500 font-medium">Claim your exclusive privacy offer</span>
-                    </div>
+
+
+    \n      <div class="my-8 w-full">
+        <div class="relative bg-gray-50 dark:bg-[#050505] border border-green-300 dark:border-green-500/30 rounded-lg p-6 font-mono overflow-hidden group hover:border-green-500 dark:hover:border-green-500/60 transition-colors">
+            <div class="absolute top-0 right-0 px-2 py-1 bg-green-100 dark:bg-green-500/10 text-[9px] font-black tracking-widest text-green-700 dark:text-green-500 uppercase border-b border-l border-green-300 dark:border-green-500/30 rounded-bl-lg z-20 shadow-sm dark:shadow-lg">[ STRATEGIC AD ]</div>
+            <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="relative z-10 block mt-2" style="text-decoration: none;">
+                <div class="flex items-center gap-3">
+                    <span class="text-green-600 dark:text-green-500 animate-pulse text-lg">_></span>
+                    <span class="text-base font-bold text-gray-800 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">System Alert: Premium Privacy Tools</span>
+                </div>
+                <div class="mt-3 pl-8 flex items-center gap-2">
+                    <span class="text-sm text-gray-500">Run execution to secure connection:</span>
+                    <span class="text-sm font-bold text-green-600 dark:text-green-400 underline decoration-green-400/50 dark:decoration-green-500/30 underline-offset-4 group-hover:decoration-green-600 dark:group-hover:decoration-green-500">Execute Payload</span>
                 </div>
             </a>
         </div>
