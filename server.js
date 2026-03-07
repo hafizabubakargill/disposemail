@@ -42,6 +42,11 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
     const server = express();
+    
+    // SEC-FIX: Trust Cloudflare proxies so express-rate-limit 
+    // doesn't block all global traffic as a single IP address
+    server.set('trust proxy', 1);
+
     const httpServer = http.createServer(server);
 
     // Apply Global Site Limiter to everything
@@ -276,7 +281,13 @@ app.prepare().then(() => {
     }, 24 * 60 * 60 * 1000); 
 
     io.on('connection', (socket) => {
-        const ip = socket.handshake.address || socket.conn.remoteAddress || 'unknown';
+        // SEC-FIX: Read true IP behind Cloudflare/Nginx instead of the proxy server's IP
+        const ip = socket.handshake.headers['cf-connecting-ip'] || 
+                   (socket.handshake.headers['x-forwarded-for'] || '').toString().split(',')[0].trim() || 
+                   socket.handshake.address || 
+                   socket.conn.remoteAddress || 
+                   'unknown';
+                  
         const currentCount = connectionLimits.get(ip) || 0;
 
         if (currentCount > 30) {
