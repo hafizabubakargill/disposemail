@@ -13,7 +13,7 @@ export const russianPosts = [
       <h3>Анатомия современной утечки данных</h3>
       <p>Чтобы понять, почему временная почта так важна, нам сначала нужно посмотреть, как сегодня эксплуатируются данные. Когда веб-сайт взламывают, хакеры забирают не только ваш пароль; они забирают ваш адрес электронной почты, который служит универсальным именем пользователя. Поскольку большинство людей используют одну и ту же основную почту для всего — от банковских счетов до подписки на Netflix — одна утечка на второстепенном форуме или в нишевом магазине может раскрыть весь ваш цифровой след. Хакеры используют инструменты «подстановки данных» (credential stuffing), работающие на мощных LLM-моделях, чтобы проверить эти связки почты и пароля в тысячах других сервисов. Если они находят совпадение для вашей основной почты, они получают доступ не к одному сайту, а ко всей вашей цифровой жизни.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -28,7 +28,7 @@ export const russianPosts = [
 
       <h3>Стратегическая оборона: Канарейка в коде</h3>
       <p>Одним из самых мощных, но часто упускаемых из виду преимуществ использования уникальных временных адресов для каждого сервиса является возможность выполнять «идентификацию источника» для спама и утечек данных. Если вы регистрируетесь в сервисе, используя адрес <code>service-xyz@disposemail.xyz</code>, и позже получаете фишинговое письмо на этот же адрес, вы со 100% уверенностью знаете, что этот сервис либо был взломан, либо продал ваши данные. Такой уровень прозрачности невозможен при использовании основной почты, где тысячи писем от разных отправителей сваливаются в одну кучу. Используя временные адреса, вы превращаете каждую регистрацию в «канарейку в угольной шахте», получая разведданные, необходимые для проактивной защиты ваших реальных аккаунтов.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -51,7 +51,7 @@ export const russianPosts = [
 
       <h3>Вывод: Будущее цифровой гигиены</h3>
       <p>По мере того как мы углубляемся в 2020-е годы, граница между нашей физической и цифровой жизнью будет продолжать стираться. Инструменты, которые мы используем для защиты наших физических домов — замки, сигнализации и заборы — должны иметь цифровые эквиваленты. Временная почта — это «запертые ворота» XXI века. Это простое, эффективное и элегантное решение сложной проблемы. Уделяя внимание своей цифровой гигиене сегодня, вы строите более безопасное и приватное будущее для себя. DisposeMail гордится тем, что находится на передовой этого движения, предоставляя необходимую инфраструктуру для более безопасного веба. Не ждите следующей катастрофической утечки данных.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -74,7 +74,7 @@ export const russianPosts = [
       <h3>Экономика «горячих списков»</h3>
       <p>Когда вы подписываетесь на «бесплатный» сервис или рассылку, вас часто добавляют в «список лидов». Эти списки — кровь маркетинговой индустрии серого рынка. Они продаются, обмениваются и проверяются в бесконечном цикле. Одной записи на сомнительном сайте достаточно, чтобы ваш адрес был помечен как «горячий» (активный и проверяемый) тысячами автоматизированных систем в течение нескольких часов. Как только ваш основной адрес попадает в эти списки, его практически невозможно оттуда удалить. Нажатие кнопки «Отписаться» часто может быть контрпродуктивным; многие спамеры используют эту ссылку, чтобы подтвердить, что почту читает живой человек. Это подтверждение делает ваш адрес еще более ценным для других спамеров.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -89,7 +89,7 @@ export const russianPosts = [
 
       <h3>Гиперперсонализация и фишинг с помощью ИИ</h3>
       <p>Опасность спама в 2026 году выходит далеко за рамки захламления. С развитием больших языковых моделей (LLM) спамеры теперь могут сканировать ваши открытые профили в социальных сетях и предыдущие утечки данных, чтобы составлять письма, которые почти невозможно отличить от легитимных. Они могут ссылаться на недавнюю конференцию, которую вы посетили, на товар, который вы недавно купили, или даже имитировать стиль письма вашего коллеги. Такой уровень гиперперсонализации делает традиционные фильтры на основе ключевых слов бесполезными. Единственный способ противостоять этому — полная изоляция вашей цифровой личности.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -109,7 +109,7 @@ export const russianPosts = [
 
       <h3>Резюме: Предотвращение — единственное лекарство</h3>
       <p>В конечном счете, не существует фильтра, достаточно мощного, чтобы остановить решительного спамера с ИИ. Единственная эффективная защита — скрыть цель. DisposeMail предоставляет самый надежный щит в цифровую эпоху, позволяя вам уверенно перемещаться по сети. Ваш основной почтовый ящик — это ваше самое интимное цифровое пространство; он должен быть зарезервирован для тех, кого вы сами решили пригласить, а не открыт для любого бота с автоматическим скриптом. Возьмите под контроль свою точку входа сегодня и верните себе тишину и безопасность чистого почтового ящика.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -132,7 +132,7 @@ export const russianPosts = [
       <h3>Рост слежки на базе ИИ</h3>
       <p>Пиксели отслеживания превратились из простых триггеров «отчета о прочтении» в продвинутые поведенческие датчики. Современные пиксели теперь могут определять скорость прокрутки страницы, разделы письма, на которых вы задерживаете взгляд, и даже частоту сердечных сокращений через анализ микро-колебаний времени ваших взаимодействий. Эти данные скармливаются системам ставок в реальном времени (RTB), которые продают доступ к вашему вниманию за те микросекунды, которые требуются для загрузки страницы. Традиционных инструментов, которые просто блокируют изображения, уже недостаточно; отслеживание переместилось в саму структуру сообщений.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -147,7 +147,7 @@ export const russianPosts = [
 
       <h3>Архитектура «Нулевого знания» как золотой стандарт</h3>
       <p>В 2026 году сервис защиты данных хорош ровно настолько, насколько технически невозможно для его владельцев шпионить за вами. Отрасль перешла к архитектуре «Нулевого знания» (Zero-Knowledge), когда у поставщика услуг нет криптографической возможности просматривать содержимое сообщений. Когда письмо поступает во временный ящик на нашей платформе, оно обрабатывается в защищенной среде TEE (Trusted Execution Environment), где все данные зашифрованы на аппаратном уровне. Это гарантирует, что даже в случае физического изъятия наших серверов ваши данные останутся бессмысленным набором битов. Это движение от «доверия компании» к «доверию физике систем».</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -167,7 +167,7 @@ export const russianPosts = [
 
       <h3>Человеческий фактор: Возвращение цифрового достоинства</h3>
       <p>В своей основе эволюция приватности — это вопрос человеческого достоинства. Это право на существование в цифровом мире без вечного протоколирования каждой ошибки, каждого любопытного поиска или мимолетного интереса. Мы верим, что приватность — это не про то, что вам есть что скрывать, а про то, что у вас есть что защищать: вашу внутреннюю жизнь и вашу свободу от манипуляций. DisposeMail — это не просто сервис; это приверженность идее, что человек должен оставаться хозяином своей цифровой судьбы. Будущее принадлежит тем, кто контролирует свои данные, и мы здесь, чтобы предоставить инструменты для этого будущего.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -190,7 +190,7 @@ export const russianPosts = [
       <h3>Лазейка в «Оформлении заказа без регистрации»</h3>
       <p>Многие пользователи полагаются на гостевое оформление заказа, думая, что это безопаснее, но магазинам все равно нужна почта для отслеживания заказа. Этот адрес часто немедленно передается партнерским рекламным сетям. Используя адрес DisposeMail для таких транзакций, вы выполняете техническое условие для подтверждения заказа, при этом отсекая возможность долгосрочного отслеживания. Вы получаете ссылку на отслеживание, скачиваете чек, и после этого адрес удаляется. Даже если магазин взломают через полгода, утекший адрес будет уже мертв, что сделает его бесполезным для хакеров.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -205,7 +205,7 @@ export const russianPosts = [
 
       <h3>Защита от рисков физической безопасности</h3>
       <p>Электронные утечки часто имеют физические последствия. Когда магазин допускает утечку вашей почты, она часто связана с адресом доставки. В 2026 году преступные группы используют эти данные, чтобы вычислять состоятельных владельцев дорогой электроники или ювелирных изделий, зная точно, что и когда было доставлено. Используя временную почту, вы разрываете одну из ключевых связей, которую злоумышленники используют для построения «профиля цели». Изоляция — это лучшая форма защиты.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -225,7 +225,7 @@ export const russianPosts = [
 
       <h3>Вывод: Покупки на ваших условиях</h3>
       <p>Инструменты, которые мы используем для покупок, должны быть такими же изощренными, как и трекеры, которым они противостоят. Защита приватности не должна быть в тягость; она должна быть естественной частью каждой транзакции. Делая выбор в пользу временных адресов для всех сервисов, кроме самых жизненно важных, вы строите цифровую стену вокруг своей конфиденциальной информации. Начните относиться к каждому онлайн-магазину как к потенциальному источнику утечки данных и защищайте себя в самом источнике с помощью DisposeMail.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -248,7 +248,7 @@ export const russianPosts = [
       <h3>1. uBlock Origin: Необходимый щит</h3>
       <p>uBlock Origin остается золотым стандартом для эффективной и широкой блокировки рекламы и трекеров. В отличие от других блокировщиков, у которых есть тайные сделки с рекламодателями, uBlock полностью управляется сообществом. В 2026 году его «Расширенный режим» позволяет избирательно блокировать конкретные скрипты и фреймы, предотвращая работу «невидимых пикселей». Используя его вместе с DisposeMail, вы отсекаете как «личность» (почту), так и «инструмент слежки» (скрипт).</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -263,7 +263,7 @@ export const russianPosts = [
 
       <h3>3. CanvasBlocker: Борьба с фингерпринтингом</h3>
       <p>Фингерпринтинг через Canvas — это техника, когда сайт просит браузер нарисовать скрытое изображение. Поскольку каждое оборудование рисует его чуть по-разному, создается уникальный отпечаток. CanvasBlocker прерывает этот процесс, добавляя к рисунку едва заметный «шум», из-за чего ваш отпечаток меняется каждый раз, когда сайт запрашивает его. Объединяя это с временной почтой, вы становитесь практически невидимым для систем слежки.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -289,7 +289,7 @@ export const russianPosts = [
 
       <h3>Заключение: Верните себе контроль над браузером</h3>
       <p>Взять браузер под контроль — это акт цифрового суверенитета. Это отказ быть пассивным продуктом в «экономике внимания». Потратив десять минут на установку этих расширений и сделав DisposeMail инструментом по умолчанию для регистраций, вы эффективно выходите из системы глобальной слежки. Вы возвращаете интернет к тому, чем он должен был быть: месту для открытий и самовыражения, а не рынку для продажи вашей личной жизни. Возьмите контроль над своим браузером и своей приватностью сегодня.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -312,7 +312,7 @@ export const russianPosts = [
       <h3>«Социальный граф» как оружие</h3>
       <p>Ваш адрес почты — это уникальный идентификатор, который остается неизменным годами, что делает его идеальным якорем для долгосрочного поведенческого анализа. В связке с социальной платформой это позволяет ей «следовать» за вами по другим сайтам через встроенные кнопки «Нравится» и «Поделиться». Переходя на выделенный алиас или используя DisposeMail для первичных взаимодействий, вы разрываете этот непрерывный поток данных. Вы изолируете свои социальные взаимодействия от финансовых и личных коммуникаций. Разрыв социального графа — это первый шаг к цифровой свободе.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -327,7 +327,7 @@ export const russianPosts = [
 
       <h3>Ловушка «Войти через Facebook/Google»</h3>
       <p>Одно из самых опасных удобств современного веба — технология единого входа (SSO). Когда вы входите на сторонний сайт через соцсеть, вы даете этому сайту доступ к вашим социальным данным, а соцсети — доступ к вашей активности на этом сайте. Почта здесь — основная валюта обмена. Это создает огромную сеть взаимосвязанных данных, которую невероятно трудно распутать. Если вашу соцсеть взломают, все связанные сервисы окажутся под угрозой. Использование DisposeMail для отдельных сервисов гарантирует, что ваши аккаунты изолированы.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -350,7 +350,7 @@ export const russianPosts = [
 
       <h3>Резюме: Возвращение цифровой автономии</h3>
       <p>Эра «бесплатных» соцсетей ценой вашей приватности подходит к концу, так как всё больше пользователей осознают истинную цену входа. Защита основной почты — это первый и самый важный шаг в возвращении цифровой автономии. У вас есть право делиться мыслями, не делясь при этом всей своей личностью с каждым алгоритмом. DisposeMail предоставляет инструменты, позволяющие взаимодействовать с миром на ваших условиях, гарантируя, что социальная жизнь остается вашим выбором, а не вечной записью в корпоративной базе данных. Начните разделять свою личность и свои взаимодействия уже сегодня.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -373,7 +373,7 @@ export const russianPosts = [
       <h3>Анатомия целевого фишинга</h3>
       <p>Атака целевого фишинга (spear-phishing) требует разведки. Злоумышленники прочесывают базы данных даркнета и публичные профили в социальных сетях, чтобы составить профиль жертвы. Общим знаменателем во всех этих наборах данных является ваш адрес электронной почты. Если хакер знает, что вы недавно купили определенный маршрутизатор (потому что база данных продавца утекла), он может прислать идеально отформатированное уведомление об обновлении прошивки с вредоносным ПО. При использовании DisposeMail для покупок попытка хакера сопоставить данные мгновенно проваливается.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -393,7 +393,7 @@ export const russianPosts = [
 
       <h3>Конец доверию к системам: только проверка</h3>
       <p>Основной принцип современной кибербезопасности — «Нулевое доверие». Защитите главную башню. Используйте ров.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -404,7 +404,7 @@ export const russianPosts = [
         </a>
       </div>
 
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -427,7 +427,7 @@ export const russianPosts = [
       <h3>Иллюзия владения</h3>
       <p>Первое, что необходимо усвоить: вы не владеете своей рабочей электронной почтой. Домен и серверы принадлежат вашей компании. Корпоративные ИТ-отделы используют программное обеспечение для сканирования каждого сообщения. Метаданные хранятся на серверах компании в течение многих лет без вашего контроля.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -442,7 +442,7 @@ export const russianPosts = [
 
       <h3>Роль одноразовых персон</h3>
       <p>Решение — абсолютное разделение. Ваша рабочая почта существует только для работы. Для всего остального используйте DisposeMail. Это защитит вас не только от утечек, но и от недоразумений с HR-отделом и отделом безопасности.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -453,7 +453,7 @@ export const russianPosts = [
         </a>
       </div>
 
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -476,7 +476,7 @@ export const russianPosts = [
       <h3>Механика слежки и ключи</h3>
       <p>Для создания вашего исчерпывающего досье используется "ключа" (Linking Key) — как правило, это ваш неизменный адрес электронной почты. Именно он связывает ваше посещение медицинской клиники, бронирование отеля, социальные сети и покупки Amazon в один портрет.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -496,7 +496,7 @@ export const russianPosts = [
 
       <h3>Создавайте туман, не оставляйте следов</h3>
       <p>Начните ежедневно использовать временную почту. Ваша идентичность — ваша ценность. Не отдавайте её за бесплатную скидку на кофе.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -507,7 +507,7 @@ export const russianPosts = [
         </a>
       </div>
 
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -532,7 +532,7 @@ export const russianPosts = [
       <h3>Реальность взломов в игровых экосистемах</h3>
       <p>Игровая экосистема исключительно уязвима для утечек данных по нескольким ключевым причинам. Во-первых, это сильно фрагментированная среда. У одного геймера могут быть учетные записи в десятках сетей: Steam, Epic Games, PlayStation Network, Xbox Live. Во-вторых, форумы сообщества и частные серверы редко управляются профессиональными командами по кибербезопасности; ими часто управляют волонтеры-энтузиасты с ограниченным бюджетом. Следовательно, эти независимые базы данных часто взламываются с использованием автоматических сканеров уязвимостей, и хакеры беспрепятственно извлекают зарегистрированные адреса.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -545,7 +545,7 @@ export const russianPosts = [
 
       <h3>Зачем вам нужна стратегия временной почты для Discord</h3>
       <p>Использование специальной стратегии <strong>временной почты для discord</strong> считается лучшим методом защиты вашей цифровой личности в современных условиях. Discord стал стандартом связи, но он также выполняет функцию огромной точки агрегации фишинговых ссылок и социальной инженерии. Когда вы создаете альтернативную учетную запись, использование одноразового почтового домена гарантирует изоляцию основных учетных данных.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -571,7 +571,7 @@ export const russianPosts = [
 
       <h3>Заключение: Безопасность в приоритете</h3>
       <p>Создавая цифровую стену между развлечениями и финансами, вы обеспечиваете сохранность собственных денег и предотвращаете кражу аккаунтов. Постройте безопасность с первого клика.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -595,7 +595,7 @@ export const russianPosts = [
       <h3>Недостатки устаревших систем</h3>
       <p>Главная проблема в их названии: они работают всего десять минут. В реальности современной веб-инфраструктуры это совершенно недостаточно. Из-за продвинутых технологий фильтрации ботов и асинхронных серверов электронные письма с подтверждением часто задерживаются на пятнадцать минут.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -608,7 +608,7 @@ export const russianPosts = [
 
       <h3>Эпидемия черных списков</h3>
       <p>Устаревшие сервисы годами используют одни и те же домены, которые давно занесены в глобальные черные списки (blacklists) всех крупных платформ (от соцсетей до стримингов). Вы просто не сможете с ними зарегистрироваться.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -627,7 +627,7 @@ export const russianPosts = [
 
       <h3>Безопасность сетевого уровня</h3>
       <p>Безопасность является краеугольным камнем DisposeMail. Мы обрабатываем письма исключительно в оперативной памяти (в ОЗУ). Как только ваши 60 минут истекают, все письма и данные уничтожаются с сервера без следа на постоянных дисках. Оставьте старые 10-минутные почтовые сервисы в далеком прошлом, модернизируйте свой арсенал приватности сегодня.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">
@@ -651,7 +651,7 @@ export const russianPosts = [
       <h3>Экономика пробных периодов</h3>
       <p>Чтобы понять зачем нужна временная почта, узнайте экономику пробной подписки. Платформа надеется, что вы забудете отменить ее и с вас снимут деньги на 8-й день. И даже если вы успеете, ваш постоянный email попадает в спам-машину на долгие годы, а профиль ваших просмотров продается третьим сторонам.</p>
       <div class="my-8 flex justify-center w-full">
-        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;">
+        <a href="https://omg10.com/4/10691840" target="_blank" rel="noopener nofollow" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 font-inter rounded-xl hover:shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:-translate-y-1 overflow-hidden" style="text-decoration: none;"><div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
           <div class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></div>
           <span class="relative z-10 flex items-center gap-2">
             🔒 Обеспечьте безопасность в Интернете - Получить предложение
@@ -664,7 +664,7 @@ export const russianPosts = [
 
       <h3>Стриминговые сервисы: проблема домена</h3>
       <p>Если вам нужна качественная <strong>одноразовая почта для Netflix</strong>, вы столкнетесь с фильтрацией корпоративных доменов. Крупные компании имеют команды модераторов и огромные черные списки известных, бесплатных генераторов почты. Обычная почта просто выдаст ошибку регистрации.</p>
-      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="my-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex relative flex-col sm:flex-row items-start sm:items-center justify-between gap-4">\n        <div class="absolute -top-2.5 right-4 bg-[#080808] text-gray-500 px-2 text-[8px] font-black uppercase tracking-widest border border-blue-500/20 rounded-full z-10">[ AD ]</div>
         <span class="text-blue-400 font-medium text-sm flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           Рекомендуется к прочтению
@@ -680,7 +680,7 @@ export const russianPosts = [
       <h3>Как безопасно обойти проверку</h3>
       <p>Алгоритм действий для того, чтобы <strong>обойти проверку</strong>: перед входом просто откройте новую вкладку DisposeMail и возьмите свой новый, временный email. Подождите мгновенное уведомление и заберите свой промо-код.</p>
       <p>Вы получаете доступ к сервису, а через час ваш почтовый ящик удалится, как и шанс прислать вам спам. Все фишинговые рассылки просто «сломаются» об удаленный адрес, гарантируя безупречную и непревзойдённую защиту вашей личной жизни.</p>
-      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md text-center">
+      <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-indigo-900/40 via-purple-900/40 to-slate-900/40 border border-white/10 backdrop-blur-md relative text-center">\n        <div class="absolute top-2 right-3 text-[9px] font-black tracking-widest text-white/50 uppercase z-20 pointer-events-none select-none">[ AD ]</div>
         <h4 class="text-xl font-bold text-white mb-4">Сделайте следующий шаг в цифровой безопасности</h4>
         <p class="text-gray-300 mb-6 text-sm">Не оставляйте свою основную личность уязвимой в будущем.</p>
         <a href="https://omg10.com/4/10691841" target="_blank" rel="noopener nofollow" class="inline-block px-8 py-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30" style="text-decoration: none;">

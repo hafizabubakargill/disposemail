@@ -29,7 +29,39 @@ export default function Home() {
         isMounted
     } = useEmailSession();
 
-    if (!isMounted || !email) return null;
+    if (!isMounted || !email) {
+        return (
+            <div className="w-full min-h-screen flex flex-col items-center pt-20 px-4">
+                {/* Hero Skeleton */}
+                <div className="w-full max-w-4xl mx-auto flex flex-col items-center mb-12 animate-pulse">
+                    <div className="h-4 w-48 bg-gray-200 dark:bg-[#222] rounded-full mb-8"></div>
+                    <div className="h-16 w-3/4 bg-gray-200 dark:bg-[#222] rounded-3xl mb-6"></div>
+                    <div className="h-6 w-1/2 bg-gray-200 dark:bg-[#222] rounded-xl mb-12"></div>
+                    
+                    {/* Big Email Input Skeleton */}
+                    <div className="w-full max-w-2xl h-20 bg-gray-100 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222]"></div>
+                </div>
+
+                {/* Inbox Skeleton */}
+                <div className="w-full max-w-5xl mx-auto px-4">
+                    <div className="w-full h-[600px] bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-3xl shadow-2xl animate-pulse">
+                        <div className="flex border-b border-gray-100 dark:border-[#222] p-6">
+                            <div className="h-8 w-32 bg-gray-100 dark:bg-[#222] rounded-xl"></div>
+                            <div className="ml-auto flex gap-2">
+                                <div className="h-8 w-24 bg-gray-100 dark:bg-[#222] rounded-xl"></div>
+                                <div className="h-8 w-24 bg-gray-100 dark:bg-[#222] rounded-xl"></div>
+                            </div>
+                        </div>
+                        <div className="flex flex-col p-6 gap-4">
+                            <div className="h-24 w-full bg-gray-50 dark:bg-[#151515] rounded-2xl"></div>
+                            <div className="h-24 w-full bg-gray-50 dark:bg-[#151515] rounded-2xl hidden md:block"></div>
+                            <div className="h-24 w-full bg-gray-50 dark:bg-[#151515] rounded-2xl hidden md:block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="w-full">
