@@ -178,6 +178,10 @@ app.prepare().then(() => {
             db.markEmailAsUnread(req.body.id || req.query.id);
             res.json({ success: true });
         });
+        server.delete(`${p}/emails/delete`, express.json(), (req, res) => {
+            const success = db.deleteEmailById(req.body.id);
+            res.json({ success });
+        });
         server.post(`${p}/webhook/email`, webhookLimiter, express.json({ limit: '10mb' }), handleWebhook);
 
         server.get(`${p}/emails/attachment`, async (req, res) => {

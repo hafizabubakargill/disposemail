@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
 import { useTranslations } from 'next-intl';
+import DOMPurify from 'dompurify';
 
 export interface Email {
     id: string;
@@ -29,6 +30,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
     const [showMobileContent, setShowMobileContent] = useState(false);
     const [showRawSource, setShowRawSource] = useState(false);
     const [showBurnConfirm, setShowBurnConfirm] = useState(false);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null);
     const socketRef = useRef<any>(null);
     const lastSyncRef = useRef<number>(0);
     const [isTabActive, setIsTabActive] = useState(true);
@@ -155,6 +157,27 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
         }).catch(console.error);
         setShowMobileContent(false);
         setSelectedEmail(null);
+    };
+
+    const confirmDeleteEmail = () => {
+        if (!showDeleteConfirm) return;
+        
+        // Optimistic UI update
+        setEmails(prev => prev.filter(e => e.id !== showDeleteConfirm));
+        setShowMobileContent(false);
+        setSelectedEmail(null);
+
+        // Network request to SQLite backend
+        fetch('/x-feed/emails/delete', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: showDeleteConfirm })
+        }).catch(err => {
+            console.error('Failed to delete email from backend:', err);
+            showToast(t('error')); 
+        });
+
+        setShowDeleteConfirm(null);
     };
 
     const fetchEmails = () => {
@@ -441,6 +464,15 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                                         <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">{t('unread')}</div>
                                     </button>
                                     <button
+                                        onClick={() => setShowDeleteConfirm(selectedEmail.id)}
+                                        className="group relative flex items-center gap-1.5 p-2 px-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-full md:rounded-lg transition-all"
+                                        aria-label="Delete Email"
+                                    >
+                                        <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                        <span className="hidden md:inline text-sm font-bold">Delete</span>
+                                        <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">Delete</div>
+                                    </button>
+                                    <button
                                         onClick={() => setShowRawSource(true)}
                                         className="group relative flex items-center gap-1.5 p-2 px-3 text-gray-500 hover:bg-gray-100 dark:hover:bg-[#222] rounded-full md:rounded-lg transition-all"
                                         aria-label="View Source"
@@ -482,7 +514,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                         <div className="flex-1 overflow-y-auto overflow-x-auto p-4 md:p-10 bg-white text-gray-900 email-content printable-area text-base md:text-lg leading-relaxed">
                             <div className="min-w-0 md:min-w-fit">
                                 {selectedEmail.html ? (
-                                    <div className="max-w-full prose prose-sm md:prose-lg dark:prose-invert break-words [&>img]:max-w-full [&>img]:h-auto" dangerouslySetInnerHTML={{ __html: selectedEmail.html }} />
+                                    <div className="max-w-full prose prose-sm md:prose-lg dark:prose-invert break-words [&>img]:max-w-full [&>img]:h-auto" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedEmail.html) }} />
                                 ) : (
                                     <pre className="whitespace-pre-wrap font-sans break-words">{selectedEmail.text}</pre>
                                 )}
@@ -549,6 +581,38 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showDeleteConfirm && (
+                <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-in fade-in duration-200">
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowDeleteConfirm(null)}></div>
+                    <div className="bg-white dark:bg-[#1e1e1e] w-full max-w-sm rounded-2xl shadow-2xl relative flex flex-col border border-gray-200 dark:border-[#333] overflow-hidden">
+                        <div className="p-6 text-center">
+                            <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </div>
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Delete Email?</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                                This action is permanent. The email will be removed from your Inbox and permanently wiped from the server.
+                            </p>
+                        </div>
+                        <div className="flex border-t border-gray-100 dark:border-[#333]">
+                            <button
+                                onClick={() => setShowDeleteConfirm(null)}
+                                className="flex-1 py-3 text-sm font-bold text-gray-500 hover:bg-gray-50 dark:hover:bg-[#252525] transition-colors"
+                            >
+                                {t('cancel')}
+                            </button>
+                            <div className="w-px bg-gray-100 dark:bg-[#333]"></div>
+                            <button
+                                onClick={confirmDeleteConfirm => confirmDeleteEmail()}
+                                className="flex-1 py-3 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                            >
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>
