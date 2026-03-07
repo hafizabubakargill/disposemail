@@ -31,8 +31,9 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
     const [showBurnConfirm, setShowBurnConfirm] = useState(false);
     const socketRef = useRef<any>(null);
     const lastSyncRef = useRef<number>(0);
-    const [unreadCount, setUnreadCount] = useState(0);
     const [isTabActive, setIsTabActive] = useState(true);
+
+    const unreadEmailsCount = emails.filter(e => !e.is_read).length;
 
     const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -170,9 +171,6 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                         playNotificationSound();
                         const latest = newEmails[0];
                         showNotification(`New Email: ${latest.subject}`, `From: ${latest.from_address}`);
-                        if (!isTabActive) {
-                            setUnreadCount(prev => prev + newEmails.length);
-                        }
                     }
                     return nonBlockedData;
                 });
@@ -181,19 +179,21 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
     };
 
     useEffect(() => {
-        let interval: any;
-        if (!isTabActive && unreadCount > 0) {
-            let toggle = false;
-            interval = setInterval(() => {
-                document.title = toggle ? `(${unreadCount}) New Mail!` : 'DisposeMail';
+        let toggle = false;
+        const interval = setInterval(() => {
+            if (unreadEmailsCount > 0) {
+                document.title = toggle ? `(${unreadEmailsCount}) New Mail!` : 'DisposeMail';
                 toggle = !toggle;
-            }, 1000);
-        } else {
+            } else {
+                document.title = 'DisposeMail - Secure Disposable Email';
+            }
+        }, 1000);
+
+        return () => {
+            clearInterval(interval);
             document.title = 'DisposeMail - Secure Disposable Email';
-            if (isTabActive) setUnreadCount(0);
-        }
-        return () => clearInterval(interval);
-    }, [isTabActive, unreadCount]);
+        };
+    }, [unreadEmailsCount]);
 
     useEffect(() => {
         if ('serviceWorker' in navigator) {
@@ -249,7 +249,6 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                 if (prev.some(e => e.id === email.id)) return prev;
                 playNotificationSound();
                 showNotification(`New Email: ${email.subject}`, `From: ${email.from_address}`);
-                if (!isTabActive) setUnreadCount(count => count + 1);
                 return [{ ...email, is_read: false }, ...prev];
             });
         });
