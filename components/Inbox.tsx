@@ -21,7 +21,7 @@ export interface Email {
     is_read?: boolean;
 }
 
-export default function Inbox({ emailAddress }: { emailAddress: string }) {
+export default function Inbox({ emailAddress, sessionToken }: { emailAddress: string; sessionToken: string }) {
     const t = useTranslations('Inbox');
     const [emails, setEmails] = useState<Email[]>([]);
     const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
@@ -246,7 +246,7 @@ export default function Inbox({ emailAddress }: { emailAddress: string }) {
 
         socket.on('connect', () => {
             setIsConnected(true);
-            socket.emit('join-room', emailAddress);
+            socket.emit('join-room', { email: emailAddress, token: sessionToken });
             fetchEmails();
 
             const now = Date.now();

@@ -21,7 +21,8 @@ export default function UseCaseClient({ serviceName, useCaseTitle, useCaseDescri
         setIsCustom,
         customPrefix,
         setCustomPrefix,
-        isMounted
+        isMounted,
+        sessionToken
     } = useEmailSession();
 
     return (
@@ -52,7 +53,7 @@ export default function UseCaseClient({ serviceName, useCaseTitle, useCaseDescri
                         setCustomPrefix={setCustomPrefix}
                     />
                     <div className="w-full px-4 mb-20">
-                        <Inbox emailAddress={email} />
+                        <Inbox emailAddress={email} sessionToken={sessionToken} />
                     </div>
                 </section>
             )}

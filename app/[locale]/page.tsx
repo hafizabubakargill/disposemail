@@ -26,7 +26,8 @@ export default function Home() {
         setIsCustom,
         customPrefix,
         setCustomPrefix,
-        isMounted
+        isMounted,
+        sessionToken
     } = useEmailSession();
 
     if (!isMounted || !email) {
@@ -78,7 +79,7 @@ export default function Home() {
 
             {/* Inbox Section */}
             <div className="w-full px-4 z-10 pb-12">
-                <Inbox emailAddress={email} />
+                <Inbox emailAddress={email} sessionToken={sessionToken} />
             </div>
 
             {/* --- AD VALUE: FEATURES GRID --- */}

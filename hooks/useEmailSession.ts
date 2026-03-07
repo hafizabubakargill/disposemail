@@ -11,12 +11,20 @@ export function useEmailSession() {
     const [isMounted, setIsMounted] = useState(false);
     const [isCustom, setIsCustom] = useState(false);
     const [customPrefix, setCustomPrefix] = useState('');
+    const [sessionToken, setSessionToken] = useState<string>('');
 
     useEffect(() => {
         setIsMounted(true);
         let stored = localStorage.getItem('disposemail_address');
         const created = localStorage.getItem('disposemail_created');
+        let storedToken = localStorage.getItem('disposemail_token');
         const now = Date.now();
+
+        if (!storedToken) {
+            storedToken = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
+            localStorage.setItem('disposemail_token', storedToken);
+        }
+        setSessionToken(storedToken);
 
         if (stored && created) {
             const diff = now - parseInt(created);
@@ -68,9 +76,14 @@ export function useEmailSession() {
             : Math.random().toString(36).substring(2, 10);
 
         const newEmail = `${userPart}@${domain}`;
+        const newToken = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
+        
         localStorage.setItem('disposemail_address', newEmail);
         localStorage.setItem('disposemail_created', Date.now().toString());
+        localStorage.setItem('disposemail_token', newToken);
+        
         setEmail(newEmail);
+        setSessionToken(newToken);
         setTimeLeft(3600);
         setProgress(100);
         setSelectedDomain(domain);
@@ -86,6 +99,7 @@ export function useEmailSession() {
         isCustom,
         setIsCustom,
         customPrefix,
-        setCustomPrefix
+        setCustomPrefix,
+        sessionToken
     };
 }

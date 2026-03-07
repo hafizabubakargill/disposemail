@@ -56,16 +56,13 @@ app.prepare().then(() => {
         next();
     });
 
-    // --- 1. THE NUCLEAR DIAGNOSTICS (Absolute Top) ---
+    // --- 1. CORE API WRAPPER ---
     server.use((req, res, next) => {
-        const logEntry = `[${new Date().toISOString()}] ${req.method} ${req.url}\n`;
-        fs.appendFile(path.join(process.cwd(), 'requests.log'), logEntry, () => { });
+        // Secure Version Tracker
+        res.setHeader('X-Server-Version', '1.0.12-SECURE');
 
-        // Version Tracker for Debugging
-        res.setHeader('X-Server-Version', '1.0.11-LOCKDOWN');
-
-        // Anti-Cache Headers for all Diagnostic & API routes
-        if (req.url.includes('CHECK') || req.url.includes('LOGS') || req.url.includes('api') || req.url.includes('x-feed') || req.url === '/V') {
+        // Anti-Cache Headers for all API routes
+        if (req.url.startsWith('/api') || req.url.startsWith('/x-feed')) {
             res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
             res.setHeader('Pragma', 'no-cache');
             res.setHeader('Expires', '0');
@@ -76,72 +73,6 @@ app.prepare().then(() => {
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         if (req.method === 'OPTIONS') return res.sendStatus(200);
         next();
-    });
-
-    server.get('/MEGA-CHECK', (req, res) => {
-        res.status(200).send(`
-            <body style="font-family:sans-serif;padding:40px;">
-                <h1>STRICT NUCLEAR MODE ACTIVE</h1>
-                <p>Status: REACTIVE</p>
-                <p>Version: 1.0.11-LOCKDOWN</p>
-                <p>Path: ${req.url}</p>
-                <p>Time: ${new Date().toISOString()}</p>
-            </body>
-        `);
-    });
-
-    server.get('/V', (req, res) => res.send('1.0.11-LOCKDOWN'));
-
-    // BASIC STATUS BYPASS
-    server.get('/status', (req, res) => res.send('OK'));
-
-    // JSON FALLBACK (Prevents frontend crash if worker is bypassed)
-    server.get('/sync-safety-net', (req, res) => res.json({ count: 0, note: "Server Fallback Active" }));
-
-    server.get('/WHERE-AM-I', (req, res) => {
-        res.status(200).json({
-            cwd: process.cwd(),
-            pid: process.pid,
-            uptime: process.uptime(),
-            node_version: process.version,
-            env: process.env.NODE_ENV,
-            timestamp: new Date().toISOString(),
-            registered_routes: ['/MEGA-CHECK', '/SEE-LOGS', '/WHERE-AM-I', '/api-test', '/api-v1/*', '/x-feed/*']
-        });
-    });
-
-    server.get('/api-test', (req, res) => {
-        res.send("API TEST SUCCESSFUL - Express is handling this directly.");
-    });
-
-    server.get('/SEE-LOGS', (req, res) => {
-        const logPath = path.join(process.cwd(), 'requests.log');
-        if (!fs.existsSync(logPath)) return res.send('No logs.');
-        fs.readFile(logPath, 'utf8', (err, data) => {
-            const lines = (data || "").trim().split('\n').reverse().slice(0, 100);
-            res.send(`<pre style="background:#000;color:#0f0;padding:20px;">${lines.join('\n')}</pre><script>setTimeout(()=>location.reload(),3000)</script>`);
-        });
-    });
-
-    // --- NEW DIAGNOSTIC ROUTES ---
-    server.get('/DEBUG-EMAILS', (req, res) => {
-        try {
-            const emails = db.getAllEmails();
-            res.json({
-                count: emails.length,
-                last_5: emails.slice(-5).map(e => ({ id: e.id, to: e.address, subject: e.subject, time: new Date(e.received_at).toISOString() }))
-            });
-        } catch (err) {
-            res.status(500).json({ error: err.message, stack: err.stack });
-        }
-    });
-
-    server.get('/TEST-WEBHOOK', (req, res) => {
-        res.json({
-            status: "OK",
-            message: "Webhook route is reachable. Use POST to send data.",
-            endpoint: "/x-feed/webhook/email"
-        });
     });
 
     // --- 2. PRIORITY FLAT ROUTES (No Routers) ---
@@ -161,7 +92,7 @@ app.prepare().then(() => {
     server.get('/site.webmanifest', serveManifest);
 
     // Flat API Handlers
-    const getStatus = (req, res) => res.json({ status: 'running', version: '1.0.11-LOCKDOWN' });
+    const getStatus = (req, res) => res.json({ status: 'running', version: '1.0.12-SECURE' });
 
     const getEmails = (req, res) => {
         const address = req.query.address;
@@ -338,6 +269,13 @@ app.prepare().then(() => {
     const connectionLimits = new Map();
     setInterval(() => connectionLimits.clear(), 60000); // Clear every minute
 
+    // Token Ownership Map for Socket Rooms (Anti-Eavesdropping)
+    const roomTokens = new Map();
+    // Periodically purge room tokens to prevent memory leaks in production
+    setInterval(() => {
+        if (roomTokens.size > 50000) roomTokens.clear();
+    }, 24 * 60 * 60 * 1000); 
+
     io.on('connection', (socket) => {
         const ip = socket.handshake.address || socket.conn.remoteAddress || 'unknown';
         const currentCount = connectionLimits.get(ip) || 0;
@@ -350,7 +288,28 @@ app.prepare().then(() => {
 
         connectionLimits.set(ip, currentCount + 1);
 
-        socket.on('join-room', (email) => { if (email) socket.join(email.toLowerCase()); });
+        socket.on('join-room', (data) => {
+            if (!data) return;
+            const email = typeof data === 'string' ? data.toLowerCase() : data.email?.toLowerCase();
+            const token = typeof data === 'object' ? data.token : null;
+
+            if (!email || !token) return;
+
+            const existingToken = roomTokens.get(email);
+            if (!existingToken) {
+                // First-Claim: Lock this room to this token
+                roomTokens.set(email, token);
+                socket.join(email);
+                console.log(`[Socket.io] Room ${email} claimed by token ${token.substring(0, 6)}...`);
+            } else if (existingToken === token) {
+                // Verified owner rejoining
+                socket.join(email);
+                console.log(`[Socket.io] Owner rejoined room ${email}`);
+            } else {
+                // Eavesdropper Attempt
+                console.warn(`[Socket.io] SEC-ALERT: Eavesdrop blocked on room ${email} from IP ${ip}`);
+            }
+        });
     });
 
     // --- 4. NEXT.JS CATCH-ALL ---
@@ -368,5 +327,13 @@ app.prepare().then(() => {
 
     httpServer.listen(PORT, '0.0.0.0', () => {
         console.log(`> Nuclear Ready on port ${PORT}`);
+        if (WEBHOOK_SECRET === "change_me_to_a_secure_secret") {
+            console.warn("\n========================================================");
+            console.warn("⚠️ CRITICAL SECURITY WARNING ⚠️");
+            console.warn("WEBHOOK_SECRET is currently set to the default fallback!");
+            console.warn("Attackers can spoof emails and inject phishing links.");
+            console.warn("Define a strong WEBHOOK_SECRET in your .env immediately.");
+            console.warn("========================================================\n");
+        }
     });
 });
