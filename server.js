@@ -200,15 +200,14 @@ app.prepare().then(() => {
             }
         });
 
-        // --- 5. CLEANUP ---
+        // --- 5. CLEANUP (Every 5 Minutes) ---
         setInterval(() => {
-            const countBefore = db.getAllEmails().length;
-            db.cleanupOldEmails();
-            const countAfter = db.getAllEmails().length;
-            if (countBefore !== countAfter) {
-                console.log(`[Persistence] Cleanup ran: ${countBefore - countAfter} emails removed. ${countAfter} remaining.`);
+            try {
+                db.cleanupOldEmails();
+            } catch (err) {
+                console.error("[SQLite3] Error during periodic cleanup:", err.message);
             }
-        }, 60 * 1000);
+        }, 5 * 60 * 1000);
 
         // Rescue Endpoint (Phase 14)
         server.post(`${p}/rescue`, express.json(), async (req, res) => {
