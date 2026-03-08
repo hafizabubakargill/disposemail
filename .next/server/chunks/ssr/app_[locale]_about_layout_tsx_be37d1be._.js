@@ -1,0 +1,3 @@
+module.exports=[85272,a=>{"use strict";var b=a.i(7997),c=a.i(32776);async function d({params:a}){let{locale:b}=await a;return{title:(await (0,c.getTranslations)({locale:b,namespace:"Navbar"}))("about")+" | DisposeMail",description:"Learn about the mission and technology behind DisposeMail.",alternates:{canonical:`https://disposemail.xyz/${"en"===b?"":b+"/"}about`}}}function e({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>e,"generateMetadata",()=>d])}];
+
+//# sourceMappingURL=app_%5Blocale%5D_about_layout_tsx_be37d1be._.js.map

@@ -1,0 +1,3 @@
+module.exports=[69961,a=>{"use strict";var b=a.i(7997),c=a.i(32776);async function d({params:a}){let{locale:b}=await a;return{title:(await (0,c.getTranslations)({locale:b,namespace:"Blog"}))("title")+" | DisposeMail",description:"Read the latest news, guides, and insights on online privacy from our experts.",alternates:{canonical:`https://disposemail.xyz/${"en"===b?"":b+"/"}blog`}}}function e({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>e,"generateMetadata",()=>d])}];
+
+//# sourceMappingURL=app_%5Blocale%5D_blog_layout_tsx_73872e42._.js.map

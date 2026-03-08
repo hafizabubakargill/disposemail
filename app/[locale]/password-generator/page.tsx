@@ -1,5 +1,20 @@
 import PasswordGenerator from '@/components/PasswordGenerator';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'PasswordGenerator' });
+    
+    return {
+        title: t('title'),
+        description: t('subtitle'),
+        alternates: {
+            canonical: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}password-generator`,
+        }
+    };
+}
 
 export default function PasswordGeneratorPage() {
     const t = useTranslations('PasswordGenerator');
