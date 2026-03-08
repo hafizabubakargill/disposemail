@@ -237,5 +237,24 @@
     "response": "Respuesta JSON",
     "rate_limit": "Límites de Tasa",
     "rate_limit_desc": "Para garantizar la estabilidad, nuestra API está limitada a 10 solicitudes por minuto por IP."
+  },
+  "PasswordGenerator": {
+    "title": "Generador de Contraseñas Seguro",
+    "subtitle": "Cree contraseñas aleatorias y criptográficamente fuertes al instante.",
+    "hero_desc": "Proteja sus nuevas cuentas de correo desechable emparejándolas con contraseñas completamente únicas y seguras. No reutilice sus contraseñas principales en servicios temporales.",
+    "length": "Longitud de la contraseña",
+    "uppercase": "Mayúsculas (A-Z)",
+    "lowercase": "Minúsculas (a-z)",
+    "numbers": "Números (0-9)",
+    "symbols": "Símbolos (!@#$)",
+    "generate": "Generar Contraseña",
+    "copy": "Copiar Contraseña",
+    "copied": "¡Copiado!",
+    "strength": "Fuerza",
+    "weak": "Débil",
+    "good": "Buena",
+    "strong": "Fuerte",
+    "very_strong": "Muy Fuerte",
+    "nav_link": "Generador de Contraseñas"
   }
 }

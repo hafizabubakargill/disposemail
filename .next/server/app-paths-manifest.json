@@ -7,6 +7,7 @@
   "/[locale]/contact/page": "app/[locale]/contact/page.js",
   "/[locale]/faq/page": "app/[locale]/faq/page.js",
   "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/password-generator/page": "app/[locale]/password-generator/page.js",
   "/[locale]/privacy/page": "app/[locale]/privacy/page.js",
   "/[locale]/terms/page": "app/[locale]/terms/page.js",
   "/_global-error/page": "app/_global-error/page.js",

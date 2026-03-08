@@ -248,5 +248,24 @@
     "response": "JSON Response",
     "rate_limit": "Rate Limiting",
     "rate_limit_desc": "To ensure stability, our public API is heavily rate-limited to 10 requests per minute per IP address. For enterprise access without strict limits, please contact support."
+  },
+  "PasswordGenerator": {
+    "title": "Secure Password Generator",
+    "subtitle": "Create cryptographically strong, random passwords instantly.",
+    "hero_desc": "Protect your newly generated disposable email accounts by pairing them with completely unique, uncrackable passwords. Do not reuse your primary passwords on temporary services.",
+    "length": "Password Length",
+    "uppercase": "Uppercase (A-Z)",
+    "lowercase": "Lowercase (a-z)",
+    "numbers": "Numbers (0-9)",
+    "symbols": "Symbols (!@#$)",
+    "generate": "Generate Password",
+    "copy": "Copy Password",
+    "copied": "Copied!",
+    "strength": "Strength",
+    "weak": "Weak",
+    "good": "Good",
+    "strong": "Strong",
+    "very_strong": "Very Strong",
+    "nav_link": "Password Generator"
   }
 }

@@ -119,6 +119,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/[locale]/password-generator/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/password-generator">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/password-generator/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/[locale]/privacy/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/[locale]/privacy">> = Specific

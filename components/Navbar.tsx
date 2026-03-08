@@ -9,6 +9,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 export function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const t = useTranslations('Navbar');
+    const tPw = useTranslations('PasswordGenerator');
 
     return (
         <nav className="w-full flex justify-between items-center px-6 md:px-8 py-6 z-50 max-w-7xl mx-auto relative">
@@ -27,6 +28,10 @@ export function Navbar() {
                     <Link href="/" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('home')}</Link>
                     <Link href="/about" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('about', { fallback: 'About' })}</Link>
                     <Link href="/blog" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('blog')}</Link>
+                    <Link href="/password-generator" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                        <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" /></svg>
+                        {tPw('nav_link')}
+                    </Link>
                     <Link href="/faq" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('faq')}</Link>
                     <Link href="/contact" className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('contact')}</Link>
                 </div>
@@ -59,6 +64,10 @@ export function Navbar() {
                     <Link href="/" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('home')}</Link>
                     <Link href="/about" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('about', { fallback: 'About Us' })}</Link>
                     <Link href="/blog" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('blog')}</Link>
+                    <Link href="/password-generator" className="text-lg font-bold text-indigo-600 dark:text-indigo-400 py-2 flex items-center gap-2" onClick={() => setMenuOpen(false)}>
+                        <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" /></svg>
+                        {tPw('nav_link')}
+                    </Link>
                     <Link href="/faq" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('faq')}</Link>
                     <Link href="/contact" className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('contact')}</Link>
                 </div>

@@ -248,5 +248,24 @@
     "response": "JSON 响应",
     "rate_limit": "速率限制",
     "rate_limit_desc": "为了确保稳定性，我们的公共 API 被严格限制为每个 IP 地址每分钟 10 个请求。"
+  },
+  "PasswordGenerator": {
+    "title": "安全密码生成器",
+    "subtitle": "即时创建加密强度的随机密码。",
+    "hero_desc": "通过配对完全独特、不可破解的密码来保护您新生成的临时电子邮件帐户。不要在临时服务上重复使用主要密码。",
+    "length": "密码长度",
+    "uppercase": "大写字母 (A-Z)",
+    "lowercase": "小写字母 (a-z)",
+    "numbers": "数字 (0-9)",
+    "symbols": "符号 (!@#$)",
+    "generate": "生成密码",
+    "copy": "复制密码",
+    "copied": "已复制！",
+    "strength": "强度",
+    "weak": "弱",
+    "good": "良好",
+    "strong": "强",
+    "very_strong": "极强",
+    "nav_link": "密码生成器"
   }
 }

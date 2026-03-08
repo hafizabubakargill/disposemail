@@ -237,5 +237,24 @@
     "response": "Resposta JSON",
     "rate_limit": "Limitação de Taxa",
     "rate_limit_desc": "Nossa API é limitada a 10 solicitações por minuto por endereço IP."
+  },
+  "PasswordGenerator": {
+    "title": "Gerador de Senhas Seguro",
+    "subtitle": "Crie senhas criptograficamente fortes e aleatórias instantaneamente.",
+    "hero_desc": "Proteja suas novas contas de e-mail temporárias combinando-as com senhas totalmente únicas e inquebráveis. Não reutilize suas senhas principais em serviços temporários.",
+    "length": "Tamanho da Senha",
+    "uppercase": "Maiúsculas (A-Z)",
+    "lowercase": "Minúsculas (a-z)",
+    "numbers": "Números (0-9)",
+    "symbols": "Símbolos (!@#$)",
+    "generate": "Gerar Senha",
+    "copy": "Copiar Senha",
+    "copied": "Copiado!",
+    "strength": "Força",
+    "weak": "Fraca",
+    "good": "Boa",
+    "strong": "Forte",
+    "very_strong": "Muito Forte",
+    "nav_link": "Gerador de Senhas"
   }
 }
