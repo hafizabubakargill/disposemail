@@ -135,7 +135,7 @@ export default function ContactPage() {
 
                             <div className="flex justify-center my-4">
                                 <Turnstile 
-                                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} 
+                                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAACnx9pgGOEs749j1'} 
                                     onSuccess={(token) => setTurnstileToken(token)}
                                 />
                             </div>
