@@ -4,7 +4,7 @@
 type AppRoutes = "/[locale]" | "/[locale]/[slug]" | "/[locale]/about" | "/[locale]/api-docs" | "/[locale]/blog" | "/[locale]/blog/[slug]" | "/[locale]/contact" | "/[locale]/faq" | "/[locale]/password-generator" | "/[locale]/privacy" | "/[locale]/terms"
 type AppRouteHandlerRoutes = "/api/contact" | "/sitemap.xml"
 type PageRoutes = never
-type LayoutRoutes = "/[locale]" | "/[locale]/about" | "/[locale]/blog" | "/[locale]/contact" | "/[locale]/faq" | "/[locale]/privacy" | "/[locale]/terms"
+type LayoutRoutes = "/[locale]" | "/[locale]/about" | "/[locale]/blog" | "/[locale]/contact" | "/[locale]/faq" | "/[locale]/password-generator" | "/[locale]/privacy" | "/[locale]/terms"
 type RedirectRoutes = never
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes | AppRouteHandlerRoutes
@@ -35,6 +35,7 @@ interface LayoutSlotMap {
   "/[locale]/blog": never
   "/[locale]/contact": never
   "/[locale]/faq": never
+  "/[locale]/password-generator": never
   "/[locale]/privacy": never
   "/[locale]/terms": never
 }

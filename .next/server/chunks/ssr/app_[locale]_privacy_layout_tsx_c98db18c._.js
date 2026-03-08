@@ -1,3 +1,3 @@
-module.exports=[64690,a=>{"use strict";var b=a.i(7997),c=a.i(32776);async function d({params:a}){let{locale:b}=await a;return{title:(await (0,c.getTranslations)({locale:b,namespace:"Footer"}))("privacy")+" | DisposeMail",description:"Read our strict zero-log privacy policy.",alternates:{canonical:`https://disposemail.xyz/${"en"===b?"":b+"/"}privacy`}}}function e({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>e,"generateMetadata",()=>d])}];
+module.exports=[64690,a=>{"use strict";var b=a.i(32776);async function c({params:a}){let{locale:c}=await a;try{return{title:(await (0,b.getTranslations)({locale:c,namespace:"Privacy"}))("title")}}catch(a){return{}}}function d({children:a}){return a}a.s(["default",()=>d,"generateMetadata",()=>c])}];
 
 //# sourceMappingURL=app_%5Blocale%5D_privacy_layout_tsx_c98db18c._.js.map

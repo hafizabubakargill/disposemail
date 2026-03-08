@@ -3,17 +3,17 @@ import { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
-    const t = await getTranslations({ locale, namespace: 'Navbar' });
     
-    return {
-        title: t('about') + ' | DisposeMail',
-        description: "Learn about the mission and technology behind DisposeMail.",
-        alternates: {
-            canonical: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}about`,
-        }
-    };
+    try {
+        const t = await getTranslations({ locale, namespace: 'About' });
+        return {
+            title: t('title')
+        };
+    } catch(err) {
+        return {};
+    }
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    return <>{children}</>;
+    return children;
 }

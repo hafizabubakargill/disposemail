@@ -1,3 +1,3 @@
-module.exports=[60824,a=>{"use strict";var b=a.i(7997),c=a.i(32776);async function d({params:a}){let{locale:b}=await a;return{title:(await (0,c.getTranslations)({locale:b,namespace:"Contact"}))("title")+" | DisposeMail",description:"Get in touch with the DisposeMail team for enterprise support or general inquiries.",alternates:{canonical:`https://disposemail.xyz/${"en"===b?"":b+"/"}contact`}}}function e({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>e,"generateMetadata",()=>d])}];
+module.exports=[60824,a=>{"use strict";var b=a.i(32776);async function c({params:a}){let{locale:c}=await a;try{return{title:(await (0,b.getTranslations)({locale:c,namespace:"Contact"}))("title")}}catch(a){return{}}}function d({children:a}){return a}a.s(["default",()=>d,"generateMetadata",()=>c])}];
 
 //# sourceMappingURL=app_%5Blocale%5D_contact_layout_tsx_d959f6c5._.js.map

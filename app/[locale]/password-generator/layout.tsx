@@ -5,7 +5,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const { locale } = await params;
     
     try {
-        const t = await getTranslations({ locale, namespace: 'Privacy' });
+        const t = await getTranslations({ locale, namespace: 'PasswordGenerator' });
         return {
             title: t('title')
         };
