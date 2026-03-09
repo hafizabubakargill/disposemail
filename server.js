@@ -252,7 +252,7 @@ app.prepare().then(() => {
             try {
                 db.cleanupOldEmails();
             } catch (err) {
-                console.error("[SQLite3] Error during periodic cleanup:", err.message);
+                console.error("[DB] Error during periodic cleanup:", err.message);
             }
         }, 5 * 60 * 1000);
 
