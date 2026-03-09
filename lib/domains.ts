@@ -28,11 +28,17 @@ export const DOMAINS = [
 ];
 
 /**
- * Picks a random domain from BASE_DOMAINS.
- * Uses the apex domain directly so Cloudflare Catch-All can route it.
+ * Generates a random subdomain address: [4-char].[base-domain]
+ * Example: x7a2.noviqmail.pro
+ * The 4-char subdomain is unique per session, so two users with the same
+ * custom local-part are guaranteed different, non-overlapping inboxes.
+ * Requires wildcard MX records (*.domain) in Cloudflare DNS — already configured.
  */
-export const generateRandomDomain = (): string =>
-    BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
+export const generateRandomDomain = (): string => {
+    const base = BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
+    const sub = Math.random().toString(36).substring(2, 6); // 4 chars, e.g. x7a2
+    return `${sub}.${base}`;
+};
 
 // Helper to pick a truly random base domain (same as above, kept for compatibility)
 export const getRandomBaseDomain = (): string =>
