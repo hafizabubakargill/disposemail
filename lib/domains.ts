@@ -1,11 +1,13 @@
-// Base domains for random subdomain generation
+// Base domains for email generation.
 // To add a new domain:
-// 1. Add it to Cloudflare Email Routing (and point to the same Worker).
+// 1. Add it to Cloudflare Email Routing (Catch-All → Worker).
 // 2. Add the string to this array.
 // 3. Re-deploy.
+//
+// NOTE: disposemail.xyz is intentionally excluded so traffic is spread
+// across the alternative domains (better for spam-filter avoidance).
 
 export const BASE_DOMAINS = [
-    'disposemail.xyz',
     'inveromail.info',
     'dunedistrict.com',
     'groundtips.com',
@@ -16,7 +18,6 @@ export const BASE_DOMAINS = [
 ];
 
 export const DOMAINS = [
-    'disposemail.xyz',
     'inveromail.info',
     'dunedistrict.com',
     'groundtips.com',
@@ -27,16 +28,16 @@ export const DOMAINS = [
 ];
 
 /**
- * Generates a random domain using one of the base domains.
- * Format: [random-subdomain].[base-domain]
- * Example: x7a2.inveromail.info
+ * Picks a random domain from BASE_DOMAINS.
+ * Uses the apex domain directly so Cloudflare Catch-All can route it.
  */
-export const generateRandomDomain = (): string => {
-    const base = BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
-    // Generate a short, random subdomain (3-5 chars for readability)
-    const sub = Math.random().toString(36).substring(2, 6); // 4 chars
-    return `${sub}.${base}`;
-};
+export const generateRandomDomain = (): string =>
+    BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
 
-// Kept for compatibility if imported elsewhere, but should be replaced by dynamic generation
+// Helper to pick a truly random base domain (same as above, kept for compatibility)
+export const getRandomBaseDomain = (): string =>
+    BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
+
+// Kept for compatibility if imported elsewhere
 export const DEFAULT_DOMAIN = BASE_DOMAINS[0];
+

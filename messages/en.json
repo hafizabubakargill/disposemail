@@ -266,6 +266,13 @@
     "good": "Good",
     "strong": "Strong",
     "very_strong": "Very Strong",
-    "nav_link": "Password Generator"
+    "nav_link": "Password Generator",
+    "mode_random": "Random",
+    "mode_memorable": "Memorable",
+    "memorable_hint": "Generates a sequence of random words separated by dashes — easy to remember and type, but hard to guess.",
+    "memorable_example": "Example:",
+    "word_count": "Word Count",
+    "words": "words",
+    "min_one_required": "At least one option must be active"
   }
 }

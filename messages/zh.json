@@ -266,6 +266,13 @@
     "good": "良好",
     "strong": "强",
     "very_strong": "极强",
-    "nav_link": "密码生成器"
+    "nav_link": "密码生成器",
+    "mode_random": "随机",
+    "mode_memorable": "易记忆",
+    "memorable_hint": "生成由连字符分隔的随机单词序列——易于记忆。",
+    "memorable_example": "示例：",
+    "word_count": "单词数量",
+    "words": "个单词",
+    "min_one_required": "至少需要一个选项处于开启状态"
   }
 }

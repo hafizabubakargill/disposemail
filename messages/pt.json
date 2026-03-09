@@ -255,6 +255,13 @@
     "good": "Boa",
     "strong": "Forte",
     "very_strong": "Muito Forte",
-    "nav_link": "Gerador de Senhas"
+    "nav_link": "Gerador de Senhas",
+    "mode_random": "Aleatório",
+    "mode_memorable": "Memorável",
+    "memorable_hint": "Gera uma sequência de palavras separadas por traços — fácil de lembrar e digitar.",
+    "memorable_example": "Exemplo:",
+    "word_count": "Número de palavras",
+    "words": "palavras",
+    "min_one_required": "Pelo menos uma opção deve estar ativa"
   }
 }

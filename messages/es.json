@@ -255,6 +255,13 @@
     "good": "Buena",
     "strong": "Fuerte",
     "very_strong": "Muy Fuerte",
-    "nav_link": "Generador de Contraseñas"
+    "nav_link": "Generador de Contraseñas",
+    "mode_random": "Aleatorio",
+    "mode_memorable": "Memorable",
+    "memorable_hint": "Genera una secuencia de palabras separadas por guiones — fácil de recordar y escribir.",
+    "memorable_example": "Ejemplo:",
+    "word_count": "Número de palabras",
+    "words": "palabras",
+    "min_one_required": "Al menos una opción debe estar activa"
   }
 }
