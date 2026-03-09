@@ -3,6 +3,11 @@
 import { useState, useEffect } from 'react';
 import { generateRandomDomain, DEFAULT_DOMAIN } from "@/lib/domains";
 
+/** Generates a short random 4-char alphanumeric suffix for inbox isolation */
+function randomSuffix(): string {
+    return Math.random().toString(36).substring(2, 6);
+}
+
 export function useEmailSession() {
     const [email, setEmail] = useState<string | null>(null);
     const [timeLeft, setTimeLeft] = useState<number>(3600);
@@ -71,9 +76,19 @@ export function useEmailSession() {
     const handleRefresh = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         const domain = generateRandomDomain();
-        const userPart = isCustom && customPrefix.length > 0
-            ? customPrefix.toLowerCase().replace(/[^a-z0-9]/g, '')
-            : Math.random().toString(36).substring(2, 10);
+
+        let userPart: string;
+        if (isCustom && customPrefix.length > 0) {
+            // Sanitise the user-chosen prefix
+            const clean = customPrefix.toLowerCase().replace(/[^a-z0-9]/g, '').substring(0, 20);
+            // Always append a random 4-char suffix so two users who pick the
+            // same name NEVER share an inbox (privacy parity with the old
+            // subdomain approach, without requiring wildcard DNS routing).
+            const suffix = randomSuffix();
+            userPart = `${clean}-${suffix}`;
+        } else {
+            userPart = Math.random().toString(36).substring(2, 10);
+        }
 
         const newEmail = `${userPart}@${domain}`;
         const newToken = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);

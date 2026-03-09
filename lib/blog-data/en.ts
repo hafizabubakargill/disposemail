@@ -821,7 +821,7 @@ export const englishPosts = [
     slug: 'is-dipsasarchive-xyz-disposable-email-domain',
     title: 'Is dipsasarchive.xyz a Disposable Email Domain? Here\'s What You Need to Know',
     excerpt: 'Getting emails from dipsasarchive.xyz or wondering if it\'s safe? Find out what this domain is, how disposable email domains work, and the best alternative for protecting your real inbox.',
-    date: 'Mar 10, 2026',
+    date: 'Mar 8, 2026',
     author: 'DisposeMail Team',
     category: 'Security',
     image: '/blog/dipsasarchive_review.png',
