@@ -119,6 +119,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/[locale]/free-tools/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/free-tools">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/free-tools/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/[locale]/identity-generator/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/[locale]/identity-generator">> = Specific
