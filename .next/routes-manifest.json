@@ -79,6 +79,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/faq(?:/)?$"
     },
     {
+      "page": "/[locale]/identity-generator",
+      "regex": "^/([^/]+?)/identity\\-generator(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/identity\\-generator(?:/)?$"
+    },
+    {
       "page": "/[locale]/password-generator",
       "regex": "^/([^/]+?)/password\\-generator(?:/)?$",
       "routeKeys": {
