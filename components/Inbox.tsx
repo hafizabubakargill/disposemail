@@ -532,10 +532,10 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                             </div>
                         </div>
 
-                        <div className="flex-1 overflow-y-auto overflow-x-auto p-4 md:p-10 bg-white text-gray-900 email-content printable-area text-base md:text-lg leading-relaxed">
-                            <div className="min-w-0 md:min-w-fit">
+                        <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-10 bg-white text-gray-900 email-content printable-area text-base md:text-lg leading-relaxed">
+                            <div className="min-w-0 max-w-full">
                                 {selectedEmail.html ? (
-                                    <div className="max-w-full prose prose-sm md:prose-lg dark:prose-invert break-words [&>img]:max-w-full [&>img]:h-auto" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedEmail.html) }} />
+                                    <div className="max-w-full prose prose-sm md:prose-lg dark:prose-invert break-words [&>img]:max-w-full [&>img]:h-auto [&>table]:max-w-full [&>table]:overflow-x-auto [&>*]:max-w-full" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedEmail.html) }} />
                                 ) : (
                                     <pre className="whitespace-pre-wrap font-sans break-words">{selectedEmail.text}</pre>
                                 )}

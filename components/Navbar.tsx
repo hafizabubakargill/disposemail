@@ -97,7 +97,7 @@ export function Navbar() {
                             onClick={() => setToolsOpen(v => !v)}
                             className={`flex items-center gap-1.5 transition-colors ${isToolActive ? 'text-blue-600 dark:text-blue-400' : 'hover:text-blue-600 dark:hover:text-white'}`}
                         >
-                            Free Tools
+                            <span className="uppercase">Free Tools</span>
                             <svg className={`w-3 h-3 transition-transform duration-200 ${toolsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                             </svg>
