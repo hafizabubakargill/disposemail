@@ -74,6 +74,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/[locale]/base64/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/base64">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/base64/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/[locale]/blog/[slug]/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/[locale]/blog/[slug]">> = Specific
@@ -146,10 +155,37 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/[locale]/qr-code-generator/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/qr-code-generator">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/qr-code-generator/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/[locale]/terms/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/[locale]/terms">> = Specific
   const handler = {} as typeof import("../../app/[locale]/terms/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/[locale]/test-card-generator/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/test-card-generator">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/test-card-generator/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/[locale]/uuid-generator/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/uuid-generator">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/uuid-generator/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

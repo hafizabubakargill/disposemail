@@ -46,6 +46,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/api\\-docs(?:/)?$"
     },
     {
+      "page": "/[locale]/base64",
+      "regex": "^/([^/]+?)/base64(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/base64(?:/)?$"
+    },
+    {
       "page": "/[locale]/blog",
       "regex": "^/([^/]+?)/blog(?:/)?$",
       "routeKeys": {
@@ -103,12 +111,36 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/privacy(?:/)?$"
     },
     {
+      "page": "/[locale]/qr-code-generator",
+      "regex": "^/([^/]+?)/qr\\-code\\-generator(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/qr\\-code\\-generator(?:/)?$"
+    },
+    {
       "page": "/[locale]/terms",
       "regex": "^/([^/]+?)/terms(?:/)?$",
       "routeKeys": {
         "nxtPlocale": "nxtPlocale"
       },
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/terms(?:/)?$"
+    },
+    {
+      "page": "/[locale]/test-card-generator",
+      "regex": "^/([^/]+?)/test\\-card\\-generator(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/test\\-card\\-generator(?:/)?$"
+    },
+    {
+      "page": "/[locale]/uuid-generator",
+      "regex": "^/([^/]+?)/uuid\\-generator(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/uuid\\-generator(?:/)?$"
     },
     {
       "page": "/[locale]/[slug]",
