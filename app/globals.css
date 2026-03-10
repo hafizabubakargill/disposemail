@@ -17,6 +17,11 @@
 body {
     color: rgb(var(--foreground));
     background: rgb(var(--background));
+    overflow-x: hidden;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 @layer utilities {

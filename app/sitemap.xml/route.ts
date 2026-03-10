@@ -8,12 +8,18 @@ const STATIC_ROUTES = [
     { path: '', priority: '1.00' },
     { path: '/about', priority: '0.80' },
     { path: '/blog', priority: '0.80' },
-    { path: '/password-generator', priority: '0.80' },
+    { path: '/free-tools', priority: '0.90' },
+    { path: '/password-generator', priority: '0.85' },
+    { path: '/identity-generator', priority: '0.85' },
+    { path: '/qr-code-generator', priority: '0.85' },
+    { path: '/uuid-generator', priority: '0.85' },
+    { path: '/base64', priority: '0.85' },
+    { path: '/test-card-generator', priority: '0.85' },
     { path: '/faq', priority: '0.80' },
     { path: '/contact', priority: '0.80' },
-    { path: '/privacy', priority: '0.80' },
-    { path: '/terms', priority: '0.80' },
-    { path: '/api-docs', priority: '0.80' }
+    { path: '/privacy', priority: '0.70' },
+    { path: '/terms', priority: '0.70' },
+    { path: '/api-docs', priority: '0.75' },
 ];
 
 export async function GET() {
