@@ -213,6 +213,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/[locale]/identity-generator/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/[locale]/identity-generator">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/identity-generator/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/[locale]/layout.tsx
 {
   type __IsExpected<Specific extends LayoutConfig<"/[locale]">> = Specific
