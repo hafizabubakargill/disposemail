@@ -1,18 +1,16 @@
-import { getTranslations } from 'next-intl/server';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    
-    try {
-        const t = await getTranslations({ locale, namespace: 'Privacy' });
-        return {
-            title: t('title')
-        };
-    } catch(err) {
-        return {};
-    }
-}
+export const metadata: Metadata = {
+    title: 'Privacy Policy | DisposeMail Disposable Email',
+    description: 'Read DisposeMail\'s privacy policy. We collect no personal data, store no logs, and auto-delete all emails after expiry. Your anonymity is our core commitment.',
+    alternates: { canonical: 'https://disposemail.xyz/privacy' },
+    openGraph: {
+        title: 'Privacy Policy — DisposeMail',
+        description: 'DisposeMail collects no personal data, stores no logs, and auto-deletes all emails. Read our full privacy policy.',
+        url: 'https://disposemail.xyz/privacy',
+        type: 'website',
+    },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return children;

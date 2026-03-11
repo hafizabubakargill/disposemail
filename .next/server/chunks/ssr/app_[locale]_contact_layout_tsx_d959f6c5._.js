@@ -1,3 +1,3 @@
-module.exports=[60824,a=>{"use strict";var b=a.i(32776);async function c({params:a}){let{locale:c}=await a;try{return{title:(await (0,b.getTranslations)({locale:c,namespace:"Contact"}))("title")}}catch(a){return{}}}function d({children:a}){return a}a.s(["default",()=>d,"generateMetadata",()=>c])}];
+module.exports=[60824,a=>{"use strict";function b({children:a}){return a}a.s(["default",()=>b,"metadata",0,{title:"Contact DisposeMail | Privacy & Support",description:"Contact the DisposeMail team for support, privacy inquiries, or partnership opportunities. We respond within 24 hours.",alternates:{canonical:"https://disposemail.xyz/contact"},openGraph:{title:"Contact DisposeMail",description:"Reach out to DisposeMail for support, privacy inquiries, or any questions about our free disposable email service.",url:"https://disposemail.xyz/contact",type:"website"}}])}];
 
 //# sourceMappingURL=app_%5Blocale%5D_contact_layout_tsx_d959f6c5._.js.map

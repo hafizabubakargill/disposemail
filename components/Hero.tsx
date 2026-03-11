@@ -169,7 +169,7 @@ export const Hero = ({
                             aria-label="Show QR Code"
                         >
                             <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                            <div className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-[100] pointer-events-none">{t('scan_qr')}</div>
+                            <div className="md:hidden absolute top-full right-0 mt-2 px-2 py-1 bg-gray-900 border border-gray-700 text-white text-[11px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[100] pointer-events-none max-w-[120px]">{t('scan_qr')}</div>
                         </button>
                     </div>
                 </div>

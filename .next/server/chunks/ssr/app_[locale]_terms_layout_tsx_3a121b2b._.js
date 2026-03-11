@@ -1,3 +1,3 @@
-module.exports=[93415,a=>{"use strict";var b=a.i(32776);async function c({params:a}){let{locale:c}=await a;try{return{title:(await (0,b.getTranslations)({locale:c,namespace:"Terms"}))("title")}}catch(a){return{}}}function d({children:a}){return a}a.s(["default",()=>d,"generateMetadata",()=>c])}];
+module.exports=[93415,a=>{"use strict";function b({children:a}){return a}a.s(["default",()=>b,"metadata",0,{title:"Terms of Service | DisposeMail",description:"Read DisposeMail's terms of service. Our disposable email service is provided free, for lawful use only. Emails auto-expire and no personal information is stored.",alternates:{canonical:"https://disposemail.xyz/terms"},openGraph:{title:"Terms of Service — DisposeMail",description:"DisposeMail terms of service: free to use, no storage, no personal data, for lawful purposes only.",url:"https://disposemail.xyz/terms",type:"website"}}])}];
 
 //# sourceMappingURL=app_%5Blocale%5D_terms_layout_tsx_3a121b2b._.js.map

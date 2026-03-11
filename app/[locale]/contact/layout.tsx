@@ -1,18 +1,16 @@
-import { getTranslations } from 'next-intl/server';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    
-    try {
-        const t = await getTranslations({ locale, namespace: 'Contact' });
-        return {
-            title: t('title')
-        };
-    } catch(err) {
-        return {};
-    }
-}
+export const metadata: Metadata = {
+    title: 'Contact DisposeMail | Privacy & Support',
+    description: 'Contact the DisposeMail team for support, privacy inquiries, or partnership opportunities. We respond within 24 hours.',
+    alternates: { canonical: 'https://disposemail.xyz/contact' },
+    openGraph: {
+        title: 'Contact DisposeMail',
+        description: 'Reach out to DisposeMail for support, privacy inquiries, or any questions about our free disposable email service.',
+        url: 'https://disposemail.xyz/contact',
+        type: 'website',
+    },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return children;

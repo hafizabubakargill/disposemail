@@ -214,7 +214,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                     if (newEmails.length > 0 && current.length > 0) {
                         playNotificationSound();
                         const latest = newEmails[0];
-                        showNotification(`New Email: ${latest.subject}`, `From: ${latest.from_address}`);
+                        showNotification(`New Email: ${latest.subject || '(No Subject)'}`, `From: ${latest.from_address || 'Unknown'}`);
                     }
                     return nonBlockedData;
                 });
@@ -250,7 +250,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                         }
                     }
                 });
-                navigator.serviceWorker.register('/sw.js?v=1.0.11').catch(console.error);
+                navigator.serviceWorker.register('/sw.js?v=1.0.13').catch(console.error);
             };
 
             if ('requestIdleCallback' in window) {
@@ -292,7 +292,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
             setEmails(prev => {
                 if (prev.some(e => e.id === email.id)) return prev;
                 playNotificationSound();
-                showNotification(`New Email: ${email.subject}`, `From: ${email.from_address}`);
+                showNotification(`New Email: ${email.subject || '(No Subject)'}`, `From: ${email.from_address || 'Unknown'}`);
                 return [{ ...email, is_read: false }, ...prev];
             });
         });

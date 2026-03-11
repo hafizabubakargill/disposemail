@@ -1,11 +1,4 @@
-self.options = {
-    "domain": "5gvci.com",
-    "zoneId": 10685426
-}
-self.lary = ""
-importScripts('https://5gvci.com/act/files/service-worker.min.js?r=sw')
-
-const CACHE_NAME = 'disposemail-v1.0.12';
+const CACHE_NAME = 'disposemail-v1.0.13';
 const ASSETS_TO_CACHE = [
     '/',
     '/icon.svg',
@@ -40,9 +33,13 @@ self.addEventListener('push', (event) => {
     let data = { title: 'New Email Received', body: 'You have a new message in your DisposeMail inbox.' };
     if (event.data) {
         try {
-            data = event.data.json();
+            const parsed = event.data.json();
+            data = {
+                title: parsed.title || 'New Email Received',
+                body: parsed.body || 'You have a new message in your DisposeMail inbox.'
+            };
         } catch (e) {
-            data.body = event.data.text();
+            data.body = event.data.text() || 'You have a new message in your DisposeMail inbox.';
         }
     }
 

@@ -1,6 +1,5 @@
 'use client';
-import { useState, useRef, useCallback } from 'react';
-import QRCode from 'qrcode';
+import { useState, useCallback } from 'react';
 
 type ErrorCorrLevel = 'L' | 'M' | 'Q' | 'H';
 type QRType = 'url' | 'text' | 'email' | 'phone' | 'wifi' | 'sms';
@@ -37,51 +36,55 @@ export default function QRCodeGenerator() {
   const [fgColor, setFgColor] = useState('#000000');
   const [bgColor, setBgColor] = useState('#ffffff');
   const [ecLevel, setEcLevel] = useState<ErrorCorrLevel>('M');
-  const [generated, setGenerated] = useState(false);
+  // Store the QR as a data URL — no canvas ref needed for display
+  const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [error, setError] = useState('');
 
   const generate = useCallback(async () => {
     const data = buildQRData(type, input);
-    if (!data || !canvasRef.current) return;
+    if (!data) return;
     setLoading(true);
+    setError('');
+    setQrDataUrl(null);
+
     try {
-      await QRCode.toCanvas(canvasRef.current, data, {
+      const QRCode = (await import('qrcode')).default;
+      // toDataURL returns a PNG data URL — no canvas ref required
+      const url = await QRCode.toDataURL(data, {
         width: size,
         margin: 2,
         color: { dark: fgColor, light: bgColor },
         errorCorrectionLevel: ecLevel,
+        type: 'image/png',
       });
-      setGenerated(true);
+      setQrDataUrl(url);
     } catch (err) {
       console.error('QR generation error:', err);
+      setError('Failed to generate QR code. Please try again.');
     } finally {
       setLoading(false);
     }
   }, [type, input, size, fgColor, bgColor, ecLevel]);
 
   const download = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const url = canvas.toDataURL('image/png');
+    if (!qrDataUrl) return;
     const a = document.createElement('a');
-    a.href = url;
+    a.href = qrDataUrl;
     a.download = `disposemail-qr-${Date.now()}.png`;
     a.click();
   };
 
   const copyImage = async () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    canvas.toBlob(async (blob) => {
-      if (!blob) return;
-      try {
-        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      } catch { /* clipboard access may be restricted */ }
-    });
+    if (!qrDataUrl) return;
+    try {
+      const res = await fetch(qrDataUrl);
+      const blob = await res.blob();
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch { /* clipboard may be restricted */ }
   };
 
   const currentType = types.find(t => t.id === type)!;
@@ -93,7 +96,7 @@ export default function QRCodeGenerator() {
         <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">QR Code Type</label>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
           {types.map(t => (
-            <button key={t.id} onClick={() => { setType(t.id); setInput(''); setGenerated(false); }}
+            <button key={t.id} onClick={() => { setType(t.id); setInput(''); setQrDataUrl(null); setError(''); }}
               className={`py-2 px-1 rounded-xl border text-xs font-bold transition-all ${type === t.id ? 'bg-violet-600 border-violet-600 text-white shadow-lg shadow-violet-500/20' : 'bg-gray-50 dark:bg-[#1a1a1a] border-gray-200 dark:border-[#2a2a2a] text-gray-600 dark:text-gray-400 hover:border-violet-400'}`}>
               {t.label}
             </button>
@@ -105,7 +108,7 @@ export default function QRCodeGenerator() {
       <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-2xl p-5 shadow-sm space-y-4">
         <div>
           <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2">Content</label>
-          <textarea value={input} onChange={e => { setInput(e.target.value); setGenerated(false); }}
+          <textarea value={input} onChange={e => { setInput(e.target.value); setQrDataUrl(null); setError(''); }}
             placeholder={currentType.placeholder} rows={3}
             className="w-full bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#2a2a2a] rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-violet-500 resize-none transition-colors" />
           {type === 'wifi' && <p className="text-xs text-gray-400 mt-1">Format: <code className="bg-gray-100 dark:bg-[#1a1a1a] px-1 rounded">SSID | Password | WPA</code></p>}
@@ -128,46 +131,55 @@ export default function QRCodeGenerator() {
           <div>
             <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-1.5">Foreground</label>
             <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#2a2a2a] rounded-xl px-3 py-1.5">
-              <input type="color" value={fgColor} onChange={e => { setFgColor(e.target.value); setGenerated(false); }} className="w-6 h-6 rounded cursor-pointer border-0 bg-transparent" />
+              <input type="color" value={fgColor} onChange={e => { setFgColor(e.target.value); setQrDataUrl(null); }} className="w-6 h-6 rounded cursor-pointer border-0 bg-transparent" />
               <span className="text-xs font-mono text-gray-900 dark:text-white">{fgColor}</span>
             </div>
           </div>
           <div>
             <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-1.5">Background</label>
             <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#2a2a2a] rounded-xl px-3 py-1.5">
-              <input type="color" value={bgColor} onChange={e => { setBgColor(e.target.value); setGenerated(false); }} className="w-6 h-6 rounded cursor-pointer border-0 bg-transparent" />
+              <input type="color" value={bgColor} onChange={e => { setBgColor(e.target.value); setQrDataUrl(null); }} className="w-6 h-6 rounded cursor-pointer border-0 bg-transparent" />
               <span className="text-xs font-mono text-gray-900 dark:text-white">{bgColor}</span>
             </div>
           </div>
         </div>
 
+        {error && (
+          <p className="text-xs text-red-500 bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/30 rounded-xl px-3 py-2">{error}</p>
+        )}
+
         <button onClick={generate} disabled={!input.trim() || loading}
           className="w-full py-4 rounded-2xl bg-violet-600 hover:bg-violet-700 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 text-white font-black text-base transition-all shadow-lg shadow-violet-600/30 flex items-center justify-center gap-2">
-          {loading ? (
-            <><svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>Generating…</>
-          ) : (
-            <><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4" /></svg>Generate QR Code</>
-          )}
+          {loading
+            ? <><svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>Generating…</>
+            : <><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4" /></svg>Generate QR Code</>}
         </button>
       </div>
 
-      {/* Canvas is always rendered (hidden until generated) so ref is always attached */}
-      <div className={generated ? 'bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-2xl p-6 shadow-sm flex flex-col items-center gap-5 animate-in fade-in duration-300' : 'hidden'}>
-        <canvas ref={canvasRef} className="rounded-xl shadow-lg" />
-        <div className="flex gap-3 w-full">
-          <button onClick={download} className="flex-1 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-bold text-sm flex items-center justify-center gap-2 transition-all">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-            Download PNG
-          </button>
-          <button onClick={copyImage} className={`flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all border ${copied ? 'bg-green-50 dark:bg-green-900/20 border-green-300 text-green-600' : 'border-gray-200 dark:border-[#2a2a2a] text-gray-600 dark:text-gray-400 hover:border-violet-400'}`}>
-            {copied ? <><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>Copied!</>
-              : <><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>Copy Image</>}
-          </button>
+      {/* QR Result — rendered as <img> from data URL, no canvas ref needed */}
+      {qrDataUrl && (
+        <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-2xl p-6 shadow-sm flex flex-col items-center gap-5">
+          <img
+            src={qrDataUrl}
+            alt="Generated QR Code"
+            width={size}
+            height={size}
+            className="rounded-xl shadow-lg"
+            style={{ imageRendering: 'pixelated', maxWidth: '100%' }}
+          />
+          <div className="flex gap-3 w-full">
+            <button onClick={download} className="flex-1 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-bold text-sm flex items-center justify-center gap-2 transition-all">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              Download PNG
+            </button>
+            <button onClick={copyImage} className={`flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all border ${copied ? 'bg-green-50 dark:bg-green-900/20 border-green-300 text-green-600' : 'border-gray-200 dark:border-[#2a2a2a] text-gray-600 dark:text-gray-400 hover:border-violet-400'}`}>
+              {copied
+                ? <><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>Copied!</>
+                : <><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>Copy Image</>}
+            </button>
+          </div>
         </div>
-      </div>
-
-      {/* Hidden canvas placeholder when not generated */}
-      {!generated && <canvas ref={canvasRef} className="hidden" />}
+      )}
     </div>
   );
 }
