@@ -9,6 +9,8 @@ const STATIC_ROUTES = [
     { path: '/about', priority: '0.80' },
     { path: '/blog', priority: '0.80' },
     { path: '/free-tools', priority: '0.90' },
+    { path: '/ip-lookup', priority: '0.90' },
+    { path: '/domain-checker', priority: '0.90' },
     { path: '/password-generator', priority: '0.85' },
     { path: '/identity-generator', priority: '0.85' },
     { path: '/qr-code-generator', priority: '0.85' },

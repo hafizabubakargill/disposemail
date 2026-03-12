@@ -103,6 +103,30 @@ const TOOL_SECTIONS = [
                 desc: 'Generate Luhn-valid test credit card numbers for Visa, Mastercard, Amex, Discover, JCB, and Diner\'s Club. For sandbox testing only.',
                 features: ['6 networks', 'Luhn-valid', 'Brand SVG logos', 'Sandbox only'],
             },
+            {
+                href: '/ip-lookup',
+                color: 'from-orange-500 to-amber-500',
+                bg: 'bg-orange-50 dark:bg-orange-900/20',
+                border: 'border-orange-100 dark:border-orange-900/30',
+                emoji: '🌍',
+                label: 'IP Address Lookup',
+                badge: 'Free',
+                badgeColor: 'bg-orange-600 text-white',
+                desc: 'Instantly find your public IP address, ISP, ASN, exact location, and timezone. Completely free, no-log IP checker.',
+                features: ['IPv4 / IPv6', 'ISP & ASN', 'Location tracking', 'Copy details'],
+            },
+            {
+                href: '/domain-checker',
+                color: 'from-indigo-500 to-indigo-700',
+                bg: 'bg-indigo-50 dark:bg-indigo-900/20',
+                border: 'border-indigo-100 dark:border-indigo-900/30',
+                emoji: '🌐',
+                label: 'Email Domain Checker',
+                badge: 'Free',
+                badgeColor: 'bg-indigo-600 text-white',
+                desc: 'Instantly verify if any domain is configured to receive emails. Query live DNS MX records securely from your browser.',
+                features: ['Live DNS lookup', 'MX record priority', 'Validates delivery', 'Client-side query'],
+            },
         ],
     },
 ];
@@ -169,9 +193,9 @@ export default function FreeToolsPage() {
             <div className="mt-8 rounded-3xl border border-dashed border-gray-200 dark:border-[#2a2a2a] p-10 text-center">
                 <div className="text-3xl mb-3">🚀</div>
                 <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">More Tools Coming Soon</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Email Domain Checker, IP Lookup, JSON Formatter, and more. All free, all private.</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">JSON Formatter, Markdown Editor, and more. All free, all private.</p>
                 <div className="flex flex-wrap justify-center gap-2 mt-5">
-                    {['Email Domain Checker', 'IP Lookup', 'JSON Formatter', 'Hash Generator', 'URL Encoder'].map(t => (
+                    {['JSON Formatter', 'Hash Generator', 'URL Encoder', 'Markdown Editor'].map(t => (
                         <span key={t} className="text-xs font-bold text-gray-400 dark:text-gray-600 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-100 dark:border-[#2a2a2a] px-3 py-1.5 rounded-full">
                             {t}
                         </span>

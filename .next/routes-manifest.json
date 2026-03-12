@@ -79,6 +79,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/contact(?:/)?$"
     },
     {
+      "page": "/[locale]/domain-checker",
+      "regex": "^/([^/]+?)/domain\\-checker(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/domain\\-checker(?:/)?$"
+    },
+    {
       "page": "/[locale]/faq",
       "regex": "^/([^/]+?)/faq(?:/)?$",
       "routeKeys": {
@@ -101,6 +109,14 @@
         "nxtPlocale": "nxtPlocale"
       },
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/identity\\-generator(?:/)?$"
+    },
+    {
+      "page": "/[locale]/ip-lookup",
+      "regex": "^/([^/]+?)/ip\\-lookup(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/ip\\-lookup(?:/)?$"
     },
     {
       "page": "/[locale]/password-generator",

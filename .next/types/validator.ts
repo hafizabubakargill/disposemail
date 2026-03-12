@@ -110,6 +110,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/[locale]/domain-checker/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/domain-checker">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/domain-checker/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/[locale]/faq/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/[locale]/faq">> = Specific
@@ -132,6 +141,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/[locale]/identity-generator">> = Specific
   const handler = {} as typeof import("../../app/[locale]/identity-generator/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/[locale]/ip-lookup/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/[locale]/ip-lookup">> = Specific
+  const handler = {} as typeof import("../../app/[locale]/ip-lookup/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
