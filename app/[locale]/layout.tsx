@@ -28,7 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             template: "%s | DisposeMail"
         },
         description: "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable inbox.",
-        keywords: ["disposable email", "temporary email", "temp mail", "anonymous email", "privacy", "secure email", "throwaway email", "fake email generator", "temporary email discord", "temporary email domain", "10 minute mail alternative", "duckduckgo temporary email"],
+        keywords: [
+            "disposable email", "temporary email", "temp mail", "anonymous email", "privacy", "secure email", "throwaway email", "fake email generator", "temporary email discord", "temporary email domain", "10 minute mail alternative", "duckduckgo temporary email",
+            "disposalmail", "disposmail", "disposemail", "discard.email", "disp email", "disp-mail", "dispomail", "disposal mail.com", "disposal temp mail"
+        ],
         authors: [{ name: "DisposeMail Team" }],
         creator: "DisposeMail",
         openGraph: {
