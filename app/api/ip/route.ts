@@ -12,10 +12,18 @@ export async function GET(request: Request) {
     const lookupIp = target || ip;
 
     try {
+        let primaryError = '';
+        let fallbackError = '';
+
+        const headers = {
+            'User-Agent': 'Mozilla/5.0 (compatible; DisposeMail/1.0; +https://disposemail.xyz)',
+            'Accept': 'application/json'
+        };
+
         // --- 1. PRIMARY PROVIDER: ipwho.is ---
         try {
             const url = lookupIp ? `https://ipwho.is/${lookupIp}` : 'https://ipwho.is/';
-            const res = await fetch(url, { next: { revalidate: 3600 } });
+            const res = await fetch(url, { headers });
             
             if (res.ok) {
                 const data = await res.json();
@@ -37,19 +45,22 @@ export async function GET(request: Request) {
                         }
                     });
                 } else {
-                    console.warn(`ipwho.is returned success:false: ${data.message}`);
+                    primaryError = `ipwho.is returned success:false: ${data.message}`;
+                    console.warn(primaryError);
                 }
             } else {
-                console.warn(`ipwho.is failed with status ${res.status}: ${res.statusText}`);
+                primaryError = `ipwho.is failed with status ${res.status}: ${res.statusText}`;
+                console.warn(primaryError);
             }
         } catch (e: any) {
-            console.error('Primary IP Provider fetch error:', e.message);
+            primaryError = `Primary IP Provider fetch error: ${e.message}`;
+            console.error(primaryError);
         }
 
         // --- 2. FALLBACK PROVIDER: ipapi.co ---
         try {
             const fallbackUrl = lookupIp ? `https://ipapi.co/${lookupIp}/json/` : 'https://ipapi.co/json/';
-            const fRes = await fetch(fallbackUrl, { next: { revalidate: 3600 } });
+            const fRes = await fetch(fallbackUrl, { headers });
             
             if (fRes.ok) {
                 const fData = await fRes.json();
@@ -71,16 +82,19 @@ export async function GET(request: Request) {
                         }
                     });
                 } else {
-                    console.warn(`ipapi.co returned error: ${fData.reason}`);
+                    fallbackError = `ipapi.co returned error: ${fData.reason}`;
+                    console.warn(fallbackError);
                 }
             } else {
-                console.warn(`ipapi.co failed with status ${fRes.status}: ${fRes.statusText}`);
+                fallbackError = `ipapi.co failed with status ${fRes.status}: ${fRes.statusText}`;
+                console.warn(fallbackError);
             }
         } catch (e: any) {
-            console.error('Fallback IP Provider fetch error:', e.message);
+            fallbackError = `Fallback IP Provider fetch error: ${e.message}`;
+            console.error(fallbackError);
         }
 
-        throw new Error('Both IP lookup providers failed to return valid data. This usually happens if the server is being rate-limited or lacks outgoing internet access.');
+        throw new Error(`IP Lookup Failed. Primary: [${primaryError}] | Fallback: [${fallbackError}]`);
 
     } catch (error: any) {
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
