@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const target = searchParams.get('target');
@@ -20,14 +21,14 @@ export async function GET(request: Request) {
             'Accept': 'application/json'
         };
 
-        // --- 1. PRIMARY PROVIDER: ipwho.is ---
+        // --- 1. PRIMARY PROVIDER: GeoJS ---
         try {
-            const url = lookupIp ? `https://ipwho.is/${lookupIp}` : 'https://ipwho.is/';
+            const url = lookupIp ? `https://get.geojs.io/v1/ip/geo/${lookupIp}.json` : 'https://get.geojs.io/v1/ip/geo.json';
             const res = await fetch(url, { headers });
             
             if (res.ok) {
                 const data = await res.json();
-                if (data.success) {
+                if (data.ip) {
                     return NextResponse.json({
                         success: true,
                         data: {
@@ -36,20 +37,20 @@ export async function GET(request: Request) {
                             region: data.region || '',
                             country_name: data.country || '',
                             country_code: data.country_code || '',
-                            postal: data.postal || '',
-                            latitude: data.latitude || 0,
-                            longitude: data.longitude || 0,
-                            timezone: data.timezone?.id || '',
-                            org: data.connection?.org || data.connection?.isp || '',
-                            asn: data.connection?.asn ? `AS${data.connection.asn}` : ''
+                            postal: '', // GeoJS doesn't reliably return postal
+                            latitude: parseFloat(data.latitude) || 0,
+                            longitude: parseFloat(data.longitude) || 0,
+                            timezone: data.timezone || '',
+                            org: data.organization_name || '',
+                            asn: data.asn ? `AS${data.asn}` : ''
                         }
                     });
                 } else {
-                    primaryError = `ipwho.is returned success:false: ${data.message}`;
+                    primaryError = `GeoJS returned invalid data structure.`;
                     console.warn(primaryError);
                 }
             } else {
-                primaryError = `ipwho.is failed with status ${res.status}: ${res.statusText}`;
+                primaryError = `GeoJS failed with status ${res.status}: ${res.statusText}`;
                 console.warn(primaryError);
             }
         } catch (e: any) {
@@ -57,36 +58,36 @@ export async function GET(request: Request) {
             console.error(primaryError);
         }
 
-        // --- 2. FALLBACK PROVIDER: ipapi.co ---
+        // --- 2. FALLBACK PROVIDER: ip-api.com (HTTP allowed server-side) ---
         try {
-            const fallbackUrl = lookupIp ? `https://ipapi.co/${lookupIp}/json/` : 'https://ipapi.co/json/';
+            const fallbackUrl = lookupIp ? `http://ip-api.com/json/${lookupIp}` : 'http://ip-api.com/json/';
             const fRes = await fetch(fallbackUrl, { headers });
             
             if (fRes.ok) {
                 const fData = await fRes.json();
-                if (!fData.error) {
+                if (fData.status === 'success') {
                     return NextResponse.json({
                         success: true,
                         data: {
-                            ip: fData.ip,
+                            ip: fData.query,
                             city: fData.city || '',
-                            region: fData.region || '',
-                            country_name: fData.country_name || '',
-                            country_code: fData.country_code || '',
-                            postal: fData.postal || '',
-                            latitude: fData.latitude || 0,
-                            longitude: fData.longitude || 0,
+                            region: fData.regionName || fData.region || '',
+                            country_name: fData.country || '',
+                            country_code: fData.countryCode || '',
+                            postal: fData.zip || '',
+                            latitude: fData.lat || 0,
+                            longitude: fData.lon || 0,
                             timezone: fData.timezone || '',
-                            org: fData.org || '',
-                            asn: fData.asn || ''
+                            org: fData.isp || fData.org || '',
+                            asn: fData.as ? fData.as.split(' ')[0] : ''
                         }
                     });
                 } else {
-                    fallbackError = `ipapi.co returned error: ${fData.reason}`;
+                    fallbackError = `ip-api.com returned error: ${fData.message}`;
                     console.warn(fallbackError);
                 }
             } else {
-                fallbackError = `ipapi.co failed with status ${fRes.status}: ${fRes.statusText}`;
+                fallbackError = `ip-api.com failed with status ${fRes.status}: ${fRes.statusText}`;
                 console.warn(fallbackError);
             }
         } catch (e: any) {
@@ -98,5 +99,6 @@ export async function GET(request: Request) {
 
     } catch (error: any) {
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+
     }
 }
