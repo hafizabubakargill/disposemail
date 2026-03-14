@@ -1,3 +1,0 @@
-module.exports=[64690,a=>{"use strict";function b({children:a}){return a}a.s(["default",()=>b,"metadata",0,{title:"Privacy Policy | DisposeMail Disposable Email",description:"Read DisposeMail's privacy policy. We collect no personal data, store no logs, and auto-delete all emails after expiry. Your anonymity is our core commitment.",alternates:{canonical:"https://disposemail.xyz/privacy"},openGraph:{title:"Privacy Policy — DisposeMail",description:"DisposeMail collects no personal data, stores no logs, and auto-deletes all emails. Read our full privacy policy.",url:"https://disposemail.xyz/privacy",type:"website"}}])}];
-
-//# sourceMappingURL=app_%5Blocale%5D_privacy_layout_tsx_c98db18c._.js.map

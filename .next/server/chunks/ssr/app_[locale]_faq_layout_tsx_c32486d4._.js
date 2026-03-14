@@ -1,3 +1,0 @@
-module.exports=[87554,a=>{"use strict";function b({children:a}){return a}a.s(["default",()=>b,"metadata",0,{title:"FAQ | DisposeMail — Disposable Email Questions Answered",description:"Frequently asked questions about DisposeMail. Learn how disposable email works, why it expires, what subdomain emails are, and how to stay anonymous online.",alternates:{canonical:"https://disposemail.xyz/faq"},openGraph:{title:"FAQ — DisposeMail Disposable Email",description:"Everything you need to know about DisposeMail: how temp emails work, security, privacy, and how to use them.",url:"https://disposemail.xyz/faq",type:"website"}}])}];
-
-//# sourceMappingURL=app_%5Blocale%5D_faq_layout_tsx_c32486d4._.js.map

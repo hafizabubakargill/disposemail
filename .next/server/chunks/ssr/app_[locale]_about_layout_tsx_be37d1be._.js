@@ -1,3 +1,0 @@
-module.exports=[85272,a=>{"use strict";function b({children:a}){return a}a.s(["default",()=>b,"metadata",0,{title:"About DisposeMail | Secure Disposable Email Service",description:"Learn about DisposeMail — a privacy-first disposable email service built to protect your identity online. No registration, no tracking, auto-expiry, and real-time delivery.",alternates:{canonical:"https://disposemail.xyz/about"},openGraph:{title:"About DisposeMail | Secure Disposable Email Service",description:"Learn about DisposeMail — privacy-first temporary email with no registration, no tracking, and real-time inbox.",url:"https://disposemail.xyz/about",type:"website"}}])}];
-
-//# sourceMappingURL=app_%5Blocale%5D_about_layout_tsx_be37d1be._.js.map

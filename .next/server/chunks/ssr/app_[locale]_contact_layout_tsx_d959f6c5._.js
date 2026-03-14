@@ -1,3 +1,0 @@
-module.exports=[60824,a=>{"use strict";function b({children:a}){return a}a.s(["default",()=>b,"metadata",0,{title:"Contact DisposeMail | Privacy & Support",description:"Contact the DisposeMail team for support, privacy inquiries, or partnership opportunities. We respond within 24 hours.",alternates:{canonical:"https://disposemail.xyz/contact"},openGraph:{title:"Contact DisposeMail",description:"Reach out to DisposeMail for support, privacy inquiries, or any questions about our free disposable email service.",url:"https://disposemail.xyz/contact",type:"website"}}])}];
-
-//# sourceMappingURL=app_%5Blocale%5D_contact_layout_tsx_d959f6c5._.js.map
