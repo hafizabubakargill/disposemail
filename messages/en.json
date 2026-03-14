@@ -274,5 +274,40 @@
     "word_count": "Word Count",
     "words": "words",
     "min_one_required": "At least one option must be active"
+  },
+  "DataBreach": {
+    "title": "Data Breach Checker",
+    "subtitle": "Securely verify if your email or passwords have been exposed in known database leaks.",
+    "invalidEmail": "Please enter a valid email address.",
+    "fetchError": "Failed to connect to breach database.",
+    "checkButton": "Check for Breaches",
+    "scanningDatabase": "Scanning dark web databases...",
+    "errorTitle": "Error",
+    "safeTitle": "No Breaches Found",
+    "safeDesc": "Good news! This email address does not appear in any known public data breaches.",
+    "pwnedTitle": "Oh no — Pwned!",
+    "pwnedDesc": "This email appeared in {count} known data breaches.",
+    "breachSources": "Breach Sources"
+  },
+  "SecureNotes": {
+    "creatorTitle": "Create Secure Note",
+    "creatorSubtitle": "Write a secret message. We will encrypt it and give you a one-time link. The moment it is read, the note self-destructs forever.",
+    "textareaPlaceholder": "Write your secret message here...",
+    "burnWarning": "Will be burned upon reading",
+    "createButton": "Generate Secure Link",
+    "encrypting": "Encrypting & Saving...",
+    "createError": "Failed to encrypt and save the note. Please try again.",
+    "successTitle": "Link Generated",
+    "successDesc": "Your note has been encrypted. Share this link with the recipient. It will only work exactly once.",
+    "copy": "Copy Link",
+    "copied": "Copied!",
+    "createNew": "Create another note",
+    "decrypting": "Decrypting & Burning Note...",
+    "destroyedTitle": "Note Destroyed",
+    "destroyedDesc": "This note has already been read and was permanently destroyed from our servers. It cannot be recovered.",
+    "backToCreator": "Create your own Secure Note",
+    "readingWarningTitle": "WARNING: BURN AFTER READING",
+    "readingWarningDesc": "You are viewing this note securely. The backend database has already permanently deleted it. If you refresh this page, the note will be gone forever. Copy it now if you need it.",
+    "closeAndDestroyLocally": "Close & Destroy Locally"
   }
 }

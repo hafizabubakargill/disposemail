@@ -57,6 +57,22 @@ export const TOOLS = [
         bg: 'bg-rose-50 dark:bg-rose-900/30',
     },
     {
+        href: '/data-breach-checker',
+        label: 'Data Breach Checker',
+        desc: 'Check if your email was leaked',
+        emoji: '🛡️',
+        color: 'text-red-600 dark:text-red-400',
+        bg: 'bg-red-50 dark:bg-red-900/30',
+    },
+    {
+        href: '/secure-notes',
+        label: 'Secure Notes',
+        desc: 'Burn-after-reading secrets',
+        emoji: '🔥',
+        color: 'text-orange-600 dark:text-orange-400',
+        bg: 'bg-orange-50 dark:bg-orange-900/30',
+    },
+    {
         href: '/ip-lookup',
         label: 'IP Address Lookup',
         desc: 'IPv4/v6, location, ISP & ASN',
