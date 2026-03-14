@@ -56,6 +56,22 @@ export const TOOLS = [
         color: 'text-rose-600 dark:text-rose-400',
         bg: 'bg-rose-50 dark:bg-rose-900/30',
     },
+    {
+        href: '/ip-lookup',
+        label: 'IP Address Lookup',
+        desc: 'IPv4/v6, location, ISP & ASN',
+        emoji: '🌍',
+        color: 'text-orange-600 dark:text-orange-400',
+        bg: 'bg-orange-50 dark:bg-orange-900/30',
+    },
+    {
+        href: '/domain-checker',
+        label: 'Email Domain Checker',
+        desc: 'Verify DNS MX records live',
+        emoji: '🌐',
+        color: 'text-indigo-600 dark:text-indigo-400',
+        bg: 'bg-indigo-50 dark:bg-indigo-900/30',
+    },
 ];
 
 export function Navbar() {

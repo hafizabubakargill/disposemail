@@ -366,8 +366,11 @@ app.prepare().then(() => {
 
     // --- 4. NEXT.JS CATCH-ALL ---
     server.all('*', (req, res) => {
-        // Exception for Next.js API routes that need to be handled by app/api
-        if (req.url.startsWith('/api/contact')) {
+        // Whitelist all Next.js App Router API routes (app/api/*)
+        // Add new routes here as they are created
+        const nextJsApiRoutes = ['/api/contact', '/api/ip'];
+        
+        if (nextJsApiRoutes.some(route => req.url.startsWith(route))) {
             return handle(req, res);
         }
 

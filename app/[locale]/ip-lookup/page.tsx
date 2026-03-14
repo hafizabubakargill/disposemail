@@ -2,14 +2,16 @@ import type { Metadata } from 'next';
 import IpLookupTool from '@/components/IpLookupTool';
 
 export const metadata: Metadata = {
-    title: 'IP Address Lookup | What is my IP? — DisposeMail',
-    description: 'Instantly find your public IP address, ISP, ASN, location, and timezone. Completely free, no-log IP checker.',
+    title: 'IP Address Lookup | What Is My IP? Find IPv4, IPv6 & ISP — DisposeMail',
+    description: 'Check what is your public IP address instantly. Our free IP lookup tool detects your IPv4 or IPv6 address, exact city location, country, Internet Service Provider (ISP), ASN, postal code, and timezone. No sign-up, no logs, completely private.',
+    keywords: ['what is my ip', 'ip address lookup', 'find my ip', 'ipv4 ipv6 checker', 'isp lookup', 'asn lookup', 'ip geolocation', 'ip location tracker', 'free ip tool'],
     alternates: { canonical: 'https://disposemail.xyz/ip-lookup' },
     openGraph: {
-        title: 'IP Address Lookup Tool',
-        description: 'Check your public IPv4/IPv6 address, exact location, ISP, and ASN.',
+        title: 'Free IP Address Lookup — What Is My IP? | DisposeMail',
+        description: 'Instantly detect your public IPv4/IPv6 address, ISP, ASN, exact geographic location, timezone, and postal code. Free, private, no logs.',
         url: 'https://disposemail.xyz/ip-lookup',
         type: 'website',
+        siteName: 'DisposeMail',
     },
 };
 

@@ -196,6 +196,12 @@
       "namedRegex": "^/api/contact(?:/)?$"
     },
     {
+      "page": "/api/ip",
+      "regex": "^/api/ip(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/ip(?:/)?$"
+    },
+    {
       "page": "/icon.svg",
       "regex": "^/icon\\.svg(?:/)?$",
       "routeKeys": {},

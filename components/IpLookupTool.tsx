@@ -29,12 +29,19 @@ export default function IpLookupTool() {
         setLoading(true);
         setError('');
         try {
-            const url = targetIp ? `https://ipapi.co/${targetIp}/json/` : 'https://ipapi.co/json/';
+            const url = targetIp ? `/api/ip?target=${encodeURIComponent(targetIp)}` : '/api/ip';
+            
             const res = await fetch(url);
-            if (!res.ok) throw new Error('Rate limited or lookup failed');
+            if (!res.ok) {
+                // Try to parse error from backend if available
+                const errData = await res.json().catch(() => null);
+                throw new Error(errData?.error || 'Lookup failed on server');
+            }
+            
             const json = await res.json();
-            if (json.error) throw new Error(json.reason || 'Invalid IP');
-            setData(json);
+            if (!json.success) throw new Error(json.error || 'Invalid IP');
+            
+            setData(json.data);
         } catch (err: any) {
             setError(err.message || 'Failed to fetch IP details');
         } finally {
