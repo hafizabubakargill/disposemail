@@ -283,7 +283,7 @@ export default function Home() {
             </div>
 
             {/* --- LATEST FROM BLOG --- */}
-            <div className="w-full bg-white dark:bg-[#080808] py-24 px-6 border-t border-gray-100 dark:border-[#1a1a1a]">
+            <div className="w-full py-24 px-6 border-t border-gray-100 dark:border-[#1a1a1a]">
                 <div className="max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div className="max-w-xl text-left">
