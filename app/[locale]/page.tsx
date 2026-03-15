@@ -170,7 +170,7 @@ export default function Home() {
             </div>
 
             {/* --- FREE TOOLS PREVIEW --- */}
-            <div className="w-full bg-white dark:bg-[#080808] py-24 px-6 border-t border-gray-100 dark:border-[#1a1a1a]">
+            <div className="w-full py-24 px-6 border-t border-gray-100 dark:border-[#1a1a1a]">
                 <div className="max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div className="max-w-xl text-left">
@@ -178,7 +178,7 @@ export default function Home() {
                             <p className="text-gray-700 dark:text-gray-400">Discover our suite of free tools for privacy, anonymity, and development.</p>
                         </div>
                         <Link href="/free-tools" className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-[#111] text-gray-900 dark:text-gray-100 font-bold hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest text-[11px]">
-                            View all 7 tools
+                            View all tools
                         </Link>
                     </div>
 
@@ -206,9 +206,9 @@ export default function Home() {
             </div>
 
             {/* --- AD VALUE: USE CASES --- */}
-            <div className="w-full bg-white dark:bg-[#080808] py-20 px-6 border-t border-gray-100 dark:border-[#222]">
+            <div className="w-full py-20 px-6 border-t border-gray-100 dark:border-[#222]">
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-black tracking-tighter mb-8 text-center text-gray-900 dark:text-white uppercase">{tuc('title')}</h2>
+                    <h2 className="text-3xl font-black tracking-tighter mb-8 text-center text-gray-900 dark:text-white uppercase">Common Use Cases</h2>
                     <div className="space-y-4">
                         <details className="group p-4 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222] open:bg-blue-50 dark:open:bg-blue-900/10 transition-colors">
                             <summary className="font-bold cursor-pointer list-none flex justify-between items-center bg-transparent text-gray-900 dark:text-gray-100">
@@ -242,7 +242,7 @@ export default function Home() {
             </div>
 
             {/* --- EXTRA VALUE SECTION FOR ADSENSE --- */}
-            <div className="w-full bg-gray-50/50 dark:bg-[#0a0a0a]/50 py-24 px-6 border-y border-gray-100 dark:border-[#111]">
+            <div className="w-full py-24 px-6 border-y border-gray-100 dark:border-[#111]">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">{twhy('title')}</h2>

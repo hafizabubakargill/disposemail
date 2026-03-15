@@ -368,7 +368,7 @@ app.prepare().then(() => {
     server.all('*', (req, res) => {
         // Whitelist all Next.js App Router API routes (app/api/*)
         // Add new routes here as they are created
-        const nextJsApiRoutes = ['/api/contact', '/api/ip'];
+        const nextJsApiRoutes = ['/api/contact', '/api/ip', '/api/breach', '/api/notes'];
         
         if (nextJsApiRoutes.some(route => req.url.startsWith(route))) {
             return handle(req, res);

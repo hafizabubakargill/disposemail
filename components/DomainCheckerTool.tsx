@@ -2,18 +2,20 @@
 import { useState } from 'react';
 
 // Cloudflare DNS types
-const DNS_TYPES = { A: 1, AAAA: 28, MX: 15, TXT: 16 };
+const DNS_TYPES = { A: 1, AAAA: 28, MX: 15, TXT: 16, NS: 2 };
 
 interface MXRecord { exchange: string; preference: number; }
 interface ARecord { address: string; }
 interface AAAARecord { address: string; }
 interface TXTRecord { text: string; }
 
+interface NSRecord { target: string; }
 interface AllRecords {
     mx: MXRecord[];
     a: ARecord[];
     aaaa: AAAARecord[];
     txt: TXTRecord[];
+    ns: NSRecord[];
 }
 
 export default function DomainCheckerTool() {
@@ -59,15 +61,16 @@ export default function DomainCheckerTool() {
 
         try {
             // Fetch A, AAAA, MX, and TXT concurrently for fast speed
-            const [aAns, aaaaAns, mxAns, txtAns] = await Promise.all([
+            const [aAns, aaaaAns, mxAns, txtAns, nsAns] = await Promise.all([
                 fetchDnsRecord(targetDomain, DNS_TYPES.A),
                 fetchDnsRecord(targetDomain, DNS_TYPES.AAAA),
                 fetchDnsRecord(targetDomain, DNS_TYPES.MX),
-                fetchDnsRecord(targetDomain, DNS_TYPES.TXT)
+                fetchDnsRecord(targetDomain, DNS_TYPES.TXT),
+                fetchDnsRecord(targetDomain, DNS_TYPES.NS)
             ]);
 
             // If ALL returned null, the domain likely doesn't exist
-            if (aAns === null && aaaaAns === null && mxAns === null && txtAns === null) {
+            if (aAns === null && aaaaAns === null && mxAns === null && txtAns === null && nsAns === null) {
                 setStatus('invalid');
                 setError(`Domain "${targetDomain}" might not exist or couldn't be resolved.`);
                 setLoading(false);
@@ -75,7 +78,7 @@ export default function DomainCheckerTool() {
             }
 
             const parsedRecords: AllRecords = {
-                mx: [], a: [], aaaa: [], txt: []
+                mx: [], a: [], aaaa: [], txt: [], ns: []
             };
 
             // Parse A (IPv4)
@@ -107,6 +110,11 @@ export default function DomainCheckerTool() {
                 }));
             }
 
+            // Parse NS (Nameservers)
+            if (nsAns && Array.isArray(nsAns)) {
+                parsedRecords.ns = nsAns.filter((r: any) => r.type === DNS_TYPES.NS).map((r: any) => ({ target: r.data.replace(/\.$/, '') }));
+            }
+
             setRecords(parsedRecords);
             setStatus('success');
         } catch (err: any) {
@@ -119,7 +127,7 @@ export default function DomainCheckerTool() {
 
     const hasNoRecords = status === 'success' && records && 
                          records.mx.length === 0 && records.a.length === 0 && 
-                         records.aaaa.length === 0 && records.txt.length === 0;
+                         records.aaaa.length === 0 && records.txt.length === 0 && records.ns.length === 0;
 
     return (
         <div className="w-full max-w-4xl mx-auto space-y-6">
@@ -129,7 +137,7 @@ export default function DomainCheckerTool() {
                 </div>
                 
                 <h2 className="text-xl md:text-2xl font-black text-gray-900 dark:text-white mb-2">Check All DNS Records</h2>
-                <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">Instantly fetch Mail Servers (MX), IP Addresses (A/AAAA), and Text Verification (TXT) records simultaneously.</p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">Instantly fetch Name Servers (NS), Mail Servers (MX), IP Addresses (A/AAAA), and Text Verification (TXT) records simultaneously.</p>
 
                 <form onSubmit={checkDomain} className="relative max-w-xl mx-auto mb-8">
                     <input 
@@ -140,7 +148,7 @@ export default function DomainCheckerTool() {
                         className="w-full bg-gray-50 dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#2a2a2a] rounded-2xl pl-5 pr-32 py-4 text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all font-mono"
                     />
                     <button type="submit" disabled={loading || !domain.trim()} className="absolute right-2 top-2 bottom-2 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-                        {loading ? 'Checking...' : 'Lookup All'}
+                        {loading ? 'Checking...' : 'Lookup Records'}
                     </button>
                 </form>
 
