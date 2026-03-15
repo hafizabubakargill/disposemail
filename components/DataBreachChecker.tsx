@@ -46,11 +46,11 @@ export default function DataBreachChecker() {
     };
 
     return (
-        <div className="w-full max-w-2xl mx-auto backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-6 sm:p-10">
+        <div className="w-full max-w-2xl mx-auto backdrop-blur-md bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl dark:shadow-2xl p-6 sm:p-10 transition-colors">
             <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 mb-4 text-center">
                 {t('title')}
             </h2>
-            <p className="text-gray-400 text-center mb-8">
+            <p className="text-gray-600 dark:text-gray-400 text-center mb-8 transition-colors">
                 {t('subtitle')}
             </p>
 
@@ -64,7 +64,7 @@ export default function DataBreachChecker() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="e.g. your.real.email@gmail.com"
-                        className="w-full pl-11 pr-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-500 transition-all font-mono"
+                        className="w-full pl-11 pr-4 py-3 bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 transition-all font-mono"
                         required
                     />
                 </div>
@@ -125,15 +125,15 @@ export default function DataBreachChecker() {
                                 </p>
                             </div>
                         </div>
-                        <div className="bg-black/40 border border-t-0 border-white/5 rounded-b-xl p-6">
-                            <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
+                        <div className="bg-gray-50 dark:bg-black/40 border border-t-0 border-gray-200 dark:border-white/5 rounded-b-xl p-6 transition-colors">
+                            <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 border-b border-gray-200 dark:border-white/10 pb-2">
                                 {t('breachSources')}
                             </h4>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                                 {breaches.map((breach, idx) => (
-                                    <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-3 flex items-center gap-3 hover:bg-white/10 transition-colors">
+                                    <div key={idx} className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg p-3 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-white/10 transition-colors">
                                         <div className="w-2 h-2 rounded-full bg-red-500 flex-shrink-0"></div>
-                                        <span className="text-gray-200 font-mono text-sm truncate" title={breach}>
+                                        <span className="text-gray-800 dark:text-gray-200 font-mono text-sm truncate" title={breach}>
                                             {breach}
                                         </span>
                                     </div>

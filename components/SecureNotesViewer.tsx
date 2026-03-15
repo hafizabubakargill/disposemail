@@ -45,7 +45,7 @@ export default function SecureNotesViewer({ noteId }: { noteId: string }) {
 
     if (status === 'loading') {
         return (
-            <div className="w-full max-w-3xl mx-auto backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-16 flex flex-col items-center justify-center text-indigo-400">
+            <div className="w-full max-w-3xl mx-auto backdrop-blur-md bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-16 flex flex-col items-center justify-center text-indigo-600 dark:text-indigo-400 transition-colors">
                 <div className="w-12 h-12 border-4 border-indigo-400/30 border-t-indigo-400 rounded-full animate-spin mb-6"></div>
                 <p className="font-mono animate-pulse">{t('decrypting')}...</p>
             </div>
@@ -54,17 +54,17 @@ export default function SecureNotesViewer({ noteId }: { noteId: string }) {
 
     if (status === 'not_found' || status === 'error') {
         return (
-            <div className="w-full max-w-3xl mx-auto backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-8 sm:p-12 text-center animate-in fade-in zoom-in duration-300">
+            <div className="w-full max-w-3xl mx-auto backdrop-blur-md bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl dark:shadow-2xl p-8 sm:p-12 text-center animate-in fade-in zoom-in duration-300 transition-colors">
                 <div className="w-24 h-24 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-6 border border-red-500/20">
                     <ShieldX className="w-12 h-12 text-red-500" />
                 </div>
-                <h2 className="text-3xl font-bold text-white mb-4">{t('destroyedTitle')}</h2>
-                <p className="text-gray-400 max-w-md mx-auto mb-8 text-lg">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t('destroyedTitle')}</h2>
+                <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-8 text-lg">
                     {t('destroyedDesc')}
                 </p>
                 <Link
                     href="/secure-notes"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white rounded-xl transition-all"
                 >
                     <FileText className="w-4 h-4" />
                     {t('backToCreator')}
@@ -88,13 +88,13 @@ export default function SecureNotesViewer({ noteId }: { noteId: string }) {
             </div>
 
             {/* Note Content */}
-            <div className="backdrop-blur-md bg-white/5 border border-white/10 border-t-0 rounded-b-2xl p-6 sm:p-10 shadow-2xl relative">
-                <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-300 text-xs font-mono">
+            <div className="backdrop-blur-md bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 border-t-0 rounded-b-2xl p-6 sm:p-10 shadow-xl dark:shadow-2xl relative transition-colors">
+                <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-indigo-50 dark:bg-indigo-500/20 border border-indigo-200 dark:border-indigo-500/30 rounded-full text-indigo-600 dark:text-indigo-300 text-xs font-mono">
                     <LockKeyhole className="w-3 h-3" /> E2E Encrypted
                 </div>
 
-                <div className="mt-8 mb-8 p-6 bg-black/40 rounded-xl border border-white/5 relative group">
-                    <pre className="text-gray-200 font-mono whitespace-pre-wrap break-words custom-scrollbar leading-relaxed">
+                <div className="mt-8 mb-8 p-6 bg-gray-50 dark:bg-black/40 rounded-xl border border-gray-200 dark:border-white/5 relative group transition-colors">
+                    <pre className="text-gray-900 dark:text-gray-200 font-mono whitespace-pre-wrap break-words custom-scrollbar leading-relaxed">
                         {content}
                     </pre>
 
@@ -111,7 +111,7 @@ export default function SecureNotesViewer({ noteId }: { noteId: string }) {
                 <div className="flex justify-center mt-12">
                      <Link
                         href="/secure-notes"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 rounded-xl transition-all"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 shadow-sm dark:shadow-none rounded-xl transition-all"
                     >
                         <EyeOff className="w-4 h-4" />
                         {t('closeAndDestroyLocally')}
