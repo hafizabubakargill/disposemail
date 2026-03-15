@@ -276,6 +276,8 @@
     "min_one_required": "At least one option must be active"
   },
   "DataBreach": {
+    "metaTitle": "Data Breach Checker | DisposeMail",
+    "metaDesc": "Securely verify if your email or passwords have been exposed in known database leaks.",
     "title": "Data Breach Checker",
     "subtitle": "Securely verify if your email or passwords have been exposed in known database leaks.",
     "invalidEmail": "Please enter a valid email address.",
@@ -290,6 +292,8 @@
     "breachSources": "Breach Sources"
   },
   "SecureNotes": {
+    "metaTitle": "Secure Notes | DisposeMail",
+    "metaDesc": "Create secret notes that automatically self-destruct the moment they are read.",
     "creatorTitle": "Create Secure Note",
     "creatorSubtitle": "Write a secret message. We will encrypt it and give you a one-time link. The moment it is read, the note self-destructs forever.",
     "textareaPlaceholder": "Write your secret message here...",

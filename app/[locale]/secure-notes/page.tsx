@@ -14,11 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function SecureNotesPage() {
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-black relative flex flex-col pt-32 pb-20 items-center overflow-hidden transition-colors">
-            {/* Background Effects */}
-            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-indigo-600/5 dark:bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
-            
-            <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+        <div className="max-w-7xl mx-auto px-6 py-20 min-h-[80vh] flex flex-col items-center justify-center">
+            <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
                 
                 <div className="text-center mb-12 max-w-3xl">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-400 text-sm font-medium mb-6">

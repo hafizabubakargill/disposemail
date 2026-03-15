@@ -13,11 +13,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function DataBreachPage() {
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-black relative flex flex-col pt-32 pb-20 items-center overflow-hidden transition-colors">
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-red-600/5 dark:bg-red-600/10 rounded-full blur-[120px] pointer-events-none" />
-
-            <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+        <div className="max-w-7xl mx-auto px-6 py-20 min-h-[80vh] flex flex-col items-center justify-center">
+            <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
                 <div className="text-center mb-12 max-w-3xl">
                     <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-gray-900 dark:text-white">
                         Data Breach

@@ -141,7 +141,7 @@ export function Navbar() {
                                 onMouseEnter={openMenu}
                                 onMouseLeave={closeMenu}
                                 className="absolute top-full left-1/2 -translate-x-1/2 mt-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
-                                style={{ width: '680px' }}
+                                style={{ width: '880px' }}
                             >
                                 {/* Arrow */}
                                 <div className="flex justify-center mb-1">
@@ -159,7 +159,7 @@ export function Navbar() {
                                         </Link>
                                     </div>
                                     {/* Grid */}
-                                    <div className="grid grid-cols-3 gap-px bg-gray-100 dark:bg-[#1a1a1a] p-px">
+                                    <div className="grid grid-cols-4 gap-px bg-gray-100 dark:bg-[#1a1a1a] p-px">
                                         {TOOLS.map(tool => (
                                             <Link
                                                 key={tool.href}

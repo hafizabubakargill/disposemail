@@ -169,6 +169,42 @@ export default function Home() {
                 </div>
             </div>
 
+            {/* --- FREE TOOLS PREVIEW --- */}
+            <div className="w-full bg-white dark:bg-[#080808] py-24 px-6 border-t border-gray-100 dark:border-[#1a1a1a]">
+                <div className="max-w-5xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                        <div className="max-w-xl text-left">
+                            <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Free Privacy Tools</h2>
+                            <p className="text-gray-700 dark:text-gray-400">Discover our suite of free tools for privacy, anonymity, and development.</p>
+                        </div>
+                        <Link href="/free-tools" className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-[#111] text-gray-900 dark:text-gray-100 font-bold hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest text-[11px]">
+                            View all 7 tools
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {/* 3 Featured Tools */}
+                        <Link href="/secure-notes" className="group p-8 rounded-3xl bg-orange-50/50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-900/30 hover:border-orange-500/50 transition-all hover:shadow-xl">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">🔥</div>
+                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">Secure Notes</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Create encrypted passwords, secrets, or messages that automatically self-destruct from the server the instant they are read.</p>
+                        </Link>
+                        
+                        <Link href="/data-breach-checker" className="group p-8 rounded-3xl bg-red-50/50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/30 hover:border-red-500/50 transition-all hover:shadow-xl">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">🛡️</div>
+                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">Data Breach Checker</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Securely verify if your email, passwords, or data have been exposed in known database leaks across the dark web.</p>
+                        </Link>
+                        
+                        <Link href="/password-generator" className="group p-8 rounded-3xl bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900/30 hover:border-indigo-500/50 transition-all hover:shadow-xl">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">🔐</div>
+                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">Password Generator</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Generate strong, secure, and memorable passwords with custom rules — length, symbols, numbers, and easy to remember.</p>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
             {/* --- AD VALUE: USE CASES --- */}
             <div className="w-full bg-white dark:bg-[#080808] py-20 px-6 border-t border-gray-100 dark:border-[#222]">
                 <div className="max-w-4xl mx-auto">
