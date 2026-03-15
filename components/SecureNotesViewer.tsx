@@ -77,11 +77,11 @@ export default function SecureNotesViewer({ noteId }: { noteId: string }) {
     return (
         <div className="w-full max-w-4xl mx-auto animate-in slide-in-from-bottom-8 duration-700 fade-in">
             {/* Critical Warning Header */}
-            <div className="bg-red-500/20 border-l-4 border-red-500 p-4 sm:p-6 rounded-t-2xl flex items-start gap-4">
-                <AlertTriangle className="w-8 h-8 text-red-400 flex-shrink-0 mt-1" />
+            <div className="bg-red-50 dark:bg-red-500/10 border-l-4 border-red-500 p-4 sm:p-6 rounded-t-2xl flex items-start gap-4">
+                <AlertTriangle className="w-8 h-8 text-red-600 dark:text-red-400 flex-shrink-0 mt-1" />
                 <div>
-                    <h3 className="text-xl font-bold text-red-400 mb-1">{t('readingWarningTitle')}</h3>
-                    <p className="text-red-300/80 leading-relaxed text-sm sm:text-base">
+                    <h3 className="text-xl font-bold text-red-700 dark:text-red-400 mb-1">{t('readingWarningTitle')}</h3>
+                    <p className="text-red-600 dark:text-red-300/80 leading-relaxed text-sm sm:text-base">
                         {t('readingWarningDesc')}
                     </p>
                 </div>
