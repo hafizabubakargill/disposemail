@@ -189,6 +189,26 @@ export default function DomainCheckerTool() {
                             )}
                         </div>
 
+                        {/* NAME SERVERS (NS) */}
+                        <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-3xl p-6 shadow-sm">
+                            <h3 className="flex items-center gap-2 font-black text-gray-900 dark:text-white mb-4">
+                                <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 p-1.5 rounded-lg"><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg></span>
+                                Name Servers (NS)
+                            </h3>
+                            {records.ns.length === 0 ? (
+                                <p className="text-sm text-gray-400 bg-gray-50 dark:bg-white/5 px-4 py-3 rounded-xl border border-gray-100 dark:border-white/5">No Name Server records found.</p>
+                            ) : (
+                                <div className="space-y-2">
+                                    {records.ns.map((rec, idx) => (
+                                        <div key={idx} className="flex justify-between items-center p-3 rounded-xl bg-gray-50 dark:bg-[#1a1a1a] border border-gray-100 dark:border-[#2a2a2a]">
+                                            <span className="text-sm font-bold text-gray-900 dark:text-gray-300 font-mono truncate">{rec.target}</span>
+                                            <button onClick={() => navigator.clipboard.writeText(rec.target)} className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">Copy</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
                         {/* A & AAAA RECORDS */}
                         <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-3xl p-6 shadow-sm">
                             <h3 className="flex items-center gap-2 font-black text-gray-900 dark:text-white mb-4">
