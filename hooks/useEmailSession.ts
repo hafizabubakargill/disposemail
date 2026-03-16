@@ -13,43 +13,70 @@ export function useEmailSession() {
     const [customPrefix, setCustomPrefix] = useState('');
     const [sessionToken, setSessionToken] = useState<string>('');
 
+    // Internal helper to get a token from the server
+    const fetchToken = async (emailAddr: string) => {
+        try {
+            const res = await fetch('/api/session/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: emailAddr })
+            });
+            if (!res.ok) throw new Error('Token generation failed');
+            const data = await res.json();
+            return data.token;
+        } catch (err) {
+            console.error('Failed to get session token:', err);
+            return null;
+        }
+    };
+
     useEffect(() => {
         setIsMounted(true);
-        let stored = localStorage.getItem('disposemail_address');
-        const created = localStorage.getItem('disposemail_created');
-        let storedToken = localStorage.getItem('disposemail_token');
-        const now = Date.now();
+        const initialize = async () => {
+            let stored = localStorage.getItem('disposemail_address');
+            const created = localStorage.getItem('disposemail_created');
+            let storedToken = localStorage.getItem('disposemail_token');
+            const now = Date.now();
 
-        if (!storedToken) {
-            storedToken = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
-            localStorage.setItem('disposemail_token', storedToken);
-        }
-        setSessionToken(storedToken);
-
-        if (stored && created) {
-            const diff = now - parseInt(created);
-            if (diff > 60 * 60 * 1000) {
-                stored = null;
-            } else {
-                const remaining = Math.max(0, 3600 - Math.floor(diff / 1000));
-                setTimeLeft(remaining);
-                setProgress((remaining / 3600) * 100);
-                setSelectedDomain(stored.split('@')[1] || DEFAULT_DOMAIN);
+            if (stored && created) {
+                const diff = now - parseInt(created);
+                if (diff > 60 * 60 * 1000) {
+                    stored = null;
+                } else {
+                    const remaining = Math.max(0, 3600 - Math.floor(diff / 1000));
+                    setTimeLeft(remaining);
+                    setProgress((remaining / 3600) * 100);
+                    setSelectedDomain(stored.split('@')[1] || DEFAULT_DOMAIN);
+                    
+                    // If we have an email but no token (or need a fresh one), get it
+                    if (!storedToken) {
+                        storedToken = await fetchToken(stored);
+                        if (storedToken) localStorage.setItem('disposemail_token', storedToken);
+                    }
+                }
             }
-        }
 
-        if (!stored) {
-            const domain = generateRandomDomain();
-            const userPart = Math.random().toString(36).substring(2, 10);
-            stored = `${userPart}@${domain}`;
-            localStorage.setItem('disposemail_address', stored);
-            localStorage.setItem('disposemail_created', now.toString());
-            setTimeLeft(3600);
-            setProgress(100);
-            setSelectedDomain(domain);
-        }
+            if (!stored) {
+                const domain = generateRandomDomain();
+                const userPart = Math.random().toString(36).substring(2, 10);
+                stored = `${userPart}@${domain}`;
+                
+                storedToken = await fetchToken(stored);
+                
+                localStorage.setItem('disposemail_address', stored);
+                localStorage.setItem('disposemail_created', now.toString());
+                if (storedToken) localStorage.setItem('disposemail_token', storedToken);
+                
+                setTimeLeft(3600);
+                setProgress(100);
+                setSelectedDomain(domain);
+            }
 
-        setEmail(stored);
+            setEmail(stored);
+            if (storedToken) setSessionToken(storedToken);
+        };
+
+        initialize();
 
         const timer = setInterval(() => {
             const createdTime = localStorage.getItem('disposemail_created');
@@ -68,29 +95,26 @@ export function useEmailSession() {
         return () => clearInterval(timer);
     }, []);
 
-    const handleRefresh = (e?: React.FormEvent) => {
+    const handleRefresh = async (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         const domain = generateRandomDomain();
 
         let userPart: string;
         if (isCustom && customPrefix.length > 0) {
-            // Uniqueness is now provided by the randomly generated subdomain
-            // (e.g. john@x7a2.noviqmail.pro vs john@k9mf.noviqmail.pro).
-            // Two users who choose the same name will never share an inbox.
             userPart = customPrefix.toLowerCase().replace(/[^a-z0-9]/g, '').substring(0, 20);
         } else {
             userPart = Math.random().toString(36).substring(2, 10);
         }
 
         const newEmail = `${userPart}@${domain}`;
-        const newToken = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
+        const newToken = await fetchToken(newEmail);
         
         localStorage.setItem('disposemail_address', newEmail);
         localStorage.setItem('disposemail_created', Date.now().toString());
-        localStorage.setItem('disposemail_token', newToken);
+        if (newToken) localStorage.setItem('disposemail_token', newToken);
         
         setEmail(newEmail);
-        setSessionToken(newToken);
+        if (newToken) setSessionToken(newToken);
         setTimeLeft(3600);
         setProgress(100);
         setSelectedDomain(domain);

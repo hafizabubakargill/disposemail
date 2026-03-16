@@ -163,7 +163,10 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
 
             fetch('/x-feed/emails/read', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionToken}` 
+                },
                 body: JSON.stringify({ id: email.id })
             }).catch(console.error);
         }
@@ -173,7 +176,10 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
         setEmails(prev => prev.map(e => e.id === email.id ? { ...e, is_read: false } : e));
         fetch('/x-feed/emails/unread', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionToken}` 
+            },
             body: JSON.stringify({ id: email.id })
         }).catch(console.error);
         setShowMobileContent(false);
@@ -191,7 +197,10 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
         // Network request to SQLite backend
         fetch('/x-feed/emails/delete', {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionToken}` 
+            },
             body: JSON.stringify({ id: showDeleteConfirm })
         }).catch(err => {
             console.error('Failed to delete email from backend:', err);
@@ -204,7 +213,10 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
     const fetchEmails = () => {
         fetch('/x-feed/emails?address=' + emailAddress, {
             credentials: 'omit',
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            headers: { 
+                'X-Requested-With': 'XMLHttpRequest',
+                'Authorization': `Bearer ${sessionToken}`
+            }
         })
             .then(res => res.ok ? res.json() : Promise.reject())
             .then((data: Email[]) => {

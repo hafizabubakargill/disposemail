@@ -10,6 +10,14 @@ export default {
         const timestamp = Date.now();
         const id = crypto.randomUUID();
 
+        // 0. CHECK PAYLOAD SIZE (Anti-DoS)
+        const size = message.rawSize || 0;
+        if (size > 5 * 1024 * 1024) {
+            console.warn(`[Worker] Rejected email from ${sender} due to size: ${size} bytes`);
+            message.setReject("Email too large (limit 5MB)");
+            return;
+        }
+
         // READ FULL RAW MESSAGE (MIME)
         const rawResponse = new Response(message.raw);
         const rawContent = await rawResponse.text();
@@ -24,39 +32,22 @@ export default {
             secret: env.WEBHOOK_SECRET || "change_me_to_a_secure_secret"
         };
 
-        // 1. SAVE TO KV (MANDATORY BACKUP)
-        if (env.EMAILS_KV) {
-            await env.EMAILS_KV.put(`msg:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 1800 });
-        }
-
         try {
-            // 2. ATTEMPT WEBHOOK DELIVERY
+            // 1. ATTEMPT WEBHOOK DELIVERY FIRST
             const response = await fetch(WEBHOOK_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(emailPayload),
             });
 
-            // 3. LOG RESULT TO KV FOR DIAGNOSTICS
-            if (env.EMAILS_KV) {
-                const logData = {
-                    time: new Date().toISOString(),
-                    status: response.status,
-                    ok: response.ok,
-                    id: id,
-                    to: recipient
-                };
-                await env.EMAILS_KV.put(`log:${timestamp}:${id}`, JSON.stringify(logData), { expirationTtl: 3600 });
-            }
-
-            // 4. DELETE ORIGINAL MSG ONLY IF SERVER SAYS OK
-            if (response.ok && env.EMAILS_KV) {
-                await env.EMAILS_KV.delete(`msg:${timestamp}:${recipient}`);
+            // 2. IF SERVER FAILS TO ACCEPT (e.g. 502, 503), SAVE TO KV AS FALLBACK
+            if (!response.ok && env.EMAILS_KV) {
+                await env.EMAILS_KV.put(`msg:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 3600 });
             }
         } catch (e) {
-            // WEBHOOK CRASHED
+            // 3. IF FETCH COMPLETELY CRASHES (e.g. Network error), SAVE TO KV AS FALLBACK
             if (env.EMAILS_KV) {
-                await env.EMAILS_KV.put(`err:${timestamp}:${id}`, JSON.stringify({ error: e.message, id, to: recipient }), { expirationTtl: 3600 });
+                await env.EMAILS_KV.put(`msg:${timestamp}:${recipient}`, JSON.stringify(emailPayload), { expirationTtl: 3600 });
             }
         }
     },

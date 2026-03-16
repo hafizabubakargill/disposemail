@@ -13,7 +13,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, error: 'Note is too long (max 10,000 chars)' }, { status: 400 });
         }
 
-        const id = createNote(body.content);
+        const id = await createNote(body.content);
 
         return NextResponse.json({
             success: true,

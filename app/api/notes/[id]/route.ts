@@ -12,7 +12,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
         }
 
         // Fetch and BURN instantly
-        const content = burnAndReadNote(id);
+        const content = await burnAndReadNote(id);
 
         if (!content) {
             return NextResponse.json({ 

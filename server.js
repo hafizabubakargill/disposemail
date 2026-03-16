@@ -7,6 +7,9 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const rateLimit = require('express-rate-limit');
+const connectDB = require('./lib/mongoose');
+const jwt = require('jsonwebtoken');
+const DOMPurify = require('isomorphic-dompurify');
 
 // Rate Limiting Configurations
 const apiLimiter = rateLimit({
@@ -40,7 +43,12 @@ const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || "change_me_to_a_secure_secr
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
+const JWT_SECRET = process.env.JWT_SECRET || '8f4a3c2b1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6e5f4g';
+
+app.prepare().then(async () => {
+    // 1. Connect to MongoDB
+    await connectDB();
+
     const server = express();
     
     // SEC-FIX: Trust Cloudflare proxies so express-rate-limit 
@@ -99,15 +107,29 @@ app.prepare().then(() => {
     // Flat API Handlers
     const getStatus = (req, res) => res.json({ status: 'running', version: '1.0.12-SECURE' });
 
-    const getEmails = (req, res) => {
+    const getEmails = async (req, res) => {
         const address = req.query.address;
+        const token = req.headers.authorization?.split(' ')[1] || req.query.token;
+
         if (!address) return res.status(400).json({ error: 'Missing address' });
-        res.json(db.getEmailsForAddress(address.toLowerCase()));
+
+        // SEC-FIX: Verify JWT before giving access to inbox
+        try {
+            const decoded = jwt.verify(token, JWT_SECRET);
+            if (decoded.email !== address.toLowerCase()) {
+                return res.status(403).json({ error: 'Forbidden: You do not own this inbox' });
+            }
+        } catch (err) {
+            return res.status(401).json({ error: 'Unauthorized: Invalid session token' });
+        }
+
+        const emails = await db.getEmailsForAddress(address.toLowerCase());
+        res.json(emails);
     };
 
-    const handleRead = (req, res) => {
+    const handleRead = async (req, res) => {
         const id = req.body.id || req.query.id;
-        db.markEmailAsRead(id);
+        await db.markEmailAsRead(id);
         res.json({ success: true });
     };
 
@@ -149,13 +171,13 @@ app.prepare().then(() => {
             }
         }
 
-        const saved = db.saveEmail({
+        const saved = await db.saveEmail({
             id: finalId,
             address: to.toLowerCase(),
             from_address: from,
             subject: finalSubject,
             text: finalText,
-            html: finalHtml,
+            html: DOMPurify.sanitize(finalHtml), // SEC-FIX: Strict Backend Sanitization
             raw: raw,
             attachments: attachments,
             received_at: Date.now()
@@ -166,6 +188,15 @@ app.prepare().then(() => {
         res.json({ success: true, id: saved.id });
     };
 
+    // --- SESSION GENERATION (NEW) ---
+    server.post('/api/session/generate', express.json(), (req, res) => {
+        const { email } = req.body;
+        if (!email) return res.status(400).json({ error: 'Email required' });
+        
+        const token = jwt.sign({ email: email.toLowerCase() }, JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
+    });
+
     // Binding to ALL possible prefixes
     const prefixes = ['/api', '/api-v1', '/x-feed', '/internal'];
     prefixes.forEach(p => {
@@ -174,12 +205,12 @@ app.prepare().then(() => {
         server.get(`${p}/status`, getStatus);
         server.get(`${p}/emails`, getEmails);
         server.all(`${p}/emails/read`, express.json(), handleRead);
-        server.all(`${p}/emails/unread`, express.json(), (req, res) => {
-            db.markEmailAsUnread(req.body.id || req.query.id);
+        server.all(`${p}/emails/unread`, express.json(), async (req, res) => {
+            await db.markEmailAsUnread(req.body.id || req.query.id);
             res.json({ success: true });
         });
-        server.delete(`${p}/emails/delete`, express.json(), (req, res) => {
-            const success = db.deleteEmailById(req.body.id);
+        server.delete(`${p}/emails/delete`, express.json(), async (req, res) => {
+            const success = await db.deleteEmailById(req.body.id);
             res.json({ success });
         });
         server.post(`${p}/webhook/email`, webhookLimiter, express.json({ limit: '10mb' }), handleWebhook);
@@ -297,7 +328,7 @@ app.prepare().then(() => {
                     raw: e.raw,
                     attachments: attachments
                 };
-                results.push(db.saveEmail(data));
+                results.push(await db.saveEmail(data));
             }
             res.json({ success: true, count: results.length });
         });
@@ -345,21 +376,23 @@ app.prepare().then(() => {
             const email = typeof data === 'string' ? data.toLowerCase() : data.email?.toLowerCase();
             const token = typeof data === 'object' ? data.token : null;
 
-            if (!email || !token) return;
+            if (!email || !token) {
+                console.warn(`[Socket.io] Join attempt Refused: Missing Email or Token`);
+                return;
+            }
 
-            const existingToken = roomTokens.get(email);
-            if (!existingToken) {
-                // First-Claim: Lock this room to this token
-                roomTokens.set(email, token);
+            // SEC-FIX: Cryptographic JWT Verification for Socket Rooms
+            try {
+                const decoded = jwt.verify(token, JWT_SECRET);
+                if (decoded.email !== email) {
+                    console.warn(`[Socket.io] SEC-ALERT: Token/Email Mismatch for room ${email}`);
+                    return;
+                }
+                
                 socket.join(email);
-                console.log(`[Socket.io] Room ${email} claimed by token ${token.substring(0, 6)}...`);
-            } else if (existingToken === token) {
-                // Verified owner rejoining
-                socket.join(email);
-                console.log(`[Socket.io] Owner rejoined room ${email}`);
-            } else {
-                // Eavesdropper Attempt
-                console.warn(`[Socket.io] SEC-ALERT: Eavesdrop blocked on room ${email} from IP ${ip}`);
+                console.log(`[Socket.io] Verified Owner joined room ${email}`);
+            } catch (err) {
+                console.warn(`[Socket.io] SEC-ALERT: Invalid JWT for room ${email}`);
             }
         });
     });
