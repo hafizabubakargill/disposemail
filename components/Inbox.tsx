@@ -34,6 +34,9 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
     const socketRef = useRef<any>(null);
     const lastSyncRef = useRef<number>(0);
     const [isTabActive, setIsTabActive] = useState(true);
+    // SEC-FIX: Keep token in a ref so fetchEmails closure always reads the latest value
+    const sessionTokenRef = useRef<string>(sessionToken);
+    useEffect(() => { sessionTokenRef.current = sessionToken; }, [sessionToken]);
 
     const unreadEmailsCount = emails.filter(e => !e.is_read).length;
 
@@ -165,7 +168,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${sessionToken}` 
+                    'Authorization': `Bearer ${sessionTokenRef.current}` 
                 },
                 body: JSON.stringify({ id: email.id })
             }).catch(console.error);
@@ -178,7 +181,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionToken}` 
+                'Authorization': `Bearer ${sessionTokenRef.current}` 
             },
             body: JSON.stringify({ id: email.id })
         }).catch(console.error);
@@ -199,7 +202,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
             method: 'DELETE',
             headers: { 
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionToken}` 
+                'Authorization': `Bearer ${sessionTokenRef.current}` 
             },
             body: JSON.stringify({ id: showDeleteConfirm })
         }).catch(err => {
@@ -211,11 +214,14 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
     };
 
     const fetchEmails = () => {
+        const token = sessionTokenRef.current;
+        // Don't fetch if we don't have a token yet — server will 401 us
+        if (!token) return;
         fetch('/x-feed/emails?address=' + emailAddress, {
             credentials: 'omit',
             headers: { 
                 'X-Requested-With': 'XMLHttpRequest',
-                'Authorization': `Bearer ${sessionToken}`
+                'Authorization': `Bearer ${token}`
             }
         })
             .then(res => res.ok ? res.json() : Promise.reject())
@@ -334,6 +340,11 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
             if (socketRef.current) socketRef.current.disconnect();
         };
     }, [emailAddress]);
+
+    // Re-fetch emails the moment the token is ready for the first time
+    useEffect(() => {
+        if (sessionToken) fetchEmails();
+    }, [sessionToken]);
 
     useEffect(() => {
         if (selectedEmail && showMobileContent) {
