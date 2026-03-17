@@ -12,6 +12,7 @@ export function useEmailSession() {
     const [isCustom, setIsCustom] = useState(false);
     const [customPrefix, setCustomPrefix] = useState('');
     const [sessionToken, setSessionToken] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
 
     // Internal helper to get a token from the server
     const fetchToken = async (emailAddr: string) => {
@@ -26,6 +27,7 @@ export function useEmailSession() {
             return data.token;
         } catch (err) {
             console.error('Failed to get session token:', err);
+            setError('session_failed');
             return null;
         }
     };
@@ -131,6 +133,7 @@ export function useEmailSession() {
         setIsCustom,
         customPrefix,
         setCustomPrefix,
-        sessionToken
+        sessionToken,
+        error
     };
 }

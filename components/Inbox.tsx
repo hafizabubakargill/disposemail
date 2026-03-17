@@ -34,6 +34,8 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
     const socketRef = useRef<any>(null);
     const lastSyncRef = useRef<number>(0);
     const [isTabActive, setIsTabActive] = useState(true);
+    const [isInitialLoading, setIsInitialLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     // SEC-FIX: Keep token in a ref so fetchEmails closure always reads the latest value
     const sessionTokenRef = useRef<string>(sessionToken);
     useEffect(() => { sessionTokenRef.current = sessionToken; }, [sessionToken]);
@@ -217,6 +219,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
         const token = sessionTokenRef.current;
         // Don't fetch if we don't have a token yet — server will 401 us
         if (!token) return;
+        
         fetch('/x-feed/emails?address=' + emailAddress, {
             credentials: 'omit',
             headers: { 
@@ -224,7 +227,10 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                 'Authorization': `Bearer ${token}`
             }
         })
-            .then(res => res.ok ? res.json() : Promise.reject())
+            .then(res => {
+                if (!res.ok) throw new Error('API Error');
+                return res.json();
+            })
             .then((data: Email[]) => {
                 const nonBlockedData = data.filter(e => !blockedSendersRef.current.includes(e.from_address));
                 setEmails(current => {
@@ -236,8 +242,14 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                     }
                     return nonBlockedData;
                 });
+                setError(null);
+                setIsInitialLoading(false);
             })
-            .catch(err => console.debug('Sync blink:', err));
+            .catch(err => {
+                console.error('Fetch error:', err);
+                setError('system_busy');
+                setIsInitialLoading(false);
+            });
     };
 
     useEffect(() => {
@@ -281,11 +293,14 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
         requestNotificationPermission();
         fetchEmails();
 
-        socketRef.current = io({
+        const socketProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+        const socketUrl = `${window.location.protocol}//${window.location.host}`;
+
+        socketRef.current = io(socketUrl, {
             path: '/socket.io-live',
             reconnection: true,
             transports: ['websocket', 'polling'],
-            secure: true,
+            secure: window.location.protocol === 'https:',
             rejectUnauthorized: false
         });
 
@@ -399,7 +414,7 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                             ) : (
                                 <div className="flex items-center px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-300 text-[11px] font-black">
                                     <span className="w-1.5 h-1.5 rounded-full mr-1.5 bg-amber-600 animate-pulse"></span>
-                                    SYNCING
+                                    {isInitialLoading ? 'CONNECTING...' : 'SYNCING...'}
                                 </div>
                             )}
                         </div>
@@ -418,6 +433,21 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
                     </button>
                 </div>
             </div>
+            
+            {error === 'system_busy' && (
+                <div className="mb-4 p-4 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-2xl flex items-center gap-3 text-amber-800 dark:text-amber-200 text-sm animate-in fade-in slide-in-from-top-2 duration-300">
+                    <svg className="w-5 h-5 shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <div className="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                        <span className="font-medium">System is currently busy (MongoDB Atlas limit reached). Retrying connection in 5 seconds...</span>
+                        <button 
+                            onClick={() => fetchEmails()}
+                            className="text-xs font-bold uppercase bg-amber-200/50 dark:bg-amber-500/20 px-3 py-1 rounded-lg hover:bg-amber-300/50 transition-all border border-amber-300/30"
+                        >
+                            Retry Now
+                        </button>
+                    </div>
+                </div>
+            )}
 
             <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-3xl overflow-hidden shadow-2xl transition-all">
                 <div className="flex flex-col divide-y divide-gray-100 dark:divide-[#222]">
