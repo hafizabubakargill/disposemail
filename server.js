@@ -166,15 +166,17 @@ app.prepare().then(async () => {
             from_address: from,
             subject: finalSubject,
             text: finalText,
-            html: DOMPurify.sanitize(finalHtml), // SEC-FIX: Strict Backend Sanitization
+            html: DOMPurify.sanitize(finalHtml),
             raw: raw,
             attachments: attachments,
             received_at: Date.now()
         });
 
-        console.log(`[WEBHOOK] Saved Email ${saved.id} for ${to}`);
-        io.to(to.toLowerCase()).emit('new-email', saved);
-        res.json({ success: true, id: saved.id });
+        // Null guard: if save failed, use the raw data for socket emit
+        const emailToEmit = saved || { id: finalId, address: to.toLowerCase(), from_address: from, subject: finalSubject, text: finalText, is_read: false, received_at: Date.now() };
+        console.log(`[WEBHOOK] Email ${emailToEmit.id} for ${to}`);
+        io.to(to.toLowerCase()).emit('new-email', emailToEmit);
+        res.json({ success: true, id: emailToEmit.id });
     };
 
     // --- SESSION GENERATION (NEW) ---
