@@ -293,7 +293,8 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
 
         socket.on('connect', () => {
             setIsConnected(true);
-            socket.emit('join-room', { email: emailAddress, token: sessionToken });
+            // Use ref to avoid stale closure — token may not be ready yet
+            socket.emit('join-room', { email: emailAddress, token: sessionTokenRef.current });
             fetchEmails();
 
             const now = Date.now();
@@ -341,9 +342,14 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
         };
     }, [emailAddress]);
 
-    // Re-fetch emails the moment the token is ready for the first time
+    // When token arrives: fetch emails AND (re-)join the socket room
     useEffect(() => {
-        if (sessionToken) fetchEmails();
+        if (!sessionToken) return;
+        fetchEmails();
+        // Re-emit join-room in case the socket connected before the token was ready
+        if (socketRef.current?.connected) {
+            socketRef.current.emit('join-room', { email: emailAddress, token: sessionToken });
+        }
     }, [sessionToken]);
 
     useEffect(() => {
