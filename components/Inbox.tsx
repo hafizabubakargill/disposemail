@@ -272,15 +272,18 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
     useEffect(() => {
         if ('serviceWorker' in navigator) {
             const registerSW = () => {
+                const CURRENT_SW_VER = 'v=1.0.13';
                 navigator.serviceWorker.getRegistrations().then(registrations => {
                     for (let registration of registrations) {
-                        if (!registration.active?.scriptURL.includes('v=1.0.11')) {
+                        const activeUrl = registration.active?.scriptURL || '';
+                        // Only unregister if it's truly an old version (doesn't contain our current version tag)
+                        if (activeUrl && !activeUrl.includes(CURRENT_SW_VER)) {
                             registration.unregister();
-                            console.log('Nuclear Purge: Old Service Worker unregistered');
+                            console.log('Service Worker Migration: Old version purged');
                         }
                     }
                 });
-                navigator.serviceWorker.register('/sw.js?v=1.0.13').catch(console.error);
+                navigator.serviceWorker.register(`/sw.js?${CURRENT_SW_VER}`).catch(console.error);
             };
 
             if ('requestIdleCallback' in window) {
