@@ -313,5 +313,67 @@
     "readingWarningTitle": "ADVERTENCIA: QUEMAR DESPUÉS DE LEER",
     "readingWarningDesc": "Estás viendo esta nota de forma segura. La base de datos backend ya la eliminó permanentemente. Si actualiza esta página, la nota desaparecerá para siempre. Cópialo ahora si lo necesitas.",
     "closeAndDestroyLocally": "Cerrar y destruir localmente"
+  },
+  "HashGenerator": {
+    "title": "Generador de hash",
+    "subtitle": "Calcule hashes SHA-1, SHA-256 y SHA-512 al instante.",
+    "input_label": "Ingrese texto sin cifrar al hash...",
+    "copy": "Copiar hash"
+  },
+  "JwtDecoder": {
+    "title": "Decodificador JWT",
+    "subtitle": "Decodifica tokens web JS de forma segura e inspecciona los reclamos locales.",
+    "placeholder": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "header": "Encabezado (Algoritmo)",
+    "payload": "Carga útil (reclamaciones)",
+    "invalid": "Token JWT no válido: requiere 3 partes separadas por puntos."
+  },
+  "UrlEncoder": {
+    "title": "Codificador/decodificador de URL",
+    "subtitle": "Codificación bidireccionalURIProcesamiento de texto de componentes en tiempo real.",
+    "encode": "Modo de codificación",
+    "decode": "Modo de decodificación",
+    "chars": "límite de longitud de caracteres"
+  },
+  "JsonFormatter": {
+    "title": "Formateador JSON",
+    "subtitle": "Analice, embellezca y minimice sus datos JSON de forma segura.",
+    "format2": "Prettify (sangría de 2 espacios)",
+    "format4": "Prettify (sangría de 4 espacios)",
+    "minify": "Minimizar (1 línea)",
+    "valid": "JSON válido",
+    "invalid": "Sintaxis JSON no válida"
+  },
+  "RegexTester": {
+    "title": "Probador de expresiones regulares",
+    "subtitle": "Pruebe expresiones regulares con ejecución de sintaxis activa.",
+    "pattern": "Patrón Regex (Sin delimitadores /)",
+    "flags": "Banderas de expresión (g, i, m, s)",
+    "test_string": "Cadena de destino de entrada",
+    "matches": "Coincidencias de expresiones regulares"
+  },
+  "EpochConverter": {
+    "title": "Convertidor de época",
+    "subtitle": "Conversiones y reloj de marca de tiempo UNIX en vivo.",
+    "current": "Marca de tiempo actual de UNIX (segundos)",
+    "human": "Conversión de fecha humana:",
+    "local_time": "Fecha con formato local",
+    "utc_time": "Fecha formateada UTC",
+    "relative": "Delta relativo"
+  },
+  "DiffChecker": {
+    "title": "Comprobador de diferencias",
+    "subtitle": "Compare matrices de texto e identifique diferencias precisas entre archivos.",
+    "original": "Archivo original/antiguo",
+    "modified": "Archivo modificado/nuevo",
+    "additions": "Líneas agregadas",
+    "deletions": "Líneas eliminadas"
+  },
+  "ColorConverter": {
+    "title": "Convertidor de colores",
+    "subtitle": "Traduzca valores HEX, RGB y HSL con vistas previas visuales.",
+    "base": "Código hexadecimal base",
+    "harmony": "Paleta de armonía",
+    "copy": "Copiar color"
   }
 }

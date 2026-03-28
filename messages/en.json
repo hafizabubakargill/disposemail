@@ -313,5 +313,67 @@
     "readingWarningTitle": "WARNING: BURN AFTER READING",
     "readingWarningDesc": "You are viewing this note securely. The backend database has already permanently deleted it. If you refresh this page, the note will be gone forever. Copy it now if you need it.",
     "closeAndDestroyLocally": "Close & Destroy Locally"
+  },
+  "HashGenerator": {
+    "title": "Hash Generator",
+    "subtitle": "Compute SHA-1, SHA-256, and SHA-512 hashes instantly.",
+    "input_label": "Enter cleartext to hash...",
+    "copy": "Copy Hash"
+  },
+  "JwtDecoder": {
+    "title": "JWT Decoder",
+    "subtitle": "Decode JS Web Tokens safely and inspect local claims.",
+    "placeholder": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "header": "Header (Algorithm)",
+    "payload": "Payload (Claims)",
+    "invalid": "Invalid JWT Token — Requires 3 parts separated by dots."
+  },
+  "UrlEncoder": {
+    "title": "URL Encoder / Decoder",
+    "subtitle": "Bi-directional encodeURIComponent text processing in real-time.",
+    "encode": "Encode Mode",
+    "decode": "Decode Mode",
+    "chars": "chars length limit"
+  },
+  "JsonFormatter": {
+    "title": "JSON Formatter",
+    "subtitle": "Parse, prettify, and minify your JSON data securely.",
+    "format2": "Prettify (2-Space Indent)",
+    "format4": "Prettify (4-Space Indent)",
+    "minify": "Minify (1-Line)",
+    "valid": "Valid JSON",
+    "invalid": "Invalid JSON Syntax"
+  },
+  "RegexTester": {
+    "title": "Regex Tester",
+    "subtitle": "Test regular expressions with active syntax execution.",
+    "pattern": "Regex Pattern (Without / delimiters)",
+    "flags": "Expression Flags (g, i, m, s)",
+    "test_string": "Input Target String",
+    "matches": "Regex Matches"
+  },
+  "EpochConverter": {
+    "title": "Epoch Converter",
+    "subtitle": "Live ticking UNIX timestamp clock and conversions.",
+    "current": "Current UNIX Timestamp (Seconds)",
+    "human": "Human Date Conversion:",
+    "local_time": "Local Formatted Date",
+    "utc_time": "UTC Formatted Date",
+    "relative": "Relative Delta"
+  },
+  "DiffChecker": {
+    "title": "Diff Checker",
+    "subtitle": "Compare text arrays and pinpoint precise file differences.",
+    "original": "Original / Old File",
+    "modified": "Modified / New File",
+    "additions": "Lines Added",
+    "deletions": "Lines Removed"
+  },
+  "ColorConverter": {
+    "title": "Color Converter",
+    "subtitle": "Translate HEX, RGB, and HSL values with visual previews.",
+    "base": "Base HEX Code",
+    "harmony": "Harmony Palette",
+    "copy": "Copy Color"
   }
 }

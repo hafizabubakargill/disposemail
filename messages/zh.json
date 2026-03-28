@@ -313,5 +313,67 @@
     "readingWarningTitle": "警告：读后即焚",
     "readingWarningDesc": "您正在安全地查看此注释。后台数据库已经永久删除了。如果您刷新此页面，该注释将永远消失。如果您需要，请立即复制。",
     "closeAndDestroyLocally": "本地关闭并销毁"
+  },
+  "HashGenerator": {
+    "title": "哈希生成器",
+    "subtitle": "立即计算 SHA-1、SHA-256 和 SHA-512 哈希值。",
+    "input_label": "输入明文进行哈希...",
+    "copy": "复制哈希值"
+  },
+  "JwtDecoder": {
+    "title": "智威汤逊解码器",
+    "subtitle": "安全解码 JS Web 令牌并检查本地声明。",
+    "placeholder": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "header": "标头（算法）",
+    "payload": "有效负载（索赔）",
+    "invalid": "无效的 JWT 令牌 — 需要由点分隔的 3 个部分。"
+  },
+  "UrlEncoder": {
+    "title": "URL编码器/解码器",
+    "subtitle": "实时双向encodeURIComponent 文本处理。",
+    "encode": "编码模式",
+    "decode": "解码模式",
+    "chars": "字符长度限制"
+  },
+  "JsonFormatter": {
+    "title": "JSON 格式化程序",
+    "subtitle": "安全地解析、美化和缩小您的 JSON 数据。",
+    "format2": "美化（2 个空格缩进）",
+    "format4": "美化（4 个空格缩进）",
+    "minify": "缩小（1 行）",
+    "valid": "有效的 JSON",
+    "invalid": "无效的 JSON 语法"
+  },
+  "RegexTester": {
+    "title": "正则表达式测试器",
+    "subtitle": "使用主动语法执行测试正则表达式。",
+    "pattern": "正则表达式模式（无/分隔符）",
+    "flags": "表达式标志（g、i、m、s）",
+    "test_string": "输入目标字符串",
+    "matches": "正则表达式匹配"
+  },
+  "EpochConverter": {
+    "title": "纪元转换器",
+    "subtitle": "实时滴答 UNIX 时间戳时钟和转换。",
+    "current": "当前 UNIX 时间戳（秒）",
+    "human": "人类日期转换：",
+    "local_time": "本地格式化日期",
+    "utc_time": "UTC 格式的日期",
+    "relative": "相对增量"
+  },
+  "DiffChecker": {
+    "title": "差异检查器",
+    "subtitle": "比较文本数组并查明精确的文件差异。",
+    "original": "原始/旧文件",
+    "modified": "修改/新文件",
+    "additions": "已添加线路",
+    "deletions": "线条已移除"
+  },
+  "ColorConverter": {
+    "title": "颜色转换器",
+    "subtitle": "通过视觉预览转换 HEX、RGB 和 HSL 值。",
+    "base": "基本十六进制代码",
+    "harmony": "和谐调色板",
+    "copy": "复印颜色"
   }
 }

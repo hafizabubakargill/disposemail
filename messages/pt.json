@@ -313,5 +313,67 @@
     "readingWarningTitle": "AVISO: QUEIME APÓS LER",
     "readingWarningDesc": "Você está visualizando esta nota com segurança. O banco de dados backend já o excluiu permanentemente. Se você atualizar esta página, a nota desaparecerá para sempre. Copie agora se precisar.",
     "closeAndDestroyLocally": "Fechar e destruir localmente"
+  },
+  "HashGenerator": {
+    "title": "Gerador de hash",
+    "subtitle": "Calcule hashes SHA-1, SHA-256 e SHA-512 instantaneamente.",
+    "input_label": "Digite texto não criptografado para hash...",
+    "copy": "Copiar hash"
+  },
+  "JwtDecoder": {
+    "title": "Decodificador JWT",
+    "subtitle": "Decodifique JS Web Tokens com segurança e inspecione as reivindicações locais.",
+    "placeholder": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "header": "Cabeçalho (Algoritmo)",
+    "payload": "Carga útil (reivindicações)",
+    "invalid": "Token JWT inválido — Requer 3 partes separadas por pontos."
+  },
+  "UrlEncoder": {
+    "title": "Codificador/Decodificador de URL",
+    "subtitle": "Processamento de texto bidirecional encodeURIComponent em tempo real.",
+    "encode": "Modo de codificação",
+    "decode": "Modo de decodificação",
+    "chars": "limite de comprimento de caracteres"
+  },
+  "JsonFormatter": {
+    "title": "Formatador JSON",
+    "subtitle": "Analise, embeleze e reduza seus dados JSON com segurança.",
+    "format2": "Embelezar (recuo de 2 espaços)",
+    "format4": "Embelezar (recuo de 4 espaços)",
+    "minify": "Minificar (1 linha)",
+    "valid": "JSON válido",
+    "invalid": "Sintaxe JSON inválida"
+  },
+  "RegexTester": {
+    "title": "Testador Regex",
+    "subtitle": "Teste expressões regulares com execução de sintaxe ativa.",
+    "pattern": "Padrão Regex (sem / delimitadores)",
+    "flags": "Sinalizadores de expressão (g, i, m, s)",
+    "test_string": "String de destino de entrada",
+    "matches": "Correspondências Regex"
+  },
+  "EpochConverter": {
+    "title": "Conversor de época",
+    "subtitle": "Relógio e conversões de carimbo de data/hora UNIX ao vivo.",
+    "current": "Carimbo de data/hora UNIX atual (segundos)",
+    "human": "Conversão de Data Humana:",
+    "local_time": "Data formatada local",
+    "utc_time": "Data formatada em UTC",
+    "relative": "Delta Relativo"
+  },
+  "DiffChecker": {
+    "title": "Verificador de diferenças",
+    "subtitle": "Compare matrizes de texto e identifique diferenças precisas entre arquivos.",
+    "original": "Arquivo original/antigo",
+    "modified": "Arquivo modificado/novo",
+    "additions": "Linhas adicionadas",
+    "deletions": "Linhas removidas"
+  },
+  "ColorConverter": {
+    "title": "Conversor de cores",
+    "subtitle": "Traduza valores HEX, RGB e HSL com visualizações visuais.",
+    "base": "Código HEX básico",
+    "harmony": "Paleta Harmonia",
+    "copy": "Copiar cor"
   }
 }
