@@ -995,7 +995,7 @@ export const russianPosts = [
     date: 'Mar 28, 2026',
     author: 'Chief Privacy Officer',
     category: 'Путеводители',
-    image: '/blog/database.png',
+    image: '/blog/dispomail_ultimate_guide.png',
     content: `
       <p>Have you been trying to find a reliable disposable email service that actually works? In the modern digital age, your inbox is under constant attack from data brokers, aggressive marketing campaigns, and sophisticated phishing scams. If you are tired of dealing with overflowing spam folders and compromised accounts, the solution is simple: you need to start using a powerful, ephemeral email generator. But what exactly is <strong>dispomail</strong>, and why has it become the gold standard for online privacy in 2026? This comprehensive guide explains everything you need to know about setting up a temporary inbox and locking down your digital footprint.</p>
 
@@ -1025,7 +1025,7 @@ export const russianPosts = [
     date: 'Mar 24, 2026',
     author: 'Security Analyst',
     category: 'Конфиденциальность',
-    image: '/blog/future.png',
+    image: '/blog/best_generator_2026.png',
     content: `
       <p>The marketplace for temporary inboxes is crowded, but cybersecurity professionals consistently recommend one approach above all others: utilizing a dedicated, high-performance <strong>dispomail</strong> platform. If you want to understand the monumental shift in how modern web users protect their privacy in 2026, you first need to understand why legacy temp mail services are failing, and precisely why modern disposable generators represent a massive technological leap forward. The internet has changed rapidly over the past five years, with automated bots and highly aggressive anti-fraud systems blocking millions of signups. A modern ephemeral solution must be fast, private, and crucially, capable of bypassing these sophisticated filters.</p>
 
@@ -1055,7 +1055,7 @@ export const russianPosts = [
     date: 'Mar 20, 2026',
     author: 'Chief Privacy Officer',
     category: 'Путеводители',
-    image: '/blog/data_brokers_tracking.png',
+    image: '/blog/stop_spam_instantly.png',
     content: `
       <p>Every morning, millions of professionals wake up to an inbox overflowing with unsolicited newsletters, aggressive promotional offers, and highly suspicious cold-outreach emails. This relentless barrage is not merely a minor annoyance; it is a massive cognitive tax. Sorting through hundreds of low-value messages to find a single, crucial communication drains your focus, interrupts your deep work, and significantly degrades your mental health. Clicking "Unsubscribe" is often entirely useless in 2026; sophisticated spammers use tracking pixels to record your click, confirming that the account is active, and subsequently selling your verified address to a dozen other illicit mailing lists. If you want to stop the noise, you need a radical shift in your communication strategy. You need to leverage the power of <strong>dispomail</strong> to instantly quarantine and eliminate digital junk.</p>
 
