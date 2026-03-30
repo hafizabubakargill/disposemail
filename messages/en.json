@@ -375,5 +375,10 @@
     "base": "Base HEX Code",
     "harmony": "Harmony Palette",
     "copy": "Copy Color"
+  },
+  "HomeTools": {
+    "title": "Free Privacy Tools",
+    "subtitle": "Discover our suite of free tools for privacy, anonymity, and development.",
+    "view_all": "View all tools"
   }
 }

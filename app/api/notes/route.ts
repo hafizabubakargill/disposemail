@@ -15,6 +15,10 @@ export async function POST(request: Request) {
 
         const id = await createNote(body.content);
 
+        if (!id) {
+            throw new Error('Database validation failed or disconnected.');
+        }
+
         return NextResponse.json({
             success: true,
             id: id

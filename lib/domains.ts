@@ -14,7 +14,8 @@ export const BASE_DOMAINS = [
     'nivoramail.pro',
     'avelixmail.pro',
     'oryvomail.pro',
-    'noviqmail.pro'
+    'noviqmail.pro',
+    'flashteck.net'
 ];
 
 export const DOMAINS = [
@@ -24,7 +25,8 @@ export const DOMAINS = [
     'nivoramail.pro',
     'avelixmail.pro',
     'oryvomail.pro',
-    'noviqmail.pro'
+    'noviqmail.pro',
+    'flashteck.net'
 ];
 
 /**

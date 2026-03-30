@@ -1,11 +1,16 @@
 import DiffCheckerTool from '@/components/DiffCheckerTool';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata = {
-    title: 'Diff Checker | DisposeMail Free Tools',
-    description: 'Compare text and code instantly. Lightning-fast LCS diff computation in your browser. Line-by-line red and green highlights.',
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations({ locale, namespace: 'DiffChecker' });
+    return {
+        title: `${t('title')} | DisposeMail Free Tools`,
+        description: t('subtitle')
+    };
+}
 
-export default function DiffCheckerPage() {
+export default async function DiffCheckerPage({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations({ locale, namespace: 'DiffChecker' });
     return (
         <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col items-center justify-center">
             <div className="text-center mb-12 max-w-2xl mx-auto">
@@ -13,10 +18,10 @@ export default function DiffCheckerPage() {
                     Free Dev Tools
                 </div>
                 <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white leading-tight">
-                    Diff Checker<span className="text-green-500">.</span>
+                    {t('title')}<span className="text-green-500">.</span>
                 </h1>
                 <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg mx-auto">
-                    Compare two blocks of code or plain text. Built securely with lightning-fast Longest Common Subsequence line diffing algorithms executing locally.
+                    {t('subtitle')}
                 </p>
             </div>
             <div className="w-full"><DiffCheckerTool /></div>

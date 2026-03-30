@@ -375,5 +375,10 @@
     "base": "Código hexadecimal base",
     "harmony": "Paleta de armonía",
     "copy": "Copiar color"
+  },
+  "HomeTools": {
+    "title": "Herramientas de privacidad gratuitas",
+    "subtitle": "Descubra nuestro conjunto de herramientas gratuitas para la privacidad, el anonimato y el desarrollo.",
+    "view_all": "Ver todas las herramientas"
   }
 }

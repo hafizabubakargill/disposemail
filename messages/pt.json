@@ -375,5 +375,10 @@
     "base": "Código HEX básico",
     "harmony": "Paleta Harmonia",
     "copy": "Copiar cor"
+  },
+  "HomeTools": {
+    "title": "Ferramentas de privacidade gratuitas",
+    "subtitle": "Descubra nosso conjunto de ferramentas gratuitas para privacidade, anonimato e desenvolvimento.",
+    "view_all": "Ver todas as ferramentas"
   }
 }

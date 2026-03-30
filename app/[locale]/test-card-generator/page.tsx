@@ -1,5 +1,14 @@
 import FakeCreditCardGenerator from '@/components/FakeCreditCardGenerator';
 
+export const metadata = {
+    title: 'Test Credit Card Generator (Visa, AMEX, MC) | DisposeMail',
+    description: 'Instantly generate Luhn-valid test credit card numbers for Stripe, PayPal, and payment gateway development. 100% free and client-side.',
+    alternates: {
+        canonical: 'https://disposemail.xyz/test-card-generator'
+    }
+};
+
+
 export default function FakeCreditCardPage() {
     return (
         <div className="max-w-7xl mx-auto px-6 py-20 min-h-[80vh] flex flex-col items-center justify-center">

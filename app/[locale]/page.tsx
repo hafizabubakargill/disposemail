@@ -15,6 +15,7 @@ export default function Home() {
     const tuc = useTranslations('UseCases');
     const twhy = useTranslations('Why');
     const tb = useTranslations('Blog');
+    const tht = useTranslations('HomeTools');
     const locale = useLocale();
 
     const {
@@ -176,11 +177,11 @@ export default function Home() {
                 <div className="max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div className="max-w-xl text-left">
-                            <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Free Privacy Tools</h2>
-                            <p className="text-gray-700 dark:text-gray-400">Discover our suite of free tools for privacy, anonymity, and development.</p>
+                            <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">{tht('title')}</h2>
+                            <p className="text-gray-700 dark:text-gray-400">{tht('subtitle')}</p>
                         </div>
                         <Link href="/free-tools" className="px-6 py-3 rounded-xl bg-gray-100 dark:bg-[#111] text-gray-900 dark:text-gray-100 font-bold hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest text-[11px]">
-                            View all tools
+                            {tht('view_all')}
                         </Link>
                     </div>
 

@@ -1,11 +1,16 @@
 import RegexTesterTool from '@/components/RegexTesterTool';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata = {
-    title: 'Regex Tester & Validator | DisposeMail Free Tools',
-    description: 'A powerful regular expression tester. Evaluate regex matching, capture groups, and timing directly within your browser.',
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations({ locale, namespace: 'RegexTester' });
+    return {
+        title: `${t('title')} | DisposeMail Free Tools`,
+        description: t('subtitle')
+    };
+}
 
-export default function RegexTesterPage() {
+export default async function RegexTesterPage({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations({ locale, namespace: 'RegexTester' });
     return (
         <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col items-center justify-center">
             <div className="text-center mb-12 max-w-2xl mx-auto">
@@ -13,10 +18,10 @@ export default function RegexTesterPage() {
                     Free Dev Tools
                 </div>
                 <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white leading-tight">
-                    Regex Tester<span className="text-pink-500">.</span>
+                    {t('title')}<span className="text-pink-500">.</span>
                 </h1>
                 <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg mx-auto">
-                    Evaluate and execute regular expressions securely offline. Configure active flags and parse multi-line target strings, displaying instant visual match indices and capture groups.
+                    {t('subtitle')}
                 </p>
             </div>
             <div className="w-full"><RegexTesterTool /></div>
