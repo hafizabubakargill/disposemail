@@ -29,20 +29,39 @@ export async function GET() {
     const now = new Date();
     const lastmod = now.toISOString().replace('Z', '+00:00');
 
-    // Dynamically map blog posts
-    const BLOG_ROUTES = englishPosts.map(post => ({
-        path: `/blog/${post.slug}`,
-        priority: '0.64'
-    }));
+    const LOCALES = ['en', 'es', 'pt', 'ru', 'zh'];
+    
+    // Build total URL set across ALL locales
+    const ROUTES: { path: string, priority: string }[] = [];
 
-    // Dynamically map use cases
-    const englishUseCases = useCases.en || [];
-    const USE_CASE_ROUTES = englishUseCases.map(uc => ({
-        path: `/${uc.slug}`,
-        priority: '0.64'
-    }));
+    LOCALES.forEach(locale => {
+        const prefix = locale === 'en' ? '' : `/${locale}`;
+        
+        // Static Routes
+        STATIC_ROUTES.forEach(route => {
+            ROUTES.push({
+                path: `${prefix}${route.path}`,
+                priority: locale === 'en' ? route.priority : (parseFloat(route.priority) * 0.9).toFixed(2)
+            });
+        });
 
-    const ROUTES = [...STATIC_ROUTES, ...BLOG_ROUTES, ...USE_CASE_ROUTES];
+        // Blog Routes
+        englishPosts.forEach(post => {
+            ROUTES.push({
+                path: `${prefix}/blog/${post.slug}`,
+                priority: '0.64'
+            });
+        });
+
+        // Use Case Routes
+        const localeCases = useCases[locale] || useCases.en;
+        localeCases.forEach(uc => {
+            ROUTES.push({
+                path: `${prefix}/${uc.slug}`,
+                priority: '0.64'
+            });
+        });
+    });
 
     // Build flat URL set
     const urls = ROUTES.map((route) => {

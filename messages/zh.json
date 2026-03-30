@@ -457,5 +457,13 @@
     "securityAgainstBreachesDesc": "如果 {serviceName} 或相关服务遭到破坏，您的主要电子邮件仍然安全且不会被黑客发现。",
     "instantAccess": "即时访问",
     "instantAccessDesc": "一键生成您的地址，验证您的帐户，然后返回重要的事情。无需注册。"
+  },
+  "Sitemap": {
+    "title": "网站地图",
+    "subtitle": "发现 DisposeMail 上提供的所有工具和资源。",
+    "description": "在 DisposeMail 的完整站点目录中查找每个页面、博客文章和隐私工具。",
+    "static_title": "平台页面",
+    "use_cases_title": "使用案例和解决方案",
+    "blog_title": "隐私博客文章"
   }
 }

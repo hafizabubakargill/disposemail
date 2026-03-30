@@ -457,5 +457,13 @@
     "securityAgainstBreachesDesc": "Se {serviceName} ou um serviço associado for violado, seu e-mail principal permanecerá seguro e desconhecido para hackers.",
     "instantAccess": "Acesso instantâneo",
     "instantAccessDesc": "Gere seu endereço com um clique, verifique sua conta e volte ao que importa. Não é necessário registro."
+  },
+  "Sitemap": {
+    "title": "Mapa do site",
+    "subtitle": "Descubra todas as ferramentas e recursos disponíveis no DisposeMail.",
+    "description": "Encontre todas as páginas, postagens de blog e ferramentas de privacidade no diretório completo do site DisposeMail.",
+    "static_title": "Páginas da plataforma",
+    "use_cases_title": "Casos de uso e soluções",
+    "blog_title": "Artigos de blog sobre privacidade"
   }
 }
