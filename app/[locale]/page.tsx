@@ -16,6 +16,7 @@ export default function Home() {
     const twhy = useTranslations('Why');
     const tb = useTranslations('Blog');
     const tht = useTranslations('HomeTools');
+    const thf = useTranslations('HomeFeaturedTools');
     const locale = useLocale();
 
     const {
@@ -189,20 +190,20 @@ export default function Home() {
                         {/* 3 Featured Tools */}
                         <Link href="/secure-notes" className="group p-8 rounded-3xl bg-orange-50/50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-900/30 hover:border-orange-500/50 transition-all hover:shadow-xl">
                             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">🔥</div>
-                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">Secure Notes</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Create encrypted passwords, secrets, or messages that automatically self-destruct from the server the instant they are read.</p>
+                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">{thf('tool1_title')}</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">{thf('tool1_desc')}</p>
                         </Link>
                         
                         <Link href="/data-breach-checker" className="group p-8 rounded-3xl bg-red-50/50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/30 hover:border-red-500/50 transition-all hover:shadow-xl">
                             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">🛡️</div>
-                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">Data Breach Checker</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Securely verify if your email, passwords, or data have been exposed in known database leaks across the dark web.</p>
+                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">{thf('tool2_title')}</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">{thf('tool2_desc')}</p>
                         </Link>
                         
                         <Link href="/password-generator" className="group p-8 rounded-3xl bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900/30 hover:border-indigo-500/50 transition-all hover:shadow-xl">
                             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">🔐</div>
-                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">Password Generator</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Generate strong, secure, and memorable passwords with custom rules — length, symbols, numbers, and easy to remember.</p>
+                            <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2">{thf('tool3_title')}</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">{thf('tool3_desc')}</p>
                         </Link>
                     </div>
                 </div>
