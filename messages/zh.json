@@ -445,5 +445,17 @@
     "badge_free": "自由的",
     "badge_core": "核",
     "btn_launch": "启动工具"
+  },
+  "UseCase": {
+    "specializedProtection": "针对{serviceName}的专门保护",
+    "whyUse": "为什么要使用临时电子邮件{serviceName}？",
+    "privacyFirst": "隐私第一",
+    "privacyFirstDesc": "不要让{serviceName}将您的社交活动与您的永久数字身份关联起来。一次性地址创建了安全屏障。",
+    "spamNeutralization": "垃圾邮件中和",
+    "spamNeutralizationDesc": "停止大量的通知电子邮件和营销推广。您的临时收件箱过期了，噪音也过期了。",
+    "securityAgainstBreaches": "安全防范违规",
+    "securityAgainstBreachesDesc": "如果 {serviceName} 或相关服务遭到破坏，您的主要电子邮件仍然安全且不会被黑客发现。",
+    "instantAccess": "即时访问",
+    "instantAccessDesc": "一键生成您的地址，验证您的帐户，然后返回重要的事情。无需注册。"
   }
 }

@@ -445,5 +445,17 @@
     "badge_free": "Livre",
     "badge_core": "Essencial",
     "btn_launch": "Ferramenta de lançamento"
+  },
+  "UseCase": {
+    "specializedProtection": "Proteção especializada para {serviceName}",
+    "whyUse": "Por que usar e-mail temporário para {serviceName}?",
+    "privacyFirst": "Privacidade em primeiro lugar",
+    "privacyFirstDesc": "Não deixe que {serviceName} vincule sua atividade social à sua identidade digital permanente. Um endereço descartável cria uma barreira segura.",
+    "spamNeutralization": "Neutralização de Spam",
+    "spamNeutralizationDesc": "Pare a enxurrada de e-mails de notificação e gotejamentos de marketing. Sua caixa de entrada temporária expira, e o barulho também.",
+    "securityAgainstBreaches": "Segurança contra violações",
+    "securityAgainstBreachesDesc": "Se {serviceName} ou um serviço associado for violado, seu e-mail principal permanecerá seguro e desconhecido para hackers.",
+    "instantAccess": "Acesso instantâneo",
+    "instantAccessDesc": "Gere seu endereço com um clique, verifique sua conta e volte ao que importa. Não é necessário registro."
   }
 }

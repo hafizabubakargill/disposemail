@@ -445,5 +445,17 @@
     "badge_free": "Gratis",
     "badge_core": "Centro",
     "btn_launch": "Herramienta de lanzamiento"
+  },
+  "UseCase": {
+    "specializedProtection": "Protección especializada para {serviceName}",
+    "whyUse": "¿Por qué utilizar un correo electrónico temporal para {serviceName}?",
+    "privacyFirst": "Privacidad primero",
+    "privacyFirstDesc": "No permita que {serviceName} vincule su actividad social con su identidad digital permanente. Una dirección desechable crea una barrera segura.",
+    "spamNeutralization": "Neutralización del spam",
+    "spamNeutralizationDesc": "Detenga la avalancha de correos electrónicos de notificación y goteos de marketing. Tu bandeja de entrada temporal caduca y también el ruido.",
+    "securityAgainstBreaches": "Seguridad contra infracciones",
+    "securityAgainstBreachesDesc": "Si se viola {serviceName} o un servicio asociado, su correo electrónico principal permanece seguro y desconocido para los piratas informáticos.",
+    "instantAccess": "Acceso instantáneo",
+    "instantAccessDesc": "Genera tu dirección con un clic, verifica tu cuenta y vuelve a lo que importa. No es necesario registrarse."
   }
 }

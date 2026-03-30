@@ -445,5 +445,17 @@
     "badge_free": "Free",
     "badge_core": "Core",
     "btn_launch": "Launch Tool"
+  },
+  "UseCase": {
+    "specializedProtection": "Specialized Protection for {serviceName}",
+    "whyUse": "Why use temporary email for {serviceName}?",
+    "privacyFirst": "Privacy First",
+    "privacyFirstDesc": "Don't let {serviceName} link your social activity to your permanent digital identity. A disposable address creates a secure barrier.",
+    "spamNeutralization": "Spam Neutralization",
+    "spamNeutralizationDesc": "Stop the flood of notification emails and marketing drips. Your temporary inbox expires, and so does the noise.",
+    "securityAgainstBreaches": "Security Against Breaches",
+    "securityAgainstBreachesDesc": "If {serviceName} or an associated service is breached, your primary email remains safe and unknown to hackers.",
+    "instantAccess": "Instant Access",
+    "instantAccessDesc": "Generate your address in one click, verify your account, and get back to what matters. No registration required."
   }
 }
