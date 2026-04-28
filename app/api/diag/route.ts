@@ -12,17 +12,25 @@ export async function GET() {
 
     try {
         console.log('[DIAG] Checking database connectivity...');
-        await connectDB();
         
-        const db = mongoose.connection.db;
-        if (db) {
-            const admin = db.admin();
-            const pingResult = await admin.ping();
-            status = 'connected';
-            ping = Date.now() - start;
-        } else {
-            status = 'disconnected';
-        }
+        // Use a timeout for the DB check to prevent the diagnostic endpoint from hanging
+        const dbCheck = (async () => {
+            await connectDB();
+            const db = mongoose.connection.db;
+            if (db) {
+                const admin = db.admin();
+                await admin.ping();
+                return 'connected';
+            }
+            return 'disconnected';
+        })();
+
+        const timeout = new Promise<string>((_, reject) => 
+            setTimeout(() => reject(new Error('Database check timed out')), 5000)
+        );
+
+        status = await Promise.race([dbCheck, timeout]);
+        ping = Date.now() - start;
 
     } catch (err: any) {
         status = 'error';
