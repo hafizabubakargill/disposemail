@@ -234,17 +234,38 @@ app.prepare().then(async () => {
         // --- 4.5 IMAGE PROXY (Anti-Tracking) ---
         server.get(`${p}/proxy-image`, async (req, res) => {
             const { url } = req.query;
-            if (!url) return res.status(400).send('Missing image URL');
+            if (!url || typeof url !== 'string') return res.status(400).send('Missing image URL');
 
             try {
-                // Ensure we only proxy http/https
-                if (!url.startsWith('http')) return res.status(400).send('Invalid URL protocol');
+                // 1. Strict Protocol Check
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    return res.status(400).send('Invalid URL protocol. Only http and https are allowed.');
+                }
 
-                // Set a short timeout so requests don't hang the server
+                // 2. Hostname Validation (Prevent SSRF)
+                const parsedUrl = new URL(url);
+                const host = parsedUrl.hostname.toLowerCase();
+                
+                // Block Localhost & Private IP Ranges (RFC 1918 + RFC 3927)
+                const isPrivate = 
+                    host === 'localhost' || 
+                    host === '127.0.0.1' || 
+                    host.startsWith('10.') || 
+                    host.startsWith('192.168.') || 
+                    host.match(/^172\.(1[6-9]|2[0-9]|3[0-1])\./) ||
+                    host.startsWith('169.254.') ||
+                    host === '::1' || host.startsWith('fe80:');
+
+                if (isPrivate) {
+                    console.warn(`[ImageProxy] BLOCKED request to private host: ${host}`);
+                    return res.status(403).send('Forbidden: Internal or private network addresses are not allowed.');
+                }
+
+                // 3. Set a short timeout so requests don't hang the server
                 const proxyReq = await fetch(url, {
                     method: 'GET',
                     headers: {
-                        'User-Agent': 'Mozilla/5.0 (compatible; ImageProxy/1.0)',
+                        'User-Agent': 'Mozilla/5.0 (compatible; ImageProxy/1.1; +https://disposemail.xyz)',
                         'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8'
                     },
                     signal: AbortSignal.timeout(5000) 
@@ -254,13 +275,18 @@ app.prepare().then(async () => {
                     return res.status(proxyReq.status).send('External image fetch failed');
                 }
 
-                const contentType = proxyReq.headers.get('content-type');
-                if (contentType) res.setHeader('Content-Type', contentType);
+                // 4. Content-Type Validation (Prevent CSRF-like attacks/Amplification)
+                const contentType = proxyReq.headers.get('content-type') || '';
+                if (!contentType.toLowerCase().startsWith('image/')) {
+                    console.error('[ImageProxy] Rejected non-image content type:', contentType);
+                    return res.status(400).send('Invalid response content-type: must be an image.');
+                }
 
+                res.setHeader('Content-Type', contentType);
                 // Cache perfectly for 1 hour to reduce server load
                 res.setHeader('Cache-Control', 'public, max-age=3600');
 
-                // Stream the response directly to the client
+                // 5. Stream the response directly to the client (using Buffer safely)
                 const arrayBuffer = await proxyReq.arrayBuffer();
                 res.send(Buffer.from(arrayBuffer));
             } catch (err) {
