@@ -2,8 +2,6 @@ node_modules
 emails.json
 requests.log
 webhook.log
-.env
-.env*.local
 
 # next.js
 /.next/
