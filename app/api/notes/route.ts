@@ -1,12 +1,8 @@
 import { NextResponse } from 'next/server';
-const { createNote } = require('@/lib/notes-db');
+import { createNote } from '@/lib/notes-db';
 
 export async function POST(request: Request) {
     try {
-        if (!process.env.MONGODB_URI) {
-            console.error('❌ MONGODB_URI is not defined in environment variables.');
-            return NextResponse.json({ success: false, error: 'Database configuration missing' }, { status: 500 });
-        }
 
         const body = await request.json();
         

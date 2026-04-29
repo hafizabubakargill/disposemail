@@ -122,31 +122,63 @@ export const COUNTRIES: Record<CountryCode, CountryData> = {
 const STREET_NUMBERS = Array.from({ length: 299 }, (_, i) => i + 2);
 
 function pick<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
+  const array = new Uint32Array(1);
+  if (typeof crypto !== 'undefined') {
+    crypto.getRandomValues(array);
+  } else {
+    // Fallback for non-browser environments if necessary, but browser is target
+    array[0] = Math.floor(Math.random() * 4294967296);
+  }
+  return arr[array[0] % arr.length];
 }
 
 function randomDigits(n: number): string {
-  return Array.from({ length: n }, () => Math.floor(Math.random() * 10)).join('');
+  return Array.from({ length: n }, () => {
+    const array = new Uint32Array(1);
+    if (typeof crypto !== 'undefined') crypto.getRandomValues(array);
+    else array[0] = Math.floor(Math.random() * 10);
+    return array[0] % 10;
+  }).join('');
 }
 
 function randomUpperLetter(): string {
-  return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+  const array = new Uint32Array(1);
+  if (typeof crypto !== 'undefined') crypto.getRandomValues(array);
+  else array[0] = Math.floor(Math.random() * 26);
+  return String.fromCharCode(65 + (array[0] % 26));
 }
 
 function formatPhone(format: string): string {
-  return format.replace(/#/g, () => String(Math.floor(Math.random() * 10)));
+  return format.replace(/#/g, () => {
+    const array = new Uint32Array(1);
+    if (typeof crypto !== 'undefined') crypto.getRandomValues(array);
+    else array[0] = Math.floor(Math.random() * 10);
+    return String(array[0] % 10);
+  });
 }
 
 function formatPostal(format: string): string {
   return format
-    .replace(/#/g, () => String(Math.floor(Math.random() * 10)))
+    .replace(/#/g, () => {
+        const array = new Uint32Array(1);
+        if (typeof crypto !== 'undefined') crypto.getRandomValues(array);
+        else array[0] = Math.floor(Math.random() * 10);
+        return String(array[0] % 10);
+    })
     .replace(/A/g, randomUpperLetter);
 }
 
 export function generateDOB(): string {
-  const year = 1960 + Math.floor(Math.random() * 45);
-  const month = 1 + Math.floor(Math.random() * 12);
-  const day = 1 + Math.floor(Math.random() * 28);
+  const array = new Uint32Array(3);
+  if (typeof crypto !== 'undefined') crypto.getRandomValues(array);
+  else {
+    array[0] = Math.floor(Math.random() * 45);
+    array[1] = Math.floor(Math.random() * 12);
+    array[2] = Math.floor(Math.random() * 28);
+  }
+  const year = 1960 + (array[0] % 45);
+  const month = 1 + (array[1] % 12);
+  const day = 1 + (array[2] % 28);
   return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 }
 
