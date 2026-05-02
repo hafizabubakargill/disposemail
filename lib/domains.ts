@@ -15,7 +15,7 @@ export const BASE_DOMAINS = [
     'avelixmail.pro',
     'oryvomail.pro',
     'noviqmail.pro',
-    'flashteck.net'
+    'noemi.co.com'
 ];
 
 export const DOMAINS = [
@@ -26,7 +26,7 @@ export const DOMAINS = [
     'avelixmail.pro',
     'oryvomail.pro',
     'noviqmail.pro',
-    'flashteck.net'
+    'noemi.co.com'
 ];
 
 /**
