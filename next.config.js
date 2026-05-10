@@ -7,6 +7,14 @@ const nextConfig = {
         // This ensures the build ID is stable between deployments if the version is same
         return 'disposemail-v1';
     },
+    async rewrites() {
+        return [
+            {
+                source: '/sitemap-index.xml',
+                destination: '/sitemap.xml',
+            },
+        ];
+    },
 };
 
 module.exports = withNextIntl(nextConfig);
