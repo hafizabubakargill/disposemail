@@ -8,8 +8,8 @@
   },
   "Hero": {
     "encrypted": "CIFRADO DE EXTREMO A EXTREMO",
-    "title": "Tu Privacidad, <br></br><span>Desechable.</span>",
-    "subtitle": "Correo electrónico temporal seguro y generado al instante para navegación anónima. <br></br>Sin registro. Sin seguimiento. Solo privacidad.",
+    "title": "Generador de Correo <br></br><span>Temporal Seguro.</span>",
+    "subtitle": "Crea al instante correos temporales anónimos para proteger tu privacidad. Además, explora nuestro conjunto de herramientas gratuitas, incluidos generadores de contraseñas, identidades y UUID.",
     "personalize": "Personalizar Dirección",
     "custom_active": "Modo Personalizado: Activo",
     "enter_name": "Ingresa nombre...",

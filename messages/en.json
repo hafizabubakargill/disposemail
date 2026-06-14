@@ -8,8 +8,8 @@
   },
   "Hero": {
     "encrypted": "End-to-End Encrypted",
-    "title": "Your Privacy, <br></br><span>Disposable.</span>",
-    "subtitle": "Securely generated temporary emails for anonymous browsing.<br></br>No registration. No tracking. Just privacy.",
+    "title": "Secure Disposable Email <br></br><span>Generator.</span>",
+    "subtitle": "Instantly create anonymous temporary emails to protect your privacy. Plus, explore our suite of free tools including Password, Identity, and UUID generators.",
     "personalize": "Personalize Address",
     "custom_active": "Custom Mode: Active",
     "enter_name": "Enter name...",

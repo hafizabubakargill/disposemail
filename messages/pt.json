@@ -8,8 +8,8 @@
   },
   "Hero": {
     "encrypted": "CRIPTOGRAFIA DE PONTA A PONTA",
-    "title": "Sua Privacidade, <br></br><span>Descartável.</span>",
-    "subtitle": "E-mail temporário seguro e gerado instantaneamente para navegação anônima. <br></br>Sem registro. Sem rastreamento. Apenas privacidade.",
+    "title": "Gerador de E-mail <br></br><span>Temporário Seguro.</span>",
+    "subtitle": "Crie instantaneamente e-mails temporários anônimos para proteger sua privacidade. Além disso, explore nosso conjunto de ferramentas gratuitas, incluindo geradores de senhas, identidades e UUID.",
     "personalize": "Personalizar Endereço",
     "custom_active": "Modo Personalizado: Ativo",
     "enter_name": "Digite o nome...",

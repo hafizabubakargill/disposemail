@@ -8,8 +8,8 @@
   },
   "Hero": {
     "encrypted": "端到端加密",
-    "title": "您的隐私， <br></br><span>即刻销毁。</span>",
-    "subtitle": "即时生成的安全临时邮箱，为匿名浏览而生。<br></br>无需注册。拒绝追踪。唯有隐私。",
+    "title": "安全的临时邮箱 <br></br><span>生成器。</span>",
+    "subtitle": "即时创建匿名的临时电子邮箱以保护您的隐私。此外，还可以探索我们的免费工具套件，包括密码、身份和 UUID 生成器。",
     "personalize": "个性化地址",
     "custom_active": "自定义用户：已激活",
     "enter_name": "输入名称...",
