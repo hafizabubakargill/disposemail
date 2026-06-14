@@ -24,10 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
     return {
         title: {
-            default: "DisposeMail - Secure Disposable Email",
+            default: "Secure Disposable Email Generator - DisposeMail",
             template: "%s | DisposeMail"
         },
-        description: "Instantly create secure, temporary email addresses. Protect your privacy, avoid spam, and stay anonymous with DisposeMail's end-to-end encrypted disposable inbox.",
+        description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
         keywords: [
             "disposable email", "temporary email", "temp mail", "anonymous email", "privacy", "secure email", "throwaway email", "fake email generator", "temporary email discord", "temporary email domain", "10 minute mail alternative", "duckduckgo temporary email",
             "disposalmail", "disposmail", "disposemail", "discard.email", "disp email", "disp-mail", "dispomail", "disposal mail.com", "disposal temp mail"
@@ -38,14 +38,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             type: "website",
             locale: locale === 'zh' ? 'zh_CN' : locale === 'en' ? 'en_US' : `${locale}_${locale.toUpperCase()}`,
             url: canonical,
-            title: "DisposeMail - Secure Disposable Email",
-            description: "Instant, secure, and temporary email addresses for privacy protection.",
+            title: "Secure Disposable Email Generator - DisposeMail",
+            description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
             siteName: "DisposeMail",
         },
         twitter: {
             card: "summary_large_image",
-            title: "DisposeMail - Secure Disposable Email",
-            description: "Protect your real inbox from spam with instant disposable email addresses.",
+            title: "Secure Disposable Email Generator - DisposeMail",
+            description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
         },
         robots: {
             index: true,

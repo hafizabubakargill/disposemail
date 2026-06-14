@@ -1738,5 +1738,53 @@ export const russianPosts = [
 
 <h2>Заключение</h2>
       <p>Защита платформы электронной коммерции требует строгой, математически точной среды тестирования. Используя алгоритмический <a href="/test-card-generator">Test Credit Card Generator</a>, команды разработчиков могут безопасно моделировать все возможные результаты платежей, гарантируя безупречный опыт работы с клиентами без ущерба для единой цифры реальных финансовых данных. Расширьте возможности своего процесса контроля качества с помощью синтетических данных уже сегодня.</p>`
+  },
+  {
+    slug: 'protect-privacy-public-wifi',
+    title: 'Как защитить конфиденциальность в общедоступном Wi-Fi',
+    excerpt: 'Изучите лучшие практики защиты данных.',
+    date: '4 июня 2026',
+    author: 'Команда DisposeMail',
+    category: 'Безопасность',
+    image: '/blog/security_lock.png',
+    content: `
+<h2>Опасности</h2><p>Используйте VPN и временную почту.</p>
+    `
+  },
+  {
+    slug: 'dangers-of-data-brokers',
+    title: 'Опасность брокеров данных',
+    excerpt: 'Они собирают и продают вашу информацию.',
+    date: '8 июня 2026',
+    author: 'Команда DisposeMail',
+    category: 'Конфиденциальность',
+    image: '/blog/uuid_concept.png',
+    content: `
+<h2>Защита</h2><p>Используйте DisposeMail.</p>
+    `
+  },
+  {
+    slug: 'disposable-emails-free-trials',
+    title: 'Временная почта для бесплатных пробных версий',
+    excerpt: 'Избегайте спама.',
+    date: '12 июня 2026',
+    author: 'Команда DisposeMail',
+    category: 'Советы',
+    image: '/blog/qr_code.png',
+    content: `
+<h2>Нет спаму</h2><p>Сохраняйте свой почтовый ящик чистым.</p>
+    `
+  },
+  {
+    slug: 'evolution-digital-privacy-laws',
+    title: 'Эволюция законов о конфиденциальности',
+    excerpt: 'Как меняются законы.',
+    date: '16 июня 2026',
+    author: 'Команда DisposeMail',
+    category: 'Новости',
+    image: '/blog/security_lock.png',
+    content: `
+<h2>Новые законы</h2><p>Защищайте свои данные.</p>
+    `
   }
 ];

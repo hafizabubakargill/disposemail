@@ -1737,5 +1737,53 @@ export const chinesePosts = [
 
 <h2>结论</h2>
       确保电子商务平台的安全需要严格的、数学上准确的测试环境。通过利用算法<a href="/test-card-generator">测试信用卡生成器</a>，开发团队可以安全地模拟每一种可能的支付结果，确保在生产中提供完美的客户体验，而不会影响一点点真实的财务数据。立即使用合成数据增强您的 QA 流程。</p>`
+  },
+  {
+    slug: 'protect-privacy-public-wifi',
+    title: '如何在公共 Wi-Fi 上保护您的隐私',
+    excerpt: '了解保护数据安全的最佳做法。',
+    date: '2026年6月4日',
+    author: 'DisposeMail 团队',
+    category: '安全',
+    image: '/blog/security_lock.png',
+    content: `
+<h2>危险</h2><p>使用 VPN 和临时电子邮件。</p>
+    `
+  },
+  {
+    slug: 'dangers-of-data-brokers',
+    title: '数据经纪人的危险',
+    excerpt: '他们收集并出售您的信息。',
+    date: '2026年6月8日',
+    author: 'DisposeMail 团队',
+    category: '隐私',
+    image: '/blog/uuid_concept.png',
+    content: `
+<h2>保护</h2><p>使用 DisposeMail。</p>
+    `
+  },
+  {
+    slug: 'disposable-emails-free-trials',
+    title: '为什么免费试用要使用临时电子邮件',
+    excerpt: '避免垃圾邮件。',
+    date: '2026年6月12日',
+    author: 'DisposeMail 团队',
+    category: '提示',
+    image: '/blog/qr_code.png',
+    content: `
+<h2>没有垃圾邮件</h2><p>保持收件箱清洁。</p>
+    `
+  },
+  {
+    slug: 'evolution-digital-privacy-laws',
+    title: '数字隐私法的演变',
+    excerpt: '法律如何演变。',
+    date: '2026年6月16日',
+    author: 'DisposeMail 团队',
+    category: '新闻',
+    image: '/blog/security_lock.png',
+    content: `
+<h2>新法律</h2><p>保护您的数据。</p>
+    `
   }
 ];

@@ -68,7 +68,7 @@ export const Hero = ({
                 {t('encrypted')}
             </div>
 
-            <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-500 dark:from-white dark:to-gray-500">
+            <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-500 dark:from-white dark:to-gray-500 transform-gpu">
                 {t.rich('title', {
                     br: () => <br />,
                     span: (chunks) => <span className="text-gray-900 dark:text-white">{chunks}</span>

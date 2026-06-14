@@ -1799,5 +1799,75 @@ export const spanishPosts = [
 
 <h2>Conclusión</h2>
       <p>Asegurar una plataforma de comercio electrónico requiere entornos de prueba rigurosos y matemáticamente precisos. Al utilizar un algoritmo algorítmico <a href="/test-card-generator">Test Credit Card Generator</a>, los equipos de desarrollo pueden simular de forma segura todos los resultados de pago posibles, garantizando una experiencia de cliente impecable en producción sin comprometer ni un solo dígito de los datos financieros del mundo real. Mejore su proceso de control de calidad con datos sintéticos hoy.</p>`
+  },
+  {
+    slug: 'protect-privacy-public-wifi',
+    title: 'Cómo proteger tu privacidad en Wi-Fi público en 2026',
+    excerpt: 'Las redes Wi-Fi públicas son conocidas por sus vulnerabilidades de seguridad. Aprende las mejores prácticas para mantener tus datos seguros.',
+    date: '4 de junio de 2026',
+    author: 'Equipo DisposeMail',
+    category: 'Seguridad',
+    image: '/blog/security_lock.png',
+    content: `
+
+<h2>Los peligros ocultos del Wi-Fi público</h2>
+<p>En 2026, el Wi-Fi público está en todas partes, pero sigue siendo uno de los mayores vectores de ataque para los piratas informáticos.</p>
+<h3>1. Usa siempre una VPN</h3>
+<p>Una Red Privada Virtual cifra tu conexión, haciendo imposible que los atacantes locales espíen tu tráfico.</p>
+<h3>2. Usa correos temporales</h3>
+<p>Si debes registrarte en algo, usa un correo electrónico temporal de DisposeMail.</p>
+
+    `
+  },
+  {
+    slug: 'dangers-of-data-brokers',
+    title: 'Los peligros de los corredores de datos',
+    excerpt: 'Los corredores de datos recopilan y venden su información personal con fines de lucro.',
+    date: '8 de junio de 2026',
+    author: 'Equipo DisposeMail',
+    category: 'Privacidad',
+    image: '/blog/uuid_concept.png',
+    content: `
+
+<h2>¿Qué son los corredores de datos?</h2>
+<p>Los corredores de datos son empresas que recopilan sus datos personales de diversas fuentes, los agregan y los venden a anunciantes.</p>
+<h3>Cómo protegerse</h3>
+<p>Comience minimizando su huella digital. Utilice DisposeMail para todos los registros no esenciales.</p>
+
+    `
+  },
+  {
+    slug: 'disposable-emails-free-trials',
+    title: 'Por qué deberías usar correos desechables para pruebas gratuitas',
+    excerpt: '¿Cansado del spam promocional después de registrarte en una prueba gratuita? Aquí te explicamos por qué los correos temporales son la solución.',
+    date: '12 de junio de 2026',
+    author: 'Equipo DisposeMail',
+    category: 'Consejos',
+    image: '/blog/qr_code.png',
+    content: `
+
+<h2>La trampa de la prueba gratuita</h2>
+<p>Las pruebas gratuitas son excelentes, pero la avalancha de correos electrónicos de marketing resultante no lo es.</p>
+<h3>La ventaja de DisposeMail</h3>
+<p>Al utilizar una dirección de correo electrónico temporal, puede recibir el enlace de confirmación sin exponer su bandeja de entrada real.</p>
+
+    `
+  },
+  {
+    slug: 'evolution-digital-privacy-laws',
+    title: 'La evolución de las leyes de privacidad digital',
+    excerpt: 'Una mirada exhaustiva a cómo ha evolucionado la legislación de privacidad digital.',
+    date: '16 de junio de 2026',
+    author: 'Equipo DisposeMail',
+    category: 'Noticias',
+    image: '/blog/security_lock.png',
+    content: `
+
+<h2>Una nueva era de privacidad</h2>
+<p>2026 marca un punto de inflexión con una aplicación más estricta de las normas de protección de datos.</p>
+<h3>Tomar el control</h3>
+<p>Utilice herramientas que prioricen la privacidad, como DisposeMail, para navegar por la web en sus propios términos.</p>
+
+    `
   }
 ];

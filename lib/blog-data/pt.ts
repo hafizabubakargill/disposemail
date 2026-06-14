@@ -1647,5 +1647,53 @@ export const portuguesePosts = [
 
 <h2>Conclusão</h2>
       <p>Proteger uma plataforma de comércio eletrônico requer ambientes de testes rigorosos e matematicamente precisos. Ao utilizar um <a href="/test-card-generator">Gerador de cartão de crédito de teste</a> algorítmico, as equipes de desenvolvimento podem simular com segurança todos os resultados de pagamento possíveis, garantindo uma experiência perfeita do cliente na produção sem comprometer um único dígito dos dados financeiros do mundo real. Capacite seu processo de controle de qualidade com dados sintéticos hoje mesmo.</p>`
+  },
+  {
+    slug: 'protect-privacy-public-wifi',
+    title: 'Como proteger sua privacidade em Wi-Fi público em 2026',
+    excerpt: 'As redes Wi-Fi públicas são conhecidas por suas vulnerabilidades de segurança. Aprenda as melhores práticas para manter seus dados seguros.',
+    date: '4 de junho de 2026',
+    author: 'Equipe DisposeMail',
+    category: 'Segurança',
+    image: '/blog/security_lock.png',
+    content: `
+<h2>Perigos do Wi-Fi público</h2><p>Sempre use VPN e e-mails temporários.</p>
+    `
+  },
+  {
+    slug: 'dangers-of-data-brokers',
+    title: 'Os perigos dos corretores de dados',
+    excerpt: 'Eles coletam e vendem suas informações pessoais.',
+    date: '8 de junho de 2026',
+    author: 'Equipe DisposeMail',
+    category: 'Privacidade',
+    image: '/blog/uuid_concept.png',
+    content: `
+<h2>O que são?</h2><p>Proteja-se usando DisposeMail.</p>
+    `
+  },
+  {
+    slug: 'disposable-emails-free-trials',
+    title: 'Por que usar e-mails descartáveis para testes gratuitos',
+    excerpt: 'Evite spam em sua caixa de entrada principal.',
+    date: '12 de junho de 2026',
+    author: 'Equipe DisposeMail',
+    category: 'Dicas',
+    image: '/blog/qr_code.png',
+    content: `
+<h2>Sem spam</h2><p>Receba links de confirmação com segurança.</p>
+    `
+  },
+  {
+    slug: 'evolution-digital-privacy-laws',
+    title: 'Evolução das leis de privacidade',
+    excerpt: 'Como as leis estão mudando em 2026.',
+    date: '16 de junho de 2026',
+    author: 'Equipe DisposeMail',
+    category: 'Notícias',
+    image: '/blog/security_lock.png',
+    content: `
+<h2>Novas Leis</h2><p>Tome o controle de seus dados.</p>
+    `
   }
 ];

@@ -300,7 +300,7 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {getSortedPosts(locale).slice(0, 3).map((post) => (
+                        {getSortedPosts(locale).slice(0, 6).map((post) => (
                             <Link
                                 key={post.slug}
                                 href={`/blog/${post.slug}`}
@@ -311,6 +311,7 @@ export default function Home() {
                                         src={post.image}
                                         alt={post.title}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        loading="lazy"
                                     />
                                 </div>
                                 <div className="p-8">
@@ -330,6 +331,47 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
+            {/* JSON-LD Structured Data */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "DisposeMail",
+                        "url": "https://disposemail.xyz",
+                        "description": "Secure Disposable Email Generator and Free Privacy Tools."
+                    })
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "What is a disposable email address?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "A disposable email address is a temporary, secure email address that expires after a short period, allowing you to receive emails without revealing your true identity."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Are the emails completely anonymous?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes, DisposeMail requires no registration and logs no personal data, ensuring complete anonymity."
+                                }
+                            }
+                        ]
+                    })
+                }}
+            />
         </div>
     );
 }
