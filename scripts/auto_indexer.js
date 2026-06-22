@@ -30,6 +30,8 @@ async function runIndexer() {
         if (envStr.startsWith("'") && envStr.endsWith("'")) {
             envStr = envStr.slice(1, -1);
         }
+        // Fix Hostinger escaping curly braces e.g. \{ "type"
+        envStr = envStr.replace(/\\{/g, '{').replace(/\\}/g, '}');
         try {
             creds = JSON.parse(envStr);
             // If it was doubly stringified, parse again
