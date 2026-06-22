@@ -25,8 +25,21 @@ async function runIndexer() {
     // First, try Environment Variable (Hostinger Production)
     if (process.env.GOOGLE_INDEXING_CREDENTIALS) {
         let creds;
+        let envStr = process.env.GOOGLE_INDEXING_CREDENTIALS.trim();
+        // If Hostinger wraps the JSON in single quotes, remove them
+        if (envStr.startsWith("'") && envStr.endsWith("'")) {
+            envStr = envStr.slice(1, -1);
+        }
         try {
-            creds = JSON.parse(process.env.GOOGLE_INDEXING_CREDENTIALS);
+            creds = JSON.parse(envStr);
+            // If it was doubly stringified, parse again
+            if (typeof creds === 'string') creds = JSON.parse(creds);
+            
+            // Fix newlines in private key if Hostinger escaped them doubly
+            if (creds.private_key && creds.private_key.includes('\\n')) {
+                creds.private_key = creds.private_key.replace(/\\n/g, '\n');
+            }
+
             auth = new google.auth.GoogleAuth({
                 credentials: {
                     client_email: creds.client_email,
@@ -36,7 +49,8 @@ async function runIndexer() {
             });
             console.log(`[AutoIndexer] Authenticating via Environment Variable...`);
         } catch (err) {
-            console.error(`[AutoIndexer] Failed to parse GOOGLE_INDEXING_CREDENTIALS env var.`);
+            console.error(`[AutoIndexer] Failed to parse GOOGLE_INDEXING_CREDENTIALS env var. Error:`, err.message);
+            console.error(`[AutoIndexer] Env string started with:`, envStr.substring(0, 50));
             return;
         }
     } 
