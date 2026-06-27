@@ -1,14 +1,14 @@
 // DisposeMail Browser Extension – Background Service Worker
 
-const DOMAINS = [
-    'disposemail.xyz',
-    'mail.disposemail.xyz',
-    'inbox.disposemail.xyz',
-    'temp.disposemail.xyz',
-    'drop.disposemail.xyz',
+const BASE_DOMAINS = [
+    'inveromail.info',
+    'dunedistrict.com',
+    'groundtips.com',
     'nivoramail.pro',
     'avelixmail.pro',
-    'oryvomail.pro'
+    'oryvomail.pro',
+    'noviqmail.pro',
+    'noemi.co.com'
 ];
 
 const ADJECTIVES = ['swift', 'silent', 'quiet', 'fast', 'cool', 'fresh', 'safe', 'bright', 'clear', 'smart', 'clean', 'anon'];
@@ -18,8 +18,9 @@ function generateAddress() {
     const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
     const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
     const num = Math.floor(Math.random() * 9999);
-    const domain = DOMAINS[Math.floor(Math.random() * DOMAINS.length)];
-    return `${adj}${noun}${num}@${domain}`;
+    const base = BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
+    const sub = Math.random().toString(36).substring(2, 6);
+    return `${adj}${noun}${num}@${sub}.${base}`;
 }
 
 // On install, generate a first address

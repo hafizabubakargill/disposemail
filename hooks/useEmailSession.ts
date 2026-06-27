@@ -36,9 +36,23 @@ export function useEmailSession() {
         setIsMounted(true);
         const initialize = async () => {
             let stored = localStorage.getItem('disposemail_address');
-            const created = localStorage.getItem('disposemail_created');
+            let created = localStorage.getItem('disposemail_created');
             let storedToken = localStorage.getItem('disposemail_token');
             const now = Date.now();
+
+            // Sync with browser extension or URL query parameter (?email=...)
+            if (typeof window !== 'undefined') {
+                const urlParams = new URLSearchParams(window.location.search);
+                const urlEmail = urlParams.get('email');
+                if (urlEmail && urlEmail !== stored) {
+                    stored = urlEmail;
+                    created = now.toString();
+                    storedToken = null; // force fetch fresh token for synced email
+                    localStorage.setItem('disposemail_address', stored);
+                    localStorage.setItem('disposemail_created', created);
+                    localStorage.removeItem('disposemail_token');
+                }
+            }
 
             if (stored && created) {
                 const diff = now - parseInt(created);
