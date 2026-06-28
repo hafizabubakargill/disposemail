@@ -19,76 +19,44 @@ function renderEmail(address, el) {
 
 function formatTimeLeft(createdAt) {
     if (!createdAt) return '—';
-    const SESSION_MS = 24 * 60 * 60 * 1000;
+    const SESSION_MS = 60 * 60 * 1000;
     const elapsed = Date.now() - createdAt;
     const remaining = Math.max(0, SESSION_MS - elapsed);
     if (remaining === 0) return 'Expired';
-    const h = Math.floor(remaining / 3600000);
-    const m = Math.floor((remaining % 3600000) / 60000);
-    if (h > 0) return `~${h}h ${m}m left`;
-    return `~${m}m left`;
+    const totalSecs = Math.floor(remaining / 1000);
+    const m = Math.floor(totalSecs / 60);
+    const s = totalSecs % 60;
+    return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
 function timerProgress(createdAt) {
     if (!createdAt) return 100;
-    const SESSION_MS = 24 * 60 * 60 * 1000;
+    const SESSION_MS = 60 * 60 * 1000;
     const elapsed = Date.now() - createdAt;
     return Math.max(0, Math.min(100, ((SESSION_MS - elapsed) / SESSION_MS) * 100));
 }
 
-function renderHistory(history, currentAddress, isPremium) {
+function renderTools() {
     const section = document.getElementById('history-section');
-
-    if (!isPremium) {
-        section.innerHTML = `
-      <div class="premium-gate">
-        <div class="premium-gate-icon">🔒</div>
-        <div class="premium-gate-title">Premium Feature</div>
-        <div class="premium-gate-text">Upgrade to save and reuse up to 10 recent addresses across all your sessions.</div>
-        <a href="https://disposemail.xyz/pricing" target="_blank" class="upgrade-btn">
-          ★ Upgrade to Premium
-        </a>
-      </div>`;
-        return;
-    }
-
-    // Premium: show history
-    const others = (history || []).filter(a => a !== currentAddress).slice(0, 4);
-    if (others.length === 0) {
-        section.innerHTML = `<div style="font-size:10px;color:#374151;text-align:center;padding:8px;">No other addresses yet</div>`;
-        return;
-    }
-
-    section.innerHTML = '';
-    const list = document.createElement('div');
-    list.className = 'history-list';
-    others.forEach(addr => {
-        const item = document.createElement('div');
-        item.className = 'history-item';
-        item.innerHTML = `<span class="history-email">${addr}</span><button class="use-btn" data-addr="${addr}">Use</button>`;
-        item.querySelector('.use-btn').addEventListener('click', async (e) => {
-            e.stopPropagation();
-            await sendMsg('setAddress', { address: e.target.dataset.addr });
-            loadAndRender();
-        });
-        item.addEventListener('click', async () => {
-            try { await navigator.clipboard.writeText(addr); } catch (e) { }
-            item.style.borderColor = 'rgba(37,99,235,0.4)';
-            setTimeout(() => { item.style.borderColor = ''; }, 1200);
-        });
-        list.appendChild(item);
-    });
-    section.appendChild(list);
+    if (!section) return;
+    section.innerHTML = `
+      <div class="tools-grid">
+        <a href="https://disposemail.xyz/test-card-generator" target="_blank" class="tool-btn">💳 Card Gen</a>
+        <a href="https://disposemail.xyz/password-generator" target="_blank" class="tool-btn">🔑 Password</a>
+        <a href="https://disposemail.xyz/uuid-generator" target="_blank" class="tool-btn">⚡ UUID Gen</a>
+        <a href="https://disposemail.xyz/hash-generator" target="_blank" class="tool-btn">#️⃣ Hash Gen</a>
+        <a href="https://disposemail.xyz/jwt-decoder" target="_blank" class="tool-btn">🔐 JWT Decode</a>
+        <a href="https://disposemail.xyz/json-formatter" target="_blank" class="tool-btn">📜 JSON Format</a>
+      </div>
+      <a href="https://disposemail.xyz/free-tools" target="_blank" class="view-all-btn">
+        ✨ View All 10+ Free Developer Tools →
+      </a>
+    `;
 }
 
 function updateInboxLink(address) {
     const link = document.getElementById('inbox-link');
-    if (address) {
-        const encoded = encodeURIComponent(address);
-        link.href = `https://disposemail.xyz/?email=${encoded}`;
-    } else {
-        link.href = 'https://disposemail.xyz';
-    }
+    link.href = 'https://disposemail.xyz';
 }
 
 let currentAddress = null;
@@ -107,15 +75,14 @@ async function loadAndRender() {
         timerFill.style.width = timerProgress(createdAt) + '%';
         updateInboxLink(address);
 
-        const { history } = await sendMsg('getHistory');
-        renderHistory(history, address, isPremium);
+        renderTools();
 
         // Live countdown
         if (timerInterval) clearInterval(timerInterval);
         timerInterval = setInterval(() => {
             timerText.textContent = formatTimeLeft(createdAt);
             timerFill.style.width = timerProgress(createdAt) + '%';
-        }, 60000);
+        }, 1000);
     } catch (err) {
         displayEl.textContent = 'Error loading';
         displayEl.classList.remove('loading');
@@ -148,11 +115,12 @@ document.getElementById('refresh-btn').addEventListener('click', async function 
         const { address } = await sendMsg('generateNew');
         currentAddress = address;
         renderEmail(address, displayEl);
-        document.getElementById('timer-text').textContent = '~24h left';
+        document.getElementById('timer-text').textContent = '59:59';
         document.getElementById('timer-fill').style.width = '100%';
         updateInboxLink(address);
-        const { history, isPremium } = await sendMsg('getHistory');
-        renderHistory(history, address, isPremium);
+        document.getElementById('qr-box').classList.remove('active');
+        renderTools();
+        loadAndRender();
     } catch (err) {
         displayEl.textContent = 'Error'; displayEl.classList.remove('loading');
     } finally {
@@ -160,5 +128,34 @@ document.getElementById('refresh-btn').addEventListener('click', async function 
         this.innerHTML = orig;
     }
 });
+
+// ─── Scan QR Button ───────────────────────────────────────────────────────────
+document.getElementById('qr-btn').addEventListener('click', function () {
+    if (!currentAddress) return;
+    const box = document.getElementById('qr-box');
+    const img = document.getElementById('qr-img');
+    if (box.classList.contains('active')) {
+        box.classList.remove('active');
+    } else {
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent('mailto:' + currentAddress)}`;
+        box.classList.add('active');
+    }
+});
+
+// Theme Switcher
+const themeBtn = document.getElementById('theme-toggle');
+if (themeBtn) {
+    if (localStorage.getItem('dm_theme') === 'light') {
+        document.body.classList.add('light-mode');
+        themeBtn.textContent = '🌙';
+    } else {
+        themeBtn.textContent = '☀️';
+    }
+    themeBtn.addEventListener('click', () => {
+        const isLight = document.body.classList.toggle('light-mode');
+        localStorage.setItem('dm_theme', isLight ? 'light' : 'dark');
+        themeBtn.textContent = isLight ? '🌙' : '☀️';
+    });
+}
 
 loadAndRender();

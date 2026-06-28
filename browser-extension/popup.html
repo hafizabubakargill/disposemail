@@ -56,7 +56,7 @@
     .logo-icon {
       width: 32px;
       height: 32px;
-      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+      background: #2563eb;
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -65,19 +65,16 @@
     }
 
     .logo-icon svg {
-      width: 17px;
-      height: 17px;
+      width: 18px;
+      height: 18px;
       color: white;
     }
 
     .logo-text {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.5px;
-      background: linear-gradient(90deg, #3b82f6, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #f3f4f6;
     }
 
     .status-dot {
@@ -197,8 +194,8 @@
     /* Actions */
     .actions {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
       margin-bottom: 12px;
     }
 
@@ -206,10 +203,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 10px 14px;
+      gap: 5px;
+      padding: 9px 6px;
       border-radius: 10px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       border: none;
@@ -415,6 +412,126 @@
       width: 10px;
       height: 10px;
     }
+
+    /* Tools Grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .tool-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tool-btn:hover {
+      background: rgba(37, 99, 235, 0.15);
+      border-color: rgba(37, 99, 235, 0.4);
+      color: #60a5fa;
+    }
+
+    /* Light Mode */
+    body.light-mode {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    body.light-mode .logo-text {
+      color: #111827;
+    }
+    body.light-mode .card {
+      background: linear-gradient(145deg, #ffffff, #f1f5f9);
+      border-color: rgba(37, 99, 235, 0.25);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    body.light-mode .email-address {
+      color: #0f172a;
+    }
+    body.light-mode .btn-secondary {
+      background: #e2e8f0;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+    body.light-mode .btn-secondary:hover {
+      background: #cbd5e1;
+      color: #0f172a;
+    }
+    body.light-mode .tool-btn {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      color: #334155;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+    body.light-mode .tool-btn:hover {
+      background: #eff6ff;
+      border-color: #3b82f6;
+      color: #2563eb;
+    }
+    body.light-mode .section-title {
+      color: #64748b;
+    }
+    body.light-mode .timer-bar {
+      background: rgba(0,0,0,0.08);
+    }
+    .qr-box {
+      display: none;
+      margin-bottom: 12px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .qr-box.active {
+      display: block;
+    }
+    body.light-mode .qr-box {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .view-all-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 8px;
+      padding: 9px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      border-radius: 8px;
+      color: #60a5fa;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .view-all-btn:hover {
+      background: rgba(37, 99, 235, 0.22);
+      border-color: rgba(37, 99, 235, 0.5);
+      color: #93c5fd;
+    }
+    body.light-mode .view-all-btn {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: #2563eb;
+    }
+    body.light-mode .view-all-btn:hover {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
   </style>
 </head>
 
@@ -425,15 +542,18 @@
     <div class="header">
       <div class="logo">
         <div class="logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
         </div>
         <span class="logo-text">DisposeMail</span>
       </div>
-      <div class="status-dot">
-        <div class="dot"></div>Active
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button id="theme-toggle" style="background:none; border:none; cursor:pointer; font-size:14px; padding:2px;" title="Toggle Theme">☀️</button>
+        <div class="status-dot">
+          <div class="dot"></div>Active
+        </div>
       </div>
     </div>
 
@@ -460,7 +580,7 @@
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
         </svg>
-        Copy Address
+        Copy
       </button>
       <button id="refresh-btn" class="btn btn-secondary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
@@ -469,19 +589,32 @@
           <path d="M1 20v-6h6" />
           <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
         </svg>
-        New Address
+        New
       </button>
+      <button id="qr-btn" class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+        </svg>
+        Scan QR
+      </button>
+    </div>
+
+    <!-- QR Box -->
+    <div id="qr-box" class="qr-box">
+      <img id="qr-img" src="" alt="QR Code" style="width:140px; height:140px; border-radius:8px; margin:0 auto 8px auto; display:block; background:white; padding:4px;" />
+      <div style="font-size:10px; color:#94a3b8; font-weight:600;">Scan to send mail to this address</div>
     </div>
 
     <div class="divider"></div>
 
-    <!-- Recent Addresses (Premium Gate) -->
+    <!-- Free Developer Tools -->
     <div class="section-header">
-      <div class="section-title">Recent Addresses</div>
-      <div class="premium-badge">★ Premium</div>
+      <div class="section-title">Free Developer Tools</div>
+      <div style="font-size:9px; font-weight:700; color:#3b82f6;">100% Free</div>
     </div>
     <div id="history-section">
-      <!-- Filled by popup.js based on isPremium -->
+      <!-- Filled by popup.js with free tools -->
     </div>
 
     <!-- Footer -->

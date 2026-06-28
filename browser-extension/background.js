@@ -11,16 +11,11 @@ const BASE_DOMAINS = [
     'noemi.co.com'
 ];
 
-const ADJECTIVES = ['swift', 'silent', 'quiet', 'fast', 'cool', 'fresh', 'safe', 'bright', 'clear', 'smart', 'clean', 'anon'];
-const NOUNS = ['mail', 'box', 'drop', 'desk', 'port', 'vault', 'safe', 'node', 'hub', 'gate', 'key', 'zone'];
-
 function generateAddress() {
-    const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
-    const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
-    const num = Math.floor(Math.random() * 9999);
     const base = BASE_DOMAINS[Math.floor(Math.random() * BASE_DOMAINS.length)];
     const sub = Math.random().toString(36).substring(2, 6);
-    return `${adj}${noun}${num}@${sub}.${base}`;
+    const userPart = Math.random().toString(36).substring(2, 10);
+    return `${userPart}@${sub}.${base}`;
 }
 
 // On install, generate a first address
@@ -59,6 +54,23 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 createdAt: Date.now(),
             });
             sendResponse({ address: newAddress });
+        });
+        return true;
+    }
+
+    if (request.action === 'setAddressFromWebsite') {
+        chrome.storage.local.get(['currentAddress', 'addressHistory'], (data) => {
+            if (data.currentAddress !== request.address) {
+                const history = data.addressHistory || [];
+                history.unshift(request.address);
+                if (history.length > 10) history.pop();
+                chrome.storage.local.set({
+                    currentAddress: request.address,
+                    addressHistory: history,
+                    createdAt: request.createdAt || Date.now(),
+                });
+            }
+            sendResponse({ success: true });
         });
         return true;
     }

@@ -11,6 +11,34 @@
     let activeDropdown = null;
     let activeInput = null;
 
+    // Two-way live inbox sync when visiting disposemail.xyz directly
+    if (window.location.hostname.includes('disposemail.xyz')) {
+        let lastSyncAddr = localStorage.getItem('disposemail_address');
+        setInterval(() => {
+            try {
+                const storedAddr = localStorage.getItem('disposemail_address');
+                const storedCreated = parseInt(localStorage.getItem('disposemail_created') || '0');
+                
+                // If website generated a new address, send to extension
+                if (storedAddr && storedAddr !== lastSyncAddr) {
+                    lastSyncAddr = storedAddr;
+                    chrome.runtime.sendMessage({ action: 'setAddressFromWebsite', address: storedAddr, createdAt: storedCreated });
+                } else {
+                    // Otherwise check if extension generated a new address
+                    chrome.runtime.sendMessage({ action: 'getAddress' }, (res) => {
+                        if (res?.address && res.address !== storedAddr) {
+                            localStorage.setItem('disposemail_address', res.address);
+                            localStorage.setItem('disposemail_created', (res.createdAt || Date.now()).toString());
+                            localStorage.removeItem('disposemail_token');
+                            lastSyncAddr = res.address;
+                            window.dispatchEvent(new Event('disposemail_sync'));
+                        }
+                    });
+                }
+            } catch (e) {}
+        }, 250);
+    }
+
     // ─── Fetch / cache address ────────────────────────────────────────────────
     function getAddress() {
         return new Promise((resolve) => {

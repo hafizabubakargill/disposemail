@@ -40,20 +40,6 @@ export function useEmailSession() {
             let storedToken = localStorage.getItem('disposemail_token');
             const now = Date.now();
 
-            // Sync with browser extension or URL query parameter (?email=...)
-            if (typeof window !== 'undefined') {
-                const urlParams = new URLSearchParams(window.location.search);
-                const urlEmail = urlParams.get('email');
-                if (urlEmail && urlEmail !== stored) {
-                    stored = urlEmail;
-                    created = now.toString();
-                    storedToken = null; // force fetch fresh token for synced email
-                    localStorage.setItem('disposemail_address', stored);
-                    localStorage.setItem('disposemail_created', created);
-                    localStorage.removeItem('disposemail_token');
-                }
-            }
-
             if (stored && created) {
                 const diff = now - parseInt(created);
                 if (diff > 60 * 60 * 1000) {
@@ -94,7 +80,24 @@ export function useEmailSession() {
 
         initialize();
 
+        const syncFromStorage = () => {
+            const storedAddr = localStorage.getItem('disposemail_address');
+            if (storedAddr) {
+                setEmail(prev => {
+                    if (prev !== storedAddr) {
+                        setSelectedDomain(storedAddr.split('@')[1] || DEFAULT_DOMAIN);
+                        return storedAddr;
+                    }
+                    return prev;
+                });
+            }
+        };
+
+        window.addEventListener('storage', syncFromStorage);
+        window.addEventListener('disposemail_sync', syncFromStorage);
+
         const timer = setInterval(() => {
+            syncFromStorage();
             const createdTime = localStorage.getItem('disposemail_created');
             if (createdTime) {
                 const elapsed = Math.floor((Date.now() - parseInt(createdTime)) / 1000);
@@ -106,9 +109,13 @@ export function useEmailSession() {
                     handleRefresh();
                 }
             }
-        }, 1000);
+        }, 250);
 
-        return () => clearInterval(timer);
+        return () => {
+            clearInterval(timer);
+            window.removeEventListener('storage', syncFromStorage);
+            window.removeEventListener('disposemail_sync', syncFromStorage);
+        };
     }, []);
 
     const handleRefresh = async (e?: React.FormEvent) => {
@@ -128,6 +135,7 @@ export function useEmailSession() {
         localStorage.setItem('disposemail_address', newEmail);
         localStorage.setItem('disposemail_created', Date.now().toString());
         if (newToken) localStorage.setItem('disposemail_token', newToken);
+        window.dispatchEvent(new Event('disposemail_sync'));
         
         setEmail(newEmail);
         if (newToken) setSessionToken(newToken);
