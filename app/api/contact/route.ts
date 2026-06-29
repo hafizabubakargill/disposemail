@@ -90,7 +90,7 @@ export async function POST(req: Request) {
 
         const smtpHost = process.env.SMTP_HOST || 'smtp.hostinger.com';
         const smtpPort = parseInt(process.env.SMTP_PORT || '465');
-        const smtpUser = process.env.SMTP_USER || 'ceo@disposemail.xyz';
+        const smtpUser = process.env.SMTP_USER || 'support@disposemail.xyz';
         const smtpPass = process.env.SMTP_PASSWORD;
 
         if (smtpPass && smtpPass !== '') {
