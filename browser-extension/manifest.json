@@ -1,12 +1,11 @@
 {
     "manifest_version": 3,
     "name": "DisposeMail — Instant Temp Email",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Generate a disposable email address instantly. Protect your real inbox from spam and data breaches.",
     "permissions": [
         "storage",
-        "clipboardWrite",
-        "activeTab"
+        "clipboardWrite"
     ],
     "action": {
         "default_popup": "popup.html",
@@ -38,8 +37,5 @@
         "16": "icons/icon16.png",
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
-    },
-    "host_permissions": [
-        "<all_urls>"
-    ]
+    }
 }
