@@ -3800,7 +3800,7 @@ export const englishPosts = [
     date: 'Jul 3, 2026',
     author: 'Lead QA Engineer',
     category: 'Engineering',
-    image: '/blog/dispomail_ultimate_guide.png',
+    image: '/blog/blog_qa_testing_api.png',
     content: `
       <p>Automated software testing has evolved significantly. Modern end-to-end (E2E) testing frameworks such as Playwright, Cypress, and Selenium can simulate complex user journeys with incredible speed and accuracy. However, one specific user flow remains a notorious pain point for engineering teams worldwide: account registration and email verification.</p>
 
@@ -3808,15 +3808,15 @@ export const englishPosts = [
       <p>When testing user onboarding, software systems typically send a verification email or OTP (One-Time Password) to confirm email ownership. Traditional QA teams often resort to shared static email accounts or complicated SMTP mail catchers like Mailhog or LocalStack. Over time, static mailboxes become clogged with thousands of test messages, rate limits trigger unexpected authentication failures, and concurrent test runs collide by intercepting each other's OTP tokens.</p>
 
       <h3>The Solution: Dynamic Ephemeral Mailboxes</h3>
-      <p>By integrating disposable email generators into your automated CI/CD pipelines, every single test run gets its own pristine, cryptographically unique email address. Once the test runner submits the registration form, it polls the temporary inbox endpoint, extracts the verification link or 6-digit OTP code using regular expressions, and completes the onboarding flow in sub-seconds.</p>
+      <p>By integrating <a href="/" class="text-blue-600 dark:text-blue-400 font-semibold underline">DisposeMail disposable email endpoints</a> into your automated CI/CD pipelines, every single test run gets its own pristine, cryptographically unique email address. Once the test runner submits the registration form, it polls the temporary inbox endpoint, extracts the verification link or 6-digit OTP code using regular expressions, and completes the onboarding flow in sub-seconds.</p>
 
       <h3>Key Benefits for DevOps and QA</h3>
       <ul>
-        <li><strong>Zero Collision:</strong> Parallel test runs never interfere with each other because each instance uses a freshly generated UUID email address.</li>
+        <li><strong>Zero Collision:</strong> Parallel test runs never interfere with each other because each instance uses a freshly generated <a href="/uuid-generator" class="text-blue-600 dark:text-blue-400 font-semibold underline">UUID generator</a> address.</li>
         <li><strong>Zero Maintenance:</strong> Inboxes automatically self-destruct after expiration, leaving no database bloat or storage overhead.</li>
         <li><strong>Realistic Environment:</strong> Testing against real external SMTP delivery validates your application's DNS, DKIM, and SPF email reputation records under real-world conditions.</li>
       </ul>
-      <p>Stop wasting engineering hours debugging flaky sign-up tests. Incorporate disposable email tools into your automation suite to achieve fast, deterministic, and scalable CI/CD workflows.</p>
+      <p>Stop wasting engineering hours debugging flaky sign-up tests. Incorporate <a href="/free-tools" class="text-blue-600 dark:text-blue-400 font-semibold underline">our free developer utilities suite</a> into your automation stack to achieve fast, deterministic, and scalable CI/CD workflows.</p>
     `
   },
   {
@@ -3826,18 +3826,39 @@ export const englishPosts = [
     date: 'Jul 3, 2026',
     author: 'Security Researcher',
     category: 'Privacy',
-    image: '/blog/dispomail_ultimate_guide.png',
+    image: '/blog/blog_chrome_extensions_guide.png',
     content: `
       <p>Every time you sign up for a newsletter, download a free e-book, or register for a 7-day SaaS trial, you enter a digital marketplace where your personal email address is the primary currency. Behind the scenes, data brokers and marketing platforms attach hidden tracking pixels to incoming HTML emails, logging your exact IP address, device specifications, and reading habits whenever you open a message.</p>
 
       <h3>The Power of Toolbar-Level Defense</h3>
-      <p>While web-based disposable email tools are invaluable, switching back and forth between browser tabs disrupts your workflow. That is why privacy-conscious users are shifting toward dedicated browser extensions. With an official Chrome extension installed right in your toolbar, privacy defense becomes effortless and proactive.</p>
+      <p>While web-based disposable email tools are invaluable, switching back and forth between browser tabs disrupts your workflow. That is why privacy-conscious users are shifting toward dedicated browser extensions. With the <a href="/extension" class="text-blue-600 dark:text-blue-400 font-semibold underline">official DisposeMail Chrome extension</a> installed right in your toolbar, privacy defense becomes effortless and proactive.</p>
 
       <h3>Instant 1-Click Autofill Protection</h3>
       <p>When you focus on an email registration field on any website, intelligent privacy extensions automatically detect the form input. A subtle badge appears, allowing you to generate and insert a fresh, disposable email address with a single click. You never leave the page, and your primary personal inbox remains 100% hidden from third-party databases.</p>
 
       <h3>Best Practices for Extension Privacy</h3>
-      <p>When selecting a privacy extension, always verify that the developer follows strict data minimization policies. The ideal tool operates without requiring user sign-up, avoids invasive host permissions, and purges temporary messages automatically. Take control of your browser toolbar today and experience a cleaner, faster, and truly private web.</p>
+      <p>When selecting a privacy extension, always verify that the developer follows strict data minimization policies. Combine your temporary inbox with our <a href="/password-generator" class="text-blue-600 dark:text-blue-400 font-semibold underline">secure password generator</a> and <a href="/identity-generator" class="text-blue-600 dark:text-blue-400 font-semibold underline">dummy identity generator</a> for total anonymity. Take control of your browser toolbar today and experience a cleaner, faster, and truly private web.</p>
+    `
+  },
+  {
+    slug: 'disposemail-launches-on-saashub-and-chrome-web-store',
+    title: 'DisposeMail Officially Launches on SaaSHub & Google Chrome Web Store',
+    excerpt: 'We are thrilled to announce two major platform expansions: our official Chrome Web Store extension and our verified listing on SaaSHub as a leading privacy alternative.',
+    date: 'Jul 3, 2026',
+    author: 'Abubakar Gill (Founder)',
+    category: 'News',
+    image: '/blog/blog_saashub_launch.png',
+    content: `
+      <p>We have reached two massive milestones in our mission to protect global inbox privacy and provide developers with world-class free utilities: the release of our official Chrome Extension and our verified feature on SaaSHub!</p>
+
+      <h3>1. The Official DisposeMail Chrome Extension</h3>
+      <p>Our community asked for seamless browser integration, and we delivered. Available now on the <a href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 font-semibold underline">Google Chrome Web Store</a> or via our dedicated <a href="/extension" class="text-blue-600 dark:text-blue-400 font-semibold underline">Extension landing page</a>, our toolbar extension allows you to generate temporary email addresses on the fly without switching tabs. It intelligently recognizes sign-up forms across the web and lets you insert a fresh disposable email address with a single click.</p>
+
+      <h3>2. Featured on SaaSHub as a Top Privacy Alternative</h3>
+      <p>We are proud to be officially verified and listed on SaaSHub as a top-rated software alternative. You can compare our capabilities against legacy providers and explore community reviews directly on the <a href="https://www.saashub.com/disposemail-alternatives" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 font-semibold underline">DisposeMail SaaSHub Alternatives page</a>. Being recognized on SaaSHub reinforces our position as the premier choice for privacy seekers and quality assurance teams.</p>
+
+      <h3>Supercharge Your Digital Toolkit Today</h3>
+      <p>Whether you need a 1-click temporary mailbox or our suite of <a href="/free-tools" class="text-blue-600 dark:text-blue-400 font-semibold underline">free developer tools</a> (including test credit cards, Base64 encoders, and QR code generators), DisposeMail remains 100% free forever with zero registration required.</p>
     `
   }
 ];
