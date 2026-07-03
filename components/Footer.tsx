@@ -23,6 +23,7 @@ export function Footer() {
                     <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('privacy')}</Link>
                     <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('terms')}</Link>
                     <Link href="/api-docs" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('api_docs')}</Link>
+                    <a href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 font-black hover:underline transition-colors flex items-center gap-1">🧩 Chrome Extension</a>
                     <Link href="https://disposemail.xyz/sitemap-index.xml" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Sitemap</Link>
                 </div>
             </div>

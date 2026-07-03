@@ -150,6 +150,14 @@ export function Navbar() {
                         )}
                     </div>
 
+                    <a
+                        href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs shadow-sm hover:shadow-md hover:scale-105 transition-all"
+                    >
+                        <span>🧩</span> Chrome Extension
+                    </a>
                     <Link href={`/${locale}/faq`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('faq')}</Link>
                     <Link href={`/${locale}/contact`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('contact')}</Link>
                 </div>
@@ -201,6 +209,14 @@ export function Navbar() {
                         </div>
                     </div>
 
+                    <a
+                        href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm shadow-md mt-4"
+                    >
+                        <span>🧩</span> Get Chrome Extension (Free)
+                    </a>
                     <Link href={`/${locale}/faq`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2 border-t border-gray-100 dark:border-[#1a1a1a] mt-2" onClick={() => setMenuOpen(false)}>{t('faq')}</Link>
                     <Link href={`/${locale}/contact`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('contact')}</Link>
                 </div>

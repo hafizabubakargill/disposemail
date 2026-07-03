@@ -75,11 +75,36 @@ export const Hero = ({
                 })}
             </h1>
 
-            <p className="text-gray-700 dark:text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-10">
+            <p className="text-gray-700 dark:text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-8">
                 {t.rich('subtitle', {
                     br: () => <br />
                 })}
             </p>
+
+            {/* Desktop Chrome Extension Banner */}
+            <div className="hidden md:flex justify-center mb-8">
+                <a
+                    href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 dark:from-blue-500/20 dark:via-indigo-500/20 dark:to-purple-500/20 border border-blue-500/30 dark:border-blue-400/30 shadow-lg shadow-blue-500/5 hover:shadow-blue-500/15 hover:scale-[1.02] transition-all duration-300"
+                >
+                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-base shadow-md group-hover:rotate-12 transition-transform">
+                        🧩
+                    </div>
+                    <div className="text-left">
+                        <div className="flex items-center gap-2">
+                            <span className="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">Official Chrome Extension</span>
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white animate-pulse">NEW</span>
+                        </div>
+                        <p className="text-xs text-gray-700 dark:text-gray-300 font-medium">Get instant 1-click temporary emails directly from your browser toolbar!</p>
+                    </div>
+                    <div className="ml-2 px-3 py-1.5 rounded-xl bg-blue-600 group-hover:bg-blue-700 text-white text-xs font-bold shrink-0 flex items-center gap-1 shadow-sm transition-colors">
+                        <span>Add to Chrome</span>
+                        <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </div>
+                </a>
+            </div>
 
             {/* Custom Prefix & Pill UI */}
             <div className="mb-12 flex justify-center">
