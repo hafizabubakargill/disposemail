@@ -81,13 +81,14 @@ export const Hero = ({
                 })}
             </p>
 
-            {/* Desktop Chrome Extension Banner */}
-            <div className="hidden md:flex justify-center mb-8">
+            {/* Desktop Chrome Extension Banner & Sitewide Trust Badge */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+                {/* Chrome Extension Banner (Desktop Only) */}
                 <a
                     href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 dark:from-blue-500/20 dark:via-indigo-500/20 dark:to-purple-500/20 border border-blue-500/30 dark:border-blue-400/30 shadow-lg shadow-blue-500/5 hover:shadow-blue-500/15 hover:scale-[1.02] transition-all duration-300"
+                    className="hidden md:inline-flex group items-center gap-3 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 dark:from-blue-500/20 dark:via-indigo-500/20 dark:to-purple-500/20 border border-blue-500/30 dark:border-blue-400/30 shadow-lg shadow-blue-500/5 hover:shadow-blue-500/15 hover:scale-[1.02] transition-all duration-300"
                 >
                     <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-base shadow-md group-hover:rotate-12 transition-transform">
                         🧩
@@ -103,6 +104,22 @@ export const Hero = ({
                         <span>Add to Chrome</span>
                         <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </div>
+                </a>
+
+                {/* SaaSHub Approved Badge (All Devices) */}
+                <a
+                    href="https://www.saashub.com/disposemail-xyz?utm_source=badge&utm_campaign=badge&utm_content=disposemail-xyz&badge_variant=color&badge_kind=approved"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center p-2 rounded-2xl bg-white/60 dark:bg-[#111] border border-gray-200 dark:border-[#222] shadow-sm hover:scale-105 hover:border-blue-500/40 transition-all duration-300"
+                    title="DisposeMail is officially approved and verified on SaaSHub"
+                >
+                    <img 
+                        src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" 
+                        alt="DisposeMail.xyz SaaSHub Approved Badge" 
+                        style={{ maxWidth: '140px' }}
+                        className="h-8 w-auto object-contain"
+                    />
                 </a>
             </div>
 

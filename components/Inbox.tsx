@@ -22,10 +22,40 @@ export interface Email {
     is_read?: boolean;
 }
 
-export default function Inbox({ emailAddress, sessionToken }: { emailAddress: string; sessionToken: string }) {
+export interface InboxProps {
+    emailAddress: string;
+    sessionToken: string;
+    overrideEmails?: Email[];
+    overrideSelectedEmail?: Email | null;
+    onOverrideSelect?: (email: Email | null) => void;
+}
+
+export default function Inbox({ emailAddress, sessionToken, overrideEmails, overrideSelectedEmail, onOverrideSelect }: InboxProps) {
     const t = useTranslations('Inbox');
-    const [emails, setEmails] = useState<Email[]>([]);
-    const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
+    const [internalEmails, setInternalEmails] = useState<Email[]>([]);
+    const [internalSelectedEmail, setInternalSelectedEmail] = useState<Email | null>(null);
+
+    const emails = overrideEmails !== undefined ? overrideEmails : internalEmails;
+    const setEmails: React.Dispatch<React.SetStateAction<Email[]>> = (val) => {
+        if (overrideEmails !== undefined) return;
+        if (typeof val === 'function') {
+            setInternalEmails((prev) => val(prev));
+        } else {
+            setInternalEmails(val);
+        }
+    };
+
+    const selectedEmail = overrideSelectedEmail !== undefined ? overrideSelectedEmail : internalSelectedEmail;
+    const setSelectedEmail: React.Dispatch<React.SetStateAction<Email | null>> = (val) => {
+        if (onOverrideSelect && overrideSelectedEmail !== undefined) {
+            const nextVal = typeof val === 'function' ? val(overrideSelectedEmail) : val;
+            onOverrideSelect(nextVal);
+        } else if (typeof val === 'function') {
+            setInternalSelectedEmail((prev) => val(prev));
+        } else {
+            setInternalSelectedEmail(val);
+        }
+    };
     const [isConnected, setIsConnected] = useState(false);
     const [showMobileContent, setShowMobileContent] = useState(false);
     const [showRawSource, setShowRawSource] = useState(false);

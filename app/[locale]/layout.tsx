@@ -24,13 +24,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
     return {
         title: {
-            default: "Secure Disposable Email Generator - DisposeMail",
-            template: "%s | DisposeMail"
+            default: "DisposeMail (Dispose Mail) - Secure Disposable Email Generator",
+            template: "%s | DisposeMail (Dispose Mail)"
         },
-        description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
+        description: "Create secure, temporary email addresses instantly with DisposeMail (often searched as Dispose Mail). Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
         keywords: [
+            "dispose mail", "disposemail", "disposable mail", "dispose email", "free dispose mail", "dispose mail xyz", "dispose mail generator", "instant dispose mail", "disposal mail",
             "disposable email", "temporary email", "temp mail", "anonymous email", "privacy", "secure email", "throwaway email", "fake email generator", "temporary email discord", "temporary email domain", "10 minute mail alternative", "duckduckgo temporary email",
-            "disposalmail", "disposmail", "disposemail", "discard.email", "disp email", "disp-mail", "dispomail", "disposal mail.com", "disposal temp mail"
+            "disposalmail", "disposmail", "discard.email", "disp email", "disp-mail", "dispomail", "disposal mail.com", "disposal temp mail"
         ],
         authors: [{ name: "DisposeMail Team" }],
         creator: "DisposeMail",
@@ -38,14 +39,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             type: "website",
             locale: locale === 'zh' ? 'zh_CN' : locale === 'en' ? 'en_US' : `${locale}_${locale.toUpperCase()}`,
             url: canonical,
-            title: "Secure Disposable Email Generator - DisposeMail",
-            description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
+            title: "DisposeMail (Dispose Mail) - Secure Disposable Email Generator",
+            description: "Create secure, temporary email addresses instantly with DisposeMail (often searched as Dispose Mail). Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
             siteName: "DisposeMail",
         },
         twitter: {
             card: "summary_large_image",
-            title: "Secure Disposable Email Generator - DisposeMail",
-            description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
+            title: "DisposeMail (Dispose Mail) - Secure Disposable Email Generator",
+            description: "Create secure, temporary email addresses instantly with DisposeMail (often searched as Dispose Mail). Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
         },
         robots: {
             index: true,
