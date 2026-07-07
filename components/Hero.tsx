@@ -62,59 +62,58 @@ export const Hero = ({
     };
 
     return (
-        <div className="w-full max-w-4xl mx-auto px-4 mt-8 md:mt-20 z-10 text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-200 bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-500/20 text-xs font-mono mb-6 shadow-sm">
+        <div className="w-full max-w-4xl mx-auto px-4 mt-6 md:mt-12 z-10 text-center">
+            <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-200 bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-500/20 text-xs font-mono mb-4 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mr-2 animate-pulse"></span>
                 {t('encrypted')}
             </div>
 
-            <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-500 dark:from-white dark:to-gray-500 transform-gpu">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-500 dark:from-white dark:to-gray-500 transform-gpu">
                 {t.rich('title', {
                     br: () => <br />,
                     span: (chunks) => <span className="text-gray-900 dark:text-white">{chunks}</span>
                 })}
             </h1>
 
-            <p className="text-gray-700 dark:text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-6">
+            <p className="text-gray-700 dark:text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-5">
                 {t.rich('subtitle', {
                     br: () => <br />
                 })}
             </p>
 
-            {/* SaaSHub Approved Trust Badge */}
-            <div className="flex justify-center mb-8">
-                <a href='https://www.saashub.com/disposemail-xyz?utm_source=badge&utm_campaign=badge&utm_content=disposemail-xyz&badge_variant=color&badge_kind=approved' target='_blank' rel='noopener noreferrer'>
-                    <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="DisposeMail.xyz badge" className="max-w-[150px] h-auto hover:opacity-90 transition-opacity shadow-sm rounded" />
+            {/* Trust Badges & Chrome Extension Row */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
+                {/* SaaSHub Approved Trust Badge */}
+                <a href='https://www.saashub.com/disposemail-xyz?utm_source=badge&utm_campaign=badge&utm_content=disposemail-xyz&badge_variant=color&badge_kind=approved' target='_blank' rel='noopener noreferrer' className="shrink-0">
+                    <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="DisposeMail.xyz badge" className="max-w-[135px] h-auto hover:opacity-90 transition-opacity shadow-sm rounded" />
                 </a>
-            </div>
 
-            {/* Desktop Chrome Extension Banner */}
-            <div className="hidden md:flex justify-center mb-8">
+                {/* Desktop Chrome Extension Banner */}
                 <a
                     href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 dark:from-blue-500/20 dark:via-indigo-500/20 dark:to-purple-500/20 border border-blue-500/30 dark:border-blue-400/30 shadow-lg shadow-blue-500/5 hover:shadow-blue-500/15 hover:scale-[1.02] transition-all duration-300"
+                    className="hidden md:inline-flex group items-center gap-2.5 px-4 py-2 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 dark:from-blue-500/20 dark:via-indigo-500/20 dark:to-purple-500/20 border border-blue-500/30 dark:border-blue-400/30 shadow-sm hover:shadow-blue-500/15 hover:scale-[1.02] transition-all duration-300 text-left"
                 >
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-base shadow-md group-hover:rotate-12 transition-transform">
+                    <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-md group-hover:rotate-12 transition-transform shrink-0">
                         🧩
                     </div>
-                    <div className="text-left">
-                        <div className="flex items-center gap-2">
-                            <span className="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">Official Chrome Extension</span>
-                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white animate-pulse">NEW</span>
+                    <div>
+                        <div className="flex items-center gap-1.5">
+                            <span className="text-[11px] font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">Chrome Extension</span>
+                            <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-blue-600 text-white animate-pulse">NEW</span>
                         </div>
-                        <p className="text-xs text-gray-700 dark:text-gray-300 font-medium">Get instant 1-click temporary emails directly from your browser toolbar!</p>
+                        <p className="text-[11px] text-gray-700 dark:text-gray-300 font-medium leading-tight">Instant 1-click temporary emails!</p>
                     </div>
-                    <div className="ml-2 px-3 py-1.5 rounded-xl bg-blue-600 group-hover:bg-blue-700 text-white text-xs font-bold shrink-0 flex items-center gap-1 shadow-sm transition-colors">
-                        <span>Add to Chrome</span>
-                        <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    <div className="ml-1 px-2.5 py-1.5 rounded-xl bg-blue-600 group-hover:bg-blue-700 text-white text-[11px] font-bold shrink-0 flex items-center gap-1 shadow-sm transition-colors">
+                        <span>Add</span>
+                        <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </div>
                 </a>
             </div>
 
             {/* Custom Prefix & Pill UI */}
-            <div className="mb-12 flex justify-center">
+            <div className="mb-6 flex justify-center">
                 <div className="flex items-center bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] rounded-full p-1 shadow-sm hover:shadow-md transition-all">
                     <button
                         type="button"
