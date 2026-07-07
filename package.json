@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "20.19.5"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "dev": "node server.js",
     "prebuild": "rm -rf .next/cache || true",
     "build": "next build",
-    "postinstall": "npm run build",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
