@@ -35,8 +35,8 @@ const globalSiteLimiter = rateLimit({
     legacyHeaders: false,
 });
 
-// Config: Force production mode by default on cloud hosts (like Hostinger) unless explicitly set to development
-const dev = process.env.NODE_ENV === 'development';
+// Config
+const dev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 3000;
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || "change_me_to_a_secure_secret";
 
@@ -455,7 +455,7 @@ app.prepare().then(async () => {
         return handle(req, res);
     });
 
-    httpServer.listen(PORT, () => {
+    httpServer.listen(PORT, '0.0.0.0', () => {
         console.log(`> Nuclear Ready on port ${PORT}`);
         if (WEBHOOK_SECRET === "change_me_to_a_secure_secret") {
             console.warn("\n========================================================");

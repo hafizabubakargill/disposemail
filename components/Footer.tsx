@@ -18,16 +18,13 @@ export function Footer() {
                     <p className="text-xs text-gray-700 dark:text-gray-300 font-medium">{t('copyright')}</p>
                 </div>
 
-                <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 text-[11px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">
+                <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[11px] font-bold uppercase tracking-widest text-gray-700 dark:text-gray-300">
                     <Link href="/faq" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('faq')}</Link>
                     <Link href="/privacy" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('privacy')}</Link>
                     <Link href="/terms" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('terms')}</Link>
                     <Link href="/api-docs" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">{t('api_docs')}</Link>
                     <a href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 font-black hover:underline transition-colors flex items-center gap-1">🧩 Chrome Extension</a>
                     <Link href="https://disposemail.xyz/sitemap-index.xml" className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Sitemap</Link>
-                    <a href="https://www.saashub.com/disposemail-xyz?utm_source=badge&utm_campaign=badge&utm_content=disposemail-xyz&badge_variant=color&badge_kind=approved" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-80 transition-opacity" title="DisposeMail is officially approved on SaaSHub">
-                        <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="DisposeMail.xyz SaaSHub Approved Badge" style={{ maxWidth: '110px' }} className="h-6 w-auto object-contain" />
-                    </a>
                 </div>
             </div>
         </footer>

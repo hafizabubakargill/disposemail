@@ -340,9 +340,8 @@ export default function Home() {
                         "@context": "https://schema.org",
                         "@type": "WebSite",
                         "name": "DisposeMail",
-                        "alternateName": ["Dispose Mail", "Disposable Mail", "Dispose Email", "DisposeMail.xyz"],
                         "url": "https://disposemail.xyz",
-                        "description": "Secure Disposable Email Generator (Dispose Mail) and Free Privacy Tools."
+                        "description": "Secure Disposable Email Generator and Free Privacy Tools."
                     })
                 }}
             />
@@ -353,14 +352,6 @@ export default function Home() {
                         "@context": "https://schema.org",
                         "@type": "FAQPage",
                         "mainEntity": [
-                            {
-                                "@type": "Question",
-                                "name": "What is the difference between DisposeMail and Dispose Mail?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "DisposeMail (often searched as Dispose Mail with a space or Disposable Mail) is the premier instant, zero-log temporary email generator at disposemail.xyz. Whether you search for 'DisposeMail' as one word or 'Dispose Mail' with a space, our free privacy suite provides instant ephemeral mailboxes that expire after 60 minutes with zero data retention."
-                                }
-                            },
                             {
                                 "@type": "Question",
                                 "name": "What is a disposable email address?",
