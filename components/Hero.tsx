@@ -75,11 +75,18 @@ export const Hero = ({
                 })}
             </h1>
 
-            <p className="text-gray-700 dark:text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-8">
+            <p className="text-gray-700 dark:text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-6">
                 {t.rich('subtitle', {
                     br: () => <br />
                 })}
             </p>
+
+            {/* SaaSHub Approved Trust Badge */}
+            <div className="flex justify-center mb-8">
+                <a href='https://www.saashub.com/disposemail-xyz?utm_source=badge&utm_campaign=badge&utm_content=disposemail-xyz&badge_variant=color&badge_kind=approved' target='_blank' rel='noopener noreferrer'>
+                    <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="DisposeMail.xyz badge" className="max-w-[150px] h-auto hover:opacity-90 transition-opacity shadow-sm rounded" />
+                </a>
+            </div>
 
             {/* Desktop Chrome Extension Banner */}
             <div className="hidden md:flex justify-center mb-8">
