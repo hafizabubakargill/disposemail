@@ -76,7 +76,7 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden min-[1041px]:flex items-center gap-6">
                 <div className="flex gap-6 text-[11px] text-gray-600 dark:text-gray-400 font-bold uppercase tracking-widest items-center">
                     <Link href={`/${locale}`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('home')}</Link>
                     <Link href={`/${locale}/about`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('about', { fallback: 'About' })}</Link>
@@ -99,43 +99,40 @@ export function Navbar() {
                             <div
                                 onMouseEnter={openMenu}
                                 onMouseLeave={closeMenu}
-                                className="absolute top-full left-1/2 -translate-x-1/2 mt-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
-                                style={{ width: '920px' }}
+                                className="absolute top-full left-0 mt-2 w-[680px] bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-2xl shadow-2xl p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                             >
-                                <div className="flex justify-center mb-1">
-                                    <div className="w-3 h-3 bg-white dark:bg-[#111] border-l border-t border-gray-200 dark:border-[#222] rotate-45" />
-                                </div>
-                                <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-2xl shadow-2xl shadow-black/10 dark:shadow-black/50 overflow-hidden">
-                                    
-                                    {/* Header */}
-                                    <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100 dark:border-[#1a1a1a]">
-                                        <div>
-                                            <p className="text-xs font-black text-gray-900 dark:text-white uppercase tracking-widest">Free Privacy Utilities</p>
-                                        </div>
-                                        <Link href={`/${locale}/free-tools`} onClick={() => setToolsOpen(false)} className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest hover:underline flex items-center gap-1">
-                                            View all tools <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                                        </Link>
+                                <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-100 dark:border-[#1a1a1a]">
+                                    <div>
+                                        <h4 className="text-sm font-black text-gray-900 dark:text-white uppercase tracking-wider">All Free Privacy Tools</h4>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 font-normal">100% free, client-side tools to secure your digital footprint</p>
                                     </div>
-                                    
-                                    {/* Categorized 4-Column Grid */}
-                                    <div className="grid grid-cols-4 divide-x divide-gray-100 dark:divide-[#1a1a1a] bg-gray-50/50 dark:bg-[#151515]">
-                                        {TOOL_CATEGORIES.map(category => (
-                                            <div key={category.name} className="flex flex-col p-4">
-                                                <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-3 px-2">
-                                                    {category.name}
-                                                </h4>
-                                                <div className="flex flex-col gap-1">
-                                                    {category.tools.map(tool => (
+                                    <Link
+                                        href={`/${locale}/free-tools`}
+                                        onClick={() => setToolsOpen(false)}
+                                        className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+                                    >
+                                        View all tools &rarr;
+                                    </Link>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+                                    {/* Column 1: Security & Crypto */}
+                                    <div className="space-y-6">
+                                        {[TOOL_CATEGORIES[0], TOOL_CATEGORIES[1]].map((cat) => (
+                                            <div key={cat.name}>
+                                                <h5 className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2.5 px-2">{cat.name}</h5>
+                                                <div className="space-y-1">
+                                                    {cat.tools.map((tool) => (
                                                         <Link
                                                             key={tool.href}
                                                             href={`/${locale}${tool.href}`}
                                                             onClick={() => setToolsOpen(false)}
-                                                            className="flex items-center gap-2.5 p-2 rounded-xl bg-transparent hover:bg-white dark:hover:bg-[#222] transition-colors group"
+                                                            className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-[#1a1a1a] transition-colors group"
                                                         >
-                                                            <div className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 text-sm ${tool.bg} shadow-sm border border-black/5 dark:border-white/5 group-hover:scale-105 transition-transform`}>
-                                                                <span className={tool.label === 'JSON Formatter' ? 'font-mono block -mt-0.5' : ''}>{tool.emoji}</span>
+                                                            <div className={`w-8 h-8 rounded-lg ${tool.bg} flex items-center justify-center text-base shrink-0 group-hover:scale-110 transition-transform`}>
+                                                                <span style={tool.label === 'JSON Formatter' ? {fontFamily: 'monospace', fontWeight: 'bold'} : {}}>{tool.emoji}</span>
                                                             </div>
-                                                            <span className={`text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-white transition-colors`}>
+                                                            <span className="text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                                                 {tool.label}
                                                             </span>
                                                         </Link>
@@ -145,6 +142,31 @@ export function Navbar() {
                                         ))}
                                     </div>
 
+                                    {/* Column 2: Dev & Network */}
+                                    <div className="space-y-6">
+                                        {[TOOL_CATEGORIES[2], TOOL_CATEGORIES[3]].map((cat) => (
+                                            <div key={cat.name}>
+                                                <h5 className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2.5 px-2">{cat.name}</h5>
+                                                <div className="space-y-1">
+                                                    {cat.tools.map((tool) => (
+                                                        <Link
+                                                            key={tool.href}
+                                                            href={`/${locale}${tool.href}`}
+                                                            onClick={() => setToolsOpen(false)}
+                                                            className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-[#1a1a1a] transition-colors group"
+                                                        >
+                                                            <div className={`w-8 h-8 rounded-lg ${tool.bg} flex items-center justify-center text-base shrink-0 group-hover:scale-110 transition-transform`}>
+                                                                <span style={tool.label === 'JSON Formatter' ? {fontFamily: 'monospace', fontWeight: 'bold'} : {}}>{tool.emoji}</span>
+                                                            </div>
+                                                            <span className="text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                                                {tool.label}
+                                                            </span>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         )}
@@ -156,7 +178,7 @@ export function Navbar() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs shadow-sm hover:shadow-md hover:scale-105 transition-all"
                     >
-                        <span>🧩</span> Chrome Extension
+                        <svg className="w-3.5 h-3.5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg> Chrome Extension
                     </a>
                     <Link href={`/${locale}/faq`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('faq')}</Link>
                     <Link href={`/${locale}/contact`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('contact')}</Link>
@@ -168,7 +190,7 @@ export function Navbar() {
             </div>
 
             {/* Mobile Hamburger */}
-            <div className="flex md:hidden items-center gap-3">
+            <div className="flex min-[1041px]:hidden items-center gap-3">
                 <LanguageSwitcher />
                 <ModeToggle />
                 <button onClick={() => setMenuOpen(!menuOpen)} className="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#222] rounded-lg transition-colors" aria-label="Toggle menu">
@@ -180,7 +202,7 @@ export function Navbar() {
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="absolute top-20 left-0 right-0 max-h-[80vh] overflow-y-auto bg-white dark:bg-[#111] border-y border-gray-200 dark:border-[#222] p-6 flex flex-col gap-4 z-50 md:hidden animate-in fade-in slide-in-from-top-4 duration-200 shadow-xl">
+                <div className="absolute top-20 left-0 right-0 max-h-[80vh] overflow-y-auto bg-white dark:bg-[#111] border-y border-gray-200 dark:border-[#222] p-6 flex flex-col gap-4 z-50 min-[1041px]:hidden animate-in fade-in slide-in-from-top-4 duration-200 shadow-xl">
                     <Link href={`/${locale}`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('home')}</Link>
                     <Link href={`/${locale}/about`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('about', { fallback: 'About Us' })}</Link>
                     <Link href={`/${locale}/blog`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('blog')}</Link>
@@ -215,7 +237,7 @@ export function Navbar() {
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm shadow-md mt-4"
                     >
-                        <span>🧩</span> Get Chrome Extension (Free)
+                        <svg className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg> Get Chrome Extension (Free)
                     </a>
                     <Link href={`/${locale}/faq`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2 border-t border-gray-100 dark:border-[#1a1a1a] mt-2" onClick={() => setMenuOpen(false)}>{t('faq')}</Link>
                     <Link href={`/${locale}/contact`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('contact')}</Link>
