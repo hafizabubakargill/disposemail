@@ -82,10 +82,21 @@ export const Hero = ({
             </p>
 
             {/* Trust Badges & Chrome Extension Row */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
                 {/* SaaSHub Approved Trust Badge */}
                 <a href='https://www.saashub.com/disposemail-xyz?utm_source=badge&utm_campaign=badge&utm_content=disposemail-xyz&badge_variant=color&badge_kind=approved' target='_blank' rel='noopener noreferrer' className="shrink-0">
-                    <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="DisposeMail.xyz badge" className="max-w-[135px] h-auto hover:opacity-90 transition-opacity shadow-sm rounded" />
+                    <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="DisposeMail.xyz badge" className="max-w-[130px] h-auto hover:opacity-90 transition-opacity shadow-sm rounded" />
+                </a>
+
+                {/* ExtensionLaunch Featured Badge */}
+                <a
+                    href="https://extensionlaunch.com/product/disposemail-instant-temp-email-pfeljf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-orange-500/10 to-amber-500/10 dark:from-orange-500/20 dark:to-amber-500/20 border border-orange-500/30 dark:border-orange-400/30 text-orange-700 dark:text-orange-300 font-bold text-[11px] hover:scale-105 transition-all shadow-sm shrink-0"
+                >
+                    <span>🚀</span>
+                    <span>Featured on <strong className="font-black">ExtensionLaunch</strong></span>
                 </a>
 
                 {/* Desktop Chrome Extension Banner */}
