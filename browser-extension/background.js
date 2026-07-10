@@ -1,6 +1,7 @@
 // DisposeMail Browser Extension – Background Service Worker
 
 const BASE_DOMAINS = [
+    'disposemail.space',
     'inveromail.info',
     'dunedistrict.com',
     'groundtips.com',

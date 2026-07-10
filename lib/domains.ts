@@ -8,6 +8,7 @@
 // across the alternative domains (better for spam-filter avoidance).
 
 export const BASE_DOMAINS = [
+    'disposemail.space',
     'inveromail.info',
     'dunedistrict.com',
     'groundtips.com',
@@ -19,6 +20,7 @@ export const BASE_DOMAINS = [
 ];
 
 export const DOMAINS = [
+    'disposemail.space',
     'inveromail.info',
     'dunedistrict.com',
     'groundtips.com',
