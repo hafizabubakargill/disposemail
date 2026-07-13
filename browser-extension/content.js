@@ -66,7 +66,7 @@
 
     function generateFallback() {
         const parts = ['swift', 'quiet', 'fresh', 'clear'];
-        const bases = ['snapinbox.space', 'lamenteesmaravillosa.us.com', 'dropinbox.space', 'disposemail.space', 'inveromail.info', 'noviqmail.pro', 'nivoramail.pro'];
+        const bases = ['chio-online.us.com', 'dowjones.com.se', 'snapinbox.space', 'lamenteesmaravillosa.us.com', 'dropinbox.space', 'disposemail.space', 'inveromail.info', 'noviqmail.pro', 'nivoramail.pro'];
         const sub = Math.random().toString(36).substring(2, 6);
         return `${parts[Math.floor(Math.random() * parts.length)]}${Math.floor(Math.random() * 999)}@${sub}.${bases[Math.floor(Math.random() * bases.length)]}`;
     }

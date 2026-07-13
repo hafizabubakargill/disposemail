@@ -1,6 +1,8 @@
 // DisposeMail Browser Extension – Background Service Worker
 
 const BASE_DOMAINS = [
+    'chio-online.us.com',
+    'dowjones.com.se',
     'snapinbox.space',
     'lamenteesmaravillosa.us.com',
     'dropinbox.space',

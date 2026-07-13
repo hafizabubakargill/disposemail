@@ -8,6 +8,8 @@
 // across the alternative domains (better for spam-filter avoidance).
 
 export const BASE_DOMAINS = [
+    'chio-online.us.com',
+    'dowjones.com.se',
     'snapinbox.space',
     'lamenteesmaravillosa.us.com',
     'dropinbox.space',
@@ -23,6 +25,8 @@ export const BASE_DOMAINS = [
 ];
 
 export const DOMAINS = [
+    'chio-online.us.com',
+    'dowjones.com.se',
     'snapinbox.space',
     'lamenteesmaravillosa.us.com',
     'dropinbox.space',
