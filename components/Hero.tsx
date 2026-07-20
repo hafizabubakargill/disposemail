@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 interface HeroProps {
@@ -63,6 +64,21 @@ export const Hero = ({
 
     return (
         <div className="w-full max-w-4xl mx-auto px-4 mt-6 md:mt-12 z-10 text-center">
+            {/* Trending Data Breach Checker Alert Banner */}
+            <div className="mb-4">
+                <Link
+                    href="/data-breach-checker"
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-300 text-xs font-bold transition-all shadow-sm hover:scale-105"
+                >
+                    <span className="flex h-2 w-2 relative shrink-0">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                    </span>
+                    <span>🚨 <strong className="font-extrabold">Data Breach Alert:</strong> Check if your email or passwords were leaked</span>
+                    <span className="text-red-400 font-mono">→</span>
+                </Link>
+            </div>
+
             <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-200 bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-500/20 text-xs font-mono mb-4 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mr-2 animate-pulse"></span>
                 {t('encrypted')}
@@ -86,6 +102,17 @@ export const Hero = ({
                 {/* SaaSHub Approved Trust Badge */}
                 <a href='https://www.saashub.com/disposemail-xyz?utm_source=badge&utm_campaign=badge&utm_content=disposemail-xyz&badge_variant=color&badge_kind=approved' target='_blank' rel='noopener noreferrer' className="shrink-0">
                     <img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="DisposeMail.xyz badge" className="max-w-[130px] h-auto hover:opacity-90 transition-opacity shadow-sm rounded" />
+                </a>
+
+                {/* AlternativeTo Approved Badge */}
+                <a
+                    href="https://alternativeto.net/software/disposemail/about/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/30 text-teal-700 dark:text-teal-300 font-bold text-[11px] hover:scale-105 transition-all shadow-sm shrink-0"
+                >
+                    <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+                    <span>Verified on <strong className="font-black">AlternativeTo</strong></span>
                 </a>
 
                 {/* ExtensionLaunch Featured Badge */}
