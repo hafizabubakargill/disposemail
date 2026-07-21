@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { englishPosts } from '@/lib/blog-data/en';
 import { useCases } from '@/lib/use-cases';
 
+export const dynamic = 'force-static';
+export const revalidate = 86400;
+
 const BASE_URL = 'https://disposemail.xyz';
 const LOCALES = ['en', 'es', 'pt', 'ru', 'zh'];
 

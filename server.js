@@ -29,7 +29,7 @@ const webhookLimiter = rateLimit({
 const globalSiteLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
     max: 200, // Allow high amounts of normal browsing, but block DDoS/Brute force
-    skip: (req) => req.url.startsWith('/_next/') || req.url.match(/\.(svg|png|jpg|jpeg|ico|json|xsl|txt)$/),
+    skip: (req) => req.url.startsWith('/_next/') || req.url.match(/\.(svg|png|jpg|jpeg|ico|json|xsl|txt|xml)$/),
     message: 'We have detected unusual traffic from your network. To prevent abuse, please wait a minute before accessing DisposeMail again.',
     standardHeaders: true,
     legacyHeaders: false,
