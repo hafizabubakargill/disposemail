@@ -31,6 +31,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: useCase.description,
         alternates: {
             canonical: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}${slug}`,
+            languages: {
+                'en': `https://disposemail.xyz/${slug}`,
+                'es': `https://disposemail.xyz/es/${slug}`,
+                'pt': `https://disposemail.xyz/pt/${slug}`,
+                'ru': `https://disposemail.xyz/ru/${slug}`,
+                'zh': `https://disposemail.xyz/zh/${slug}`,
+                'x-default': `https://disposemail.xyz/${slug}`,
+            }
         }
     };
 }

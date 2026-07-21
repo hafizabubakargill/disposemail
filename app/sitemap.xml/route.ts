@@ -3,6 +3,7 @@ import { englishPosts } from '@/lib/blog-data/en';
 import { useCases } from '@/lib/use-cases';
 
 const BASE_URL = 'https://disposemail.xyz';
+const LOCALES = ['en', 'es', 'pt', 'ru', 'zh'];
 
 const STATIC_ROUTES = [
     { path: '', priority: '1.00' },
@@ -25,61 +26,61 @@ const STATIC_ROUTES = [
 ];
 
 export async function GET() {
-    // Generate ISO string, e.g. 2026-03-08T09:35:47+00:00 instead of strict Z ending
     const now = new Date();
     const lastmod = now.toISOString().replace('Z', '+00:00');
 
-    const LOCALES = ['en', 'es', 'pt', 'ru', 'zh'];
-    
-    // Build total URL set across ALL locales
-    const ROUTES: { path: string, priority: string }[] = [];
+    // Collect base relative paths (e.g. '', '/about', '/blog/my-post', '/temp-mail-for-qa')
+    const basePaths: { path: string, basePriority: string }[] = [];
 
-    LOCALES.forEach(locale => {
-        const prefix = locale === 'en' ? '' : `/${locale}`;
-        
-        // Static Routes
-        STATIC_ROUTES.forEach(route => {
-            ROUTES.push({
-                path: `${prefix}${route.path}`,
-                priority: locale === 'en' ? route.priority : (parseFloat(route.priority) * 0.9).toFixed(2)
-            });
-        });
-
-        // Blog Routes
-        englishPosts.forEach(post => {
-            ROUTES.push({
-                path: `${prefix}/blog/${post.slug}`,
-                priority: '0.64'
-            });
-        });
-
-        // Use Case Routes
-        const localeCases = useCases[locale] || useCases.en;
-        localeCases.forEach(uc => {
-            ROUTES.push({
-                path: `${prefix}/${uc.slug}`,
-                priority: '0.64'
-            });
-        });
+    // Static Routes
+    STATIC_ROUTES.forEach(route => {
+        basePaths.push({ path: route.path, basePriority: route.priority });
     });
 
-    // Build flat URL set
-    const urls = ROUTES.map((route) => {
-        const canonical = `${BASE_URL}${route.path}`;
-        return `<url>
+    // Blog Routes
+    englishPosts.forEach(post => {
+        basePaths.push({ path: `/blog/${post.slug}`, basePriority: '0.64' });
+    });
+
+    // Use Case Routes (from English use cases as baseline slugs)
+    const enCases = useCases.en || [];
+    enCases.forEach(uc => {
+        basePaths.push({ path: `/${uc.slug}`, basePriority: '0.64' });
+    });
+
+    const urlEntries: string[] = [];
+
+    // For every base path, generate entries for ALL 5 locales with xhtml:link hreflang annotations
+    basePaths.forEach(({ path, basePriority }) => {
+        const alternateLinks = LOCALES.map(loc => {
+            const prefix = loc === 'en' ? '' : `/${loc}`;
+            const href = `${BASE_URL}${prefix}${path}`;
+            return `  <xhtml:link rel="alternate" hreflang="${loc}" href="${href}" />`;
+        });
+        alternateLinks.push(`  <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${path}" />`);
+
+        LOCALES.forEach(loc => {
+            const prefix = loc === 'en' ? '' : `/${loc}`;
+            const canonical = `${BASE_URL}${prefix}${path}`;
+            const priority = loc === 'en' ? basePriority : (parseFloat(basePriority) * 0.9).toFixed(2);
+
+            urlEntries.push(`<url>
   <loc>${canonical}</loc>
+${alternateLinks.join('\n')}
   <lastmod>${lastmod}</lastmod>
-  <priority>${route.priority}</priority>
-</url>`;
-    }).join('\n');
+  <priority>${priority}</priority>
+</url>`);
+        });
+    });
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xhtml="http://www.w3.org/1999/xhtml"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${urls}
+${urlEntries.join('\n')}
 </urlset>`;
 
     return new NextResponse(xml, {
