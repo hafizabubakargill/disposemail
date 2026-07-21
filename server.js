@@ -9,7 +9,7 @@ const fs = require('fs');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./lib/mongoose');
 const jwt = require('jsonwebtoken');
-const DOMPurify = require('isomorphic-dompurify');
+const sanitizeHtml = require('sanitize-html');
 
 // Rate Limiting Configurations
 const apiLimiter = rateLimit({
@@ -170,7 +170,7 @@ app.prepare().then(async () => {
             from_address: from,
             subject: finalSubject,
             text: finalText,
-            html: DOMPurify.sanitize(finalHtml),
+            html: sanitizeHtml(finalHtml),
             raw: raw,
             attachments: attachments,
             received_at: Date.now()
