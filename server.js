@@ -73,6 +73,11 @@ app.prepare().then(async () => {
         next();
     });
 
+    // SEO: Redirect all alternate sitemap URLs to official /sitemap.xml
+    server.get(['/sitemap_index.xml', '/sitemap-index.xml', '/sitemap1.xml', '/sitemap_index.xml.gz'], (req, res) => {
+        return res.redirect(301, 'https://disposemail.xyz/sitemap.xml');
+    });
+
     // --- 1. CORE API WRAPPER ---
     server.use((req, res, next) => {
         // Secure Version Tracker
