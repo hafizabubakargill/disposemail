@@ -26,6 +26,7 @@ const STATIC_ROUTES = [
     { path: '/privacy', priority: '0.70' },
     { path: '/terms', priority: '0.70' },
     { path: '/api-docs', priority: '0.75' },
+    { path: '/sitemap', priority: '0.75' },
 ];
 
 export async function GET() {
