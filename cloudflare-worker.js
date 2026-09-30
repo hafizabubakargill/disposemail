@@ -55,7 +55,7 @@ export default {
     // 2. HANDLER FOR RESCUE SYNC (Called from Browser)
     async fetch(request, env) {
         const url = new URL(request.url);
-        const API_SECRET = "change_me_to_a_secure_secret";
+        const API_SECRET = env.WEBHOOK_SECRET || "change_me_to_a_secure_secret";
 
         if (url.pathname === "/sync-safety-net") {
             const secret = url.searchParams.get("secret");

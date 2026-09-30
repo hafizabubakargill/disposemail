@@ -1,12 +1,15 @@
 node_modules
 emails.json
+notes.json
 requests.log
 webhook.log
+.env.local
 
-# next.js
+# next.js & typescript
 /.next/
 /out/
 /build
+*.tsbuildinfo
 
 # misc
 .DS_Store
@@ -15,6 +18,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+chrome-store-assets/
+disposemail-extension.zip
 
 google-credentials.json
 indexing_history.json

@@ -40,6 +40,9 @@ export const Hero = ({
             if (typeof navigator !== 'undefined' && navigator.vibrate) {
                 navigator.vibrate(50);
             }
+            if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
+                Notification.requestPermission().catch(() => {});
+            }
 
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(email);

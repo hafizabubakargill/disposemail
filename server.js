@@ -11,34 +11,36 @@ const connectDB = require('./lib/mongoose');
 const jwt = require('jsonwebtoken');
 const sanitizeHtml = require('sanitize-html');
 
+// Config
+const dev = process.env.NODE_ENV !== 'production';
+const PORT = process.env.PORT || 3000;
+const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || "change_me_to_a_secure_secret";
+
 // Rate Limiting Configurations
 const apiLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
-    max: 100, // Limit each IP to 100 requests per windowMs
+    max: 300, // Limit each IP to 300 API requests per minute
+    skip: (req) => req.url.includes('/webhook/email'), // Handled by webhookLimiter
     message: { error: 'Too many requests from this IP, please try again after a minute' },
-    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    standardHeaders: true,
+    legacyHeaders: false,
 });
 
 const webhookLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
-    max: 50, // Limit webhook strictly
+    max: 60, // Strictly limit unauthenticated webhook probes
+    skip: (req) => req.body && req.body.secret === WEBHOOK_SECRET, // Never throttle verified Cloudflare Worker emails
     message: { error: 'Webhook rate limit exceeded' }
 });
 
 const globalSiteLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
-    max: 200, // Allow high amounts of normal browsing, but block DDoS/Brute force
-    skip: (req) => req.url.startsWith('/_next/') || req.url.match(/\.(svg|png|jpg|jpeg|ico|json|xsl|txt|xml)$/),
+    max: 600, // Allow high-concurrency browsing and multi-tab usage during surges
+    skip: (req) => req.url.startsWith('/_next/') || req.url.includes('/webhook/email') || req.url.match(/\.(svg|png|jpg|jpeg|ico|json|xsl|txt|xml)$/),
     message: 'We have detected unusual traffic from your network. To prevent abuse, please wait a minute before accessing DisposeMail again.',
     standardHeaders: true,
     legacyHeaders: false,
 });
-
-// Config
-const dev = process.env.NODE_ENV !== 'production';
-const PORT = process.env.PORT || 3000;
-const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || "change_me_to_a_secure_secret";
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -181,8 +183,12 @@ app.prepare().then(async () => {
             received_at: Date.now()
         });
 
-        // Null guard: if save failed, use the raw data for socket emit
-        const emailToEmit = saved || { id: finalId, address: to.toLowerCase(), from_address: from, subject: finalSubject, text: finalText, is_read: false, received_at: Date.now() };
+        // Null guard: if save failed, use the raw data for socket emit (strip oversized raw > 150KB from WebSocket frame)
+        const baseEmit = saved || { id: finalId, address: to.toLowerCase(), from_address: from, subject: finalSubject, text: finalText, is_read: false, received_at: Date.now() };
+        const emailToEmit = { ...baseEmit };
+        if (emailToEmit.raw && emailToEmit.raw.length > 150 * 1024) {
+            delete emailToEmit.raw;
+        }
         console.log(`[WEBHOOK] Email ${emailToEmit.id} for ${to}`);
         io.to(to.toLowerCase()).emit('new-email', emailToEmit);
         res.json({ success: true, id: emailToEmit.id });
@@ -213,13 +219,19 @@ app.prepare().then(async () => {
             const success = await db.deleteEmailById(req.body.id);
             res.json({ success });
         });
-        server.post(`${p}/webhook/email`, webhookLimiter, express.json({ limit: '10mb' }), handleWebhook);
+        server.delete(`${p}/emails/burn`, express.json(), async (req, res) => {
+            const address = (req.body.address || req.query.address || '').toLowerCase();
+            if (!address) return res.status(400).json({ error: 'Address required' });
+            const success = await db.deleteEmailsForAddress(address);
+            res.json({ success });
+        });
+        server.post(`${p}/webhook/email`, express.json({ limit: '10mb' }), webhookLimiter, handleWebhook);
 
         server.get(`${p}/emails/attachment`, async (req, res) => {
             const { id, checksum } = req.query;
             if (!id || !checksum) return res.status(400).send('Missing params');
 
-            const email = db.getEmailById(id);
+            const email = await db.getEmailById(id);
             if (!email || !email.raw) return res.status(404).send('Email/Raw source not found');
 
             try {

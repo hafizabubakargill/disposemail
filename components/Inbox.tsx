@@ -153,9 +153,22 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
         setShowBurnConfirm(true);
     };
 
-    const confirmBurn = () => {
+    const confirmBurn = async () => {
+        try {
+            await fetch('/x-feed/emails/burn', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionTokenRef.current}`
+                },
+                body: JSON.stringify({ address: emailAddress })
+            });
+        } catch (e) {
+            // Proceed with local burn even if network request fails
+        }
         localStorage.removeItem('disposemail_address');
         localStorage.removeItem('disposemail_created');
+        localStorage.removeItem('disposemail_token');
         window.location.reload();
     };
 
@@ -293,7 +306,6 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
             }
         }
 
-        requestNotificationPermission();
         fetchEmails();
 
         const socketProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
@@ -389,12 +401,6 @@ export default function Inbox({ emailAddress, sessionToken }: { emailAddress: st
             document.documentElement.style.overflow = 'unset';
         };
     }, [selectedEmail, showMobileContent]);
-
-    useEffect(() => {
-        if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
-            Notification.requestPermission();
-        }
-    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {

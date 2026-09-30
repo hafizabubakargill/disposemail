@@ -84,7 +84,26 @@ async function runIndexer() {
 
         let history = [];
         if (fs.existsSync(HISTORY_PATH)) {
-            history = JSON.parse(fs.readFileSync(HISTORY_PATH, 'utf8'));
+            try {
+                history = JSON.parse(fs.readFileSync(HISTORY_PATH, 'utf8'));
+            } catch (e) {
+                history = [];
+            }
+        }
+
+        // Sync with MongoDB so Hostinger ephemeral container deployments never reset indexing progress
+        const mongoose = require('mongoose');
+        let mongoCol = null;
+        try {
+            if (mongoose.connection && mongoose.connection.readyState === 1 && mongoose.connection.db) {
+                mongoCol = mongoose.connection.db.collection('indexing_state');
+                const doc = await mongoCol.findOne({ _id: 'google_indexing_history' });
+                if (doc && Array.isArray(doc.urls)) {
+                    history = Array.from(new Set([...history, ...doc.urls]));
+                }
+            }
+        } catch (dbErr) {
+            console.warn(`[AutoIndexer] MongoDB history sync warning:`, dbErr.message);
         }
 
         const unindexedUrls = allUrls.filter(url => !history.includes(url));
@@ -95,8 +114,8 @@ async function runIndexer() {
             return;
         }
 
-        // Pick a random number between 5 and 15, or whatever is left
-        const batchSize = Math.min(Math.floor(Math.random() * 11) + 5, unindexedUrls.length);
+        // Submit up to 80 URLs per 12-hour batch (~160/day, safely under Google's 200/day Indexing API quota)
+        const batchSize = Math.min(80, unindexedUrls.length);
         const batchToSubmit = unindexedUrls.slice(0, batchSize);
 
         console.log(`[AutoIndexer] Preparing to submit a batch of ${batchSize} URLs...`);
@@ -121,12 +140,30 @@ async function runIndexer() {
                 await new Promise(r => setTimeout(r, 1000));
             } catch (err) {
                 console.error(`[AutoIndexer] Failed to submit ${url}:`, err.message);
+                if (err.message && err.message.includes('Quota exceeded')) {
+                    console.warn(`[AutoIndexer] Daily quota reached. Stopping batch early.`);
+                    break;
+                }
             }
         }
 
-        // Save history
-        fs.writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2));
-        console.log(`[AutoIndexer] Batch complete. Submitted ${successCount}/${batchSize}. Saved history.`);
+        // Save history to both local disk and MongoDB
+        try {
+            fs.writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2));
+        } catch (e) {}
+
+        if (mongoCol) {
+            try {
+                await mongoCol.updateOne(
+                    { _id: 'google_indexing_history' },
+                    { $set: { urls: history, updatedAt: new Date() } },
+                    { upsert: true }
+                );
+            } catch (dbErr) {
+                console.warn(`[AutoIndexer] Failed to save history to MongoDB:`, dbErr.message);
+            }
+        }
+        console.log(`[AutoIndexer] Batch complete. Submitted ${successCount}/${batchSize}. Saved history (${history.length} total indexed).`);
 
     } catch (err) {
         console.error(`[AutoIndexer] Critical Error:`, err);

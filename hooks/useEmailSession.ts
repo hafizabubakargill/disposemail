@@ -82,6 +82,10 @@ export function useEmailSession() {
 
         const syncFromStorage = () => {
             const storedAddr = localStorage.getItem('disposemail_address');
+            const storedTok = localStorage.getItem('disposemail_token');
+            if (storedTok) {
+                setSessionToken(prev => (prev !== storedTok ? storedTok : prev));
+            }
             if (storedAddr) {
                 setEmail(prev => {
                     if (prev !== storedAddr) {
@@ -97,7 +101,6 @@ export function useEmailSession() {
         window.addEventListener('disposemail_sync', syncFromStorage);
 
         const timer = setInterval(() => {
-            syncFromStorage();
             const createdTime = localStorage.getItem('disposemail_created');
             if (createdTime) {
                 const elapsed = Math.floor((Date.now() - parseInt(createdTime)) / 1000);
@@ -109,7 +112,7 @@ export function useEmailSession() {
                     handleRefresh();
                 }
             }
-        }, 250);
+        }, 1000);
 
         return () => {
             clearInterval(timer);
