@@ -1,6 +1,10 @@
 // DisposeMail Browser Extension – Background Service Worker
 
 const BASE_DOMAINS = [
+    'disposemail.online',
+    'woomail.online',
+    'abmail.online',
+    'twomail.online',
     'chio-online.us.com',
     'dowjones.com.se',
     'snapinbox.space',
@@ -8,7 +12,6 @@ const BASE_DOMAINS = [
     'dropinbox.space',
     'disposemail.space',
     'inveromail.info',
-    'dunedistrict.com',
     'groundtips.com',
     'nivoramail.pro',
     'avelixmail.pro',

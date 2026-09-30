@@ -8,6 +8,10 @@
 // across the alternative domains (better for spam-filter avoidance).
 
 export const BASE_DOMAINS = [
+    'disposemail.online',
+    'woomail.online',
+    'abmail.online',
+    'twomail.online',
     'chio-online.us.com',
     'dowjones.com.se',
     'snapinbox.space',
@@ -15,7 +19,6 @@ export const BASE_DOMAINS = [
     'dropinbox.space',
     'disposemail.space',
     'inveromail.info',
-    'dunedistrict.com',
     'groundtips.com',
     'nivoramail.pro',
     'avelixmail.pro',
@@ -25,6 +28,10 @@ export const BASE_DOMAINS = [
 ];
 
 export const DOMAINS = [
+    'disposemail.online',
+    'woomail.online',
+    'abmail.online',
+    'twomail.online',
     'chio-online.us.com',
     'dowjones.com.se',
     'snapinbox.space',
@@ -32,7 +39,6 @@ export const DOMAINS = [
     'dropinbox.space',
     'disposemail.space',
     'inveromail.info',
-    'dunedistrict.com',
     'groundtips.com',
     'nivoramail.pro',
     'avelixmail.pro',

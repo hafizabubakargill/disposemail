@@ -304,36 +304,6 @@ app.prepare().then(async () => {
             }
         });
 
-        // --- 5. CLEANUP (Every 5 Minutes) ---
-        setInterval(() => {
-            try {
-                db.cleanupOldEmails();
-            } catch (err) {
-                console.error("[DB] Error during periodic cleanup:", err.message);
-            }
-        }, 5 * 60 * 1000);
-
-        // --- 6. AUTO INDEXER (Every 12 Hours) ---
-        // Runs purely in the background to slowly drip URLs to Google
-        setInterval(() => {
-            try {
-                const runIndexer = require('./scripts/auto_indexer');
-                runIndexer();
-            } catch (err) {
-                console.error("[AutoIndexer] Failed to execute:", err.message);
-            }
-        }, 12 * 60 * 60 * 1000);
-
-        // Run indexer once 1 minute after server start
-        setTimeout(() => {
-            try {
-                const runIndexer = require('./scripts/auto_indexer');
-                runIndexer();
-            } catch (err) {
-                console.error("[AutoIndexer] Failed to execute initial run:", err.message);
-            }
-        }, 60 * 1000);
-
         // Rescue Endpoint (Phase 14)
         server.post(`${p}/rescue`, express.json(), async (req, res) => {
             const { emails, secret } = req.body;
@@ -380,6 +350,36 @@ app.prepare().then(async () => {
             res.json({ success: true, count: results.length });
         });
     });
+
+    // --- 5. CLEANUP (Every 5 Minutes) ---
+    setInterval(() => {
+        try {
+            db.cleanupOldEmails();
+        } catch (err) {
+            console.error("[DB] Error during periodic cleanup:", err.message);
+        }
+    }, 5 * 60 * 1000);
+
+    // --- 6. AUTO INDEXER (Every 12 Hours) ---
+    // Runs purely in the background to slowly drip URLs to Google
+    setInterval(() => {
+        try {
+            const runIndexer = require('./scripts/auto_indexer');
+            runIndexer();
+        } catch (err) {
+            console.error("[AutoIndexer] Failed to execute:", err.message);
+        }
+    }, 12 * 60 * 60 * 1000);
+
+    // Run indexer once 1 minute after server start
+    setTimeout(() => {
+        try {
+            const runIndexer = require('./scripts/auto_indexer');
+            runIndexer();
+        } catch (err) {
+            console.error("[AutoIndexer] Failed to execute initial run:", err.message);
+        }
+    }, 60 * 1000);
 
     // --- 3. SOCKET.IO ---
     const io = new SocketIOServer(httpServer, {

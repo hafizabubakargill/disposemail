@@ -458,5 +458,46 @@ export const russianPosts = [
     "category": "Конфиденциальность",
     "image": "/blog/what-is-a-uuid-and-why-it-matters.png",
     "content": "\n<p>Have you ever wondered how spammers got your email address? When you register on a web portal or store checkout, companies often quietly sell their customer databases to third-party data brokers or marketing syndicates.</p>\n\n<p>By leveraging custom disposable email prefixes, you can turn your inbox into an intelligence network that pinpoints exact data leaks and stops spam before it reaches you.</p>\n\n<h3>1. The Power of Custom Email Prefixes</h3>\n<p>Rather than using standard plus-addressing (e.g. <code>user+site@gmail.com</code>), which marketing scripts automatically strip, custom disposable prefixes create completely independent temporary inboxes (e.g. <code>shopping-site@disposemail.xyz</code>).</p>\n\n<p>When you generate a custom inbox using DisposeMail's <a href=\"/\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">temporary email generator</a> or toolbar <a href=\"/extension\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">Chrome Extension</a>, any incoming email clearly reveals which platform shared your data.</p>\n\n<h3>2. Auditing Data Exposure</h3>\n<p>If you receive unsolicited spam on a custom prefix, you know with 100% certainty which company suffered a breach or sold your record. You can check if your email addresses have been indexed in public dark web leaks using our <a href=\"/data-breach-checker\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">Data Breach Checker</a>.</p>\n\n<p>DisposeMail is rated as a top temporary inbox alternative on <a href=\"https://alternativeto.net/software/disposemail/about/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">AlternativeTo</a> and <a href=\"https://www.saashub.com/disposemail-xyz\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">SaaSHub</a>. Reclaim control over your inbox today!</p>\n"
+  },
+  {
+    "slug": "disposalmail-free-disposable-email-generator-guide",
+    "title": "DisposalMail (DisposeMail): Лучший Бесплатный Генератор Временной Почты в 2026 году",
+    "excerpt": "Ищете DisposalMail, disposalmail.com или disposal mail? Узнайте, как DisposeMail создает защищенные 60-минутные временные ящики без регистрации.",
+    "date": "Sep 28, 2026",
+    "author": "Abubakar Gill (Founder)",
+    "category": "Руководства",
+    "image": "/blog/best_generator_2026.png",
+    "content": "\n<p>Тысячи пользователей каждую неделю ищут <strong>disposalmail</strong>, <strong>disposalmail.com</strong>, <strong>disposal mail</strong> или <strong>disposmail</strong> для мгновенного получения кодов подтверждения. Независимо от написания — <em>DisposalMail</em>, <em>DispoMail</em> или <strong>DisposeMail</strong> (<a href=\"/ru\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">disposemail.xyz</a>) — наш сервис обеспечивает мгновенную доставку писем через WebSockets и автоматическое удаление из зашифрованного временного хранилища через 60 минут.</p>\n"
+  },
+  {
+    "slug": "tempmail-xyz-dispomail-xyz-free-temporary-email-guide",
+    "title": "TempMail XYZ и DispoMail XYZ: Почему Домены .XYZ Обходят Блокировки в 2026 году",
+    "excerpt": "Ищете tempmailxyz, temp mail xyz или dispomail xyz? Узнайте, почему временные домены .xyz и .online обеспечивают лучшую доставляемость кодов.",
+    "date": "Sep 29, 2026",
+    "author": "Security Analyst",
+    "category": "Конфиденциальность",
+    "image": "/blog/dispomail_ultimate_guide.png",
+    "content": "\n<p>Если вы искали <strong>tempmailxyz</strong>, <strong>temp mail xyz</strong> или <strong>dispomail xyz</strong>, то знаете, что старые домены часто блокируются. На <a href=\"/ru\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">DisposeMail.xyz</a> используется ротация чистых доменов <code>.xyz</code> и <code>.online</code> для мгновенного получения проверочных кодов.</p>\n"
+  },
+  {
+    "slug": "dispose-lol-and-online-temp-mail-domains-guide-2026",
+    "title": "Dispose.lol и Новые Домены .Online для Временной Почты в 2026 году",
+    "excerpt": "Узнайте, как ротация доменов DisposeMail — включая dispose.lol, disposemail.online, woomail.online, abmail.online и twomail.online — обходит фильтры.",
+    "date": "Sep 30, 2026",
+    "author": "Chief Privacy Officer",
+    "category": "Безопасность",
+    "image": "/blog/domain-availability-checker-guide.png",
+    "content": "\n<p>В <a href=\"/ru\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">DisposeMail</a> мы постоянно расширяем пул доменов высокой репутации: помимо <code>dispose.lol</code> и <code>disposemail.xyz</code> теперь доступны <code>disposemail.online</code>, <code>woomail.online</code>, <code>abmail.online</code> и <code>twomail.online</code>. В бесплатной версии работает автоматическая ротация, а ручное переключение доменов появится в платной Pro-версии в конце этого года.</p>\n"
+  },
+  {
+    "slug": "discord-instagram-spotify-temp-mail-verification-guide-2026",
+    "title": "Лучшая Временная Почта для Discord, Instagram и Spotify в 2026 году (Альтернатива 10 Minute Mail)",
+    "excerpt": "Ищете рабочую временную почту для Discord, Instagram или Spotify? Полное руководство по быстрой верификации аккаунтов.",
+    "date": "Sep 30, 2026",
+    "author": "Privacy Specialist",
+    "category": "Руководства",
+    "image": "/blog/best-10-minute-mail-alternatives-2026.png",
+    "content": "\n<p>Благодаря 60-минутной сессии <a href=\"/ru\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">DisposeMail</a> является лучшей альтернативой 10-минутной почте для регистрации в <a href=\"/ru/temp-mail-for-discord\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">Discord</a>, <a href=\"/ru/temp-mail-for-instagram\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">Instagram</a> и <a href=\"/ru/temp-mail-for-spotify\" class=\"text-blue-600 dark:text-blue-400 font-semibold underline\">Spotify</a>.</p>\n"
   }
 ];
+

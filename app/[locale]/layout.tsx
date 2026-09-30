@@ -82,6 +82,7 @@ export default async function RootLayout({
                 <link rel="icon" href="/icon.svg" type="image/svg+xml" />
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="theme-color" content="#0a0a0a" />
+                <meta name="google-adsense-account" content="ca-pub-5210079727285405" />
 
                 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
                 <meta name="mobile-web-app-capable" content="yes" />
@@ -90,6 +91,14 @@ export default async function RootLayout({
                 {/* Background Grid & Noise Effects (Global) */}
                 <div className="fixed inset-0 bg-[url('/noise.svg')] opacity-5 pointer-events-none z-0"></div>
                 <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
+
+                {/* Google AdSense */}
+                <Script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5210079727285405"
+                    crossOrigin="anonymous"
+                    strategy="afterInteractive"
+                />
 
                 {/* Google Analytics (GTags) */}
                 <Script
