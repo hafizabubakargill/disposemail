@@ -22,7 +22,7 @@ export async function POST(request: Request) {
             throw new Error('Database validation failed or disconnected.');
         }
 
-        console.log('SUCCESS: Secure note ID generated:', id);
+        
         return NextResponse.json({
             success: true,
             id: id
