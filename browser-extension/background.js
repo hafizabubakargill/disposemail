@@ -6,7 +6,6 @@ const BASE_DOMAINS = [
     'abmail.online',
     'twomail.online',
     'chio-online.us.com',
-    'dowjones.com.se',
     'snapinbox.space',
     'lamenteesmaravillosa.us.com',
     'dropinbox.space',

@@ -5,7 +5,7 @@
 // 3. Re-deploy.
 //
 // NOTE: disposemail.xyz is intentionally excluded so traffic is spread
-// across the alternative domains (better for spam-filter avoidance).
+// across the alternative domains to balance load.
 
 export const BASE_DOMAINS = [
     'disposemail.online',
@@ -13,7 +13,6 @@ export const BASE_DOMAINS = [
     'abmail.online',
     'twomail.online',
     'chio-online.us.com',
-    'dowjones.com.se',
     'snapinbox.space',
     'lamenteesmaravillosa.us.com',
     'dropinbox.space',
@@ -33,7 +32,6 @@ export const DOMAINS = [
     'abmail.online',
     'twomail.online',
     'chio-online.us.com',
-    'dowjones.com.se',
     'snapinbox.space',
     'lamenteesmaravillosa.us.com',
     'dropinbox.space',

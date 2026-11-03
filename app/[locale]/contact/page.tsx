@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from '@/i18n-nav';
 import { useTranslations } from 'next-intl';
 import { Turnstile } from '@marsidev/react-turnstile';
 

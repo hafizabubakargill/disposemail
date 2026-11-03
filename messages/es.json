@@ -91,12 +91,12 @@
     "create_btn": "Crear Correo Ahora",
     "secure_anon": "Seguro y Anónimo",
     "homepage_faq": "Preguntas Frequentes",
-    "q12": "How can I create a temporary email address?",
-    "a12": "Simply visit our homepage and a secure, random temporary email address is instantly generated for you. No signup required.",
-    "q13": "What are the best free services for disposable email?",
-    "a13": "DisposeMail is widely considered one of the best free services because we offer premium features like rotating multi-domain pools, real-time WebSockets, and complete zero-log privacy at absolutely no cost.",
-    "q14": "How do temporary email services work?",
-    "a14": "Our platform provisions a temporary inbox on our secure servers. When an email targets that address, it is held in encrypted temporary storage and pushed seamlessly to your browser, before being automatically and permanently purged after 60 minutes."
+    "q12": "¿Cómo puedo crear una dirección de correo temporal?",
+    "a12": "Solo tienes que visitar nuestra página de inicio y se genera al instante una dirección temporal segura y aleatoria. No requiere registro.",
+    "q13": "¿Cuáles son los mejores servicios gratuitos de correo desechable?",
+    "a13": "DisposeMail es gratuito, no requiere registro, rota entre varios dominios y muestra el correo en tiempo real. Elijas el servicio que elijas, compara cuánto tiempo conserva el correo, qué dice su política de privacidad y qué dominios ofrece.",
+    "q14": "¿Cómo funcionan los servicios de correo temporal?",
+    "a14": "Nuestra plataforma crea una bandeja temporal en nuestros servidores. Cuando llega un correo a esa dirección, se conserva brevemente y se muestra en tu navegador en tiempo real; después se elimina automáticamente a los 60 minutos."
   },
   "Steps": {
     "step1_title": "Generar",
@@ -111,9 +111,9 @@
     "case1_title": "1. Pruebas de Software y QA",
     "case1_desc": "Desarrolladores usan correos desechables para probar flujos de registro sin ensuciar bases de datos reales.",
     "case2_title": "2. Descuentos de E-Commerce",
-    "case2_desc": "Sign up for 'First Order' coupons on shopping sites without committing your primary email to their daily marketing newsletters. Generate a temporary email for immediate shopping discounts and checkout safely.",
+    "case2_desc": "Suscríbete a boletines y ofertas de tiendas en línea sin dar tu correo principal a su marketing diario. Usa una dirección temporal y compra con seguridad.",
     "case3_title": "3. Protegiendo Privacidad en Foros",
-    "case3_desc": "Register for online communities like Discord or download temporary email domains from forums while keeping your personal identity secure and anonymous with a disposable throwaway address."
+    "case3_desc": "Regístrate en comunidades como Discord o descarga un archivo puntual de un foro manteniendo tu identidad personal privada con una dirección desechable."
   },
   "Why": {
     "title": "¿Por qué usar un correo desechable?",
@@ -276,8 +276,8 @@
     "feature2_desc": "Incluido en todos los planes."
   },
   "DataBreach": {
-    "metaTitle": "Comprobador de violaciones de datos | Eliminar correo",
-    "metaDesc": "Verifique de forma segura si su correo electrónico o contraseñas han quedado expuestos en filtraciones conocidas de bases de datos.",
+    "metaTitle": "Comprobador de filtraciones: ¿tu correo aparece en una brecha de datos?",
+    "metaDesc": "Comprobación gratuita de filtraciones: consulta qué filtraciones conocidas incluyen tu correo y qué hacer después. Con datos de la base pública XposedOrNot.",
     "title": "Comprobador de violaciones de datos",
     "subtitle": "Verifique de forma segura si su correo electrónico o contraseñas han quedado expuestos en filtraciones conocidas de bases de datos.",
     "invalidEmail": "Por favor, introduce una dirección de correo electrónico válida.",

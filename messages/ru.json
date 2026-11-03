@@ -91,12 +91,12 @@
     "create_btn": "Создать почту сейчас",
     "secure_anon": "Безопасно и Анонимно",
     "homepage_faq": "Частые вопросы",
-    "q12": "How can I create a temporary email address?",
-    "a12": "Simply visit our homepage and a secure, random temporary email address is instantly generated for you. No signup required.",
-    "q13": "What are the best free services for disposable email?",
-    "a13": "DisposeMail is widely considered one of the best free services because we offer premium features like rotating multi-domain pools, real-time WebSockets, and complete zero-log privacy at absolutely no cost.",
-    "q14": "How do temporary email services work?",
-    "a14": "Our platform provisions a temporary inbox on our secure servers. When an email targets that address, it is held in encrypted temporary storage and pushed seamlessly to your browser, before being automatically and permanently purged after 60 minutes."
+    "q12": "Как создать временный адрес электронной почты?",
+    "a12": "Просто откройте главную страницу — безопасный случайный временный адрес создаётся мгновенно. Регистрация не нужна.",
+    "q13": "Какие бесплатные сервисы одноразовой почты лучшие?",
+    "a13": "DisposeMail бесплатен, не требует регистрации, использует несколько доменов по очереди и показывает письма в реальном времени. Какой бы сервис вы ни выбрали, сравните срок хранения писем, политику конфиденциальности и доступные домены.",
+    "q14": "Как работают сервисы временной почты?",
+    "a14": "Наша платформа создаёт временный ящик на наших серверах. Когда на этот адрес приходит письмо, оно недолго хранится и в реальном времени отображается в вашем браузере, а через 60 минут автоматически удаляется."
   },
   "Steps": {
     "step1_title": "Создать",
@@ -111,9 +111,9 @@
     "case1_title": "1. Тестирование ПО и QA",
     "case1_desc": "Разработчики используют разовые адреса для тестов без захламления реальных баз.",
     "case2_title": "2. Скидки в магазинах",
-    "case2_desc": "Sign up for 'First Order' coupons on shopping sites without committing your primary email to their daily marketing newsletters. Generate a temporary email for immediate shopping discounts and checkout safely.",
+    "case2_desc": "Подписывайтесь на рассылки и предложения магазинов, не отдавая основной адрес их ежедневному маркетингу. Используйте временный адрес и безопасно оформляйте заказ.",
     "case3_title": "3. Приватность на форумах",
-    "case3_desc": "Register for online communities like Discord or download temporary email domains from forums while keeping your personal identity secure and anonymous with a disposable throwaway address."
+    "case3_desc": "Регистрируйтесь в сообществах вроде Discord или скачивайте разовый файл с форума, сохраняя личность в тайне с помощью одноразового адреса."
   },
   "Why": {
     "title": "Зачем нужна временная почта?",
@@ -276,8 +276,8 @@
     "min_one_required": "Должна быть активна хотя бы одна опция"
   },
   "DataBreach": {
-    "metaTitle": "Проверка утечки данных | Утилизировать почту",
-    "metaDesc": "Надежно проверьте, не были ли раскрыты ваша электронная почта или пароли в результате известных утечек базы данных.",
+    "metaTitle": "Проверка утечек: попал ли ваш адрес в утечку данных?",
+    "metaDesc": "Бесплатная проверка утечек: узнайте, в каких известных утечках есть ваша почта и что делать дальше. Данные публичной базы XposedOrNot.",
     "title": "Проверка утечки данных",
     "subtitle": "Надежно проверьте, не были ли раскрыты ваша электронная почта или пароли в результате известных утечек базы данных.",
     "invalidEmail": "Пожалуйста, введите действительный адрес электронной почты.",

@@ -94,9 +94,9 @@
     "q12": "How can I create a temporary email address?",
     "a12": "Simply visit our homepage and a secure, random temporary email address is instantly generated for you. No signup required.",
     "q13": "What are the best free services for disposable email?",
-    "a13": "DisposeMail is widely considered one of the best free services because we offer premium features like rotating multi-domain pools, real-time WebSockets, and complete zero-log privacy at absolutely no cost.",
+    "a13": "DisposeMail is free, needs no signup, rotates between several domains and shows mail in real time. Whichever service you choose, compare how long mail is kept, what the privacy policy says and which domains are offered.",
     "q14": "How do temporary email services work?",
-    "a14": "Our platform provisions a temporary inbox on our secure servers. When an email targets that address, it is held in encrypted temporary storage and pushed seamlessly to your browser, before being automatically and permanently purged after 60 minutes."
+    "a14": "Our platform creates a temporary inbox on our servers. When an email arrives for that address it is held briefly and shown in your browser in real time, then deleted automatically after 60 minutes."
   },
   "Steps": {
     "step1_title": "Generate",
@@ -111,9 +111,9 @@
     "case1_title": "1. Software Testing & QA",
     "case1_desc": "Developers use specific disposable addresses to test user registration flows without cluttering real databases or needing to create thousands of Gmail accounts.",
     "case2_title": "2. E-Commerce Discounts",
-    "case2_desc": "Sign up for 'First Order' coupons on shopping sites without committing your primary email to their daily marketing newsletters. Generate a temporary email for immediate shopping discounts and checkout safely.",
+    "case2_desc": "Sign up for shopping-site newsletters and offers without handing your primary email to their daily marketing. Use a temporary address and check out safely.",
     "case3_title": "3. Protecting Privacy in Forums",
-    "case3_desc": "Register for online communities like Discord or download temporary email domains from forums while keeping your personal identity secure and anonymous with a disposable throwaway address."
+    "case3_desc": "Register for online communities like Discord or download a one-off file from a forum while keeping your personal identity private with a disposable address."
   },
   "Why": {
     "title": "Why Use a Disposable Email?",
@@ -276,8 +276,8 @@
     "min_one_required": "At least one option must be active"
   },
   "DataBreach": {
-    "metaTitle": "Data Breach Checker | DisposeMail",
-    "metaDesc": "Securely verify if your email or passwords have been exposed in known database leaks.",
+    "metaTitle": "Data Leak Checker: Has Your Email Been in a Data Breach?",
+    "metaDesc": "Free data breach check: see which known leaks include your email address, and what to do next. Powered by the public XposedOrNot database.",
     "title": "Data Breach Checker",
     "subtitle": "Securely verify if your email or passwords have been exposed in known database leaks.",
     "invalidEmail": "Please enter a valid email address.",

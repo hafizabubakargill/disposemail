@@ -91,12 +91,12 @@
     "back_home": "返回收件箱",
     "fundamental": "基础问题",
     "technical": "技术与安全",
-    "q12": "How can I create a temporary email address?",
-    "a12": "Simply visit our homepage and a secure, random temporary email address is instantly generated for you. No signup required.",
-    "q13": "What are the best free services for disposable email?",
-    "a13": "DisposeMail is widely considered one of the best free services because we offer premium features like rotating multi-domain pools, real-time WebSockets, and complete zero-log privacy at absolutely no cost.",
-    "q14": "How do temporary email services work?",
-    "a14": "Our platform provisions a temporary inbox on our secure servers. When an email targets that address, it is held in encrypted temporary storage and pushed seamlessly to your browser, before being automatically and permanently purged after 60 minutes."
+    "q12": "如何创建临时邮箱地址？",
+    "a12": "只需访问我们的首页，即可立即生成一个安全的随机临时邮箱地址，无需注册。",
+    "q13": "有哪些最好的免费一次性邮箱服务？",
+    "a13": "DisposeMail 免费、无需注册、轮换使用多个域名并实时显示邮件。无论选择哪项服务，都请比较它保留邮件的时长、隐私政策的内容以及提供的域名。",
+    "q14": "临时邮箱服务是如何工作的？",
+    "a14": "我们的平台会在服务器上创建一个临时收件箱。邮件送达该地址后会被短暂保存，并实时显示在您的浏览器中，60 分钟后自动删除。"
   },
   "Steps": {
     "step1_title": "生成",
@@ -111,9 +111,9 @@
     "case1_title": "1. 软件测试与 QA",
     "case1_desc": "开发人员使用特定的临时邮箱测试注册流程，而不会弄乱真实的数据库。",
     "case2_title": "2. 电商折扣",
-    "case2_desc": "Sign up for 'First Order' coupons on shopping sites without committing your primary email to their daily marketing newsletters. Generate a temporary email for immediate shopping discounts and checkout safely.",
+    "case2_desc": "订阅购物网站的新闻和优惠，而不必把主邮箱交给他们的每日营销邮件。使用临时地址，安心结账。",
     "case3_title": "3. 论坛隐私保护",
-    "case3_desc": "Register for online communities like Discord or download temporary email domains from forums while keeping your personal identity secure and anonymous with a disposable throwaway address."
+    "case3_desc": "注册 Discord 等社区或从论坛下载一次性文件，同时用一次性地址保护您的个人身份隐私。"
   },
   "Why": {
     "title": "为什么要使用临时邮箱？",
@@ -276,8 +276,8 @@
     "min_one_required": "至少需要一个选项处于开启状态"
   },
   "DataBreach": {
-    "metaTitle": "数据泄露检查器 |处理邮件",
-    "metaDesc": "安全地验证您的电子邮件或密码是否已在已知的数据库泄漏中暴露。",
+    "metaTitle": "数据泄露检查：您的邮箱是否出现在数据泄露中？",
+    "metaDesc": "免费数据泄露检查：查看哪些已知泄露事件包含您的邮箱，以及接下来该怎么做。数据来自公开的 XposedOrNot 数据库。",
     "title": "数据泄露检查器",
     "subtitle": "安全地验证您的电子邮件或密码是否已在已知的数据库泄漏中暴露。",
     "invalidEmail": "请输入有效的电子邮件地址。",

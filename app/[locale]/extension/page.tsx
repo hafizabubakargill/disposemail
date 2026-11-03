@@ -1,15 +1,22 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/i18n-nav';
+import { tr, localizeMeta } from '@/lib/tr';
+import { getLocale } from 'next-intl/server';
 
-export const metadata: Metadata = {
+const baseMetadata = {
     title: 'Official DisposeMail Chrome Extension | Instant Temp Emails',
     description: 'Protect your inbox from spam in 1 click! Generate temporary email addresses directly from your browser toolbar and auto-fill signup forms on any website.',
-    alternates: { canonical: 'https://disposemail.xyz/extension' },
     keywords: ['disposemail chrome extension', 'temp email extension', 'disposable email chrome', 'privacy extension', 'anti spam chrome extension'],
 };
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    return localizeMeta(baseMetadata as any, locale);
+}
+
 export default async function ExtensionLandingPage() {
+    const locale = await getLocale();
     const extensionUrl = "https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo";
 
     return (
@@ -17,18 +24,18 @@ export default async function ExtensionLandingPage() {
             {/* Hero Section */}
             <div className="text-center max-w-3xl mx-auto mb-16">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-200 dark:border-blue-500/30">
-                    <span>⚡ Available on Chrome Web Store</span>
+                    <span>{tr(locale, "⚡ Available on Chrome Web Store")}</span>
                 </div>
                 
                 <h1 className="text-4xl md:text-6xl font-black tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">
-                    Your Real Inbox, <br className="hidden md:inline"/>
+                    {tr(locale, "Your Real Inbox,")} <br className="hidden md:inline"/>
                     <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-                        Protected Everywhere.
+                        {tr(locale, "Protected Everywhere.")}
                     </span>
                 </h1>
 
                 <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl mb-10 leading-relaxed">
-                    Generate secure temporary email addresses instantly from your browser toolbar. Autofill registration forms with one click and keep spam out of your personal life forever.
+                    {tr(locale, "Generate secure temporary email addresses instantly from your browser toolbar. Autofill registration forms with one click and keep spam out of your personal life forever.")}
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -39,19 +46,19 @@ export default async function ExtensionLandingPage() {
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black text-base shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all duration-200"
                     >
                         <svg className="w-6 h-6 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg>
-                        <span>Add to Chrome — It&apos;s Free</span>
+                        <span>{tr(locale, "Add to Chrome — It's Free")}</span>
                     </a>
                     <Link
                         href="/"
                         className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-gray-100 dark:bg-[#1a1a1a] text-gray-800 dark:text-gray-200 font-bold text-base hover:bg-gray-200 dark:hover:bg-[#252525] transition-all"
                     >
-                        Use Web Version
+                        {tr(locale, "Use Web Version")}
                     </Link>
                 </div>
                 
                 <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs font-semibold text-gray-500 dark:text-gray-400">
-                    <span className="flex items-center gap-1.5">✅ 100% Free Forever</span>
-                    <span className="flex items-center gap-1.5">✅ No Registration Required</span>
+                    <span className="flex items-center gap-1.5">{tr(locale, "✅ 100% Free Forever")}</span>
+                    <span className="flex items-center gap-1.5">{tr(locale, "✅ No Registration Required")}</span>
                     <span className="flex items-center gap-1.5">✅ Lightweight & Fast</span>
                 </div>
 
@@ -63,7 +70,7 @@ export default async function ExtensionLandingPage() {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-500/10 dark:bg-orange-500/20 border border-orange-500/30 text-orange-700 dark:text-orange-300 font-bold text-xs hover:scale-105 transition-all shadow-sm"
                     >
                         <span>🚀</span>
-                        <span>Featured on <strong className="font-black">ExtensionLaunch</strong></span>
+                        <span>{tr(locale, "Featured on")} <strong className="font-black">ExtensionLaunch</strong></span>
                     </a>
                     <a
                         href="https://www.facebook.com/disposemail"
@@ -72,7 +79,7 @@ export default async function ExtensionLandingPage() {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 border border-blue-500/30 text-blue-700 dark:text-blue-300 font-bold text-xs hover:scale-105 transition-all shadow-sm"
                     >
                         <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        <span>Follow us on <strong>Facebook</strong></span>
+                        <span>{tr(locale, "Follow us on")} <strong>Facebook</strong></span>
                     </a>
                 </div>
             </div>
@@ -83,9 +90,9 @@ export default async function ExtensionLandingPage() {
                     <div className="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                         ⚡
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Instant Toolbar Inbox</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{tr(locale, "Instant Toolbar Inbox")}</h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                        Need an email address right now? Just click the puzzle icon in your Chrome toolbar. Get a live address with a real-time countdown timer without ever opening a new browser tab.
+                        {tr(locale, "Need an email address right now? Just click the puzzle icon in your Chrome toolbar. Get a live address with a real-time countdown timer without ever opening a new browser tab.")}
                     </p>
                 </div>
 
@@ -93,9 +100,9 @@ export default async function ExtensionLandingPage() {
                     <div className="w-14 h-14 rounded-2xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                         🪄
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Smart Signup Autofill</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{tr(locale, "Smart Signup Autofill")}</h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                        Whenever you focus an email field on any website (Netflix, newsletters, free trials), our helper badge pops up so you can fill in a fresh temporary email with a single click.
+                        {tr(locale, "Whenever you focus an email field on any website (Netflix, newsletters, free trials), our helper badge pops up so you can fill in a fresh temporary email with a single click.")}
                     </p>
                 </div>
 
@@ -103,9 +110,9 @@ export default async function ExtensionLandingPage() {
                     <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                         🛠️
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Built-in Developer Utilities</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{tr(locale, "Built-in Developer Utilities")}</h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                        Access our suite of privacy & developer tools directly from the extension popup: test credit cards, secure passwords, QR codes, and more at your fingertips.
+                        {tr(locale, "Access our suite of privacy & developer tools directly from the extension popup: test credit cards, secure passwords, QR codes, and more at your fingertips.")}
                     </p>
                 </div>
             </div>
@@ -114,9 +121,9 @@ export default async function ExtensionLandingPage() {
             <div className="p-10 md:p-16 rounded-3xl bg-gradient-to-br from-gray-900 via-blue-950 to-indigo-950 text-white text-center relative overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.2),transparent_50%)] pointer-events-none"></div>
                 
-                <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight">Ready to reclaim your inbox privacy?</h2>
+                <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight">{tr(locale, "Ready to reclaim your inbox privacy?")}</h2>
                 <p className="text-gray-300 max-w-xl mx-auto mb-8 text-base md:text-lg">
-                    Join thousands of smart developers and privacy advocates protecting their personal emails every day.
+                    {tr(locale, "Join thousands of smart developers and privacy advocates protecting their personal emails every day.")}
                 </p>
                 <a
                     href={extensionUrl}
@@ -124,7 +131,7 @@ export default async function ExtensionLandingPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white text-gray-950 font-black text-base shadow-lg hover:bg-blue-50 hover:scale-105 transition-all"
                 >
-                    <span>🧩 Install DisposeMail Extension Now</span>
+                    <span>{tr(locale, "🧩 Install DisposeMail Extension Now")}</span>
                 </a>
             </div>
         </div>

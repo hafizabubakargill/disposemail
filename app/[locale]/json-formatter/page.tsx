@@ -1,15 +1,17 @@
 import JsonFormatterTool from '@/components/JsonFormatterTool';
 import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'JsonFormatter' });
     return {
-        title: `${t('title')} | DisposeMail Free Tools`,
+        title: `${t('title')}`,
         description: t('subtitle')
     };
 }
 
-export default async function JsonFormatterPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function JsonFormatterPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'JsonFormatter' });
     return (
         <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col items-center justify-center">

@@ -1,6 +1,8 @@
 'use client';
 import { useState, useCallback } from 'react';
 import { v1 as uuidv1, v4 as uuidv4 } from 'uuid';
+import { tr } from '@/lib/tr';
+import { useLocale } from 'next-intl';
 
 // UUID v7 — time-ordered (not in uuid@9 package from npm) — implement inline
 function uuidv7(): string {
@@ -65,6 +67,7 @@ function CopyBtn({ value }: { value: string }) {
 }
 
 export default function UUIDGenerator() {
+    const locale = useLocale();
   const [tab, setTab] = useState<VersionTab>('v4');
   const [count, setCount] = useState(5);
   const [v5name, setV5name] = useState('');
@@ -108,7 +111,7 @@ export default function UUIDGenerator() {
     <div className="w-full max-w-2xl mx-auto space-y-5">
       {/* Version Tabs */}
       <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-2xl p-5 shadow-sm">
-        <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">UUID Version</label>
+        <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">{tr(locale, "UUID Version")}</label>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
           {VERSIONS.map(v => (
             <button key={v.id} onClick={() => { setTab(v.id); setResults([]); }}
@@ -119,12 +122,12 @@ export default function UUIDGenerator() {
           ))}
         </div>
         <p className="mt-3 text-xs text-gray-400 dark:text-gray-600">
-          {tab === 'v1' && 'Generated using current timestamp + MAC address (or random node). Time-based, but potentially identifiable.'}
-          {tab === 'v4' && 'Randomly generated. Most widely used UUID version. No time or identity information encoded.'}
-          {tab === 'v7' && 'Time-ordered random UUID (2024 standard). Sortable by creation time — ideal for database primary keys.'}
-          {tab === 'v5' && 'Deterministic UUID using SHA-1 hash of a name + namespace. Same input always produces the same UUID.'}
-          {tab === 'nil' && 'The NIL UUID — all bits set to zero. Used as a null/empty placeholder value.'}
-          {tab === 'guid' && 'Microsoft-style GUID in Windows registry format with curly braces and uppercase hex.'}
+          {tab === 'v1' && tr(locale, 'Generated using current timestamp + MAC address (or random node). Time-based, but potentially identifiable.')}
+          {tab === 'v4' && tr(locale, 'Randomly generated. Most widely used UUID version. No time or identity information encoded.')}
+          {tab === 'v7' && tr(locale, 'Time-ordered random UUID (2024 standard). Sortable by creation time — ideal for database primary keys.')}
+          {tab === 'v5' && tr(locale, 'Deterministic UUID using SHA-1 hash of a name + namespace. Same input always produces the same UUID.')}
+          {tab === 'nil' && tr(locale, 'The NIL UUID — all bits set to zero. Used as a null/empty placeholder value.')}
+          {tab === 'guid' && tr(locale, 'Microsoft-style GUID in Windows registry format with curly braces and uppercase hex.')}
         </p>
       </div>
 
