@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useTranslations, useLocale } from 'next-intl';
+import { tr } from '@/lib/tr';
 
 export function Footer() {
     const t = useTranslations('Footer');
@@ -11,43 +12,13 @@ export function Footer() {
         <footer className="relative w-full bg-slate-900/90 text-slate-200 dark:bg-[#07090e]/90 dark:text-slate-300 border-t border-slate-800 dark:border-[#181d29] pt-14 pb-8 px-6 mt-auto overflow-hidden bg-[linear-gradient(to_right,#80808015_1px,transparent_1px),linear-gradient(to_bottom,#80808015_1px,transparent_1px)] bg-[size:24px_24px] backdrop-blur-sm">
             <div className="max-w-7xl mx-auto space-y-12">
                 
-                {/* Top Promotional Spotlight Card - Data Breach Checker (+2950% Impressions) */}
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-950/80 via-indigo-950/70 to-slate-900 border border-blue-500/30 p-6 md:p-8 shadow-2xl shadow-blue-950/40">
-                    <div className="absolute top-0 right-0 -mt-8 -mr-8 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-                    <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="space-y-2 text-center md:text-left">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-extrabold uppercase tracking-wider">
-                                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                                🔥 Trending Tool (+2,950% Search Volume)
-                            </div>
-                            <h3 className="text-xl md:text-2xl font-black text-white tracking-tight">
-                                Has your email been leaked in a dark web data breach?
-                            </h3>
-                            <p className="text-sm text-slate-300 max-w-2xl">
-                                Scan over 2,000+ compromised databases instantly. Verify if your personal passwords, emails, or credentials have been exposed in recent corporate leaks.
-                            </p>
-                        </div>
-                        <Link 
-                            href={`/${locale}/data-breach-checker`} 
-                            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                        >
-                            <svg className="w-5 h-5 text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                            Scan Email Leaks Free
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </Link>
-                    </div>
-                </div>
 
                 {/* Main 5-Column Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pt-4">
                     
                     {/* Column 1: Brand & Official Verification Badges */}
                     <div className="lg:col-span-1 space-y-4">
-                        <Link href={`/${locale}`} className="flex items-center space-x-3 group">
+                        <Link href={`${locale === 'en' ? '/' : '/' + locale}`} className="flex items-center space-x-3 group">
                             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-600/30 group-hover:scale-105 transition-transform">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -56,12 +27,12 @@ export function Footer() {
                             <span className="text-xl font-black tracking-tight text-white">DisposeMail</span>
                         </Link>
                         <p className="text-xs text-slate-400 leading-relaxed">
-                            Ultra-fast, privacy-first temporary email generator & free developer tools suite. Engineered for instant anonymity and automated QA testing.
+                            {tr(locale, "Ultra-fast, privacy-first temporary email generator & free developer tools suite. Engineered for instant anonymity and automated QA testing.")}
                         </p>
                         
                         {/* Verified Badges Block */}
                         <div className="pt-2 space-y-2.5">
-                            <div className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Official Verifications</div>
+                            <div className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">{tr(locale, "Official Verifications")}</div>
                             <div className="flex flex-wrap gap-2 items-center">
                                 {/* SaaSHub Badge */}
                                 <a 
@@ -83,7 +54,7 @@ export function Footer() {
                                     title="Verified on AlternativeTo"
                                 >
                                     <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
-                                    AlternativeTo Approved
+                                    {tr(locale, "AlternativeTo Approved")}
                                 </a>
                             </div>
                             
@@ -98,7 +69,7 @@ export function Footer() {
                                     <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                                     </svg>
-                                    Chrome Web Store
+                                    {tr(locale, "Chrome Web Store")}
                                 </a>
 
                                 <span className="text-slate-600">•</span>
@@ -120,21 +91,22 @@ export function Footer() {
                     <div className="space-y-3">
                         <div className="text-xs font-black uppercase tracking-wider text-white flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                            Free Privacy Tools
+                            {tr(locale, "Free Privacy Tools")}
                         </div>
                         <ul className="space-y-2 text-xs font-semibold text-slate-400">
                             <li>
-                                <Link href={`/${locale}/data-breach-checker`} className="hover:text-white transition-colors flex items-center justify-between group">
-                                    <span>Data Breach Checker</span>
+                                <Link href={`${locale === 'en' ? '' : '/' + locale}/data-breach-checker`} className="hover:text-white transition-colors flex items-center justify-between group">
+                                    <span>{tr(locale, "Data Breach Checker")}</span>
                                     <span className="px-1.5 py-0.5 text-[9px] font-black uppercase rounded bg-red-500/20 text-red-400 border border-red-500/30 group-hover:bg-red-500 group-hover:text-white transition-colors">🔥 Hot</span>
                                 </Link>
                             </li>
-                            <li><Link href={`/${locale}/password-generator`} className="hover:text-white transition-colors">Password Generator</Link></li>
-                            <li><Link href={`/${locale}/secure-notes`} className="hover:text-white transition-colors">Encrypted Secure Notes</Link></li>
-                            <li><Link href={`/${locale}/identity-generator`} className="hover:text-white transition-colors">Fake Identity Generator</Link></li>
-                            <li><Link href={`/${locale}/ip-lookup`} className="hover:text-white transition-colors">IP Address Lookup</Link></li>
-                            <li><Link href={`/${locale}/domain-checker`} className="hover:text-white transition-colors">Email Domain Checker</Link></li>
-                            <li><Link href={`/${locale}/test-card-generator`} className="hover:text-white transition-colors">Test Card Generator</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/password-generator`} className="hover:text-white transition-colors">{tr(locale, "Password Generator")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/secure-notes`} className="hover:text-white transition-colors">{tr(locale, "Encrypted Secure Notes")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/identity-generator`} className="hover:text-white transition-colors">{tr(locale, "Fake Identity Generator")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/ip-lookup`} className="hover:text-white transition-colors">{tr(locale, "IP Address Lookup")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/domain-checker`} className="hover:text-white transition-colors">{tr(locale, "Email Domain Checker")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/disposable-email-checker`} className="hover:text-white transition-colors">{tr(locale, "Disposable Email Checker")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/test-card-generator`} className="hover:text-white transition-colors">{tr(locale, "Test Card Generator")}</Link></li>
                         </ul>
                     </div>
 
@@ -142,16 +114,16 @@ export function Footer() {
                     <div className="space-y-3">
                         <div className="text-xs font-black uppercase tracking-wider text-white flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
-                            Developer Tools
+                            {tr(locale, "Developer Tools")}
                         </div>
                         <ul className="space-y-2 text-xs font-semibold text-slate-400">
-                            <li><Link href={`/${locale}/jwt-decoder`} className="hover:text-white transition-colors">JWT Decoder</Link></li>
-                            <li><Link href={`/${locale}/base64`} className="hover:text-white transition-colors">Base64 Encoder / Decoder</Link></li>
-                            <li><Link href={`/${locale}/uuid-generator`} className="hover:text-white transition-colors">UUID v4 Generator</Link></li>
-                            <li><Link href={`/${locale}/json-formatter`} className="hover:text-white transition-colors">JSON Formatter</Link></li>
-                            <li><Link href={`/${locale}/regex-tester`} className="hover:text-white transition-colors">Regex Tester</Link></li>
-                            <li><Link href={`/${locale}/diff-checker`} className="hover:text-white transition-colors">Diff Checker</Link></li>
-                            <li><Link href={`/${locale}/epoch-converter`} className="hover:text-white transition-colors">Epoch Timestamp Converter</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/jwt-decoder`} className="hover:text-white transition-colors">{tr(locale, "JWT Decoder")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/base64`} className="hover:text-white transition-colors">Base64 Encoder / Decoder</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/uuid-generator`} className="hover:text-white transition-colors">UUID v4 Generator</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/json-formatter`} className="hover:text-white transition-colors">{tr(locale, "JSON Formatter")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/regex-tester`} className="hover:text-white transition-colors">{tr(locale, "Regex Tester")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/diff-checker`} className="hover:text-white transition-colors">{tr(locale, "Diff Checker")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/epoch-converter`} className="hover:text-white transition-colors">{tr(locale, "Epoch Timestamp Converter")}</Link></li>
                         </ul>
                     </div>
 
@@ -164,29 +136,29 @@ export function Footer() {
                         <ul className="space-y-2 text-xs font-semibold text-slate-400">
                             <li>
                                 <a href="https://chromewebstore.google.com/detail/disposemail-%E2%80%94-instant-tem/pfeljfajppgglbddgknmpgaioimijfjo" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
-                                    <span>Chrome Extension</span>
+                                    <span>{tr(locale, "Chrome Extension")}</span>
                                     <svg className="w-3 h-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://alternativeto.net/software/disposemail/about/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
-                                    <span>AlternativeTo Listing</span>
+                                    <span>{tr(locale, "AlternativeTo Listing")}</span>
                                     <svg className="w-3 h-3 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://www.saashub.com/disposemail-xyz" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
-                                    <span>SaaSHub Listing</span>
+                                    <span>{tr(locale, "SaaSHub Listing")}</span>
                                     <svg className="w-3 h-3 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://extensionlaunch.com/product/disposemail-instant-temp-email-pfeljf" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
-                                    <span>ExtensionLaunch Page</span>
+                                    <span>{tr(locale, "ExtensionLaunch Page")}</span>
                                     <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                                 </a>
                             </li>
-                            <li><Link href={`/${locale}/api-docs`} className="hover:text-white transition-colors">QA Automation & API Docs</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/api-docs`} className="hover:text-white transition-colors">{tr(locale, "QA Automation & API Docs")}</Link></li>
                         </ul>
                     </div>
 
@@ -197,13 +169,13 @@ export function Footer() {
                             Company & Legal
                         </div>
                         <ul className="space-y-2 text-xs font-semibold text-slate-400">
-                            <li><Link href={`/${locale}/about`} className="hover:text-white transition-colors">About DisposeMail</Link></li>
-                            <li><Link href={`/${locale}/blog`} className="hover:text-white transition-colors">Privacy Blog & Insights</Link></li>
-                            <li><Link href={`/${locale}/faq`} className="hover:text-white transition-colors">{t('faq')}</Link></li>
-                            <li><Link href={`/${locale}/privacy`} className="hover:text-white transition-colors">{t('privacy')}</Link></li>
-                            <li><Link href={`/${locale}/terms`} className="hover:text-white transition-colors">{t('terms')}</Link></li>
-                            <li><Link href={`/${locale}/contact`} className="hover:text-white transition-colors">Contact Support</Link></li>
-                            <li><a href="https://disposemail.xyz/sitemap-index.xml" className="hover:text-white transition-colors">XML Sitemap</a></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/about`} className="hover:text-white transition-colors">{tr(locale, "About DisposeMail")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/blog`} className="hover:text-white transition-colors">{tr(locale, "Privacy Blog & Insights")}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/faq`} className="hover:text-white transition-colors">{t('faq')}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/privacy`} className="hover:text-white transition-colors">{t('privacy')}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/terms`} className="hover:text-white transition-colors">{t('terms')}</Link></li>
+                            <li><Link href={`${locale === 'en' ? '' : '/' + locale}/contact`} className="hover:text-white transition-colors">{tr(locale, "Contact Support")}</Link></li>
+                            <li><a href="https://disposemail.xyz/sitemap-index.xml" className="hover:text-white transition-colors">{tr(locale, "XML Sitemap")}</a></li>
                         </ul>
                     </div>
 
@@ -215,7 +187,7 @@ export function Footer() {
                         <span>{t('copyright')}</span>
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-                            All Systems Operational
+                            {tr(locale, "All Systems Operational")}
                         </span>
                     </div>
 

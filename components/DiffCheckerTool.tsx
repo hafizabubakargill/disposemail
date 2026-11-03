@@ -2,8 +2,11 @@
 
 import { useState } from 'react';
 import { diffLines } from 'diff';
+import { tr } from '@/lib/tr';
+import { useLocale } from 'next-intl';
 
 export default function DiffCheckerTool() {
+    const locale = useLocale();
     const [original, setOriginal] = useState('const a = "hello";\nconsole.log(a);\n// This is old');
     const [modified, setModified] = useState('const a = "hello world";\nconsole.log(a);\n// This is new\n// added line');
     
@@ -21,7 +24,7 @@ export default function DiffCheckerTool() {
             {/* Input Panels */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                 <div className="flex flex-col">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 pl-2">Original Text</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 pl-2">{tr(locale, "Original Text")}</label>
                     <textarea
                         value={original}
                         onChange={(e) => setOriginal(e.target.value)}
@@ -31,7 +34,7 @@ export default function DiffCheckerTool() {
                     />
                 </div>
                 <div className="flex flex-col">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 pl-2">Modified Text</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 pl-2">{tr(locale, "Modified Text")}</label>
                     <textarea
                         value={modified}
                         onChange={(e) => setModified(e.target.value)}
@@ -45,7 +48,7 @@ export default function DiffCheckerTool() {
             {/* Results Panel */}
             <div className="flex flex-col w-full mt-4 rounded-3xl bg-white dark:bg-[#111] border border-gray-200 dark:border-[#2a2a2a] shadow-lg overflow-hidden">
                 <div className="flex items-center justify-between bg-gray-100 dark:bg-[#1a1a1a] px-5 py-3 border-b border-gray-200 dark:border-[#2a2a2a]">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Diff Output (LCS Computed)</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">{tr(locale, "Diff Output (LCS Computed)")}</span>
                     <div className="flex items-center gap-3 font-mono text-xs font-bold">
                         <span className="text-green-600 dark:text-green-400">+ {additions} additions</span>
                         <span className="text-red-500 dark:text-red-400">- {deletions} deletions</span>

@@ -3,9 +3,10 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Script from "next/script";
+import { headers } from "next/headers";
+import { tr } from "@/lib/tr";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import HostingerCTA from "@/components/HostingerCTA";
 import { CookieConsent } from "@/components/CookieConsent";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -19,33 +20,32 @@ const inter = Inter({
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
     const baseUrl = "https://disposemail.xyz";
-    const path = locale === 'en' ? '' : `/${locale}`;
-    const canonical = `${baseUrl}${path}`;
+    const rawPath = (await headers()).get('x-pathname') || '/';
+    const stripped = rawPath.replace(/^\/(en|es|pt|ru|zh)(?=\/|$)/, '');
+    const rest = stripped === '/' ? '' : stripped.replace(/\/$/, '');
+    const urlFor = (loc: string) => `${baseUrl}${loc === 'en' ? '' : `/${loc}`}${rest}` || baseUrl;
+    const canonical = urlFor(locale);
 
     return {
         title: {
-            default: "Secure Disposable Email Generator - DisposeMail",
+            default: tr(locale, "Free Disposable & Throwaway Email, No Signup | DisposeMail"),
             template: "%s | DisposeMail"
         },
-        description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
-        keywords: [
-            "disposable email", "temporary email", "temp mail", "anonymous email", "privacy", "secure email", "throwaway email", "fake email generator", "temporary email discord", "temporary email domain", "10 minute mail alternative", "duckduckgo temporary email",
-            "disposalmail", "disposmail", "disposemail", "discard.email", "disp email", "disp-mail", "dispomail", "disposal mail.com", "disposal temp mail"
-        ],
+        description: tr(locale, "DisposeMail (dispose mail) gives you a free throwaway email address instantly, with no signup. Read incoming messages in real time; the inbox deletes itself after one hour."),
         authors: [{ name: "DisposeMail Team" }],
         creator: "DisposeMail",
         openGraph: {
             type: "website",
             locale: locale === 'zh' ? 'zh_CN' : locale === 'en' ? 'en_US' : `${locale}_${locale.toUpperCase()}`,
             url: canonical,
-            title: "Secure Disposable Email Generator - DisposeMail",
-            description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
+            title: tr(locale, "Free Disposable & Throwaway Email, No Signup | DisposeMail"),
+            description: tr(locale, "DisposeMail (dispose mail) gives you a free throwaway email address instantly, with no signup. Read incoming messages in real time; the inbox deletes itself after one hour."),
             siteName: "DisposeMail",
         },
         twitter: {
             card: "summary_large_image",
-            title: "Secure Disposable Email Generator - DisposeMail",
-            description: "Create secure, temporary email addresses instantly. Protect your privacy, avoid spam, and stay anonymous with our free disposable email generator.",
+            title: tr(locale, "Free Disposable & Throwaway Email, No Signup | DisposeMail"),
+            description: tr(locale, "DisposeMail (dispose mail) gives you a free throwaway email address instantly, with no signup. Read incoming messages in real time; the inbox deletes itself after one hour."),
         },
         robots: {
             index: true,
@@ -54,12 +54,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         alternates: {
             canonical: canonical,
             languages: {
-                'en': `${baseUrl}`,
-                'es': `${baseUrl}/es`,
-                'pt': `${baseUrl}/pt`,
-                'ru': `${baseUrl}/ru`,
-                'zh': `${baseUrl}/zh`,
-                'x-default': baseUrl,
+                'en': urlFor('en'),
+                'es': urlFor('es'),
+                'pt': urlFor('pt'),
+                'ru': urlFor('ru'),
+                'zh': urlFor('zh'),
+                'x-default': urlFor('en'),
             },
         }
     };
@@ -126,7 +126,6 @@ export default async function RootLayout({
                             <main className="flex-1 w-full">
                                 {children}
                             </main>
-                            <HostingerCTA />
                             <Footer />
                             <CookieConsent />
                         </div>

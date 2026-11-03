@@ -2,6 +2,8 @@
 
 import { useState, useCallback } from 'react';
 import { COUNTRIES, generateIdentity, GeneratedIdentity, CountryCode } from '@/lib/identity-data';
+import { tr } from '@/lib/tr';
+import { useLocale } from 'next-intl';
 
 const COUNTRY_CODES = Object.keys(COUNTRIES) as CountryCode[];
 
@@ -47,6 +49,7 @@ function FieldRow({ label, value, icon }: { label: string; value: string; icon: 
 }
 
 export default function IdentityGenerator() {
+    const locale = useLocale();
   const [selectedCountry, setSelectedCountry] = useState<CountryCode>('US');
   const [selectedGender, setSelectedGender] = useState<'Male' | 'Female' | 'Random'>('Random');
   const [identity, setIdentity] = useState<GeneratedIdentity | null>(null);
@@ -132,7 +135,7 @@ export default function IdentityGenerator() {
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
-          Generate Random Identity
+          {tr(locale, "Generate Random Identity")}
         </button>
       </div>
 
@@ -160,7 +163,7 @@ export default function IdentityGenerator() {
               {copiedAll ? (
                 <><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>Copied!</>
               ) : (
-                <><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>Copy All</>
+                <><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>{tr(locale, "Copy All")}</>
               )}
             </button>
           </div>
@@ -212,14 +215,14 @@ export default function IdentityGenerator() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            Generate Another
+            {tr(locale, "Generate Another")}
           </button>
         </div>
       )}
 
       {/* Disclaimer */}
       <p className="text-center text-xs text-gray-400 dark:text-gray-600 leading-relaxed">
-        All data is randomly generated and entirely fictional. For anonymity, testing, and development purposes only. Not intended for fraud or misuse.
+        {tr(locale, "All data is randomly generated and entirely fictional. For anonymity, testing, and development purposes only. Not intended for fraud or misuse.")}
       </p>
     </div>
   );

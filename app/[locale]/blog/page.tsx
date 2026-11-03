@@ -1,7 +1,7 @@
 'use client';
 
 import { getSortedPosts } from "@/lib/blog";
-import Link from "next/link";
+import { Link } from '@/i18n-nav';
 import { useTranslations } from 'next-intl';
 import { useParams } from "next/navigation";
 

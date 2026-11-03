@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import { Link } from '@/i18n-nav';
+import { tr } from '@/lib/tr';
 import { getTranslations } from 'next-intl/server';
 import { englishPosts } from '@/lib/blog-data/en';
 import { useCases } from '@/lib/use-cases';
@@ -41,6 +42,7 @@ const STATIC_LINKS = [
     { href: '/extension', label: 'Chrome & Browser Extension' },
     { href: '/ip-lookup', label: 'IP Address Lookup' },
     { href: '/domain-checker', label: 'Email Domain Checker' },
+    { href: '/disposable-email-checker', label: 'Disposable Email Checker' },
     { href: '/password-generator', label: 'Secure Password Generator' },
     { href: '/identity-generator', label: 'Fictional Identity Generator' },
     { href: '/secure-notes', label: 'Encrypted Secure Notes' },
@@ -91,7 +93,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                         {STATIC_LINKS.map(link => (
                             <li key={link.href}>
                                 <Link href={link.href} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
-                                    {link.label}
+                                    {tr(locale, link.label)}
                                 </Link>
                             </li>
                         ))}

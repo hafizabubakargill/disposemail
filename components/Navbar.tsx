@@ -44,6 +44,7 @@ export const TOOL_CATEGORIES = [
             { href: '/epoch-converter', label: 'Epoch Converter', emoji: '⏳', color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-900/30' },
             { href: '/ip-lookup', label: 'IP Address Lookup', emoji: '🌍', color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-900/30' },
             { href: '/domain-checker', label: 'Domain Checker', emoji: '🌐', color: 'text-indigo-600 dark:text-indigo-400', bg: 'bg-indigo-50 dark:bg-indigo-900/30' },
+            { href: '/disposable-email-checker', label: 'Disposable Email Checker', emoji: '🕵️', color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/30' },
         ]
     }
 ];
@@ -68,7 +69,7 @@ export function Navbar() {
 
     return (
         <nav className="w-full flex justify-between items-center px-6 md:px-8 py-6 z-50 max-w-7xl mx-auto relative">
-            <Link href={`/${locale}`} className="flex items-center space-x-2.5 group" aria-label="Home">
+            <Link href={`${locale === 'en' ? '/' : '/' + locale}`} className="flex items-center space-x-2.5 group" aria-label="Home">
                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-800/20 group-hover:scale-105 transition-transform">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                 </div>
@@ -78,9 +79,9 @@ export function Navbar() {
             {/* Desktop Links */}
             <div className="hidden min-[1041px]:flex items-center gap-6">
                 <div className="flex gap-6 text-[11px] text-gray-600 dark:text-gray-400 font-bold uppercase tracking-widest items-center">
-                    <Link href={`/${locale}`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('home')}</Link>
-                    <Link href={`/${locale}/about`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('about', { fallback: 'About' })}</Link>
-                    <Link href={`/${locale}/blog`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('blog')}</Link>
+                    <Link href={`${locale === 'en' ? '/' : '/' + locale}`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('home')}</Link>
+                    <Link href={`${locale === 'en' ? '' : '/' + locale}/about`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('about', { fallback: 'About' })}</Link>
+                    <Link href={`${locale === 'en' ? '' : '/' + locale}/blog`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('blog')}</Link>
 
                     {/* Free Tools — Hover Mega Menu */}
                     <div className="relative" onMouseEnter={openMenu} onMouseLeave={closeMenu}>
@@ -107,7 +108,7 @@ export function Navbar() {
                                         <p className="text-xs text-gray-500 dark:text-gray-400 font-normal">100% free, client-side tools to secure your digital footprint</p>
                                     </div>
                                     <Link
-                                        href={`/${locale}/free-tools`}
+                                        href={`${locale === 'en' ? '' : '/' + locale}/free-tools`}
                                         onClick={() => setToolsOpen(false)}
                                         className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
                                     >
@@ -125,7 +126,7 @@ export function Navbar() {
                                                     {cat.tools.map((tool) => (
                                                         <Link
                                                             key={tool.href}
-                                                            href={`/${locale}${tool.href}`}
+                                                            href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
                                                             onClick={() => setToolsOpen(false)}
                                                             className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-[#1a1a1a] transition-colors group"
                                                         >
@@ -151,7 +152,7 @@ export function Navbar() {
                                                     {cat.tools.map((tool) => (
                                                         <Link
                                                             key={tool.href}
-                                                            href={`/${locale}${tool.href}`}
+                                                            href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
                                                             onClick={() => setToolsOpen(false)}
                                                             className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-[#1a1a1a] transition-colors group"
                                                         >
@@ -180,8 +181,8 @@ export function Navbar() {
                     >
                         <svg className="w-3.5 h-3.5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg> Chrome Extension
                     </a>
-                    <Link href={`/${locale}/faq`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('faq')}</Link>
-                    <Link href={`/${locale}/contact`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('contact')}</Link>
+                    <Link href={`${locale === 'en' ? '' : '/' + locale}/faq`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('faq')}</Link>
+                    <Link href={`${locale === 'en' ? '' : '/' + locale}/contact`} className="hover:text-blue-600 dark:hover:text-white transition-colors">{t('contact')}</Link>
                 </div>
                 <div className="flex items-center gap-2">
                     <LanguageSwitcher />
@@ -203,14 +204,14 @@ export function Navbar() {
             {/* Mobile Menu */}
             {menuOpen && (
                 <div className="absolute top-20 left-0 right-0 max-h-[80vh] overflow-y-auto bg-white dark:bg-[#111] border-y border-gray-200 dark:border-[#222] p-6 flex flex-col gap-4 z-50 min-[1041px]:hidden animate-in fade-in slide-in-from-top-4 duration-200 shadow-xl">
-                    <Link href={`/${locale}`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('home')}</Link>
-                    <Link href={`/${locale}/about`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('about', { fallback: 'About Us' })}</Link>
-                    <Link href={`/${locale}/blog`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('blog')}</Link>
+                    <Link href={`${locale === 'en' ? '/' : '/' + locale}`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('home')}</Link>
+                    <Link href={`${locale === 'en' ? '' : '/' + locale}/about`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('about', { fallback: 'About Us' })}</Link>
+                    <Link href={`${locale === 'en' ? '' : '/' + locale}/blog`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-1" onClick={() => setMenuOpen(false)}>{t('blog')}</Link>
 
                     <div className="border-t border-gray-100 dark:border-[#1a1a1a] pt-4">
                         <div className="flex items-center justify-between mb-4">
                             <p className="text-[11px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">Free Tools List</p>
-                            <Link href={`/${locale}/free-tools`} onClick={() => setMenuOpen(false)} className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase bg-blue-50 dark:bg-blue-900/20 px-2 py-1 rounded-md">View all →</Link>
+                            <Link href={`${locale === 'en' ? '' : '/' + locale}/free-tools`} onClick={() => setMenuOpen(false)} className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase bg-blue-50 dark:bg-blue-900/20 px-2 py-1 rounded-md">View all →</Link>
                         </div>
                         
                         <div className="flex flex-col gap-5">
@@ -219,7 +220,7 @@ export function Navbar() {
                                     <p className="text-[10px] font-bold text-gray-400 dark:text-gray-600 uppercase mb-2">{category.name}</p>
                                     <div className="grid grid-cols-2 gap-2">
                                         {category.tools.map(tool => (
-                                            <Link key={tool.href} href={`/${locale}${tool.href}`} onClick={() => setMenuOpen(false)}
+                                            <Link key={tool.href} href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`} onClick={() => setMenuOpen(false)}
                                                 className="flex flex-col gap-1.5 p-3 rounded-xl bg-gray-50 dark:bg-[#171717] hover:ring-1 ring-blue-500/50 transition-all">
                                                 <span className="text-xl leading-none" style={tool.label === 'JSON Formatter' ? {fontFamily: 'monospace'} : {}}>{tool.emoji}</span>
                                                 <span className="text-[11px] font-bold text-gray-900 dark:text-gray-100 leading-tight">{tool.label}</span>
@@ -239,8 +240,8 @@ export function Navbar() {
                     >
                         <svg className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg> Get Chrome Extension (Free)
                     </a>
-                    <Link href={`/${locale}/faq`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2 border-t border-gray-100 dark:border-[#1a1a1a] mt-2" onClick={() => setMenuOpen(false)}>{t('faq')}</Link>
-                    <Link href={`/${locale}/contact`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('contact')}</Link>
+                    <Link href={`${locale === 'en' ? '' : '/' + locale}/faq`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2 border-t border-gray-100 dark:border-[#1a1a1a] mt-2" onClick={() => setMenuOpen(false)}>{t('faq')}</Link>
+                    <Link href={`${locale === 'en' ? '' : '/' + locale}/contact`} className="text-lg font-medium text-gray-900 dark:text-gray-100 py-2" onClick={() => setMenuOpen(false)}>{t('contact')}</Link>
                 </div>
             )}
         </nav>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { ShieldX, AlertTriangle, FileText, LockKeyhole, EyeOff } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/i18n-nav';
 
 export default function SecureNotesViewer({ noteId }: { noteId: string }) {
     const t = useTranslations('SecureNotes');

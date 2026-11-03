@@ -1,6 +1,6 @@
 import { blogPosts } from "@/lib/blog";
-import { notFound } from "next/navigation";
-import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+import { Link } from '@/i18n-nav';
 import { getTranslations } from 'next-intl/server';
 import React from 'react';
 import { Metadata } from "next";
@@ -26,9 +26,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
     if (!post) return {};
 
+    // Thin posts stay reachable but out of the index until they are expanded.
+    const wordCount = post.content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+    const thin = locale === 'zh' ? post.content.length < 1000 : wordCount < 300;
+    // Translated copies were mostly 'Crawled - currently not indexed'; keep the English originals as the indexed version.
+    const noindex = thin || locale !== 'en';
+
     return {
         title: post.title,
         description: post.excerpt,
+        robots: noindex ? { index: false, follow: true } : undefined,
         alternates: {
             canonical: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}blog/${slug}`,
             languages: {
@@ -50,6 +57,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     const post = localePosts.find((p) => p.slug === slug);
 
     if (!post) {
+        // Untranslated posts only exist in English: send non-English visitors there.
+        if (locale !== 'en' && blogPosts.en.some((p) => p.slug === slug)) redirect(`/blog/${slug}`);
         notFound();
     }
 

@@ -91,12 +91,12 @@
     "create_btn": "Criar E-mail Agora",
     "secure_anon": "Seguro e Anônimo",
     "homepage_faq": "Perguntas Frequentes",
-    "q12": "How can I create a temporary email address?",
-    "a12": "Simply visit our homepage and a secure, random temporary email address is instantly generated for you. No signup required.",
-    "q13": "What are the best free services for disposable email?",
-    "a13": "DisposeMail is widely considered one of the best free services because we offer premium features like rotating multi-domain pools, real-time WebSockets, and complete zero-log privacy at absolutely no cost.",
-    "q14": "How do temporary email services work?",
-    "a14": "Our platform provisions a temporary inbox on our secure servers. When an email targets that address, it is held in encrypted temporary storage and pushed seamlessly to your browser, before being automatically and permanently purged after 60 minutes."
+    "q12": "Como posso criar um endereço de e-mail temporário?",
+    "a12": "Basta visitar nossa página inicial e um endereço temporário, seguro e aleatório é gerado na hora. Sem cadastro.",
+    "q13": "Quais são os melhores serviços gratuitos de e-mail descartável?",
+    "a13": "O DisposeMail é gratuito, não exige cadastro, alterna entre vários domínios e mostra os e-mails em tempo real. Seja qual for o serviço escolhido, compare por quanto tempo ele guarda os e-mails, o que diz a política de privacidade e quais domínios oferece.",
+    "q14": "Como funcionam os serviços de e-mail temporário?",
+    "a14": "Nossa plataforma cria uma caixa temporária em nossos servidores. Quando um e-mail chega a esse endereço, ele é mantido por pouco tempo e exibido no seu navegador em tempo real, sendo apagado automaticamente após 60 minutos."
   },
   "Steps": {
     "step1_title": "Gerar",
@@ -111,9 +111,9 @@
     "case1_title": "1. Teste de Software e QA",
     "case1_desc": "Desenvolvedores usam endereços descartáveis para testar fluxos de registro sem sujar bancos de dados reais.",
     "case2_title": "2. Descontos em E-Commerce",
-    "case2_desc": "Sign up for 'First Order' coupons on shopping sites without committing your primary email to their daily marketing newsletters. Generate a temporary email for immediate shopping discounts and checkout safely.",
+    "case2_desc": "Assine newsletters e ofertas de lojas online sem entregar seu e-mail principal ao marketing diário delas. Use um endereço temporário e compre com segurança.",
     "case3_title": "3. Protegendo a Privacidade em Fóruns",
-    "case3_desc": "Register for online communities like Discord or download temporary email domains from forums while keeping your personal identity secure and anonymous with a disposable throwaway address."
+    "case3_desc": "Cadastre-se em comunidades como o Discord ou baixe um arquivo avulso de um fórum mantendo sua identidade pessoal privada com um endereço descartável."
   },
   "Why": {
     "title": "Por que usar um e-mail descartável?",
@@ -184,7 +184,7 @@
     "title": "Termos de Serviço",
     "back_inbox": "Voltar para a Caixa",
     "sec1_title": "1. Aceitação",
-    "sec1_desc": "Ao usar o DisposeMail, você concorda com estes termos. Se não concordar, por favor não use the serviço.",
+    "sec1_desc": "Ao usar o DisposeMail, você concorda com estes termos. Se não concordar, por favor não use o serviço.",
     "sec2_title": "2. Descrição do Serviço",
     "sec2_desc": "O DisposeMail fornece endereços de e-mail temporários e descartáveis como um serviço gratuito suportado por publicidade (como Google AdSense). Não garantimos 100% de tempo de atividade ou armazenamento permanente de dados.",
     "sec3_title": "3. Conduta Proibida",
@@ -276,8 +276,8 @@
     "feature2_desc": "Incluído em todos os planos"
   },
   "DataBreach": {
-    "metaTitle": "Verificador de violação de dados | DisposeMail",
-    "metaDesc": "Verifique com segurança se seu e-mail ou senhas foram expostos em vazamentos conhecidos de bancos de dados.",
+    "metaTitle": "Verificador de vazamentos: seu e-mail apareceu em algum vazamento de dados?",
+    "metaDesc": "Verificação gratuita de vazamentos: veja quais vazamentos conhecidos incluem seu e-mail e o que fazer em seguida. Com dados da base pública XposedOrNot.",
     "title": "Verificador de violação de dados",
     "subtitle": "Verifique com segurança se seu e-mail ou senhas foram expostos em vazamentos conhecidos de bancos de dados.",
     "invalidEmail": "Insira um endereço de e-mail válido.",

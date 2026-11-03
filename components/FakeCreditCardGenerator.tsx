@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import { tr } from '@/lib/tr';
+import { useLocale } from 'next-intl';
 
 type CardBrand = 'visa' | 'mastercard' | 'amex' | 'discover' | 'jcb' | 'dinersclub';
 
@@ -116,6 +118,7 @@ function CopyBtn({ value }: { value: string }) {
 interface Generated { brand: CardBrand; number: string; formatted: string; cvv: string; expiry: string; }
 
 export default function FakeCreditCardGenerator() {
+    const locale = useLocale();
   const [brand, setBrand] = useState<CardBrand>('visa');
   const [count, setCount] = useState(3);
   const [results, setResults] = useState<Generated[]>([]);
@@ -136,14 +139,14 @@ export default function FakeCreditCardGenerator() {
       <div className="flex gap-3 p-4 bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/30 rounded-2xl">
         <svg className="w-5 h-5 shrink-0 text-red-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12A9 9 0 113 12a9 9 0 0118 0z"/></svg>
         <p className="text-xs text-red-700 dark:text-red-400 font-medium leading-relaxed">
-          <strong>For testing only.</strong> Luhn-valid test numbers for payment sandbox environments. <strong>NOT real card numbers</strong> — using for fraud is illegal.
+          <strong>{tr(locale, "For testing only.")}</strong> {tr(locale, "Luhn-valid test numbers for payment sandbox environments.")} <strong>{tr(locale, "NOT real card numbers")}</strong> {tr(locale, "— using for fraud is illegal.")}
         </p>
       </div>
 
       {/* Controls */}
       <div className="bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-2xl p-5 shadow-sm space-y-4">
         <div>
-          <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Card Network</label>
+          <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">{tr(locale, "Card Network")}</label>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
             {BRANDS.map(b => (
               <button key={b} onClick={() => setBrand(b)}
@@ -200,7 +203,7 @@ export default function FakeCreditCardGenerator() {
               {/* Expiry + CVV */}
               <div className="flex justify-between text-xs tracking-widest">
                 <div>
-                  <p className="text-[9px] opacity-50 mb-0.5">VALID THRU</p>
+                  <p className="text-[9px] opacity-50 mb-0.5">{tr(locale, "VALID THRU")}</p>
                   <div className="flex items-center gap-1 font-bold">{r.expiry}<CopyBtn value={r.expiry}/></div>
                 </div>
                 <div className="text-right">

@@ -6,7 +6,8 @@ export const dynamic = 'force-static';
 export const revalidate = 86400;
 
 const BASE_URL = 'https://disposemail.xyz';
-const LOCALES = ['en', 'es', 'pt', 'ru', 'zh'];
+// English only until the translated pages are reviewed for quality.
+const LOCALES = ['en'];
 
 const STATIC_ROUTES = [
     { path: '', priority: '1.00' },
@@ -15,14 +16,13 @@ const STATIC_ROUTES = [
     { path: '/free-tools', priority: '0.90' },
     { path: '/ip-lookup', priority: '0.90' },
     { path: '/domain-checker', priority: '0.90' },
+    { path: '/disposable-email-checker', priority: '0.90' },
     { path: '/data-breach-checker', priority: '0.90' },
     { path: '/secure-notes', priority: '0.90' },
     { path: '/password-generator', priority: '0.85' },
-    { path: '/identity-generator', priority: '0.85' },
     { path: '/qr-code-generator', priority: '0.85' },
     { path: '/uuid-generator', priority: '0.85' },
     { path: '/base64', priority: '0.85' },
-    { path: '/test-card-generator', priority: '0.85' },
     { path: '/hash-generator', priority: '0.85' },
     { path: '/jwt-decoder', priority: '0.85' },
     { path: '/url-encoder', priority: '0.85' },
@@ -53,7 +53,8 @@ export async function GET() {
     });
 
     // Blog Routes
-    englishPosts.forEach(post => {
+    // Thin posts are noindexed (see blog/[slug]/page.tsx), so keep them out of the sitemap.
+    englishPosts.filter(post => post.content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length >= 300).forEach(post => {
         basePaths.push({ path: `/blog/${post.slug}`, basePriority: '0.64' });
     });
 

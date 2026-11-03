@@ -1,11 +1,10 @@
-import Link from 'next/link';
+import { Link } from '@/i18n-nav';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
     title: 'Free Privacy & Developer Tools | DisposeMail',
     description: 'A complete suite of free tools for privacy, anonymity, and development — disposable email, identity generator, QR code generator, UUID generator, Base64 encoder, and test credit card generator.',
-    alternates: { canonical: 'https://disposemail.xyz/free-tools' },
     keywords: ['free privacy tools', 'free developer tools', 'disposable email', 'qr code generator', 'uuid generator', 'base64 encoder', 'identity generator', 'test credit card'],
 };
 

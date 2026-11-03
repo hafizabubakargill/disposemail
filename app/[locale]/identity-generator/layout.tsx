@@ -1,21 +1,19 @@
+import { localizeMeta } from '@/lib/tr';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+const baseMetadata = {
+    robots: { index: false, follow: true },
     title: 'Random Identity Generator — Fake Name, Address & Phone | DisposeMail',
     description: 'Generate a complete random identity — fake name, address, phone number, and more for 8 countries (US, UK, Canada, Australia, Germany, France, Pakistan, India). 100% free, no registration.',
     openGraph: {
         title: 'Random Identity Generator — Fake Name, Address & Phone | DisposeMail',
         description: 'Instantly generate a random name, address, phone number, and full profile for 8 countries. 100% client-side, no data stored.',
         type: 'website',
-        url: 'https://disposemail.com/identity-generator',
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Random Identity Generator | DisposeMail',
         description: 'Generate fake names, addresses & phone numbers for 8 countries — free, instant, no registration.',
-    },
-    alternates: {
-        canonical: 'https://disposemail.com/identity-generator',
     },
     keywords: [
         'fake name generator',
@@ -30,6 +28,11 @@ export const metadata: Metadata = {
         'random name generator',
     ],
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    return localizeMeta(baseMetadata as any, locale);
+}
 
 export default function IdentityGeneratorLayout({ children }: { children: React.ReactNode }) {
     return children;

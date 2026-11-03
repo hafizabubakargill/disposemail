@@ -1,8 +1,11 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { tr } from '@/lib/tr';
+import { useLocale } from 'next-intl';
 
 export default function RegexTesterTool() {
+    const locale = useLocale();
     const [pattern, setPattern] = useState('[A-Z]\\w+');
     const [flags, setFlags] = useState('g');
     const [testString, setTestString] = useState('Hello World! This is a Regex Tester.');
@@ -66,7 +69,7 @@ export default function RegexTesterTool() {
             <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1 flex flex-col relative w-full h-[60px]">
                     <span className="absolute -top-3 left-4 bg-white dark:bg-[#0a0a0a] px-2 text-[10px] font-black uppercase tracking-widest text-pink-500">
-                        Regular Expression
+                        {tr(locale, "Regular Expression")}
                     </span>
                     <div className="flex items-center w-full h-full px-5 rounded-2xl bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-[#2a2a2a] shadow-sm">
                         <span className="text-gray-400 font-mono font-bold mr-1">/</span>
@@ -111,7 +114,7 @@ export default function RegexTesterTool() {
                 {/* Input Array */}
                 <div className="flex flex-col relative w-full h-full">
                     <span className="absolute -top-3 left-4 bg-white dark:bg-[#0a0a0a] px-2 text-[10px] font-black uppercase tracking-widest text-sky-500">
-                        Test String
+                        {tr(locale, "Test String")}
                     </span>
                     <textarea
                         value={testString}
@@ -130,7 +133,7 @@ export default function RegexTesterTool() {
                     </div>
                     <div className="p-5 overflow-y-auto max-h-[400px]">
                         {results.matches.length === 0 && !results.error ? (
-                            <p className="text-gray-400 font-mono text-sm">No matches found.</p>
+                            <p className="text-gray-400 font-mono text-sm">{tr(locale, "No matches found.")}</p>
                         ) : (
                             <div className="flex flex-col gap-3">
                                 {results.matches.map((m, i) => (
