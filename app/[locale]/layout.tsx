@@ -8,6 +8,7 @@ import { tr } from "@/lib/tr";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
+import { Analytics } from "@/components/Analytics";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
@@ -100,19 +101,15 @@ export default async function RootLayout({
                     strategy="afterInteractive"
                 />
 
-                {/* Google Analytics (GTags) */}
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-DX89L9W9FL"
-                    strategy="lazyOnload"
-                />
-                <Script id="google-analytics" strategy="lazyOnload">
-                    {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'G-DX89L9W9FL');
-                    `}
+                {/* Consent Mode v2: everything starts denied; the banner (or a saved choice) updates it */}
+                <Script id="consent-default" strategy="beforeInteractive">
+                    {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{var c=JSON.parse(localStorage.getItem('disposemail_consent')||'null');if(!c&&localStorage.getItem('disposemail_cookie_consent')==='true')c={analytics:true,ads:true};
+if(c){gtag('consent','update',{analytics_storage:c.analytics?'granted':'denied',ad_storage:c.ads?'granted':'denied',ad_user_data:c.ads?'granted':'denied',ad_personalization:c.ads?'granted':'denied'});}}catch(e){}`}
                 </Script>
+
+                <Analytics />
 
                 <NextIntlClientProvider messages={messages}>
                     <ThemeProvider
