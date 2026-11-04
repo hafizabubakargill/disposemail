@@ -17,6 +17,10 @@ setInterval(() => {
     });
 }, RATE_LIMIT_DURATION);
 
+const escapeHtml = (v: unknown) =>
+    String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
+const EMAIL_RE = /^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/;
+
 export async function POST(req: Request) {
     try {
         const data = await req.json();
@@ -59,10 +63,19 @@ export async function POST(req: Request) {
         if (!data.name || !data.email || !data.message) {
             return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
         }
+        if (typeof data.name !== 'string' || typeof data.email !== 'string' || typeof data.message !== 'string' ||
+            data.name.length > 100 || data.email.length > 254 || data.message.length > 5000 || !EMAIL_RE.test(data.email)) {
+            return NextResponse.json({ error: 'Invalid input' }, { status: 400 });
+        }
+        // Everything interpolated into the HTML emails below is escaped, so visitors cannot inject markup or links.
+        const safeName = escapeHtml(data.name);
+        const safeEmail = escapeHtml(data.email);
+        const safeMessage = escapeHtml(data.message);
+        const headerName = data.name.replace(/[\r\n"<>]/g, ' ');
 
         // 3. Rate limiting (In-memory IP tracking)
         // Extract IP (Next.js 13+ headers)
-        const forwardedFor = req.headers.get('x-forwarded-for');
+        const forwardedFor = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for');
         const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : 'unknown_ip';
 
         if (ip !== 'unknown_ip') {
@@ -86,7 +99,7 @@ export async function POST(req: Request) {
         }
 
         // 4. Send Email via Hostinger SMTP
-        console.log('[Contact Form Submission]:', data);
+        console.log('[Contact Form] New submission received');
 
         const smtpHost = process.env.SMTP_HOST || 'smtp.hostinger.com';
         const smtpPort = parseInt(process.env.SMTP_PORT || '465');
@@ -110,33 +123,33 @@ export async function POST(req: Request) {
                 <h2 style="color: #60a5fa; margin-top: 0;">📬 New Contact Inquiry</h2>
                 <p style="color: #94a3b8; font-size: 14px;">Someone submitted the contact form on DisposeMail.xyz:</p>
                 <div style="background: #1e293b; padding: 16px; border-radius: 8px; margin: 16px 0;">
-                    <p style="margin: 4px 0;"><strong>Name:</strong> ${data.name}</p>
-                    <p style="margin: 4px 0;"><strong>Email:</strong> <a href="mailto:${data.email}" style="color: #60a5fa;">${data.email}</a></p>
+                    <p style="margin: 4px 0;"><strong>Name:</strong> ${safeName}</p>
+                    <p style="margin: 4px 0;"><strong>Email:</strong> <a href="mailto:${safeEmail}" style="color: #60a5fa;">${safeEmail}</a></p>
                     <p style="margin: 4px 0;"><strong>IP Address:</strong> ${ip}</p>
                 </div>
                 <h3 style="color: #e2e8f0; margin-bottom: 8px;">Message:</h3>
-                <div style="background: #0b0f19; padding: 16px; border-radius: 8px; border-left: 4px solid #3b82f6; white-space: pre-wrap; color: #cbd5e1;">${data.message}</div>
-                <p style="color: #64748b; font-size: 12px; margin-top: 24px;">Hit reply to answer directly to ${data.name} (${data.email}).</p>
+                <div style="background: #0b0f19; padding: 16px; border-radius: 8px; border-left: 4px solid #3b82f6; white-space: pre-wrap; color: #cbd5e1;">${safeMessage}</div>
+                <p style="color: #64748b; font-size: 12px; margin-top: 24px;">Hit reply to answer directly to ${safeName} (${safeEmail}).</p>
             </div>`;
 
             await transporter.sendMail({
                 from: `"DisposeMail Support" <${smtpUser}>`,
-                replyTo: `${data.name} <${data.email}>`,
+                replyTo: `"${headerName}" <${data.email}>`,
                 to: smtpUser,
-                subject: `[DisposeMail Contact] Inquiry from ${data.name}`,
+                subject: `[DisposeMail Contact] Inquiry from ${headerName}`,
                 html: adminHtml,
             });
 
             // Email 2: Automated Acknowledgment to Customer
             const customerHtml = `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0f172a; color: #f8fafc; padding: 24px; border-radius: 12px; border: 1px solid #1e293b;">
-                <h2 style="color: #60a5fa; margin-top: 0;">Hi ${data.name},</h2>
+                <h2 style="color: #60a5fa; margin-top: 0;">Hi ${safeName},</h2>
                 <p style="color: #cbd5e1; line-height: 1.6;">Thank you for getting in touch with <strong>DisposeMail Support</strong>! We have received your request and our team is reviewing it.</p>
                 <p style="color: #cbd5e1; line-height: 1.6;">We typically respond within <strong>24 hours</strong>. If your inquiry is urgent, please reply directly to this email.</p>
                 
                 <div style="background: #1e293b; padding: 16px; border-radius: 8px; margin: 20px 0;">
                     <p style="color: #94a3b8; font-size: 12px; margin: 0 0 8px 0; text-transform: uppercase; font-weight: bold;">Your Original Message:</p>
-                    <div style="color: #e2e8f0; white-space: pre-wrap; font-style: italic;">"${data.message}"</div>
+                    <div style="color: #e2e8f0; white-space: pre-wrap; font-style: italic;">"${safeMessage}"</div>
                 </div>
 
                 <p style="color: #94a3b8; font-size: 14px;">Best regards,<br><strong style="color: #f8fafc;">DisposeMail Team</strong><br><a href="https://disposemail.xyz" style="color: #60a5fa; text-decoration: none;">https://disposemail.xyz</a></p>

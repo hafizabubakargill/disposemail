@@ -6,6 +6,9 @@ const db = require('./lib/db');
 const path = require('path');
 const { randomUUID: uuidv4 } = require('crypto');
 const fs = require('fs');
+const dns = require('dns').promises;
+const net = require('net');
+const crypto = require('crypto');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./lib/mongoose');
 const jwt = require('jsonwebtoken');
@@ -14,7 +17,17 @@ const sanitizeHtml = require('sanitize-html');
 // Config
 const dev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 3000;
-const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || "change_me_to_a_secure_secret";
+// No built-in fallbacks: a missing secret must never become a publicly known one.
+// Without WEBHOOK_SECRET every webhook/rescue call is rejected.
+const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || '';
+
+// Constant-time secret comparison (avoids leaking the secret through response timing)
+const secretMatches = (provided) => {
+    if (!WEBHOOK_SECRET || typeof provided !== 'string') return false;
+    const a = crypto.createHash('sha256').update(provided).digest();
+    const b = crypto.createHash('sha256').update(WEBHOOK_SECRET).digest();
+    return crypto.timingSafeEqual(a, b);
+};
 
 // Rate Limiting Configurations
 const apiLimiter = rateLimit({
@@ -29,7 +42,7 @@ const apiLimiter = rateLimit({
 const webhookLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
     max: 60, // Strictly limit unauthenticated webhook probes
-    skip: (req) => req.body && req.body.secret === WEBHOOK_SECRET, // Never throttle verified Cloudflare Worker emails
+    skip: (req) => !!req.body && secretMatches(req.body.secret), // Never throttle verified Cloudflare Worker emails
     message: { error: 'Webhook rate limit exceeded' }
 });
 
@@ -42,10 +55,28 @@ const globalSiteLimiter = rateLimit({
     legacyHeaders: false,
 });
 
+
+// True for loopback, private, link-local, CGNAT, multicast and other non-public addresses.
+function isPrivateAddress(ip) {
+    if (net.isIPv4(ip)) {
+        const [a, b] = ip.split('.').map(Number);
+        return a === 0 || a === 10 || a === 127 || (a === 100 && b >= 64 && b <= 127) ||
+            (a === 169 && b === 254) || (a === 172 && b >= 16 && b <= 31) ||
+            (a === 192 && b === 168) || (a === 192 && b === 0) || a >= 224;
+    }
+    const v6 = ip.toLowerCase();
+    const mapped = v6.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/);
+    if (mapped) return isPrivateAddress(mapped[1]);
+    return v6 === '::' || v6 === '::1' || v6.startsWith('fe80') || v6.startsWith('fc') || v6.startsWith('fd') || v6.startsWith('ff');
+}
+
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const JWT_SECRET = process.env.JWT_SECRET || '8f4a3c2b1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6e5f4g';
+// If JWT_SECRET is not configured, use a random per-process secret instead of a hardcoded one.
+// Sessions then reset on restart, but tokens can never be forged from the public source code.
+const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(48).toString('hex');
+if (!process.env.JWT_SECRET) console.warn('[Security] JWT_SECRET is not set; using a temporary random secret.');
 
 app.prepare().then(async () => {
     // 1. Connect to MongoDB (Wait until connected so early requests don't crash)
@@ -137,12 +168,14 @@ app.prepare().then(async () => {
         console.log(`[WEBHOOK] Incoming request at ${new Date().toISOString()}`);
         const { id, to, from, subject, text, html, raw, secret } = req.body;
 
-        if (secret !== WEBHOOK_SECRET) {
-            console.error(`[WEBHOOK] AUTH FAILURE. Expected: ${WEBHOOK_SECRET.substring(0, 4)}..., Received: ${secret ? secret.substring(0, 4) : 'null'}...`);
+        if (!secretMatches(secret)) {
+            console.error('[WEBHOOK] AUTH FAILURE');
             return res.status(401).json({ error: 'Auth failed' });
         }
 
-        console.log(`[WEBHOOK] Payload: ID=${id}, TO=${to}, FROM=${from}, SUBJECT=${subject}`);
+        if (typeof to !== 'string' || !to) return res.status(400).json({ error: 'Missing recipient' });
+
+        console.log(`[WEBHOOK] Incoming message ID=${id}`);
 
         // Use provided ID or generate new one (Idempotency)
         const finalId = id || uuidv4();
@@ -189,15 +222,17 @@ app.prepare().then(async () => {
         if (emailToEmit.raw && emailToEmit.raw.length > 150 * 1024) {
             delete emailToEmit.raw;
         }
-        console.log(`[WEBHOOK] Email ${emailToEmit.id} for ${to}`);
+        console.log(`[WEBHOOK] Email ${emailToEmit.id} stored`);
         io.to(to.toLowerCase()).emit('new-email', emailToEmit);
         res.json({ success: true, id: emailToEmit.id });
     };
 
     // --- SESSION GENERATION (NEW) ---
     server.post('/api/session/generate', express.json(), (req, res) => {
-        const { email } = req.body;
-        if (!email) return res.status(400).json({ error: 'Email required' });
+        const { email } = req.body || {};
+        if (typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+$/.test(email)) {
+            return res.status(400).json({ error: 'Valid email required' });
+        }
         
         const token = jwt.sign({ email: email.toLowerCase() }, JWT_SECRET, { expiresIn: '1h' });
         res.json({ token });
@@ -263,34 +298,40 @@ app.prepare().then(async () => {
                     return res.status(400).send('Invalid URL protocol. Only http and https are allowed.');
                 }
 
-                // 2. Hostname Validation (Prevent SSRF)
-                const parsedUrl = new URL(url);
-                const host = parsedUrl.hostname.toLowerCase();
-                
-                // Block Localhost & Private IP Ranges (RFC 1918 + RFC 3927)
-                const isPrivate = 
-                    host === 'localhost' || 
-                    host === '127.0.0.1' || 
-                    host.startsWith('10.') || 
-                    host.startsWith('192.168.') || 
-                    host.match(/^172\.(1[6-9]|2[0-9]|3[0-1])\./) ||
-                    host.startsWith('169.254.') ||
-                    host === '::1' || host.startsWith('fe80:');
+                // 2. Resolve the host and refuse anything that points at a private/internal address (SSRF).
+                //    Redirects are followed manually so every hop is re-checked.
+                let currentUrl = new URL(url);
+                let proxyReq;
+                for (let hop = 0; hop <= 3; hop++) {
+                    if (currentUrl.protocol !== 'http:' && currentUrl.protocol !== 'https:') {
+                        return res.status(400).send('Invalid URL protocol.');
+                    }
+                    const host = currentUrl.hostname.replace(/^\[|\]$/g, '').toLowerCase();
+                    const addrs = net.isIP(host) ? [{ address: host }] : await dns.lookup(host, { all: true });
+                    if (!addrs.length || addrs.some(a => isPrivateAddress(a.address))) {
+                        console.warn('[ImageProxy] BLOCKED request to private or unresolvable host');
+                        return res.status(403).send('Forbidden: Internal or private network addresses are not allowed.');
+                    }
 
-                if (isPrivate) {
-                    console.warn(`[ImageProxy] BLOCKED request to private host: ${host}`);
-                    return res.status(403).send('Forbidden: Internal or private network addresses are not allowed.');
+                    proxyReq = await fetch(currentUrl, {
+                        method: 'GET',
+                        redirect: 'manual',
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (compatible; ImageProxy/1.1; +https://disposemail.xyz)',
+                            'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8'
+                        },
+                        signal: AbortSignal.timeout(5000)
+                    });
+
+                    if (proxyReq.status >= 300 && proxyReq.status < 400 && proxyReq.headers.get('location')) {
+                        currentUrl = new URL(proxyReq.headers.get('location'), currentUrl);
+                        continue;
+                    }
+                    break;
                 }
-
-                // 3. Set a short timeout so requests don't hang the server
-                const proxyReq = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'User-Agent': 'Mozilla/5.0 (compatible; ImageProxy/1.1; +https://disposemail.xyz)',
-                        'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8'
-                    },
-                    signal: AbortSignal.timeout(5000) 
-                });
+                if (!proxyReq || (proxyReq.status >= 300 && proxyReq.status < 400)) {
+                    return res.status(502).send('Too many redirects');
+                }
 
                 if (!proxyReq.ok) {
                     return res.status(proxyReq.status).send('External image fetch failed');
@@ -308,7 +349,10 @@ app.prepare().then(async () => {
                 res.setHeader('Cache-Control', 'public, max-age=3600');
 
                 // 5. Stream the response directly to the client (using Buffer safely)
+                const declared = Number(proxyReq.headers.get('content-length') || 0);
+                if (declared > 5 * 1024 * 1024) return res.status(413).send('Image too large');
                 const arrayBuffer = await proxyReq.arrayBuffer();
+                if (arrayBuffer.byteLength > 5 * 1024 * 1024) return res.status(413).send('Image too large');
                 res.send(Buffer.from(arrayBuffer));
             } catch (err) {
                 console.error('[ImageProxy] Fetch error:', err.message);
@@ -319,7 +363,8 @@ app.prepare().then(async () => {
         // Rescue Endpoint (Phase 14)
         server.post(`${p}/rescue`, express.json(), async (req, res) => {
             const { emails, secret } = req.body;
-            if (secret !== WEBHOOK_SECRET) return res.status(401).json({ error: 'Auth failed' });
+            if (!secretMatches(secret)) return res.status(401).json({ error: 'Auth failed' });
+            if (!Array.isArray(emails)) return res.status(400).json({ error: 'emails must be an array' });
 
             const { simpleParser } = require('mailparser');
 
@@ -444,14 +489,14 @@ app.prepare().then(async () => {
             try {
                 const decoded = jwt.verify(token, JWT_SECRET);
                 if (decoded.email !== email) {
-                    console.warn(`[Socket.io] SEC-ALERT: Token/Email Mismatch for room ${email}`);
+                    console.warn('[Socket.io] SEC-ALERT: token/email mismatch');
                     return;
                 }
                 
                 socket.join(email);
-                console.log(`[Socket.io] Verified Owner joined room ${email}`);
+                console.log('[Socket.io] Verified owner joined a room');
             } catch (err) {
-                console.warn(`[Socket.io] SEC-ALERT: Invalid JWT for room ${email}`);
+                console.warn('[Socket.io] SEC-ALERT: invalid JWT');
             }
         });
     });
@@ -474,13 +519,8 @@ app.prepare().then(async () => {
 
     httpServer.listen(PORT, '0.0.0.0', () => {
         console.log(`> Nuclear Ready on port ${PORT}`);
-        if (WEBHOOK_SECRET === "change_me_to_a_secure_secret") {
-            console.warn("\n========================================================");
-            console.warn("⚠️ CRITICAL SECURITY WARNING ⚠️");
-            console.warn("WEBHOOK_SECRET is currently set to the default fallback!");
-            console.warn("Attackers can spoof emails and inject phishing links.");
-            console.warn("Define a strong WEBHOOK_SECRET in your .env immediately.");
-            console.warn("========================================================\n");
+        if (!WEBHOOK_SECRET) {
+            console.warn('[Security] WEBHOOK_SECRET is not set: incoming email webhooks will be rejected until it is configured.');
         }
     });
 });

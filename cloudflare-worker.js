@@ -2,7 +2,6 @@ export default {
     // 1. HANDLER FOR INCOMING EMAILS
     async email(message, env, ctx) {
         const WEBHOOK_URL = "https://disposemail.xyz/x-feed/webhook/email"; // Keep this line
-        // const API_SECRET = "change_me_to_a_secure_secret"; // This line is removed
 
         const recipient = message.to;
         const sender = message.from;
@@ -29,7 +28,7 @@ export default {
             subject: subject,
             raw: rawContent,
             timestamp: timestamp,
-            secret: env.WEBHOOK_SECRET || "change_me_to_a_secure_secret"
+            secret: env.WEBHOOK_SECRET
         };
 
         try {
@@ -55,11 +54,11 @@ export default {
     // 2. HANDLER FOR RESCUE SYNC (Called from Browser)
     async fetch(request, env) {
         const url = new URL(request.url);
-        const API_SECRET = env.WEBHOOK_SECRET || "change_me_to_a_secure_secret";
+        const API_SECRET = env.WEBHOOK_SECRET;
 
         if (url.pathname === "/sync-safety-net") {
             const secret = url.searchParams.get("secret");
-            if (secret !== API_SECRET) return new Response("Unauthorized", { status: 401 });
+            if (!API_SECRET || secret !== API_SECRET) return new Response("Unauthorized", { status: 401 });
 
             if (!env.EMAILS_KV) return new Response("KV not bound", { status: 500 });
 

@@ -8,8 +8,7 @@ export async function GET() {
     const start = Date.now();
     let status = 'unknown';
     let ping = 0;
-    let error = null;
-
+    
     try {
         console.log('[DIAG] Checking database connectivity...');
         
@@ -34,7 +33,6 @@ export async function GET() {
 
     } catch (err: any) {
         status = 'error';
-        error = err.message;
         console.error('[DIAG] Database health check failed:', err.message);
     }
 
@@ -43,13 +41,7 @@ export async function GET() {
         timestamp: new Date().toISOString(),
         database: {
             status,
-            ping_ms: ping,
-            readyState: mongoose.connection.readyState,
-            error
-        },
-        environment: {
-            has_uri: !!process.env.MONGODB_URI,
-            node_env: process.env.NODE_ENV
+            ping_ms: ping
         }
-    });
+    }, { status: status === 'connected' ? 200 : 503 });
 }

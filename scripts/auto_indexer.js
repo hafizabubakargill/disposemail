@@ -52,7 +52,6 @@ async function runIndexer() {
             console.log(`[AutoIndexer] Authenticating via Environment Variable...`);
         } catch (err) {
             console.error(`[AutoIndexer] Failed to parse GOOGLE_INDEXING_CREDENTIALS env var. Error:`, err.message);
-            console.error(`[AutoIndexer] Env string started with:`, envStr.substring(0, 50));
             return;
         }
     } 
