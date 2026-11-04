@@ -296,6 +296,25 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "DisposeMail",
+                        "url": "https://disposemail.xyz",
+                        "logo": "https://disposemail.xyz/logo.svg",
+                        "email": "support@disposemail.xyz",
+                        "founder": { "@type": "Person", "name": "Hafiz Abubakar Gill" },
+                        "contactPoint": { "@type": "ContactPoint", "contactType": "customer support", "email": "support@disposemail.xyz" },
+                        "sameAs": [
+                            "https://www.instagram.com/dispose_mail",
+                            "https://alternativeto.net/software/disposemail/about/"
+                        ]
+                    })
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
                         "@type": "FAQPage",
                         "mainEntity": [
                             {

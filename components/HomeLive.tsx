@@ -3,8 +3,10 @@
 import Inbox from "@/components/Inbox";
 import { Hero } from "@/components/Hero";
 import { useEmailSession } from "@/hooks/useEmailSession";
+import { useTranslations } from "next-intl";
 
 export default function HomeLive() {
+    const t = useTranslations('Hero');
         const {
         email,
         timeLeft,
@@ -23,10 +25,14 @@ export default function HomeLive() {
         return (
             <div className="w-full min-h-screen flex flex-col items-center pt-20 px-4">
                 {/* Hero Skeleton omitted for brevity, same as before */}
-                <div className="w-full max-w-4xl mx-auto flex flex-col items-center mb-12 animate-pulse">
-                    <div className="h-4 w-48 bg-gray-200 dark:bg-[#222] rounded-full mb-8"></div>
-                    <div className="h-16 w-3/4 bg-gray-200 dark:bg-[#222] rounded-3xl mb-6"></div>
-                    <div className="h-6 w-1/2 bg-gray-200 dark:bg-[#222] rounded-xl mb-12"></div>
+                <div className="w-full max-w-4xl mx-auto flex flex-col items-center mb-12 ">
+                    <div className="h-4 w-48 animate-pulse bg-gray-200 dark:bg-[#222] rounded-full mb-8"></div>
+                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-3 text-center text-gray-900 dark:text-white">
+                        {t.rich('title', { br: () => <br />, span: (chunks) => <span>{chunks}</span> })}
+                    </h1>
+                    <p className="text-gray-700 dark:text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-12 text-center">
+                        {t.rich('subtitle', { br: () => <br /> })}
+                    </p>
                     <div className="w-full max-w-2xl h-20 bg-gray-100 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-[#222]"></div>
                 </div>
             </div>
