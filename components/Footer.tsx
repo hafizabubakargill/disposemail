@@ -174,6 +174,7 @@ export function Footer() {
                             <li><Link href={`${locale === 'en' ? '' : '/' + locale}/blog`} className="hover:text-white transition-colors">{tr(locale, "Privacy Blog & Insights")}</Link></li>
                             <li><Link href={`${locale === 'en' ? '' : '/' + locale}/faq`} className="hover:text-white transition-colors">{t('faq')}</Link></li>
                             <li><Link href={`${locale === 'en' ? '' : '/' + locale}/privacy`} className="hover:text-white transition-colors">{t('privacy')}</Link></li>
+                            <li><a href="mailto:support@disposemail.xyz" className="hover:text-white transition-colors">support@disposemail.xyz</a></li>
                             <li><CookieSettingsButton label={tr(locale, "Cookie settings")} className="hover:text-white transition-colors font-semibold" /></li>
                             <li><Link href={`${locale === 'en' ? '' : '/' + locale}/terms`} className="hover:text-white transition-colors">{t('terms')}</Link></li>
                             <li><Link href={`${locale === 'en' ? '' : '/' + locale}/contact`} className="hover:text-white transition-colors">{tr(locale, "Contact Support")}</Link></li>
