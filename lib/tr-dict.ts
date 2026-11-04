@@ -1,6 +1,36 @@
 // Hand-written translations for hard-coded UI strings, keyed by the English text.
 type Entry = { es: string; pt: string; ru: string; zh: string };
 export const dict: Record<string, Entry> = {
+  "Cookie settings": {
+    "es": "Configuración de cookies",
+    "pt": "Configurações de cookies",
+    "ru": "Настройки cookie",
+    "zh": "Cookie 设置"
+  },
+  "Accept all": {
+    "es": "Aceptar todas",
+    "pt": "Aceitar todos",
+    "ru": "Принять все",
+    "zh": "全部接受"
+  },
+  "Reject non-essential": {
+    "es": "Rechazar las no esenciales",
+    "pt": "Rejeitar não essenciais",
+    "ru": "Отклонить необязательные",
+    "zh": "拒绝非必要项"
+  },
+  "We use necessary cookies to make the site work. With your permission we also use analytics and advertising cookies to improve the site and keep it free. You can change your choice at any time from Cookie settings in the footer.": {
+    "es": "Usamos cookies necesarias para que el sitio funcione. Con tu permiso, también usamos cookies de analítica y publicidad para mejorar el sitio y mantenerlo gratuito. Puedes cambiar tu elección en cualquier momento desde Configuración de cookies, en el pie de página.",
+    "pt": "Usamos cookies necessários para o site funcionar. Com a sua permissão, também usamos cookies de análise e publicidade para melhorar o site e mantê-lo gratuito. Você pode mudar sua escolha a qualquer momento em Configurações de cookies, no rodapé.",
+    "ru": "Мы используем необходимые файлы cookie для работы сайта. С вашего разрешения мы также используем аналитические и рекламные cookie, чтобы улучшать сайт и сохранять его бесплатным. Вы можете изменить выбор в любой момент через «Настройки cookie» внизу страницы.",
+    "zh": "我们使用必要的 Cookie 来保证网站运行。经你许可，我们还会使用分析和广告 Cookie 来改进网站并保持免费。你可以随时通过页脚的“Cookie 设置”更改选择。"
+  },
+  "We value your privacy": {
+    "es": "Tu privacidad nos importa",
+    "pt": "Valorizamos sua privacidade",
+    "ru": "Мы ценим вашу приватность",
+    "zh": "我们重视你的隐私"
+  },
   "About DisposeMail": {
     "es": "Acerca de DisposeMail",
     "pt": "Sobre o DisposeMail",
