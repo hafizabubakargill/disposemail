@@ -76,6 +76,15 @@
     "baseline-browser-mapping": "^2.11.26",
     "nanoid": "^3.3.18",
     "dompurify": "^3.4.16",
-    "sanitize-html": "^2.17.7"
+    "sanitize-html": "^2.17.7",
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^11.0.4"
+    },
+    "rimraf": {
+      "glob": "^14.0.3"
+    },
+    "@tailwindcss/typography": {
+      "postcss-selector-parser": "6.1.5"
+    }
   }
 }
