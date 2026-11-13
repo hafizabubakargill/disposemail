@@ -33,8 +33,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const noindex = thin || locale !== 'en';
 
     return {
-        title: post.title,
-        description: post.excerpt,
+        title: post.metaTitle || post.title,
+        description: post.metaDescription || post.excerpt,
+        openGraph: {
+            type: 'article',
+            title: post.metaTitle || post.title,
+            description: post.metaDescription || post.excerpt,
+            url: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}blog/${slug}`,
+            siteName: 'DisposeMail',
+            publishedTime: new Date(post.date).toString() === 'Invalid Date' ? undefined : new Date(post.date).toISOString(),
+            images: [{ url: `https://disposemail.xyz${post.image}`, alt: post.imageAlt || post.title }],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.metaTitle || post.title,
+            description: post.metaDescription || post.excerpt,
+            images: [`https://disposemail.xyz${post.image}`],
+        },
         robots: noindex ? { index: false, follow: true } : undefined,
         alternates: {
             canonical: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}blog/${slug}`,
@@ -62,8 +77,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         notFound();
     }
 
+    const published = new Date(post.date);
+    const articleLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: post.title,
+        description: post.metaDescription || post.excerpt,
+        image: `https://disposemail.xyz${post.image}`,
+        datePublished: isNaN(published.getTime()) ? undefined : published.toISOString(),
+        author: { '@type': 'Organization', name: 'DisposeMail' },
+        publisher: { '@type': 'Organization', name: 'DisposeMail', url: 'https://disposemail.xyz' },
+        mainEntityOfPage: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}blog/${slug}`,
+    };
+
     return (
         <article className="max-w-3xl mx-auto px-6 py-20">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd).replace(/</g, '\\u003c') }}
+            />
             <Link
                 href="/blog"
                 className="inline-flex items-center text-xs font-black uppercase tracking-widest text-gray-500 hover:text-blue-600 mb-12 transition-colors"
@@ -84,7 +116,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className="relative aspect-video w-full mb-12 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-[#1a1a1a] shadow-2xl">
                 <img
                     src={post.image}
-                    alt={post.title}
+                    alt={post.imageAlt || post.title}
+                    width={1200}
+                    height={630}
                     className="w-full h-full object-cover"
                 />
             </div>
@@ -110,7 +144,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-bold
           prose-li:text-gray-600 dark:prose-li:text-gray-400 prose-li:my-2
           prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-2xl prose-h4:text-xl
-          prose-img:rounded-3xl prose-img:shadow-2xl"
+          prose-img:rounded-3xl prose-img:shadow-xl prose-img:w-full prose-img:h-auto prose-figcaption:text-center prose-figcaption:text-sm prose-figcaption:text-gray-500"
                 dangerouslySetInnerHTML={{ __html: post.content }}
             />
 
