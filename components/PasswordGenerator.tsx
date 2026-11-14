@@ -1,33 +1,29 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { EFF_LARGE_WORDLIST } from '@/lib/eff-wordlist';
 import { useTranslations } from 'next-intl';
 
-// ~200 simple, memorable words for passphrase generation
-const WORDLIST = [
-  'Tiger','Castle','River','Falcon','Bridge','Stone','Storm','Cloud','Arrow','Flame',
-  'Forest','Pebble','Silver','Thunder','Copper','Shadow','Mirror','Lantern','Crystal','Anchor',
-  'Blaze','Frost','Ember','Canyon','Harbor','Meadow','Glacier','Rapid','Summit','Valley',
-  'Petal','Dagger','Shield','Knight','Wizard','Raven','Phoenix','Dragon','Comet','Planet',
-  'Maple','Cedar','Birch','Willow','Aspen','Bonsai','Cactus','Lotus','Orchid','Tulip',
-  'Amber','Cobalt','Indigo','Scarlet','Violet','Teal','Olive','Crimson','Onyx','Pearl',
-  'Hammer','Chisel','Anvil','Spark','Torch','Compass','Lanyard','Satchel','Capsule','Beacon',
-  'Walrus','Cheetah','Coyote','Jaguar','Mamba','Osprey','Badger','Lynx','Condor','Manta',
-];
+// Passphrase words come from the EFF large wordlist (7,776 words, CC BY 3.0 US).
+// Unbiased random index in [0, max) using rejection sampling over a 32-bit random value.
+function secureRandomIndex(max: number): number {
+  const limit = Math.floor(0x100000000 / max) * max;
+  const buf = new Uint32Array(1);
+  do {
+    window.crypto.getRandomValues(buf);
+  } while (buf[0] >= limit);
+  return buf[0] % max;
+}
 
 function generatePassphrase(wordCount: number): string {
   const words: string[] = [];
-  const arr = new Uint32Array(wordCount);
-  window.crypto.getRandomValues(arr);
   for (let i = 0; i < wordCount; i++) {
-    words.push(WORDLIST[arr[i] % WORDLIST.length]);
+    words.push(EFF_LARGE_WORDLIST[secureRandomIndex(EFF_LARGE_WORDLIST.length)]);
   }
-  // Append a small number for extra strength
-  const numArr = new Uint8Array(1);
-  window.crypto.getRandomValues(numArr);
-  const num = (numArr[0] % 90) + 10; // 10-99
-  return words.join('-') + '-' + num;
+  return words.join('-');
 }
+
+const BITS_PER_WORD = Math.log2(EFF_LARGE_WORDLIST.length);
 
 export default function PasswordGenerator() {
   const t = useTranslations('PasswordGenerator');
@@ -39,7 +35,7 @@ export default function PasswordGenerator() {
   const [lowercase, setLowercase] = useState(true);
   const [numbers, setNumbers] = useState(true);
   const [symbols, setSymbols] = useState(true);
-  const [wordCount, setWordCount] = useState(4);
+  const [wordCount, setWordCount] = useState(5);
   const [copied, setCopied] = useState(false);
 
   // Count how many options are active
@@ -93,8 +89,8 @@ export default function PasswordGenerator() {
     if (!password) return { label: t('weak'), color: 'bg-red-500', width: '25%' };
     if (mode === 'memorable') {
       const segments = password.split('-').length;
-      if (segments >= 5) return { label: t('very_strong'), color: 'bg-indigo-500', width: '100%' };
-      if (segments >= 4) return { label: t('strong'), color: 'bg-green-500', width: '75%' };
+      if (segments >= 6) return { label: t('very_strong'), color: 'bg-indigo-500', width: '100%' };
+      if (segments >= 5) return { label: t('strong'), color: 'bg-green-500', width: '75%' };
       return { label: t('good'), color: 'bg-amber-500', width: '50%' };
     }
     let score = 0;
@@ -236,14 +232,17 @@ export default function PasswordGenerator() {
             </div>
             <input
               type="range"
-              min="3"
-              max="6"
+              min="4"
+              max="8"
               value={wordCount}
               onChange={(e) => setWordCount(parseInt(e.target.value))}
               className="w-full h-2 bg-gray-100 dark:bg-[#222] rounded-lg appearance-none cursor-pointer accent-blue-600"
             />
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
-              {t('memorable_example')} <span className="font-mono font-bold text-gray-700 dark:text-gray-300">Tiger-Castle-River-42</span>
+              {t('memorable_example')} <span className="font-mono font-bold text-gray-700 dark:text-gray-300">cradle-unfair-pelican-oxidant-stage</span>
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+              {t('passphrase_bits', { bits: Math.round(wordCount * BITS_PER_WORD) })}
             </p>
           </div>
         )}

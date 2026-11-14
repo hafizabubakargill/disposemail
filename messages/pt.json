@@ -269,7 +269,8 @@
     "memorable_example": "Exemplo:",
     "word_count": "Número de palavras",
     "words": "palavras",
-    "min_one_required": "Pelo menos uma opção deve estar ativa"
+    "min_one_required": "Pelo menos uma opção deve estar ativa",
+    "passphrase_bits": "Cerca de {bits} bits de entropia, usando a lista grande da EFF (7.776 palavras, CC BY 3.0 US)."
   },
   "HostingerCTA": {
     "badge": "Anfitrião recomendado",
@@ -300,16 +301,16 @@
   },
   "SecureNotes": {
     "metaTitle": "Notas Seguras | DisposeMail",
-    "metaDesc": "Crie notas secretas que se autodestroem automaticamente no momento em que são lidas.",
+    "metaDesc": "Crie notas secretas criptografadas no seu navegador e apagadas assim que são lidas.",
     "creatorTitle": "Criar nota segura",
-    "creatorSubtitle": "Escreva uma mensagem secreta. Nós o criptografaremos e forneceremos um link único. No momento em que é lida, a nota se autodestrói para sempre.",
+    "creatorSubtitle": "Escreva uma mensagem secreta. Ela é criptografada no seu navegador antes do envio e você recebe um link de uso único. Assim que for lida, a nota é apagada.",
     "textareaPlaceholder": "Escreva sua mensagem secreta aqui...",
     "burnWarning": "Será queimado ao ler",
     "createButton": "Gerar link seguro",
     "encrypting": "Criptografando e salvando...",
     "createError": "Falha ao criptografar e salvar a nota. Por favor, tente novamente.",
     "successTitle": "Link gerado",
-    "successDesc": "Sua nota foi criptografada. Compartilhe este link com o destinatário. Só funcionará exatamente uma vez.",
+    "successDesc": "Sua nota foi criptografada no seu navegador antes do envio. Compartilhe este link completo, incluindo a parte depois do #, com o destinatário. Ele funciona apenas uma vez.",
     "copy": "Copiar link",
     "copied": "Copiado!",
     "createNew": "Crie outra nota",
@@ -319,7 +320,13 @@
     "backToCreator": "Crie sua própria nota segura",
     "readingWarningTitle": "AVISO: QUEIME APÓS LER",
     "readingWarningDesc": "Você está visualizando esta nota com segurança. O banco de dados backend já o excluiu permanentemente. Se você atualizar esta página, a nota desaparecerá para sempre. Copie agora se precisar.",
-    "closeAndDestroyLocally": "Fechar e destruir localmente"
+    "closeAndDestroyLocally": "Fechar e destruir localmente",
+    "keyWarning": "A chave de descriptografia é a parte do link depois do #. Ela nunca é enviada aos nossos servidores, então não podemos ler nem recuperar a nota. Quem tiver o link completo pode lê-la uma vez; compartilhe por um canal confiável.",
+    "revealTitle": "Há uma nota segura esperando por você",
+    "revealDesc": "Ao lê-la, ela será destruída. Depois de aberta, não poderá ser vista de novo. Esteja pronto para copiá-la.",
+    "revealButton": "Revelar e destruir a nota",
+    "noKeyTitle": "Este link está incompleto",
+    "noKeyDesc": "A chave de descriptografia está faltando no link, então a nota não pode ser lida. Peça ao remetente o link completo, incluindo a parte depois do #. A nota não foi destruída."
   },
   "HashGenerator": {
     "title": "Gerador de hash",
