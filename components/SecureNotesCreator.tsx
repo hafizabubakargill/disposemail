@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { encryptNote } from '@/lib/note-crypto';
 import { Lock, FileText, Link as LinkIcon, Copy, CheckCircle2, ShieldAlert } from 'lucide-react';
 
 export default function SecureNotesCreator() {
@@ -22,10 +23,12 @@ export default function SecureNotesCreator() {
         setCopied(false);
 
         try {
+            // Encrypt in the browser. The key never leaves it except inside the link's #fragment.
+            const { payload, key } = await encryptNote(content);
             const res = await fetch('/api/notes', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content })
+                body: JSON.stringify({ content: payload, v: 2 })
             });
             
             const data = await res.json();
@@ -34,7 +37,7 @@ export default function SecureNotesCreator() {
                 throw new Error(data.error || t('createError'));
             }
 
-            const url = `${window.location.origin}/secure-notes/${data.id}`;
+            const url = `${window.location.origin}/secure-notes/${data.id}#${key}`;
             setShareUrl(url);
             setStatus('success');
             setContent(''); // Clear the textarea for safety
@@ -143,6 +146,8 @@ export default function SecureNotesCreator() {
                             {copied ? t('copied') : t('copy')}
                         </button>
                     </div>
+
+                    <p className="text-xs text-gray-500 dark:text-gray-400 text-center max-w-md mb-6">{t('keyWarning')}</p>
 
                     <button
                         onClick={createNew}

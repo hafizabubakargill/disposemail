@@ -4,44 +4,88 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { ShieldX, AlertTriangle, FileText, LockKeyhole, EyeOff } from 'lucide-react';
 import { Link } from '@/i18n-nav';
+import { decryptNote, isValidNoteKey } from '@/lib/note-crypto';
 
 export default function SecureNotesViewer({ noteId }: { noteId: string }) {
     const t = useTranslations('SecureNotes');
     const [content, setContent] = useState('');
-    const [status, setStatus] = useState<'loading' | 'success' | 'not_found' | 'error'>('loading');
+    const [status, setStatus] = useState<'checking' | 'ready' | 'no_key' | 'loading' | 'success' | 'not_found' | 'error'>('checking');
     const [errorMessage, setErrorMessage] = useState('');
+    const [noteKey, setNoteKey] = useState('');
 
+    // The decryption key lives in the URL fragment (#key), which is never sent to the server.
     useEffect(() => {
-        const fetchNote = async () => {
-            try {
-                const res = await fetch(`/api/notes/${noteId}`);
-                const data = await res.json();
-
-                if (res.status === 404 || !data.success) {
-                    setStatus('not_found');
-                    return;
-                }
-
-                if (!res.ok) {
-                    throw new Error(data.error || 'Failed to decrypt note');
-                }
-
-                setContent(data.content);
-                setStatus('success');
-            } catch (error: any) {
-                setStatus('error');
-                setErrorMessage(error.message);
-            }
-        };
-
-        fetchNote();
+        const key = window.location.hash.replace(/^#/, '');
+        if (isValidNoteKey(key)) {
+            setNoteKey(key);
+            setStatus('ready');
+        } else {
+            setStatus('no_key');
+        }
     }, [noteId]);
+
+    // Reading burns the note, so only fetch after an explicit click. This also stops link
+    // scanners and prefetchers from destroying a note before the recipient sees it.
+    const revealNote = async () => {
+        setStatus('loading');
+        try {
+            const res = await fetch(`/api/notes/${noteId}`);
+            const data = await res.json();
+
+            if (res.status === 404 || !data.success) {
+                setStatus('not_found');
+                return;
+            }
+
+            const plaintext = await decryptNote(data.content, noteKey);
+            setContent(plaintext);
+            setStatus('success');
+            // Remove the key from the address bar once it has been used.
+            window.history.replaceState(null, '', window.location.pathname);
+        } catch (error: any) {
+            setStatus('error');
+            setErrorMessage(error?.message || 'Failed to decrypt note');
+        }
+    };
 
     const copyBody = async () => {
         try {
             await navigator.clipboard.writeText(content);
         } catch (err) {}
     };
+
+    if (status === 'checking') return null;
+
+    if (status === 'ready') {
+        return (
+            <div className="w-full max-w-3xl mx-auto backdrop-blur-md bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl p-8 sm:p-12 text-center">
+                <div className="w-20 h-20 rounded-full bg-indigo-500/10 flex items-center justify-center mx-auto mb-6 border border-indigo-500/20">
+                    <LockKeyhole className="w-10 h-10 text-indigo-500" />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t('revealTitle')}</h2>
+                <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-8">{t('revealDesc')}</p>
+                <button onClick={revealNote} className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-colors">
+                    {t('revealButton')}
+                </button>
+            </div>
+        );
+    }
+
+    if (status === 'no_key') {
+        return (
+            <div className="w-full max-w-3xl mx-auto backdrop-blur-md bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl p-8 sm:p-12 text-center">
+                <div className="w-20 h-20 rounded-full bg-yellow-500/10 flex items-center justify-center mx-auto mb-6 border border-yellow-500/20">
+                    <AlertTriangle className="w-10 h-10 text-yellow-500" />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t('noKeyTitle')}</h2>
+                <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-8">{t('noKeyDesc')}</p>
+                <Link href="/secure-notes" className="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white rounded-xl transition-colors">
+                    <FileText className="w-4 h-4" />
+                    {t('backToCreator')}
+                </Link>
+            </div>
+        );
+    }
 
     if (status === 'loading') {
         return (

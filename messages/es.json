@@ -269,7 +269,8 @@
     "memorable_example": "Ejemplo:",
     "word_count": "Número de palabras",
     "words": "palabras",
-    "min_one_required": "Al menos una opción debe estar activa"
+    "min_one_required": "Al menos una opción debe estar activa",
+    "passphrase_bits": "Unos {bits} bits de entropía, con la lista grande de la EFF (7.776 palabras, CC BY 3.0 US)."
   },
   "HostingerCTA": {
     "badge": "Anfitrión recomendado",
@@ -300,16 +301,16 @@
   },
   "SecureNotes": {
     "metaTitle": "Notas seguras | Eliminar correo",
-    "metaDesc": "Crea notas secretas que se autodestruyen automáticamente en el momento en que se leen.",
+    "metaDesc": "Crea notas secretas cifradas en tu navegador que se eliminan en cuanto se leen.",
     "creatorTitle": "Crear nota segura",
-    "creatorSubtitle": "Escribe un mensaje secreto. Lo cifraremos y le daremos un enlace único. En el momento en que se lee, la nota se autodestruye para siempre.",
+    "creatorSubtitle": "Escribe un mensaje secreto. Se cifra en tu navegador antes de subirse y recibes un enlace de un solo uso. En cuanto se lee, la nota se elimina.",
     "textareaPlaceholder": "Escribe aquí tu mensaje secreto...",
     "burnWarning": "Se quemará al leer",
     "createButton": "Generar enlace seguro",
-    "encrypting": "Cifrar y guardar...",
+    "encrypting": "Cifrando y guardando...",
     "createError": "No se pudo cifrar y guardar la nota. Por favor inténtalo de nuevo.",
     "successTitle": "Enlace generado",
-    "successDesc": "Tu nota ha sido cifrada. Comparte este enlace con el destinatario. Sólo funcionará exactamente una vez.",
+    "successDesc": "Tu nota se cifró en tu navegador antes de subirse. Comparte este enlace completo, incluida la parte después de #, con el destinatario. Solo funciona una vez.",
     "copy": "Copiar enlace",
     "copied": "¡Copiado!",
     "createNew": "crear otra nota",
@@ -319,7 +320,13 @@
     "backToCreator": "Crea tu propia nota segura",
     "readingWarningTitle": "ADVERTENCIA: QUEMAR DESPUÉS DE LEER",
     "readingWarningDesc": "Estás viendo esta nota de forma segura. La base de datos backend ya la eliminó permanentemente. Si actualiza esta página, la nota desaparecerá para siempre. Cópialo ahora si lo necesitas.",
-    "closeAndDestroyLocally": "Cerrar y destruir localmente"
+    "closeAndDestroyLocally": "Cerrar y destruir localmente",
+    "keyWarning": "La clave de descifrado es la parte del enlace después de #. Nunca se envía a nuestros servidores, así que no podemos leer ni recuperar la nota. Cualquiera con el enlace completo puede leerla una vez; compártelo por un canal de confianza.",
+    "revealTitle": "Te espera una nota segura",
+    "revealDesc": "Al leerla se destruirá. Una vez abierta, no podrá verse de nuevo. Asegúrate de estar listo para copiarla.",
+    "revealButton": "Mostrar y destruir la nota",
+    "noKeyTitle": "Este enlace está incompleto",
+    "noKeyDesc": "Falta la clave de descifrado en el enlace, así que la nota no puede leerse. Pide al remitente el enlace completo, incluida la parte después de #. La nota no se ha destruido."
   },
   "HashGenerator": {
     "title": "Generador de hash",

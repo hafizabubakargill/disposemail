@@ -280,7 +280,8 @@
     "memorable_example": "Example:",
     "word_count": "Word Count",
     "words": "words",
-    "min_one_required": "At least one option must be active"
+    "min_one_required": "At least one option must be active",
+    "passphrase_bits": "About {bits} bits of entropy, using the EFF large wordlist (7,776 words, CC BY 3.0 US)."
   },
   "DataBreach": {
     "metaTitle": "Data Leak Checker: Has Your Email Been in a Data Breach?",
@@ -300,16 +301,16 @@
   },
   "SecureNotes": {
     "metaTitle": "Secure Notes | DisposeMail",
-    "metaDesc": "Create secret notes that automatically self-destruct the moment they are read.",
+    "metaDesc": "Create secret notes that are encrypted in your browser and deleted the moment they are read.",
     "creatorTitle": "Create Secure Note",
-    "creatorSubtitle": "Write a secret message. We will encrypt it and give you a one-time link. The moment it is read, the note self-destructs forever.",
+    "creatorSubtitle": "Write a secret message. It is encrypted in your browser before upload, and you get a one-time link. The moment it is read, the note is deleted.",
     "textareaPlaceholder": "Write your secret message here...",
     "burnWarning": "Will be burned upon reading",
     "createButton": "Generate Secure Link",
     "encrypting": "Encrypting & Saving...",
     "createError": "Failed to encrypt and save the note. Please try again.",
     "successTitle": "Link Generated",
-    "successDesc": "Your note has been encrypted. Share this link with the recipient. It will only work exactly once.",
+    "successDesc": "Your note was encrypted in your browser before it was uploaded. Share this full link, including the part after the #, with the recipient. It works only once.",
     "copy": "Copy Link",
     "copied": "Copied!",
     "createNew": "Create another note",
@@ -319,7 +320,13 @@
     "backToCreator": "Create your own Secure Note",
     "readingWarningTitle": "WARNING: BURN AFTER READING",
     "readingWarningDesc": "You are viewing this note securely. The backend database has already permanently deleted it. If you refresh this page, the note will be gone forever. Copy it now if you need it.",
-    "closeAndDestroyLocally": "Close & Destroy Locally"
+    "closeAndDestroyLocally": "Close & Destroy Locally",
+    "keyWarning": "The decryption key is the part of the link after the #. It is never sent to our servers, so we cannot read or recover the note. Anyone with the full link can read it once, so share it over a channel you trust.",
+    "revealTitle": "A secure note is waiting for you",
+    "revealDesc": "Reading it will destroy it. Once you open it, it cannot be viewed again. Make sure you are ready to copy it.",
+    "revealButton": "Reveal and destroy note",
+    "noKeyTitle": "This link is incomplete",
+    "noKeyDesc": "The decryption key is missing from the link, so the note cannot be read. Ask the sender for the full link, including the part after the #. The note has not been destroyed."
   },
   "HashGenerator": {
     "title": "Hash Generator",
