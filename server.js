@@ -13,6 +13,7 @@ const rateLimit = require('express-rate-limit');
 const connectDB = require('./lib/mongoose');
 const jwt = require('jsonwebtoken');
 const sanitizeHtml = require('sanitize-html');
+const { getPushTokensForAddress } = require('./lib/push-db');
 
 // Config
 const dev = process.env.NODE_ENV !== 'production';
@@ -224,8 +225,34 @@ app.prepare().then(async () => {
         }
         console.log(`[WEBHOOK] Email ${emailToEmit.id} stored`);
         io.to(to.toLowerCase()).emit('new-email', emailToEmit);
+        sendNewMailPush(to.toLowerCase(), from, finalSubject);
         res.json({ success: true, id: emailToEmit.id });
     };
+
+    // --- PUSH NOTIFICATIONS (mobile app) ---
+    // Fire-and-forget: must never block or fail the webhook response.
+    async function sendNewMailPush(address, fromAddress, subject) {
+        try {
+            const tokens = await getPushTokensForAddress(address);
+            if (!tokens.length) return;
+
+            const messages = tokens.map((to) => ({
+                to,
+                sound: 'default',
+                title: `New mail from ${fromAddress}`,
+                body: subject || '(No Subject)',
+                data: { address },
+            }));
+
+            await fetch('https://exp.host/--/api/v2/push/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                body: JSON.stringify(messages),
+            });
+        } catch (err) {
+            console.error('[Push] Failed to send new-mail push:', err.message);
+        }
+    }
 
     // --- SESSION GENERATION (NEW) ---
     server.post('/api/session/generate', express.json(), (req, res) => {
@@ -505,7 +532,7 @@ app.prepare().then(async () => {
     server.all('*', (req, res) => {
         // Whitelist all Next.js App Router API routes (app/api/*)
         // Add new routes here as they are created
-        const nextJsApiRoutes = ['/api/contact', '/api/ip', '/api/breach', '/api/notes', '/api/diag', '/api/session'];
+        const nextJsApiRoutes = ['/api/contact', '/api/ip', '/api/breach', '/api/notes', '/api/diag', '/api/session', '/api/push'];
         
         if (nextJsApiRoutes.some(route => req.url.startsWith(route))) {
             return handle(req, res);
