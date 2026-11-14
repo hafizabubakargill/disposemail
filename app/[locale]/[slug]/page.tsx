@@ -1,4 +1,5 @@
 import { getUseCase, useCases } from "@/lib/use-cases";
+import { useCaseDetails } from "@/lib/use-case-details";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
@@ -59,6 +60,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ locale
                 serviceName={useCase!.service}
                 useCaseTitle={useCase!.title}
                 useCaseDescription={useCase!.description}
+                details={locale === 'en' ? useCaseDetails[slug] : undefined}
             />
         </NextIntlClientProvider>
     );

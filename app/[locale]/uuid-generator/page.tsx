@@ -3,8 +3,8 @@ import { tr, localizeMeta } from '@/lib/tr';
 import { getLocale } from 'next-intl/server';
 
 const baseMetadata = {
-    title: 'UUID Generator: Create Random v4 UUIDs Online',
-    description: 'Generate one or many random version 4 UUIDs (GUIDs) and copy them in one click. Free and created locally in your browser.',
+    title: 'UUID Generator: v1, v4, v5, v7 and GUID Online',
+    description: 'Generate UUIDs in versions 1, 4, 5 and 7, plus the nil UUID and Windows-style GUIDs, and copy them in one click. Free and created in your browser.',
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -28,6 +28,30 @@ export default async function UUIDGeneratorPage() {
                 </p>
             </div>
             <div className="w-full"><UUIDGenerator /></div>
+            {locale === 'en' && (
+                <section className="w-full max-w-3xl mx-auto mt-20 text-gray-600 dark:text-gray-400">
+                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Last reviewed: November 2026</p>
+                    <h2 className="text-3xl font-black tracking-tight mb-4 text-gray-900 dark:text-white">What is a UUID?</h2>
+                    <p className="leading-relaxed mb-6">A UUID (universally unique identifier) is a 128-bit value written as 32 hexadecimal digits in five groups, in the pattern 8-4-4-4-12, for example <code>f47ac10b-58cc-4372-a567-0e02b2c3d479</code>. Any computer can create one without asking a central server, which makes UUIDs popular for database keys, file names and request IDs in distributed systems. A GUID is the same thing under Microsoft&apos;s name.</p>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Which version should I use?</h3>
+                    <ul className="list-disc pl-6 space-y-2 mb-6">
+                        <li><strong>v4 (random):</strong> the default choice when you just need a unique, hard-to-guess ID.</li>
+                        <li><strong>v7 (time-ordered):</strong> starts with a timestamp, so new IDs sort roughly by creation time. A good fit for database primary keys.</li>
+                        <li><strong>v1 (time-based):</strong> uses the current time and a node value. It can reveal when an ID was created, so avoid it for public identifiers.</li>
+                        <li><strong>v5 (name-based):</strong> hashes a name inside a namespace with SHA-1, so the same input always gives the same UUID.</li>
+                        <li><strong>NIL:</strong> all zeros, used as a &quot;no value&quot; placeholder.</li>
+                    </ul>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Example</h3>
+                    <p className="leading-relaxed mb-6">Generate five version 4 UUIDs and paste them into test fixtures. For a stable ID per email address, use v5 with the DNS namespace and the address as the name: running it twice gives the same result.</p>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Frequently asked questions</h3>
+                    <div className="space-y-5 mb-6">
+                        <div><h4 className="font-bold text-gray-900 dark:text-white mb-1">Can two UUIDs be the same?</h4><p className="text-sm leading-relaxed">With a sound random source, a v4 collision is so unlikely that you would need to generate around 2.7 quintillion before the chance reached 50 percent.</p></div>
+                        <div><h4 className="font-bold text-gray-900 dark:text-white mb-1">Is a UUID a good password or access token?</h4><p className="text-sm leading-relaxed">No. It is hard to guess, but tokens need expiry and server-side checks. Use a purpose-built token, or our password generator for secrets.</p></div>
+                        <div><h4 className="font-bold text-gray-900 dark:text-white mb-1">Are my UUIDs sent anywhere?</h4><p className="text-sm leading-relaxed">No. They are created in your browser and are not sent to our servers.</p></div>
+                    </div>
+                    <p className="text-sm leading-relaxed">Read our <a className="text-blue-600 dark:text-blue-400 font-semibold underline" href="/blog/what-is-a-uuid-and-why-it-matters">full UUID guide</a> for formats, collision odds and database tips.</p>
+                </section>
+            )}
         </div>
     );
 }
