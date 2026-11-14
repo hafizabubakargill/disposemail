@@ -6,14 +6,16 @@ import { useEmailSession } from "@/hooks/useEmailSession";
 import Inbox from "@/components/Inbox";
 import { tr } from '@/lib/tr';
 import { useLocale } from 'next-intl';
+import type { UseCaseDetails } from '@/lib/use-case-details';
 
 interface UseCaseClientProps {
     serviceName: string;
     useCaseTitle: string;
     useCaseDescription: string;
+    details?: UseCaseDetails;
 }
 
-export default function UseCaseClient({ serviceName, useCaseTitle, useCaseDescription }: UseCaseClientProps) {
+export default function UseCaseClient({ serviceName, useCaseTitle, useCaseDescription, details }: UseCaseClientProps) {
     const locale = useLocale();
     const {
         email,
@@ -58,6 +60,49 @@ export default function UseCaseClient({ serviceName, useCaseTitle, useCaseDescri
                     <div className="w-full px-4 mb-20">
                         <Inbox emailAddress={email} sessionToken={sessionToken} />
                     </div>
+                </section>
+            )}
+
+
+            {details && (
+                <section className="max-w-3xl mx-auto px-6 py-20 border-t border-gray-100 dark:border-[#1a1a1a] text-gray-600 dark:text-gray-400">
+                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6">Last reviewed: November 2026</p>
+                    <h2 className="text-3xl font-black tracking-tight mb-6 text-gray-900 dark:text-white">Using a temporary email with {serviceName}: what works and what does not</h2>
+                    <p className="leading-relaxed mb-10">{details.intro}</p>
+
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">What {serviceName} sends to your email</h3>
+                    <ul className="list-disc pl-6 space-y-2 mb-10">{details.emails.map((e) => <li key={e}>{e}</li>)}</ul>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                        <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50 dark:bg-emerald-900/10 p-6">
+                            <h3 className="text-lg font-bold text-emerald-800 dark:text-emerald-300 mb-3">A temporary address can work for</h3>
+                            <ul className="list-disc pl-5 space-y-2 text-sm">{details.works.map((e) => <li key={e}>{e}</li>)}</ul>
+                        </div>
+                        <div className="rounded-2xl border border-red-200 dark:border-red-900/40 bg-red-50 dark:bg-red-900/10 p-6">
+                            <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">It is a poor fit for</h3>
+                            <ul className="list-disc pl-5 space-y-2 text-sm">{details.doesNot.map((e) => <li key={e}>{e}</li>)}</ul>
+                        </div>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Better options for an account you want to keep</h3>
+                    <ul className="list-disc pl-6 space-y-2 mb-10">{details.better.map((e) => <li key={e}>{e}</li>)}</ul>
+
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">How to use DisposeMail for a quick sign-up</h3>
+                    <ol className="list-decimal pl-6 space-y-2 mb-10">{details.steps.map((e) => <li key={e}>{e}</li>)}</ol>
+
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Frequently asked questions</h3>
+                    <div className="space-y-6 mb-10">
+                        {details.faq.map((f) => (
+                            <div key={f.q}>
+                                <h4 className="font-bold text-gray-900 dark:text-white mb-1">{f.q}</h4>
+                                <p className="leading-relaxed text-sm">{f.a}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <p className="text-sm leading-relaxed">
+                        DisposeMail is independent and is not affiliated with {serviceName}. Using any temporary address to break a service&apos;s rules is not something we support. Read our <a className="text-blue-600 dark:text-blue-400 font-semibold underline" href="/blog/throwaway-email-address-guide-2026">throwaway email guide</a> and <a className="text-blue-600 dark:text-blue-400 font-semibold underline" href="/privacy">privacy policy</a> for how the service works.
+                    </p>
                 </section>
             )}
 
