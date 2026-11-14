@@ -60,7 +60,6 @@ const STATIC_LINKS = [
     { href: '/color-converter', label: 'HEX / RGB / HSL Color Converter' },
     { href: '/epoch-converter', label: 'Unix Epoch Timestamp Converter' },
     { href: '/faq', label: 'Frequently Asked Questions' },
-    { href: '/api-docs', label: 'API Developer Documentation' },
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Service' },
     { href: '/contact', label: 'Contact Support' },

@@ -36,7 +36,6 @@ const STATIC_ROUTES = [
     { path: '/contact', priority: '0.80' },
     { path: '/privacy', priority: '0.70' },
     { path: '/terms', priority: '0.70' },
-    { path: '/api-docs', priority: '0.75' },
     { path: '/sitemap', priority: '0.75' },
 ];
 
