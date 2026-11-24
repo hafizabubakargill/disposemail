@@ -275,6 +275,28 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                             </Link>
                         ))}
                     </div>
+
+                    {/* More guides: plain text links so every updated guide is reachable from the homepage */}
+                    {(() => {
+                        const all = getSortedPosts(locale);
+                        const shown = new Set(all.slice(0, 6).map((p) => p.slug));
+                        const more = all.filter((p) => !shown.has(p.slug)).slice(0, 16);
+                        if (more.length === 0) return null;
+                        return (
+                            <nav aria-label={tr(locale, 'More guides')} className="mt-14">
+                                <h3 className="text-xl font-black tracking-tight mb-5 text-gray-900 dark:text-white">{tr(locale, 'More guides')}</h3>
+                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
+                                    {more.map((post) => (
+                                        <li key={post.slug}>
+                                            <Link href={`/blog/${post.slug}`} className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
+                                                {post.title}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </nav>
+                        );
+                    })()}
                 </div>
             </div>
 
