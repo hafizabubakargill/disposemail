@@ -53,14 +53,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         robots: noindex ? { index: false, follow: true } : undefined,
         alternates: {
             canonical: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}blog/${slug}`,
+            // Non-English post copies are noindexed (and untranslated ones redirect to English),
+            // so only the English version is advertised as an alternate.
             languages: {
                 'en': `https://disposemail.xyz/blog/${slug}`,
-                'es': `https://disposemail.xyz/es/blog/${slug}`,
-                'pt': `https://disposemail.xyz/pt/blog/${slug}`,
-                'ru': `https://disposemail.xyz/ru/blog/${slug}`,
-                'zh': `https://disposemail.xyz/zh/blog/${slug}`,
                 'x-default': `https://disposemail.xyz/blog/${slug}`,
-            }
+            },
         }
     };
 }
