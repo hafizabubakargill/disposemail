@@ -83,6 +83,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         description: post.metaDescription || post.excerpt,
         image: `https://disposemail.xyz${post.image}`,
         datePublished: isNaN(published.getTime()) ? undefined : published.toISOString(),
+        dateModified: post.updated ? new Date(post.updated + 'T00:00:00Z').toISOString() : undefined,
         author: { '@type': 'Organization', name: 'DisposeMail' },
         publisher: { '@type': 'Organization', name: 'DisposeMail', url: 'https://disposemail.xyz' },
         mainEntityOfPage: `https://disposemail.xyz/${locale === 'en' ? '' : locale + '/'}blog/${slug}`,

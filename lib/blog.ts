@@ -16,6 +16,7 @@ export interface BlogPost {
   metaTitle?: string;
   metaDescription?: string;
   imageAlt?: string;
+  updated?: string; // ISO date (YYYY-MM-DD) of the last substantial rewrite
 }
 
 const EN_WORDS = new Set('the and for you your with that this are from can not will have has use used using free any all how what why when which more than only also into their they them our but its is to of in on or as be by an at if no we'.split(' '));
