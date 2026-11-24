@@ -17,9 +17,9 @@
     "@types/dompurify": "^3.0.0",
     "@types/qrcode": "^1.5.6",
     "diff": "^8.0.4",
-    "dompurify": "^3.4.16",
+    "dompurify": "^3.5.0",
     "express": "^4.22.2",
-    "express-rate-limit": "^8.2.1",
+    "express-rate-limit": "^8.7.5",
     "googleapis": "^173.0.0",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.563.0",
@@ -72,7 +72,7 @@
     "qs": "^6.16.0",
     "baseline-browser-mapping": "^2.11.26",
     "nanoid": "^3.3.18",
-    "dompurify": "^3.4.16",
+    "dompurify": "^3.5.0",
     "sanitize-html": "^2.17.7",
     "rimraf": {
       "glob": "^14.0.3"
