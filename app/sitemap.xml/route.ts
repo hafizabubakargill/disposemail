@@ -39,34 +39,47 @@ const STATIC_ROUTES = [
     { path: '/sitemap', priority: '0.75' },
 ];
 
+// Real last-modified dates for pages whose content changed. Unlisted static pages omit <lastmod>
+// rather than claiming 'now', because Google ignores lastmod once it proves unreliable.
+const STATIC_LASTMOD: Record<string, string> = {
+    '/ip-lookup': '2026-11-24',
+    '/secure-notes': '2026-11-14',
+    '/password-generator': '2026-11-14',
+    '/uuid-generator': '2026-11-14',
+    '/faq': '2026-11-14',
+};
+const USE_CASE_LASTMOD = '2026-11-14';
+const toIso = (d: string) => {
+    const t = new Date(d.length === 10 ? `${d}T00:00:00Z` : `${d} UTC`);
+    return isNaN(t.getTime()) ? undefined : t.toISOString();
+};
+
 export async function GET() {
-    const now = new Date();
-    const lastmod = now.toISOString().replace('Z', '+00:00');
 
     // Collect base relative paths (e.g. '', '/about', '/blog/my-post', '/temp-mail-for-qa')
-    const basePaths: { path: string, basePriority: string }[] = [];
+    const basePaths: { path: string, basePriority: string, lastmod?: string }[] = [];
 
     // Static Routes
     STATIC_ROUTES.forEach(route => {
-        basePaths.push({ path: route.path, basePriority: route.priority });
+        basePaths.push({ path: route.path, basePriority: route.priority, lastmod: STATIC_LASTMOD[route.path] && toIso(STATIC_LASTMOD[route.path]) });
     });
 
     // Blog Routes
     // Thin posts are noindexed (see blog/[slug]/page.tsx), so keep them out of the sitemap.
     englishPosts.filter(post => post.content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length >= 300).forEach(post => {
-        basePaths.push({ path: `/blog/${post.slug}`, basePriority: '0.64' });
+        basePaths.push({ path: `/blog/${post.slug}`, basePriority: '0.64', lastmod: toIso((post as any).updated || post.date) });
     });
 
     // Use Case Routes (from English use cases as baseline slugs)
     const enCases = useCases.en || [];
     enCases.forEach(uc => {
-        basePaths.push({ path: `/${uc.slug}`, basePriority: '0.64' });
+        basePaths.push({ path: `/${uc.slug}`, basePriority: '0.64', lastmod: toIso(USE_CASE_LASTMOD) });
     });
 
     const urlEntries: string[] = [];
 
     // For every base path, generate entries for ALL 5 locales with xhtml:link hreflang annotations
-    basePaths.forEach(({ path, basePriority }) => {
+    basePaths.forEach(({ path, basePriority, lastmod }) => {
         const alternateLinks = LOCALES.map(loc => {
             const prefix = loc === 'en' ? '' : `/${loc}`;
             const href = `${BASE_URL}${prefix}${path}`;
@@ -82,8 +95,7 @@ export async function GET() {
             urlEntries.push(`<url>
   <loc>${canonical}</loc>
 ${alternateLinks.join('\n')}
-  <lastmod>${lastmod}</lastmod>
-  <priority>${priority}</priority>
+${lastmod ? `  <lastmod>${lastmod}</lastmod>\n` : ''}  <priority>${priority}</priority>
 </url>`);
         });
     });
